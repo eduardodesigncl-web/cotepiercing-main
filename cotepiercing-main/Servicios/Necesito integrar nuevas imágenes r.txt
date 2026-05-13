@@ -1,0 +1,295 @@
+Necesito integrar nuevas imágenes reales de servicios en la web de Cotepiercing, manteniendo el estilo visual actual: elegante, clínico, profesional, moderno, con estética oscura y detalles dorados. La implementación debe estar optimizada para SEO, rendimiento y buena experiencia de usuario.
+
+Objetivo:
+
+Agregar las siguientes imágenes a las cards/secciones de servicios correspondientes, sin alterar la estructura principal de la web ni perder el estilo visual actual. Cada imagen debe mostrarse de forma limpia, profesional y responsive, ayudando a reforzar el posicionamiento orgánico de Cotepiercing como estudio profesional de piercing en Arica.
+
+Indicaciones generales:
+
+- Usar exactamente los nombres de archivo entregados.
+
+- Usar exactamente los textos ALT entregados para SEO.
+
+- Las imágenes deben cargarse en formato WebP.
+
+- Implementar lazy loading en las imágenes.
+
+- Mantener proporciones consistentes en las cards.
+
+- Usar object-fit: cover para que las imágenes se vean prolijas.
+
+- Evitar deformaciones, recortes agresivos o baja legibilidad visual.
+
+- Mantener una estética limpia, elegante y de confianza.
+
+- No usar efectos excesivos ni filtros que alteren demasiado el trabajo real.
+
+- Las imágenes deben aparecer asociadas al servicio correcto.
+
+- Agregar textos visibles breves y optimizados para SEO, sin sobrecargar la interfaz.
+
+- Incluir palabras clave naturales como: piercing en Arica, body piercing profesional, Cotepiercing, joyería dorada, perforación profesional y María José piercer.
+
+- No hacer keyword stuffing.
+
+- Mantener buen contraste, accesibilidad y lectura clara en mobile y desktop.
+
+Servicios e imágenes a integrar:
+
+1. Nostril
+
+Archivo:
+
+piercing-nostril-nariz-cotepiercing.webp
+
+ALT:
+
+Piercing nostril en nariz con joyería dorada fina realizado por Cotepiercing
+
+Texto sugerido para la card:
+
+Piercing Nostril
+
+Descripción breve:
+
+Perforación nasal elegante y versátil, realizada con precisión profesional y joyería inicial incluida.
+
+---
+
+2. Septum
+
+Archivo:
+
+piercing-septum-nariz-cotepiercing.webp
+
+ALT:
+
+Piercing septum en nariz con aro dorado realizado por Cotepiercing
+
+Texto sugerido para la card:
+
+Piercing Septum
+
+Descripción breve:
+
+Piercing de septum realizado con evaluación anatómica previa, técnica segura y acabado estético profesional.
+
+---
+
+3. Eyebrow Piercing / Ceja
+
+Archivo:
+
+piercing-ceja-eyebrow-piercing-cotepiercing.webp
+
+ALT:
+
+Eyebrow piercing o piercing de ceja con joyería dorada realizado por Cotepiercing
+
+Texto sugerido para la card:
+
+Piercing de Ceja
+
+Descripción breve:
+
+Piercing de ceja con joyería dorada, ideal para un estilo definido, moderno y personalizado.
+
+---
+
+4. Labret
+
+Archivo:
+
+piercing-labret-labio-cotepiercing.webp
+
+ALT:
+
+Piercing labret en labio inferior con joyería dorada realizado por Cotepiercing
+
+Texto sugerido para la card:
+
+Piercing Labret
+
+Descripción breve:
+
+Piercing en labio inferior realizado con técnica profesional, higiene rigurosa y asesoría personalizada.
+
+---
+
+5. Meduza
+
+Archivo:
+
+piercing-medusa-labio-cotepiercing.webp
+
+ALT:
+
+Piercing medusa sobre el labio superior con joyería dorada realizado por Cotepiercing
+
+Texto sugerido para la card:
+
+Piercing Meduza
+
+Descripción breve:
+
+Piercing ubicado sobre el labio superior, pensado para resaltar la simetría facial con un acabado elegante.
+
+---
+
+6. Madonna / Monroe
+
+Archivo:
+
+piercing-madonna-monroe-labio-cotepiercing.webp
+
+ALT:
+
+Piercing Madonna o Monroe en labio superior lateral con joyería dorada realizado por Cotepiercing
+
+Texto sugerido para la card:
+
+Piercing Madonna / Monroe
+
+Descripción breve:
+
+Piercing lateral sobre el labio superior, una opción delicada y con mucha personalidad estética.
+
+---
+
+7. Smiley
+
+Archivo:
+
+piercing-smiley-frenillo-cotepiercing.webp
+
+ALT:
+
+Piercing smiley en frenillo superior con joyería dorada realizado por Cotepiercing
+
+Texto sugerido para la card:
+
+Piercing Smiley
+
+Descripción breve:
+
+Piercing oral discreto y expresivo, realizado con evaluación profesional y cuidados específicos.
+
+---
+
+8. Ombligo
+
+Archivo:
+
+piercing-ombligo-abdomen-cotepiercing.webp
+
+ALT:
+
+Piercing de ombligo con joyería dorada realizado por Cotepiercing
+
+Texto sugerido para la card:
+
+Piercing de Ombligo
+
+Descripción breve:
+
+Piercing corporal clásico y elegante, realizado con evaluación anatómica y joyería inicial incluida.
+
+---
+
+9. Microdermal
+
+Archivo:
+
+piercing-microdermal-mejilla-cotepiercing.webp
+
+ALT:
+
+Piercing microdermal en mejilla con joyería dorada realizado por Cotepiercing
+
+Texto sugerido para la card:
+
+Microdermal
+
+Descripción breve:
+
+Piercing de punto único sobre la piel, realizado con técnica especializada y enfoque estético profesional.
+
+---
+
+10. Surface
+
+Archivo:
+
+piercing-surface-cuerpo-cotepiercing.webp
+
+ALT:
+
+Piercing surface en cuerpo con joyería dorada realizado por Cotepiercing
+
+Texto sugerido para la card:
+
+Piercing Surface
+
+Descripción breve:
+
+Piercing de superficie realizado con evaluación previa, técnica profesional y cuidado personalizado.
+
+Requerimientos de implementación:
+
+- Integrar estas imágenes dentro de la sección de Servicios o en la galería de servicios, según la estructura actual de la web.
+
+- Cada card debe incluir imagen, nombre del servicio, breve descripción y botón de acción.
+
+- El botón debe decir: “Reservar este piercing”.
+
+- El botón debe dirigir a WhatsApp con el mensaje predeterminado de reserva.
+
+- Mantener consistencia visual con las cards ya existentes.
+
+- En mobile, las cards deben verse en una columna.
+
+- En tablet, pueden verse en dos columnas.
+
+- En desktop, usar grilla de 3 columnas si el diseño lo permite.
+
+- Agregar hover sutil: leve zoom de imagen, sombra suave o borde dorado discreto.
+
+- No crear una galería desordenada; debe sentirse premium, profesional y confiable.
+
+SEO técnico:
+
+- Cada imagen debe tener atributo alt optimizado.
+
+- Usar nombres de archivo descriptivos tal como fueron entregados.
+
+- Agregar loading="lazy".
+
+- Agregar width y height cuando sea posible para evitar saltos visuales.
+
+- Usar HTML semántico: section, article, figure, img, figcaption si corresponde.
+
+- Incluir un heading claro para la sección, por ejemplo:
+
+  “Servicios de piercing profesional en Arica”
+
+- Agregar una breve introducción SEO antes de la grilla:
+
+  “Explora algunos de los servicios de piercing realizados por Cotepiercing en Arica. Cada perforación es trabajada con evaluación anatómica, higiene rigurosa, joyería inicial incluida y acompañamiento profesional durante el proceso.”
+
+Schema recomendado:
+
+Agregar datos estructurados tipo Service o LocalBusiness si la estructura del proyecto lo permite, incluyendo:
+
+- Nombre del negocio: Cotepiercing
+
+- Servicio: Body piercing profesional
+
+- Ubicación: Arica, Chile
+
+- Profesional: María José
+
+- Categorías: piercing de nariz, piercing oral, piercing corporal, microdermal, surface piercing.
+
+Importante:
+
+No reemplazar imágenes existentes sin necesidad. Integrar estas nuevas imágenes como parte del catálogo visual de servicios. Mantener la web rápida, ordenada, elegante y optimizada para SEO local.

@@ -153,4 +153,63 @@
   .animate-marquee {
     animation: marquee 25s linear infinite;
   }
+
+  /* ── Jewelry marquee — auto-scroll loop izquierda ─── */
+  .jewelry-marquee-outer {
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+  }
+
+  .jewelry-marquee-inner {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    width: max-content;
+    animation: jewelry-scroll 30s linear infinite;
+  }
+  .jewelry-marquee-outer:hover .jewelry-marquee-inner {
+    animation-play-state: paused;
+  }
+
+  @keyframes jewelry-scroll {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .jewelry-marquee-inner figure {
+    flex: 0 0 auto;
+    margin: 0;
+    padding: 0;
+    /* altura igual a la imagen para que no haya espacio residual */
+    height: 320px;
+    overflow: hidden;
+    border-radius: 2px;
+    line-height: 0;
+    font-size: 0;
+    /* fondo del sitio: no sangra negro si hay sub-pixel gap */
+    background: var(--warm-white);
+  }
+
+  .jewelry-marquee-inner figure img {
+    display: block;
+    height: 100%;   /* llena exactamente la figure */
+    width: auto;
+    object-fit: cover;
+    object-position: center 25%;
+    transition: transform 0.7s ease;
+  }
+  .jewelry-marquee-inner figure:hover img { transform: scale(1.06); }
+
+  /* Anchos por tipo de imagen */
+  .jewelry-marquee-inner .jm-wide   img { width: 440px; }
+  .jewelry-marquee-inner .jm-tall   img { width: 220px; }
+  .jewelry-marquee-inner .jm-square img { width: 310px; }
+
+  @media (min-width: 768px) {
+    .jewelry-marquee-inner figure          { height: 420px; }
+    .jewelry-marquee-inner .jm-wide   img { width: 580px; }
+    .jewelry-marquee-inner .jm-tall   img { width: 290px; }
+    .jewelry-marquee-inner .jm-square img { width: 400px; }
+  }
 }

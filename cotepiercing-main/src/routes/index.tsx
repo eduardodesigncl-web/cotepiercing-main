@@ -30,8 +30,10 @@ import { services, categories, type Category, type Service } from "@/data/servic
 import { waLink } from "@/lib/wa";
 
 import heroPortrait from "@/assets/hero-portrait.jpg";
-import jewelry1 from "@/assets/jewelry1.jpg";
-import jewelry2 from "@/assets/jewelry2.jpg";
+import joyeriaPremiumArica from "@/assets/joyeria/joyeria-piercing-premium-cotepiercing-arica.webp";
+import joyeriaSatin from "@/assets/joyeria/joyeria-piercing-satin-lujo-cotepiercing.webp";
+import joyeriaMarmol from "@/assets/joyeria/joyeria-piercing-marmol-premium-cotepiercing.webp";
+import joyeriaDetalle from "@/assets/joyeria/joyeria-piercing-detalle-dorado-plata-cotepiercing.webp";
 import earImg from "@/assets/ear.jpg";
 import aboutImg from "@/assets/maria-jose-piercer-profesional-cotepiercing-arica-chile.webp";
 
@@ -342,21 +344,56 @@ function Page() {
 
       {/* JEWELRY */}
       <Section id="joyeria">
-        <div className="grid lg:grid-cols-12 gap-12 items-start">
-          <div className="lg:col-span-5 lg:sticky lg:top-28">
-            <SectionHead
-              eyebrow="Joyería"
-              title="Joyería inicial incluida en cada servicio"
-              intro="Cada perforación incluye joyería seleccionada según la zona, anatomía y proceso de cicatrización. La elección de la joya favorece comodidad, estabilidad y una correcta evolución del piercing."
-            />
-          </div>
-          <div className="lg:col-span-7 grid grid-cols-2 gap-3 lg:gap-4">
-            <img src={jewelry1} alt="Joyería dorada" loading="lazy" width={800} height={1000} className="w-full aspect-[4/5] object-cover" />
-            <img src={jewelry2} alt="Aro dorado" loading="lazy" width={800} height={1000} className="w-full aspect-[4/5] object-cover mt-10" />
-            <img src={earImg} alt="Detalle de oreja" loading="lazy" width={900} height={1100} className="w-full aspect-[4/5] object-cover" />
-            <img src={jewelry1} alt="Joyería dorada" loading="lazy" width={800} height={1000} className="w-full aspect-[4/5] object-cover mt-10" />
+        {/* Texto intro */}
+        <SectionHead
+          eyebrow="Joyería"
+          title="Joyería inicial incluida en cada servicio"
+          intro="Cada perforación incluye joyería seleccionada según la zona, anatomía y proceso de cicatrización. La elección de la joya favorece comodidad, estabilidad y una correcta evolución del piercing."
+        />
+
+        {/* Fila de imágenes — marquee loop automático hacia la izquierda */}
+        <div className="mt-8 lg:mt-12 jewelry-marquee-outer">
+          <div className="jewelry-marquee-inner" aria-hidden="false">
+            {/* Set 1 — imágenes reales */}
+            <figure className="jm-wide">
+              <img src={joyeriaPremiumArica} alt="Joyería premium para piercing en tonos dorado y plata utilizada por Cotepiercing en Arica" loading="lazy" width={680} height={420} />
+              <figcaption className="sr-only">Joyería premium para piercing en tonos dorado y plata — Cotepiercing Arica</figcaption>
+            </figure>
+            <figure className="jm-tall">
+              <img src={joyeriaSatin} alt="Joyería de piercing premium sobre tela satinada utilizada por Cotepiercing" loading="lazy" width={600} height={800} />
+              <figcaption className="sr-only">Joyería de piercing premium sobre tela satinada — Cotepiercing</figcaption>
+            </figure>
+            <figure className="jm-tall">
+              <img src={earImg} alt="Oreja con composición de piercings finos y joyería premium realizada por Cotepiercing" loading="lazy" width={600} height={800} />
+              <figcaption className="sr-only">Oreja con composición de piercings finos y joyería premium — Cotepiercing</figcaption>
+            </figure>
+            <figure className="jm-square">
+              <img src={joyeriaMarmol} alt="Colección de joyería para piercing sobre fondo mármol estilo premium de Cotepiercing" loading="lazy" width={600} height={450} />
+              <figcaption className="sr-only">Colección de joyería sobre fondo mármol premium — Cotepiercing</figcaption>
+            </figure>
+            <figure className="jm-wide">
+              <img src={joyeriaDetalle} alt="Detalle de joyería para piercing en acero quirúrgico dorado y plata de Cotepiercing" loading="lazy" width={680} height={420} />
+              <figcaption className="sr-only">Detalle de joyería en acero quirúrgico dorado y plata — Cotepiercing</figcaption>
+            </figure>
+            {/* Set 2 — copia idéntica para loop sin cortes (aria-hidden) */}
+            <figure className="jm-wide" aria-hidden="true">
+              <img src={joyeriaPremiumArica} alt="" loading="lazy" width={680} height={420} />
+            </figure>
+            <figure className="jm-tall" aria-hidden="true">
+              <img src={joyeriaSatin} alt="" loading="lazy" width={600} height={800} />
+            </figure>
+            <figure className="jm-tall" aria-hidden="true">
+              <img src={earImg} alt="" loading="lazy" width={600} height={800} />
+            </figure>
+            <figure className="jm-square" aria-hidden="true">
+              <img src={joyeriaMarmol} alt="" loading="lazy" width={600} height={450} />
+            </figure>
+            <figure className="jm-wide" aria-hidden="true">
+              <img src={joyeriaDetalle} alt="" loading="lazy" width={680} height={420} />
+            </figure>
           </div>
         </div>
+
       </Section>
 
       {/* ANATOMY */}

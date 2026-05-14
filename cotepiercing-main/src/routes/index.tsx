@@ -151,8 +151,8 @@ function Section({
   children: React.ReactNode;
 }) {
   return (
-    <section id={id} className={`scroll-mt-24 py-20 lg:py-32 ${className}`}>
-      <div className="mx-auto max-w-7xl px-6 lg:px-10">{children}</div>
+    <section id={id} className={`scroll-mt-24 py-12 sm:py-20 lg:py-32 ${className}`}>
+      <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-10">{children}</div>
     </section>
   );
 }
@@ -214,9 +214,9 @@ function Page() {
               "linear-gradient(90deg, var(--warm-white) 0%, color-mix(in oklab, var(--warm-white) 92%, transparent) 30%, color-mix(in oklab, var(--warm-white) 40%, transparent) 55%, transparent 75%)",
           }}
         />
-        <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-10 h-full flex items-center">
+        <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-6 lg:px-10 h-full flex items-center">
           <div className="max-w-xl pt-24 lg:pt-0">
-            <h1 className="font-serif text-5xl sm:text-6xl lg:text-7xl xl:text-[88px] leading-[1.02] tracking-tight text-foreground">
+            <h1 className="font-serif text-[44px] leading-[1] sm:text-6xl lg:text-7xl xl:text-[88px] tracking-tight text-foreground">
               No perforo
               <br />
               cuerpos,{" "}
@@ -233,7 +233,7 @@ function Page() {
                 href={waLink()}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center px-12 py-4 rounded-full bg-[var(--gold)] text-white text-[11px] tracking-[0.32em] uppercase hover:opacity-90 transition-opacity"
+                className="inline-flex items-center justify-center w-full sm:w-auto px-12 py-4 rounded-full bg-[var(--gold)] text-white text-[11px] tracking-[0.32em] uppercase hover:opacity-90 transition-opacity"
               >
                 Reservar
               </a>
@@ -254,10 +254,10 @@ function Page() {
           ].map(({ icon: Icon, label }) => (
             <div
               key={label}
-              className="bg-background p-8 flex flex-col items-center text-center gap-4"
+              className="bg-background p-5 sm:p-8 flex flex-col items-center text-center gap-3 sm:gap-4 last:col-span-2 md:last:col-span-1"
             >
-              <Icon className="w-6 h-6 text-[var(--gold)]" strokeWidth={1.2} />
-              <p className="text-xs lg:text-sm leading-snug text-foreground/80">
+              <Icon className="w-5 h-5 sm:w-6 sm:h-6 text-[var(--gold)]" strokeWidth={1.2} />
+              <p className="text-[11px] sm:text-xs lg:text-sm leading-snug text-foreground/80">
                 {label}
               </p>
             </div>
@@ -277,12 +277,12 @@ function Page() {
           intro="Explora los servicios de piercing profesional de Cotepiercing en Arica. Cada perforación es realizada por María José con evaluación anatómica, higiene rigurosa, técnica segura y joyería inicial incluida."
         />
 
-        <div className="mt-12 flex flex-wrap gap-2">
+        <div className="mt-8 sm:mt-12 flex flex-wrap gap-1.5 sm:gap-2">
           {categories.map((c) => (
             <button
               key={c}
               onClick={() => setCat(c)}
-              className={`px-4 py-2 text-xs tracking-[0.18em] uppercase border transition-colors ${
+              className={`px-3 py-1.5 sm:px-4 sm:py-2 text-[10px] sm:text-xs tracking-[0.18em] uppercase border transition-colors ${
                 cat === c
                   ? "bg-[var(--gold)] text-white border-[var(--gold)]"
                   : "bg-background border-border text-foreground/70 hover:border-[var(--gold)] hover:text-[var(--gold)]"
@@ -293,7 +293,7 @@ function Page() {
           ))}
         </div>
 
-        <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 lg:gap-6">
+        <div className="mt-8 sm:mt-10 grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-5 lg:gap-6">
           {filtered.map((s) => (
             <button
               key={s.name}
@@ -311,15 +311,15 @@ function Page() {
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
                 />
               </div>
-              <div className="p-5 flex flex-col gap-3 w-full flex-1">
-                <div className="flex items-start justify-between gap-3">
+              <div className="p-3 sm:p-5 flex flex-col gap-2 sm:gap-3 w-full flex-1">
+                <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-1 sm:gap-3">
                   <div>
-                    <h3 className="font-serif text-xl leading-tight">{s.name}</h3>
-                    <p className="mt-1.5 text-[10px] tracking-[0.24em] uppercase text-muted-foreground">
+                    <h3 className="font-serif text-[17px] sm:text-xl leading-tight">{s.name}</h3>
+                    <p className="mt-1 sm:mt-1.5 text-[9px] sm:text-[10px] tracking-[0.24em] uppercase text-muted-foreground">
                       {s.zone}
                     </p>
                   </div>
-                  <div className="font-serif text-lg text-[var(--gold)] whitespace-nowrap">
+                  <div className="font-serif text-[15px] sm:text-lg text-[var(--gold)] whitespace-nowrap">
                     {s.price}
                   </div>
                 </div>
@@ -565,7 +565,7 @@ function Page() {
           title="Servicios complementarios"
           intro="Realizamos evaluaciones profesionales para perforaciones con irritación, bultitos, granulomas, queloides, cambios de joyería o reconstrucción de lóbulos. Cada caso se revisa de forma individual."
         />
-        <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border border border-border">
+        <div className="mt-8 sm:mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border border border-border">
           {[
             "Evaluación de piercing irritado",
             "Cambio de joyería",
@@ -575,9 +575,9 @@ function Page() {
             "Reconstrucción de lóbulos",
             "Revisión de cicatrización",
           ].map((label) => (
-            <div key={label} className="bg-background p-7 flex items-start gap-4">
-              <span className="mt-2 w-2 h-2 bg-[var(--gold)] shrink-0" />
-              <p className="text-[15px]">{label}</p>
+            <div key={label} className="bg-background px-5 py-4 sm:p-7 flex items-start gap-3 sm:gap-4">
+              <span className="mt-1.5 sm:mt-2 w-1.5 h-1.5 sm:w-2 sm:h-2 bg-[var(--gold)] shrink-0" />
+              <p className="text-[14px] sm:text-[15px]">{label}</p>
             </div>
           ))}
         </div>
@@ -638,34 +638,65 @@ function Page() {
           title="Galería de piercings profesionales en Arica"
           intro="Explora algunos trabajos realizados por María José en Cotepiercing: perforaciones, joyería corporal y procedimientos especializados con enfoque profesional, seguro y personalizado."
         />
-        <div className="mt-12 columns-1 sm:columns-2 lg:columns-3 gap-5 lg:gap-6 [column-fill:_balance]">
-          {galleryItems.map((g, i) => (
-            <button
-              key={g.filename}
-              type="button"
-              onClick={() => setLightbox(g)}
-              className="group relative mb-5 lg:mb-6 block w-full break-inside-avoid overflow-hidden rounded-xl border border-border bg-[var(--stone)] shadow-sm hover:shadow-md transition-shadow animate-in fade-in duration-700"
-              style={{ animationDelay: `${i * 60}ms` }}
-              aria-label={`Ampliar: ${g.caption}`}
-            >
-              <img
-                src={g.src}
-                alt={g.alt}
-                loading="lazy"
-                decoding="async"
-                className="w-full h-auto object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
-              />
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/55 via-black/0 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="pointer-events-none absolute inset-x-0 bottom-0 p-4 translate-y-2 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
-                <p className="text-[10px] tracking-[0.28em] uppercase text-[var(--gold-soft)]">
-                  {g.category}
-                </p>
-                <p className="mt-1 font-serif text-white text-lg leading-snug">
-                  {g.caption}
-                </p>
-              </div>
-            </button>
-          ))}
+        <div className="mt-8 sm:mt-12">
+          {/* Mobile Marquee */}
+          <div className="flex sm:hidden relative w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
+            <div className="flex animate-marquee gap-3 min-w-max hover:[animation-play-state:paused]">
+              {[...galleryItems, ...galleryItems].map((g, i) => (
+                <button
+                  key={`mobile-${g.filename}-${i}`}
+                  type="button"
+                  onClick={() => setLightbox(g)}
+                  className="group relative block w-[160px] h-[220px] shrink-0 overflow-hidden rounded-xl border border-border bg-[var(--stone)] shadow-sm"
+                  aria-label={`Ampliar: ${g.caption}`}
+                >
+                  <img
+                    src={g.src}
+                    alt={g.alt}
+                    loading="lazy"
+                    decoding="async"
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="pointer-events-none absolute inset-x-0 bottom-0 p-3 bg-gradient-to-t from-black/70 to-transparent">
+                    <p className="mt-1 font-serif text-white text-[13px] leading-tight line-clamp-2">
+                      {g.caption}
+                    </p>
+                  </div>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Desktop Masonry */}
+          <div className="hidden sm:block columns-2 lg:columns-3 gap-5 lg:gap-6 [column-fill:_balance]">
+            {galleryItems.map((g, i) => (
+              <button
+                key={g.filename}
+                type="button"
+                onClick={() => setLightbox(g)}
+                className="group relative mb-5 lg:mb-6 block w-full break-inside-avoid overflow-hidden rounded-xl border border-border bg-[var(--stone)] shadow-sm hover:shadow-md transition-shadow animate-in fade-in duration-700"
+                style={{ animationDelay: `${i * 60}ms` }}
+                aria-label={`Ampliar: ${g.caption}`}
+              >
+                <img
+                  src={g.src}
+                  alt={g.alt}
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full h-auto object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/55 via-black/0 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="pointer-events-none absolute inset-x-0 bottom-0 p-4 translate-y-2 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
+                  <p className="text-[10px] tracking-[0.28em] uppercase text-[var(--gold-soft)]">
+                    {g.category}
+                  </p>
+                  <p className="mt-1 font-serif text-white text-lg leading-snug">
+                    {g.caption}
+                  </p>
+                </div>
+              </button>
+            ))}
+          </div>
         </div>
         {/* Interlinking: galería → servicios */}
         <div className="mt-12 text-center">
@@ -756,23 +787,26 @@ function Page() {
 
       {/* RESERVE */}
       <Section id="reserva">
-        <div className="grid lg:grid-cols-12 gap-12 items-start">
+        <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           <div className="lg:col-span-7">
             <SectionHead
               eyebrow="Reserva"
               title="Reserva tu hora"
               intro="Agenda tu piercing o evaluación directamente por WhatsApp. Indica el servicio que quieres realizar, zona del cuerpo y disponibilidad horaria para coordinar tu atención."
             />
-            <div className="mt-10">
-              <Button asChild variant="gold" size="xl">
-                <a href={waLink()} target="_blank" rel="noopener noreferrer">
-                  <MessageCircle className="w-4 h-4" />
-                  Reservar por WhatsApp
-                </a>
-              </Button>
+            <div className="mt-8 sm:mt-10">
+              <a
+                href={waLink()}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center w-full sm:w-auto px-10 py-4 rounded-full bg-[var(--gold)] text-white text-[11px] tracking-[0.32em] uppercase hover:opacity-90 transition-opacity gap-2"
+              >
+                <MessageCircle className="w-4 h-4" />
+                Reservar por WhatsApp
+              </a>
             </div>
           </div>
-          <div className="lg:col-span-5 bg-[var(--stone)]/50 p-8 lg:p-10 space-y-6">
+          <div className="lg:col-span-5 bg-[var(--stone)]/50 p-6 sm:p-8 lg:p-10 space-y-5 sm:space-y-6">
             {/* Ubicación */}
             <div>
               <div className="eyebrow mb-3">Ubicación</div>

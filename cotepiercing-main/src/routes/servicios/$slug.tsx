@@ -182,7 +182,7 @@ function ServicePage() {
               </div>
               <span className="text-[13px] sm:text-[14px] font-medium">Incluida</span>
             </div>
-            
+
             <div className="flex flex-col gap-1.5 p-3.5 sm:p-4 rounded-lg bg-[var(--stone)]/30 border border-border">
               <div className="flex items-center gap-2">
                 <Clock className="w-3.5 h-3.5 text-[var(--gold)]" strokeWidth={1.5} />
@@ -190,7 +190,7 @@ function ServicePage() {
               </div>
               <span className="text-[13px] sm:text-[14px] font-medium">{service.healing}</span>
             </div>
-            
+
             <div className="flex flex-col gap-1.5 p-3.5 sm:p-4 rounded-lg bg-[var(--stone)]/30 border border-border">
               <div className="flex items-center gap-2">
                 <Stethoscope className="w-3.5 h-3.5 text-[var(--gold)]" strokeWidth={1.5} />
@@ -198,7 +198,7 @@ function ServicePage() {
               </div>
               <span className="text-[13px] sm:text-[14px] font-medium">{service.evaluation}</span>
             </div>
-            
+
             <div className="flex flex-col gap-1.5 p-3.5 sm:p-4 rounded-lg bg-[var(--stone)]/30 border border-border">
               <div className="flex items-center gap-2">
                 <MapPin className="w-3.5 h-3.5 text-[var(--gold)]" strokeWidth={1.5} />

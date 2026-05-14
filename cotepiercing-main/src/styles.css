@@ -11,6 +11,7 @@
   font-display: swap;
   src: url("https://fonts.gstatic.com/s/playfairdisplay/v37/nuFvD-vYSZviVYUb_rj3ij__anPXJzDwcbmjWBN2PKdFvUDQ.woff2") format("woff2");
 }
+
 @font-face {
   font-family: "Inter";
   font-style: normal;
@@ -97,8 +98,14 @@
 }
 
 @layer base {
-  * { border-color: var(--color-border); }
-  html { scroll-behavior: smooth; }
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
@@ -106,11 +113,17 @@
     font-feature-settings: "ss01", "cv11";
     -webkit-font-smoothing: antialiased;
   }
-  h1, h2, h3, h4, h5 {
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
     font-family: var(--font-serif);
     font-weight: 400;
     letter-spacing: -0.01em;
   }
+
   .eyebrow {
     font-family: var(--font-sans);
     text-transform: uppercase;
@@ -118,6 +131,7 @@
     font-size: 0.72rem;
     color: var(--color-muted-foreground);
   }
+
   .gold-rule {
     width: 56px;
     height: 1px;
@@ -127,9 +141,15 @@
 
 @layer utilities {
   @keyframes marquee {
-    0% { transform: translateX(0%); }
-    100% { transform: translateX(-50%); }
+    0% {
+      transform: translateX(0%);
+    }
+
+    100% {
+      transform: translateX(-50%);
+    }
   }
+
   .animate-marquee {
     animation: marquee 25s linear infinite;
   }

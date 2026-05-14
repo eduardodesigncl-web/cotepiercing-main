@@ -16,13 +16,6 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-} from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Nav } from "@/components/site/Nav";
 import { SchemaScript } from "@/components/site/SchemaScript";
@@ -186,7 +179,6 @@ function SectionHead({
 
 function Page() {
   const [cat, setCat] = useState<Category>("Oreja");
-  const [selected, setSelected] = useState<Service | null>(null);
   const [lightbox, setLightbox] = useState<GalleryItem | null>(null);
   const filtered = services.filter((s) => s.category === cat);
 
@@ -295,9 +287,10 @@ function Page() {
 
         <div className="mt-8 sm:mt-10 grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-5 lg:gap-6">
           {filtered.map((s) => (
-            <button
+            <Link
               key={s.name}
-              onClick={() => setSelected(s)}
+              to="/servicios/$slug"
+              params={{ slug: s.slug }}
               className="group flex flex-col h-full w-full text-left bg-background overflow-hidden border border-border hover:border-[var(--gold)] transition-colors"
             >
               <div className="relative w-full aspect-[4/5] shrink-0 overflow-hidden bg-[var(--stone)]">
@@ -323,18 +316,11 @@ function Page() {
                     {s.price}
                   </div>
                 </div>
-                {/* Link rastreable por bots — interlinking a página de servicio */}
-                <Link
-                  to="/servicios/$slug"
-                  params={{ slug: s.slug }}
-                  onClick={(e) => e.stopPropagation()}
-                  className="mt-auto inline-block text-[10px] tracking-[0.2em] uppercase text-[var(--gold)] hover:opacity-70 transition-opacity"
-                  aria-label={`Ver detalle de ${s.name} en Cotepiercing`}
-                >
+                <span className="mt-auto inline-block text-[10px] tracking-[0.2em] uppercase text-[var(--gold)] group-hover:opacity-70 transition-opacity">
                   Ver detalle →
-                </Link>
+                </span>
               </div>
-            </button>
+            </Link>
           ))}
         </div>
 
@@ -345,69 +331,7 @@ function Page() {
         </p>
       </Section>
 
-      {/* SERVICE DETAIL DIALOG */}
-      <Dialog open={!!selected} onOpenChange={(o) => !o && setSelected(null)}>
-        <DialogContent className="max-w-3xl p-0 overflow-hidden bg-background border-border">
-          {selected && (
-            <div className="grid md:grid-cols-2">
-              <div className="relative aspect-[4/5] md:aspect-auto bg-[var(--stone)] min-h-[280px]">
-                <img
-                  src={selected.image}
-                  alt={selected.imageAlt}
-                  loading="lazy"
-                  decoding="async"
-                  className="absolute inset-0 w-full h-full object-cover"
-                />
-              </div>
-              <div className="p-7 lg:p-9 flex flex-col">
-                <DialogHeader className="text-left space-y-3">
-                  <p className="text-[10px] tracking-[0.28em] uppercase text-muted-foreground">
-                    {selected.category} · {selected.zone}
-                  </p>
-                  <DialogTitle className="font-serif text-3xl lg:text-4xl leading-tight">
-                    {selected.name}
-                  </DialogTitle>
-                  <div className="text-2xl font-serif text-[var(--gold)]">
-                    {selected.price}
-                  </div>
-                </DialogHeader>
-                <div className="gold-rule mt-5" />
-                <DialogDescription className="mt-5 text-[15px] leading-relaxed text-foreground/75">
-                  {selected.description}
-                </DialogDescription>
-                <ul className="mt-6 text-sm divide-y divide-border border-y border-border">
-                  <li className="flex justify-between py-3">
-                    <span className="text-muted-foreground">Joyería inicial</span>
-                    <span>Incluida</span>
-                  </li>
-                  <li className="flex justify-between py-3">
-                    <span className="text-muted-foreground">Cicatrización</span>
-                    <span>{selected.healing}</span>
-                  </li>
-                  <li className="flex justify-between py-3">
-                    <span className="text-muted-foreground">Evaluación</span>
-                    <span>{selected.evaluation}</span>
-                  </li>
-                </ul>
-                <div className="mt-7">
-                  <Button asChild variant="gold" size="lg" className="w-full">
-                    <a
-                      href={waLink(
-                        `Hola María José, quiero reservar: ${selected.name} (${selected.zone}).`,
-                      )}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <MessageCircle className="w-4 h-4" />
-                      Reservar por WhatsApp
-                    </a>
-                  </Button>
-                </div>
-              </div>
-            </div>
-          )}
-        </DialogContent>
-      </Dialog>
+
 
       {/* JEWELRY */}
       <Section id="joyeria">

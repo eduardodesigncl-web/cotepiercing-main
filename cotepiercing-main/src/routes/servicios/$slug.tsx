@@ -51,35 +51,62 @@ function ServicePage() {
     .filter((s) => s.category === service.category && s.slug !== service.slug)
     .slice(0, 3);
 
-  // Schema.org Service JSON-LD
+  // Schema.org Service & Breadcrumb JSON-LD
   const schema = {
     "@context": "https://schema.org",
-    "@type": "Service",
-    name: service.name,
-    description: service.description,
-    provider: {
-      "@type": "HealthAndBeautyBusiness",
-      name: "Cotepiercing",
-      url: "https://cotepiercing.cl",
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: "San Marcos 393",
-        addressLocality: "Arica",
-        addressCountry: "CL",
+    "@graph": [
+      {
+        "@type": "Service",
+        name: service.name,
+        description: service.description,
+        provider: {
+          "@type": "HealthAndBeautyBusiness",
+          name: "Cotepiercing",
+          url: "https://cotepiercing.cl",
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: "San Marcos 393",
+            addressLocality: "Arica",
+            addressCountry: "CL",
+          },
+        },
+        areaServed: {
+          "@type": "City",
+          name: "Arica",
+        },
+        offers: {
+          "@type": "Offer",
+          price: service.price.replace(/[^0-9]/g, "") || undefined,
+          priceCurrency: "CLP",
+          availability: "https://schema.org/InStock",
+        },
+        url: `https://cotepiercing.cl/servicios/${service.slug}`,
+        image: service.image,
       },
-    },
-    areaServed: {
-      "@type": "City",
-      name: "Arica",
-    },
-    offers: {
-      "@type": "Offer",
-      price: service.price.replace(/[^0-9]/g, "") || undefined,
-      priceCurrency: "CLP",
-      availability: "https://schema.org/InStock",
-    },
-    url: `https://cotepiercing.cl/servicios/${service.slug}`,
-    image: service.image,
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Inicio",
+            item: "https://cotepiercing.cl/"
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Servicios",
+            item: "https://cotepiercing.cl/#servicios"
+          },
+          {
+            "@type": "ListItem",
+            position: 3,
+            name: service.name,
+            item: `https://cotepiercing.cl/servicios/${service.slug}`
+          }
+        ]
+      }
+    ]
   };
 
   return (
@@ -94,6 +121,10 @@ function ServicePage() {
 
       {/* BREADCRUMB + BACK */}
       <div className="mx-auto max-w-7xl px-6 lg:px-10 pt-28 pb-4">
+        <Link to="/" hash="servicios" className="inline-flex items-center gap-2 text-[13px] text-muted-foreground hover:text-[var(--gold)] mb-6 transition-colors font-medium">
+          <ArrowLeft className="w-4 h-4" />
+          Volver a servicios
+        </Link>
         <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-[11px] tracking-[0.18em] uppercase text-muted-foreground">
           <Link to="/" className="hover:text-[var(--gold)] transition-colors">Inicio</Link>
           <span>/</span>
@@ -104,10 +135,10 @@ function ServicePage() {
       </div>
 
       {/* HERO de servicio */}
-      <section className="mx-auto max-w-7xl px-6 lg:px-10 py-8 grid lg:grid-cols-12 gap-12 items-start">
+      <section className="mx-auto max-w-7xl px-6 lg:px-10 py-4 lg:py-8 grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
         {/* Imagen */}
         <div className="lg:col-span-5">
-          <div className="relative overflow-hidden rounded-xl aspect-[4/5] bg-[var(--stone)]">
+          <div className="relative overflow-hidden rounded-xl h-[300px] sm:h-[400px] lg:h-auto lg:aspect-[4/5] bg-[var(--stone)] w-full">
             <img
               src={service.image}
               alt={service.imageAlt}
@@ -119,9 +150,9 @@ function ServicePage() {
         </div>
 
         {/* Info */}
-        <div className="lg:col-span-7 pt-4">
+        <div className="lg:col-span-7 pt-2 lg:pt-4">
           {/* Categoría */}
-          <div className="eyebrow mb-4">{service.category}</div>
+          <div className="eyebrow mb-3 lg:mb-4">{service.category}</div>
 
           {/* Nombre H1 */}
           <h1 className="font-serif text-4xl lg:text-6xl leading-tight">
@@ -131,60 +162,67 @@ function ServicePage() {
             en Arica, Chile
           </p>
 
-          <div className="gold-rule mt-8" />
+          <div className="mt-4 lg:mt-6 font-serif text-2xl lg:text-3xl text-[var(--gold)]">
+            {service.price}
+          </div>
+
+          <div className="gold-rule mt-6 lg:mt-8" />
 
           {/* Descripción */}
-          <p className="mt-8 text-base lg:text-lg text-muted-foreground leading-relaxed">
+          <p className="mt-6 lg:mt-8 text-[15px] sm:text-base lg:text-lg text-foreground/80 leading-relaxed">
             {service.description}
           </p>
 
           {/* Datos clave */}
-          <dl className="mt-10 grid sm:grid-cols-2 gap-6">
-            <div className="flex items-start gap-3">
-              <Tag className="w-4 h-4 text-[var(--gold)] mt-0.5 shrink-0" strokeWidth={1.4} />
-              <div>
-                <dt className="text-[11px] tracking-[0.2em] uppercase text-muted-foreground">Precio</dt>
-                <dd className="mt-1 font-serif text-xl">{service.price}</dd>
+          <div className="mt-8 lg:mt-10 grid grid-cols-2 gap-3 sm:gap-4">
+            <div className="flex flex-col gap-1.5 p-3.5 sm:p-4 rounded-lg bg-[var(--stone)]/30 border border-border">
+              <div className="flex items-center gap-2">
+                <Tag className="w-3.5 h-3.5 text-[var(--gold)]" strokeWidth={1.5} />
+                <span className="text-[10px] sm:text-[11px] tracking-[0.15em] uppercase text-muted-foreground">Joyería</span>
               </div>
+              <span className="text-[13px] sm:text-[14px] font-medium">Incluida</span>
             </div>
-            <div className="flex items-start gap-3">
-              <Clock className="w-4 h-4 text-[var(--gold)] mt-0.5 shrink-0" strokeWidth={1.4} />
-              <div>
-                <dt className="text-[11px] tracking-[0.2em] uppercase text-muted-foreground">Cicatrización</dt>
-                <dd className="mt-1 text-[15px]">{service.healing}</dd>
+            
+            <div className="flex flex-col gap-1.5 p-3.5 sm:p-4 rounded-lg bg-[var(--stone)]/30 border border-border">
+              <div className="flex items-center gap-2">
+                <Clock className="w-3.5 h-3.5 text-[var(--gold)]" strokeWidth={1.5} />
+                <span className="text-[10px] sm:text-[11px] tracking-[0.15em] uppercase text-muted-foreground">Cicatrización</span>
               </div>
+              <span className="text-[13px] sm:text-[14px] font-medium">{service.healing}</span>
             </div>
-            <div className="flex items-start gap-3">
-              <Stethoscope className="w-4 h-4 text-[var(--gold)] mt-0.5 shrink-0" strokeWidth={1.4} />
-              <div>
-                <dt className="text-[11px] tracking-[0.2em] uppercase text-muted-foreground">Evaluación</dt>
-                <dd className="mt-1 text-[15px]">{service.evaluation}</dd>
+            
+            <div className="flex flex-col gap-1.5 p-3.5 sm:p-4 rounded-lg bg-[var(--stone)]/30 border border-border">
+              <div className="flex items-center gap-2">
+                <Stethoscope className="w-3.5 h-3.5 text-[var(--gold)]" strokeWidth={1.5} />
+                <span className="text-[10px] sm:text-[11px] tracking-[0.15em] uppercase text-muted-foreground">Evaluación</span>
               </div>
+              <span className="text-[13px] sm:text-[14px] font-medium">{service.evaluation}</span>
             </div>
-            <div className="flex items-start gap-3">
-              <MapPin className="w-4 h-4 text-[var(--gold)] mt-0.5 shrink-0" strokeWidth={1.4} />
-              <div>
-                <dt className="text-[11px] tracking-[0.2em] uppercase text-muted-foreground">Zona</dt>
-                <dd className="mt-1 text-[15px]">{service.zone}</dd>
+            
+            <div className="flex flex-col gap-1.5 p-3.5 sm:p-4 rounded-lg bg-[var(--stone)]/30 border border-border">
+              <div className="flex items-center gap-2">
+                <MapPin className="w-3.5 h-3.5 text-[var(--gold)]" strokeWidth={1.5} />
+                <span className="text-[10px] sm:text-[11px] tracking-[0.15em] uppercase text-muted-foreground">Zona</span>
               </div>
+              <span className="text-[13px] sm:text-[14px] font-medium">{service.zone}</span>
             </div>
-          </dl>
+          </div>
 
           {/* CTA */}
-          <div className="mt-10 flex flex-wrap gap-4">
-            <Button asChild variant="gold" size="lg">
+          <div className="mt-10 lg:mt-12 flex flex-col sm:flex-row gap-3 sm:gap-4">
+            <Button asChild variant="gold" size="lg" className="w-full sm:w-auto h-12 sm:h-14">
               <a
-                href={waLink(`Hola María José, quiero reservar ${service.name} en Cotepiercing.`)}
+                href={waLink(`Hola María José, quiero reservar un piercing ${service.name}. ¿Me puedes indicar disponibilidad?`)}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <MessageCircle className="w-4 h-4" />
-                Reservar por WhatsApp
+                <MessageCircle className="w-4 h-4 mr-2" />
+                Reservar {service.name} por WhatsApp
               </a>
             </Button>
-            <Button asChild variant="goldOutline" size="lg">
+            <Button asChild variant="goldOutline" size="lg" className="w-full sm:w-auto h-12 sm:h-14">
               <Link to="/" hash="servicios">
-                <ArrowLeft className="w-4 h-4" />
+                <ArrowLeft className="w-4 h-4 mr-2" />
                 Ver todos los servicios
               </Link>
             </Button>

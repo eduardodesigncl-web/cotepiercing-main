@@ -1,5 +1,5 @@
 {
-  "name": "cotepiercing",
+  "name": "cotepiercing-principal",
   "compatibility_date": "2026-05-14",
   "main": "./dist/server/server.js",
   "assets": {

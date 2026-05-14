@@ -1,7 +1,8 @@
 {
   "name": "cotepiercing",
   "compatibility_date": "2026-05-14",
+  "main": "./dist/server/server.js",
   "assets": {
-    "directory": "./dist"
+    "directory": "./dist/client"
   }
 }

@@ -5,11 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite dev",
-    "build": "vite build",
+    "build": "vite build && (if exist dist\\server\\index.js move dist\\server\\index.js dist\\server\\server.js)",
     "build:dev": "vite build --mode development",
     "preview": "vite preview",
     "lint": "eslint .",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "deploy": "npm run build && wrangler deploy"
   },
   "dependencies": {
     "@cloudflare/vite-plugin": "^1.25.5",

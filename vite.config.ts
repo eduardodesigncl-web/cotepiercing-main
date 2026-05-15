@@ -12,4 +12,18 @@ export default defineConfig({
   tanstackStart: {
     server: { entry: "server" },
   },
+  vite: {
+    build: {
+      rollupOptions: {
+        output: {
+          entryFileNames: (chunkInfo) => {
+            if (chunkInfo.name === 'server') {
+              return 'server.js';
+            }
+            return '[name]-[hash].js';
+          },
+        },
+      },
+    },
+  },
 });

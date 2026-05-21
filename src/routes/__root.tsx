@@ -8,7 +8,10 @@ import {
   Scripts,
 } from "@tanstack/react-router";
 
-import appCss from "../styles.css?url";
+import { Footer } from "@/components/site/Footer";
+import { ThemeProvider } from "@/components/theme-provider";
+import { SITE_URL } from "@/lib/config";
+import appCss from "@/styles.css?url";
 
 function NotFoundComponent() {
   return (
@@ -89,8 +92,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         content:
           "Piercing profesional con María José. Evaluación anatómica, asepsia clínica y joyería inicial incluida en Arica, Chile.",
       },
-      { property: "og:url", content: "https://cotepiercing.cl" },
-      { property: "og:image", content: "https://cotepiercing.cl/cotepiercing-piercing-profesional-arica-chile-og.png" },
+      { property: "og:url", content: SITE_URL },
+      { property: "og:image", content: `${SITE_URL}/cotepiercing-piercing-profesional-arica-chile-og.png` },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Cotepiercing — Piercing profesional en Arica" },
       {
@@ -98,7 +101,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         content:
           "Piercing profesional con evaluación anatómica, higiene y joyería incluida. Arica, Chile.",
       },
-      { name: "twitter:image", content: "https://cotepiercing.cl/cotepiercing-piercing-profesional-arica-chile-og.png" },
+      { name: "twitter:image", content: `${SITE_URL}/cotepiercing-piercing-profesional-arica-chile-og.png` },
     ],
     links: [
       { rel: "stylesheet", href: appCss },

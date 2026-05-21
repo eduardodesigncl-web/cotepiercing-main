@@ -28,6 +28,7 @@ import { Nav } from "@/components/site/Nav";
 import { SchemaScript } from "@/components/site/SchemaScript";
 import { services, categories, type Category, type Service } from "@/data/services";
 import { waLink } from "@/lib/wa";
+import { SITE_URL } from "@/lib/config";
 
 import heroPortrait from "@/assets/hero-portrait.jpg";
 import joyeriaPremiumArica from "@/assets/joyeria/joyeria-piercing-premium-cotepiercing-arica.webp";
@@ -41,7 +42,6 @@ import gExpansion from "@/assets/gallery/expansion-lobulo-doble-helix-oreja-cote
 import gSeptum from "@/assets/gallery/septum-piercing-con-herradura-cotepiercing-arica.webp";
 import gSnake from "@/assets/gallery/snake-bites-piercing-labio-cotepiercing-arica.webp";
 import gQueloide from "@/assets/gallery/extraccion-queloide-piercing-oreja-cotepiercing-arica.webp";
-import gSurfaceCuello from "@/assets/gallery/surface-piercing-cuello-cotepiercing-arica.webp";
 import gEyebrow from "@/assets/gallery/eyebrow-piercing-vertical-cotepiercing-arica.webp";
 import gSurfaceEspalda from "@/assets/gallery/surface-piercing-espalda-baja-cotepiercing-arica.webp";
 import gTongue from "@/assets/gallery/tongue-piercing-con-joyeria-personalizada-cotepiercing-arica.webp";
@@ -83,13 +83,6 @@ const galleryItems: GalleryItem[] = [
     alt: "Evaluación de queloides o granulomas en piercing de oreja realizada por Cotepiercing en Arica, Chile.",
     category: "Evaluación",
     caption: "Evaluación de queloides o granulomas",
-  },
-  {
-    src: gSurfaceCuello,
-    filename: "surface-piercing-cuello-cotepiercing-arica.webp",
-    alt: "Surface piercing en cuello con joyería turquesa realizado por María José de Cotepiercing en Arica, Chile.",
-    category: "Surface",
-    caption: "Surface en cuello con joyería turquesa",
   },
   {
     src: gEyebrow,
@@ -137,10 +130,10 @@ export const Route = createFileRoute("/")({
           "Precisión, higiene y diseño en cada detalle. María José — Recina Tattoo, San Marcos 393, Arica.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://cotepiercing-main.eduardo-design-cl.workers.dev/" },
+      { property: "og:url", content: `${SITE_URL}/` },
     ],
     links: [
-      { rel: "canonical", href: "https://cotepiercing-main.eduardo-design-cl.workers.dev/" },
+      { rel: "canonical", href: `${SITE_URL}/` },
       { rel: "preload", as: "image", href: heroPortrait, fetchPriority: "high" },
     ],
   }),
@@ -741,7 +734,7 @@ function Page() {
                 ["¿Puedo reagendar mi hora?", "La política de reagendamiento será informada al confirmar la reserva."],
                 ["¿Atienden piercings íntimos?", "Sí, se realizan con privacidad, higiene rigurosa y evaluación previa."],
                 ["¿Qué hago si mi piercing tiene un bulto o está irritado?", "No manipules la zona ni cambies la joya por tu cuenta. Puedes solicitar una evaluación profesional."],
-                ["¿Qué piercings no se realizan?", "No se realizan Snake Eyes, Bridge, Surface de cuello ni otros procedimientos que no cumplan con criterios de seguridad profesional."],
+                ["¿Qué piercings no se realizan?", "No se realizan Snake Eyes, Bridge ni otros procedimientos que no cumplan con criterios de seguridad profesional."],
               ].map(([q, a]) => (
                 <AccordionItem key={q} value={q}>
                   <AccordionTrigger className="font-serif text-lg py-6">

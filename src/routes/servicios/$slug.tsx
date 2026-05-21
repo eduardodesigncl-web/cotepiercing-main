@@ -3,6 +3,7 @@ import { services } from "@/data/services";
 import { Nav } from "@/components/site/Nav";
 import { Button } from "@/components/ui/button";
 import { waLink } from "@/lib/wa";
+import { SITE_URL } from "@/lib/config";
 import { ArrowLeft, MessageCircle, Clock, Stethoscope, Tag, MapPin } from "lucide-react";
 
 export const Route = createFileRoute("/servicios/$slug")({
@@ -21,11 +22,11 @@ export const Route = createFileRoute("/servicios/$slug")({
         { property: "og:title", content: title },
         { property: "og:description", content: description.slice(0, 160) },
         { property: "og:type", content: "article" },
-        { property: "og:url", content: `https://cotepiercing.cl/servicios/${params.slug}` },
-        { property: "og:image", content: "https://cotepiercing.cl/cotepiercing-piercing-profesional-arica-chile-og.png" },
+        { property: "og:url", content: `${SITE_URL}/servicios/${params.slug}` },
+        { property: "og:image", content: `${SITE_URL}/cotepiercing-piercing-profesional-arica-chile-og.png` },
       ],
       links: [
-        { rel: "canonical", href: `https://cotepiercing.cl/servicios/${params.slug}` },
+        { rel: "canonical", href: `${SITE_URL}/servicios/${params.slug}` },
       ],
     };
   },
@@ -62,7 +63,7 @@ function ServicePage() {
         provider: {
           "@type": "HealthAndBeautyBusiness",
           name: "Cotepiercing",
-          url: "https://cotepiercing.cl",
+          url: `${SITE_URL}/`,
           address: {
             "@type": "PostalAddress",
             streetAddress: "San Marcos 393",
@@ -80,7 +81,7 @@ function ServicePage() {
           priceCurrency: "CLP",
           availability: "https://schema.org/InStock",
         },
-        url: `https://cotepiercing.cl/servicios/${service.slug}`,
+        url: `${SITE_URL}/servicios/${service.slug}`,
         image: service.image,
       },
       {
@@ -90,19 +91,19 @@ function ServicePage() {
             "@type": "ListItem",
             position: 1,
             name: "Inicio",
-            item: "https://cotepiercing.cl/"
+            item: `${SITE_URL}/`
           },
           {
             "@type": "ListItem",
             position: 2,
             name: "Servicios",
-            item: "https://cotepiercing.cl/#servicios"
+            item: `${SITE_URL}/#servicios`
           },
           {
             "@type": "ListItem",
             position: 3,
             name: service.name,
-            item: `https://cotepiercing.cl/servicios/${service.slug}`
+            item: `${SITE_URL}/servicios/${service.slug}`
           }
         ]
       }

@@ -27,6 +27,7 @@ import { Button } from "@/components/ui/button";
 import { Nav } from "@/components/site/Nav";
 import { services, categories, type Category, type Service } from "@/data/services";
 import { waLink } from "@/lib/wa";
+import { SITE_URL } from "@/lib/config";
 
 import heroPortrait from "@/assets/hero-portrait.jpg";
 import joyeriaPremiumArica from "@/assets/joyeria/joyeria-piercing-premium-cotepiercing-arica.webp";
@@ -40,7 +41,6 @@ import gExpansion from "@/assets/gallery/expansion-lobulo-doble-helix-oreja-cote
 import gSeptum from "@/assets/gallery/septum-piercing-con-herradura-cotepiercing-arica.webp";
 import gSnake from "@/assets/gallery/snake-bites-piercing-labio-cotepiercing-arica.webp";
 import gQueloide from "@/assets/gallery/extraccion-queloide-piercing-oreja-cotepiercing-arica.webp";
-import gSurfaceCuello from "@/assets/gallery/surface-piercing-cuello-cotepiercing-arica.webp";
 import gEyebrow from "@/assets/gallery/eyebrow-piercing-vertical-cotepiercing-arica.webp";
 import gSurfaceEspalda from "@/assets/gallery/surface-piercing-espalda-baja-cotepiercing-arica.webp";
 import gTongue from "@/assets/gallery/tongue-piercing-con-joyeria-personalizada-cotepiercing-arica.webp";
@@ -84,13 +84,6 @@ const galleryItems: GalleryItem[] = [
     caption: "Evaluación de queloides o granulomas",
   },
   {
-    src: gSurfaceCuello,
-    filename: "surface-piercing-cuello-cotepiercing-arica.webp",
-    alt: "Surface piercing en Arica con joyería turquesa realizado por Cotepiercing",
-    category: "Surface",
-    caption: "Surface con joyería turquesa",
-  },
-  {
     src: gEyebrow,
     filename: "eyebrow-piercing-vertical-cotepiercing-arica.webp",
     alt: "Piercing de ceja vertical en Arica realizado por Cotepiercing",
@@ -125,16 +118,16 @@ const galleryItems: GalleryItem[] = [
 const schemaLocalBusiness = {
   "@context": "https://schema.org",
   "@type": "HealthAndBeautyBusiness",
-  "@id": "https://cotepiercing.cl/piercing-arica/#local-business",
+  "@id": `${SITE_URL}/piercing-arica/#local-business`,
   name: "Cotepiercing",
   description:
     "Piercing profesional en Arica con evaluación anatómica previa, joyería inicial incluida y atención personalizada. Atendido por María José en Recina Tattoo, San Marcos 393, Arica, Chile.",
-  url: "https://cotepiercing.cl/piercing-arica/",
+  url: `${SITE_URL}/piercing-arica/`,
   telephone: "+56948566852",
   priceRange: "$20.000 - $100.000 CLP",
   currenciesAccepted: "CLP",
   paymentAccepted: "Efectivo, transferencia bancaria",
-  image: "https://cotepiercing.cl/cotepiercing-piercing-profesional-arica-chile-og.png",
+  image: `${SITE_URL}/cotepiercing-piercing-profesional-arica-chile-og.png`,
   address: {
     "@type": "PostalAddress",
     streetAddress: "San Marcos 393",
@@ -169,7 +162,7 @@ const schemaLocalBusiness = {
   ],
   founder: {
     "@type": "Person",
-    "@id": "https://cotepiercing.cl/piercing-arica/#maria-jose",
+    "@id": `${SITE_URL}/piercing-arica/#maria-jose`,
     name: "María José",
     jobTitle: "Piercer profesional",
     description:
@@ -218,13 +211,13 @@ const schemaBreadcrumb = {
       "@type": "ListItem",
       position: 1,
       name: "Inicio",
-      item: "https://cotepiercing.cl/",
+      item: `${SITE_URL}/`,
     },
     {
       "@type": "ListItem",
       position: 2,
       name: "Piercing en Arica",
-      item: "https://cotepiercing.cl/piercing-arica/",
+      item: `${SITE_URL}/piercing-arica/`,
     },
   ],
 };
@@ -341,11 +334,10 @@ export const Route = createFileRoute("/piercing-arica")(({
         content:
           "Perforaciones profesionales en Arica con evaluación anatómica, atención segura, precios claros y reserva por WhatsApp.",
       },
-      { property: "og:url", content: "https://cotepiercing-main.eduardo-design-cl.workers.dev/piercing-arica/" },
+      { property: "og:url", content: `${SITE_URL}/piercing-arica/` },
       {
         property: "og:image",
-        content:
-          "https://cotepiercing.cl/cotepiercing-piercing-profesional-arica-chile-og.png",
+        content: `${SITE_URL}/cotepiercing-piercing-profesional-arica-chile-og.png`,
       },
       { name: "twitter:card", content: "summary_large_image" },
       {
@@ -359,12 +351,11 @@ export const Route = createFileRoute("/piercing-arica")(({
       },
       {
         name: "twitter:image",
-        content:
-          "https://cotepiercing.cl/cotepiercing-piercing-profesional-arica-chile-og.png",
+        content: `${SITE_URL}/cotepiercing-piercing-profesional-arica-chile-og.png`,
       },
     ],
     links: [
-      { rel: "canonical", href: "https://cotepiercing-main.eduardo-design-cl.workers.dev/piercing-arica/" },
+      { rel: "canonical", href: `${SITE_URL}/piercing-arica/` },
       { rel: "preload", as: "image", href: heroPortrait, fetchPriority: "high" },
     ],
   }),

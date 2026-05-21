@@ -2,6 +2,7 @@
  * SchemaScript — inyecta JSON-LD de Schema.org en el <head>.
  * Incluye: LocalBusiness (HealthAndBeautyBusiness) + FAQPage
  */
+import { SITE_URL } from "@/lib/config";
 
 const localBusinessSchema = {
   "@context": "https://schema.org",
@@ -9,11 +10,11 @@ const localBusinessSchema = {
   name: "Cotepiercing",
   description:
     "Estudio de body piercing profesional en Arica, Chile. Evaluación anatómica, asepsia clínica y joyería inicial incluida en cada servicio.",
-  url: "https://cotepiercing.cl",
+  url: `${SITE_URL}/`,
   priceRange: "$5.000 - $45.000 CLP",
   currenciesAccepted: "CLP",
   paymentAccepted: "Efectivo, transferencia bancaria",
-  image: "https://cotepiercing.cl/og-image.webp",
+  image: `${SITE_URL}/og-image.webp`,
   address: {
     "@type": "PostalAddress",
     streetAddress: "San Marcos 393",
@@ -150,7 +151,7 @@ const faqSchema = {
       name: "¿Qué piercings no se realizan en Cotepiercing?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "No se realizan Snake Eyes, Bridge, Surface de cuello ni otros procedimientos que no cumplan con criterios de seguridad profesional.",
+        text: "No se realizan Snake Eyes, Bridge ni otros procedimientos que no cumplan con criterios de seguridad profesional.",
       },
     },
   ],

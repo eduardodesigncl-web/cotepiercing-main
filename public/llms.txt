@@ -10,7 +10,7 @@ Frase de marca: "No perforo cuerpos, diseño anatomías."
 - Piercings de oreja: Lóbulo, Segundo lóbulo, Helix, Forward Helix, Tragus, Conch, Daith, Rook, Industrial
 - Piercings de nariz y rostro: Nostril, Septum, Ceja (Eyebrow)
 - Piercings de labio y boca: Labret, Medusa, Madonna/Monroe, Smiley
-- Piercings corporales: Ombligo, Pezón, Microdermal, Surface
+- Piercings corporales: Ombligo, Pezón, Microdermal
 - Piercings íntimos: Femenino y masculino (con evaluación obligatoria previa)
 - Evaluaciones y procedimientos: Evaluación de piercing irritado, Cambio de joyería, Retiro de joyería, Evaluación de granulomas, Evaluación de queloides o granulomas, Reconstrucción de lóbulos
 
@@ -24,7 +24,7 @@ Frase de marca: "No perforo cuerpos, diseño anatomías."
 - Conch / Daith / Rook: $35.000
 - Ombligo: $35.000
 - Industrial: $45.000
-- Microdermal / Surface: $45.000
+- Microdermal: $45.000
 - Pezón: $40.000
 - Piercings íntimos: Consultar
 - Evaluaciones: $10.000
@@ -49,17 +49,17 @@ Frase de marca: "No perforo cuerpos, diseño anatomías."
 - Teléfono / WhatsApp: +56 9 4856 6852
 - Horario: Lunes a viernes 10:00–20:00 h / Sábado 11:00–20:00 h / Domingo cerrado
 - Reservas: WhatsApp (enlace disponible en el sitio)
-- Sitio web: https://cotepiercing.cl
+- Sitio web: https://cotepiercing-main.eduardo-design-cl.workers.dev
 
 ## Secciones del sitio
 
-- Inicio / Hero: https://cotepiercing.cl/#inicio
-- Catálogo de servicios: https://cotepiercing.cl/#servicios
-- Galería de trabajos: https://cotepiercing.cl/#galeria
-- Sobre María José: https://cotepiercing.cl/#sobre
-- Cuidados post-perforación: https://cotepiercing.cl/#cuidados
-- Reserva de hora: https://cotepiercing.cl/#reserva
-- Piercing en Arica (página SEO local): https://cotepiercing.cl/piercing-arica/
+- Inicio / Hero: https://cotepiercing-main.eduardo-design-cl.workers.dev/#inicio
+- Catálogo de servicios: https://cotepiercing-main.eduardo-design-cl.workers.dev/#servicios
+- Galería de trabajos: https://cotepiercing-main.eduardo-design-cl.workers.dev/#galeria
+- Sobre María José: https://cotepiercing-main.eduardo-design-cl.workers.dev/#sobre
+- Cuidados post-perforación: https://cotepiercing-main.eduardo-design-cl.workers.dev/#cuidados
+- Reserva de hora: https://cotepiercing-main.eduardo-design-cl.workers.dev/#reserva
+- Piercing en Arica (página SEO local): https://cotepiercing-main.eduardo-design-cl.workers.dev/piercing-arica/
 
 ## Piercings que NO se realizan
 

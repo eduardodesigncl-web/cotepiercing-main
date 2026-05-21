@@ -1,200 +1,123 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
-  <!-- Página principal y secciones -->
   <url>
-    <loc>https://cotepiercing.cl/</loc>
-    <lastmod>2025-05-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <!-- Ruta SEO local — Piercing en Arica -->
-  <url>
-    <loc>https://cotepiercing.cl/piercing-arica/</loc>
+    <loc>https://cotepiercing-main.eduardo-design-cl.workers.dev/</loc>
     <lastmod>2026-05-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.95</priority>
-  </url>
-
-
-  <!-- Páginas individuales de servicios — Oreja -->
-  <url>
-    <loc>https://cotepiercing.cl/servicios/piercing-lobulo-oreja-arica</loc>
-    <lastmod>2025-05-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://cotepiercing.cl/servicios/piercing-segundo-lobulo-oreja-arica</loc>
-    <lastmod>2025-05-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
+    <loc>https://cotepiercing-main.eduardo-design-cl.workers.dev/piercing-arica/</loc>
+    <lastmod>2026-05-21</lastmod>
   </url>
   <url>
-    <loc>https://cotepiercing.cl/servicios/piercing-helix-oreja-arica</loc>
-    <lastmod>2025-05-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
+    <loc>https://cotepiercing-main.eduardo-design-cl.workers.dev/servicios/piercing-lobulo-oreja-arica</loc>
+    <lastmod>2026-05-21</lastmod>
   </url>
   <url>
-    <loc>https://cotepiercing.cl/servicios/piercing-forward-helix-oreja-arica</loc>
-    <lastmod>2025-05-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
+    <loc>https://cotepiercing-main.eduardo-design-cl.workers.dev/servicios/piercing-segundo-lobulo-oreja-arica</loc>
+    <lastmod>2026-05-21</lastmod>
   </url>
   <url>
-    <loc>https://cotepiercing.cl/servicios/piercing-tragus-oreja-arica</loc>
-    <lastmod>2025-05-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
+    <loc>https://cotepiercing-main.eduardo-design-cl.workers.dev/servicios/piercing-helix-oreja-arica</loc>
+    <lastmod>2026-05-21</lastmod>
   </url>
   <url>
-    <loc>https://cotepiercing.cl/servicios/piercing-conch-oreja-arica</loc>
-    <lastmod>2025-05-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
+    <loc>https://cotepiercing-main.eduardo-design-cl.workers.dev/servicios/piercing-forward-helix-oreja-arica</loc>
+    <lastmod>2026-05-21</lastmod>
   </url>
   <url>
-    <loc>https://cotepiercing.cl/servicios/piercing-daith-oreja-arica</loc>
-    <lastmod>2025-05-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
+    <loc>https://cotepiercing-main.eduardo-design-cl.workers.dev/servicios/piercing-tragus-oreja-arica</loc>
+    <lastmod>2026-05-21</lastmod>
   </url>
   <url>
-    <loc>https://cotepiercing.cl/servicios/piercing-rook-oreja-arica</loc>
-    <lastmod>2025-05-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
+    <loc>https://cotepiercing-main.eduardo-design-cl.workers.dev/servicios/piercing-conch-oreja-arica</loc>
+    <lastmod>2026-05-21</lastmod>
   </url>
   <url>
-    <loc>https://cotepiercing.cl/servicios/piercing-industrial-oreja-arica</loc>
-    <lastmod>2025-05-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
-  </url>
-
-  <!-- Nariz y rostro -->
-  <url>
-    <loc>https://cotepiercing.cl/servicios/piercing-nostril-nariz-arica</loc>
-    <lastmod>2025-05-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
+    <loc>https://cotepiercing-main.eduardo-design-cl.workers.dev/servicios/piercing-daith-oreja-arica</loc>
+    <lastmod>2026-05-21</lastmod>
   </url>
   <url>
-    <loc>https://cotepiercing.cl/servicios/piercing-septum-nariz-arica</loc>
-    <lastmod>2025-05-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
+    <loc>https://cotepiercing-main.eduardo-design-cl.workers.dev/servicios/piercing-rook-oreja-arica</loc>
+    <lastmod>2026-05-21</lastmod>
   </url>
   <url>
-    <loc>https://cotepiercing.cl/servicios/piercing-ceja-eyebrow-arica</loc>
-    <lastmod>2025-05-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
-  </url>
-
-  <!-- Labio y boca -->
-  <url>
-    <loc>https://cotepiercing.cl/servicios/piercing-labret-labio-arica</loc>
-    <lastmod>2025-05-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
+    <loc>https://cotepiercing-main.eduardo-design-cl.workers.dev/servicios/piercing-industrial-oreja-arica</loc>
+    <lastmod>2026-05-21</lastmod>
   </url>
   <url>
-    <loc>https://cotepiercing.cl/servicios/piercing-medusa-labio-arica</loc>
-    <lastmod>2025-05-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
+    <loc>https://cotepiercing-main.eduardo-design-cl.workers.dev/servicios/piercing-nostril-nariz-arica</loc>
+    <lastmod>2026-05-21</lastmod>
   </url>
   <url>
-    <loc>https://cotepiercing.cl/servicios/piercing-madonna-monroe-labio-arica</loc>
-    <lastmod>2025-05-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
+    <loc>https://cotepiercing-main.eduardo-design-cl.workers.dev/servicios/piercing-septum-nariz-arica</loc>
+    <lastmod>2026-05-21</lastmod>
   </url>
   <url>
-    <loc>https://cotepiercing.cl/servicios/piercing-smiley-frenillo-arica</loc>
-    <lastmod>2025-05-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
-  </url>
-
-  <!-- Cuerpo -->
-  <url>
-    <loc>https://cotepiercing.cl/servicios/piercing-ombligo-abdomen-arica</loc>
-    <lastmod>2025-05-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
+    <loc>https://cotepiercing-main.eduardo-design-cl.workers.dev/servicios/piercing-ceja-eyebrow-arica</loc>
+    <lastmod>2026-05-21</lastmod>
   </url>
   <url>
-    <loc>https://cotepiercing.cl/servicios/piercing-pezon-intimo-arica</loc>
-    <lastmod>2025-05-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
+    <loc>https://cotepiercing-main.eduardo-design-cl.workers.dev/servicios/piercing-labret-labio-arica</loc>
+    <lastmod>2026-05-21</lastmod>
   </url>
   <url>
-    <loc>https://cotepiercing.cl/servicios/piercing-microdermal-cuerpo-arica</loc>
-    <lastmod>2025-05-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
+    <loc>https://cotepiercing-main.eduardo-design-cl.workers.dev/servicios/piercing-medusa-labio-arica</loc>
+    <lastmod>2026-05-21</lastmod>
   </url>
   <url>
-    <loc>https://cotepiercing.cl/servicios/piercing-surface-cuerpo-arica</loc>
-    <lastmod>2025-05-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
-  </url>
-
-  <!-- Íntimos -->
-  <url>
-    <loc>https://cotepiercing.cl/servicios/piercing-intimo-femenino-arica</loc>
-    <lastmod>2025-05-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
+    <loc>https://cotepiercing-main.eduardo-design-cl.workers.dev/servicios/piercing-madonna-monroe-labio-arica</loc>
+    <lastmod>2026-05-21</lastmod>
   </url>
   <url>
-    <loc>https://cotepiercing.cl/servicios/piercing-intimo-masculino-arica</loc>
-    <lastmod>2025-05-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
-  </url>
-
-  <!-- Evaluaciones -->
-  <url>
-    <loc>https://cotepiercing.cl/servicios/evaluacion-piercing-irritado-arica</loc>
-    <lastmod>2025-05-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
+    <loc>https://cotepiercing-main.eduardo-design-cl.workers.dev/servicios/piercing-smiley-frenillo-arica</loc>
+    <lastmod>2026-05-21</lastmod>
   </url>
   <url>
-    <loc>https://cotepiercing.cl/servicios/cambio-joyeria-piercing-arica</loc>
-    <lastmod>2025-05-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
+    <loc>https://cotepiercing-main.eduardo-design-cl.workers.dev/servicios/piercing-ombligo-abdomen-arica</loc>
+    <lastmod>2026-05-21</lastmod>
   </url>
   <url>
-    <loc>https://cotepiercing.cl/servicios/retiro-joyeria-piercing-arica</loc>
-    <lastmod>2025-05-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
+    <loc>https://cotepiercing-main.eduardo-design-cl.workers.dev/servicios/piercing-pezon-intimo-arica</loc>
+    <lastmod>2026-05-21</lastmod>
   </url>
   <url>
-    <loc>https://cotepiercing.cl/servicios/evaluacion-granuloma-piercing-arica</loc>
-    <lastmod>2025-05-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
+    <loc>https://cotepiercing-main.eduardo-design-cl.workers.dev/servicios/piercing-microdermal-cuerpo-arica</loc>
+    <lastmod>2026-05-21</lastmod>
   </url>
   <url>
-    <loc>https://cotepiercing.cl/servicios/evaluacion-queloide-piercing-arica</loc>
-    <lastmod>2025-05-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
+    <loc>https://cotepiercing-main.eduardo-design-cl.workers.dev/servicios/piercing-surface-cuerpo-arica</loc>
+    <lastmod>2026-05-21</lastmod>
   </url>
   <url>
-    <loc>https://cotepiercing.cl/servicios/reconstruccion-lobulos-arica</loc>
-    <lastmod>2025-05-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
+    <loc>https://cotepiercing-main.eduardo-design-cl.workers.dev/servicios/piercing-intimo-femenino-arica</loc>
+    <lastmod>2026-05-21</lastmod>
   </url>
-
+  <url>
+    <loc>https://cotepiercing-main.eduardo-design-cl.workers.dev/servicios/piercing-intimo-masculino-arica</loc>
+    <lastmod>2026-05-21</lastmod>
+  </url>
+  <url>
+    <loc>https://cotepiercing-main.eduardo-design-cl.workers.dev/servicios/evaluacion-piercing-irritado-arica</loc>
+    <lastmod>2026-05-21</lastmod>
+  </url>
+  <url>
+    <loc>https://cotepiercing-main.eduardo-design-cl.workers.dev/servicios/cambio-joyeria-piercing-arica</loc>
+    <lastmod>2026-05-21</lastmod>
+  </url>
+  <url>
+    <loc>https://cotepiercing-main.eduardo-design-cl.workers.dev/servicios/retiro-joyeria-piercing-arica</loc>
+    <lastmod>2026-05-21</lastmod>
+  </url>
+  <url>
+    <loc>https://cotepiercing-main.eduardo-design-cl.workers.dev/servicios/evaluacion-granuloma-piercing-arica</loc>
+    <lastmod>2026-05-21</lastmod>
+  </url>
+  <url>
+    <loc>https://cotepiercing-main.eduardo-design-cl.workers.dev/servicios/evaluacion-queloide-piercing-arica</loc>
+    <lastmod>2026-05-21</lastmod>
+  </url>
+  <url>
+    <loc>https://cotepiercing-main.eduardo-design-cl.workers.dev/servicios/reconstruccion-lobulos-arica</loc>
+    <lastmod>2026-05-21</lastmod>
+  </url>
 </urlset>

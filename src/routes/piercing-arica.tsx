@@ -341,7 +341,7 @@ export const Route = createFileRoute("/piercing-arica")(({
         content:
           "Perforaciones profesionales en Arica con evaluación anatómica, atención segura, precios claros y reserva por WhatsApp.",
       },
-      { property: "og:url", content: "https://cotepiercing.cl/piercing-arica/" },
+      { property: "og:url", content: "https://cotepiercing-main.eduardo-design-cl.workers.dev/piercing-arica/" },
       {
         property: "og:image",
         content:
@@ -364,7 +364,7 @@ export const Route = createFileRoute("/piercing-arica")(({
       },
     ],
     links: [
-      { rel: "canonical", href: "https://cotepiercing.cl/piercing-arica/" },
+      { rel: "canonical", href: "https://cotepiercing-main.eduardo-design-cl.workers.dev/piercing-arica/" },
       { rel: "preload", as: "image", href: heroPortrait, fetchPriority: "high" },
     ],
   }),

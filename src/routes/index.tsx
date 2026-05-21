@@ -137,10 +137,10 @@ export const Route = createFileRoute("/")({
           "Precisión, higiene y diseño en cada detalle. María José — Recina Tattoo, San Marcos 393, Arica.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://cotepiercing.cl" },
+      { property: "og:url", content: "https://cotepiercing-main.eduardo-design-cl.workers.dev/" },
     ],
     links: [
-      { rel: "canonical", href: "https://cotepiercing.cl" },
+      { rel: "canonical", href: "https://cotepiercing-main.eduardo-design-cl.workers.dev/" },
       { rel: "preload", as: "image", href: heroPortrait, fetchPriority: "high" },
     ],
   }),

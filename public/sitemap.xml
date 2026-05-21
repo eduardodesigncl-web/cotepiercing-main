@@ -15,36 +15,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.95</priority>
   </url>
-  <url>
-    <loc>https://cotepiercing.cl/#servicios</loc>
-    <lastmod>2025-05-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://cotepiercing.cl/#galeria</loc>
-    <lastmod>2025-05-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://cotepiercing.cl/#sobre</loc>
-    <lastmod>2025-05-13</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://cotepiercing.cl/#cuidados</loc>
-    <lastmod>2025-05-13</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://cotepiercing.cl/#reserva</loc>
-    <lastmod>2025-05-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
+
 
   <!-- Páginas individuales de servicios — Oreja -->
   <url>

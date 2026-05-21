@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "@tanstack/react-router";
 import { waLink } from "@/lib/wa";
 
 const links = [
@@ -26,7 +27,7 @@ export function Nav() {
       }`}
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-10 h-20 lg:h-24 flex items-center justify-between gap-6">
-        <a href="#inicio" className="flex flex-col items-start leading-none">
+        <Link to="/" className="flex flex-col items-start leading-none">
           <span className="font-serif text-xl lg:text-2xl tracking-[0.28em] uppercase text-foreground">
             Cotepiercing
           </span>
@@ -37,7 +38,7 @@ export function Nav() {
             </span>
             <span className="w-6 h-px bg-[var(--gold)]" />
           </span>
-        </a>
+        </Link>
 
         <nav className="hidden lg:flex items-center gap-9">
           {links.map((l) => (

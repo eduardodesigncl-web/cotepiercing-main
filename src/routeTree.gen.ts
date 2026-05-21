@@ -9,9 +9,15 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as PiercingAricaRouteImport } from './routes/piercing-arica'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ServiciosSlugRouteImport } from './routes/servicios/$slug'
 
+const PiercingAricaRoute = PiercingAricaRouteImport.update({
+  id: '/piercing-arica',
+  path: '/piercing-arica',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -25,32 +31,43 @@ const ServiciosSlugRoute = ServiciosSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/piercing-arica': typeof PiercingAricaRoute
   '/servicios/$slug': typeof ServiciosSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/piercing-arica': typeof PiercingAricaRoute
   '/servicios/$slug': typeof ServiciosSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/piercing-arica': typeof PiercingAricaRoute
   '/servicios/$slug': typeof ServiciosSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/servicios/$slug'
+  fullPaths: '/' | '/piercing-arica' | '/servicios/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/servicios/$slug'
-  id: '__root__' | '/' | '/servicios/$slug'
+  to: '/' | '/piercing-arica' | '/servicios/$slug'
+  id: '__root__' | '/' | '/piercing-arica' | '/servicios/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  PiercingAricaRoute: typeof PiercingAricaRoute
   ServiciosSlugRoute: typeof ServiciosSlugRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/piercing-arica': {
+      id: '/piercing-arica'
+      path: '/piercing-arica'
+      fullPath: '/piercing-arica'
+      preLoaderRoute: typeof PiercingAricaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -70,6 +87,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  PiercingAricaRoute: PiercingAricaRoute,
   ServiciosSlugRoute: ServiciosSlugRoute,
 }
 export const routeTree = rootRouteImport

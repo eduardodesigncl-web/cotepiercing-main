@@ -365,6 +365,7 @@ export const Route = createFileRoute("/piercing-arica")(({
     ],
     links: [
       { rel: "canonical", href: "https://cotepiercing.cl/piercing-arica/" },
+      { rel: "preload", as: "image", href: heroPortrait, fetchPriority: "high" },
     ],
   }),
   component: PiercingAricaPage,

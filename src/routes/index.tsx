@@ -141,6 +141,7 @@ export const Route = createFileRoute("/")({
     ],
     links: [
       { rel: "canonical", href: "https://cotepiercing.cl" },
+      { rel: "preload", as: "image", href: heroPortrait, fetchPriority: "high" },
     ],
   }),
   component: Page,

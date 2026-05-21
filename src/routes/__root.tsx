@@ -118,8 +118,8 @@ function RootShell({ children }: { children: React.ReactNode }) {
     <html lang="es-CL">
       <head>
         <HeadContent />
-        {/* Google tag (gtag.js) */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18170149975"></script>
+        {/* Google tag (gtag.js) - Deferred to improve LCP */}
+        <script defer src="https://www.googletagmanager.com/gtag/js?id=AW-18170149975"></script>
         <script
           dangerouslySetInnerHTML={{
             __html: `

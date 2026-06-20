@@ -9,18 +9,90 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SobreCoteRouteImport } from './routes/sobre-cote'
+import { Route as PrivacidadRouteImport } from './routes/privacidad'
+import { Route as PreciosRouteImport } from './routes/precios'
 import { Route as PiercingAricaRouteImport } from './routes/piercing-arica'
+import { Route as JoyeriaRouteImport } from './routes/joyeria'
+import { Route as EvaluacionRouteImport } from './routes/evaluacion'
+import { Route as EstudioRouteImport } from './routes/estudio'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ServiciosIndexRouteImport } from './routes/servicios/index'
+import { Route as ServiciosPrivadoRouteImport } from './routes/servicios/privado'
+import { Route as ServiciosOrejaRouteImport } from './routes/servicios/oreja'
+import { Route as ServiciosNarizRostroRouteImport } from './routes/servicios/nariz-rostro'
+import { Route as ServiciosLabioBocaRouteImport } from './routes/servicios/labio-boca'
+import { Route as ServiciosCuerpoRouteImport } from './routes/servicios/cuerpo'
 import { Route as ServiciosSlugRouteImport } from './routes/servicios/$slug'
 
+const SobreCoteRoute = SobreCoteRouteImport.update({
+  id: '/sobre-cote',
+  path: '/sobre-cote',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacidadRoute = PrivacidadRouteImport.update({
+  id: '/privacidad',
+  path: '/privacidad',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PreciosRoute = PreciosRouteImport.update({
+  id: '/precios',
+  path: '/precios',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PiercingAricaRoute = PiercingAricaRouteImport.update({
   id: '/piercing-arica',
   path: '/piercing-arica',
   getParentRoute: () => rootRouteImport,
 } as any)
+const JoyeriaRoute = JoyeriaRouteImport.update({
+  id: '/joyeria',
+  path: '/joyeria',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EvaluacionRoute = EvaluacionRouteImport.update({
+  id: '/evaluacion',
+  path: '/evaluacion',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EstudioRoute = EstudioRouteImport.update({
+  id: '/estudio',
+  path: '/estudio',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServiciosIndexRoute = ServiciosIndexRouteImport.update({
+  id: '/servicios/',
+  path: '/servicios/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServiciosPrivadoRoute = ServiciosPrivadoRouteImport.update({
+  id: '/servicios/privado',
+  path: '/servicios/privado',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServiciosOrejaRoute = ServiciosOrejaRouteImport.update({
+  id: '/servicios/oreja',
+  path: '/servicios/oreja',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServiciosNarizRostroRoute = ServiciosNarizRostroRouteImport.update({
+  id: '/servicios/nariz-rostro',
+  path: '/servicios/nariz-rostro',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServiciosLabioBocaRoute = ServiciosLabioBocaRouteImport.update({
+  id: '/servicios/labio-boca',
+  path: '/servicios/labio-boca',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServiciosCuerpoRoute = ServiciosCuerpoRouteImport.update({
+  id: '/servicios/cuerpo',
+  path: '/servicios/cuerpo',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ServiciosSlugRoute = ServiciosSlugRouteImport.update({
@@ -31,36 +103,151 @@ const ServiciosSlugRoute = ServiciosSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/estudio': typeof EstudioRoute
+  '/evaluacion': typeof EvaluacionRoute
+  '/joyeria': typeof JoyeriaRoute
   '/piercing-arica': typeof PiercingAricaRoute
+  '/precios': typeof PreciosRoute
+  '/privacidad': typeof PrivacidadRoute
+  '/sobre-cote': typeof SobreCoteRoute
   '/servicios/$slug': typeof ServiciosSlugRoute
+  '/servicios/cuerpo': typeof ServiciosCuerpoRoute
+  '/servicios/labio-boca': typeof ServiciosLabioBocaRoute
+  '/servicios/nariz-rostro': typeof ServiciosNarizRostroRoute
+  '/servicios/oreja': typeof ServiciosOrejaRoute
+  '/servicios/privado': typeof ServiciosPrivadoRoute
+  '/servicios/': typeof ServiciosIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/estudio': typeof EstudioRoute
+  '/evaluacion': typeof EvaluacionRoute
+  '/joyeria': typeof JoyeriaRoute
   '/piercing-arica': typeof PiercingAricaRoute
+  '/precios': typeof PreciosRoute
+  '/privacidad': typeof PrivacidadRoute
+  '/sobre-cote': typeof SobreCoteRoute
   '/servicios/$slug': typeof ServiciosSlugRoute
+  '/servicios/cuerpo': typeof ServiciosCuerpoRoute
+  '/servicios/labio-boca': typeof ServiciosLabioBocaRoute
+  '/servicios/nariz-rostro': typeof ServiciosNarizRostroRoute
+  '/servicios/oreja': typeof ServiciosOrejaRoute
+  '/servicios/privado': typeof ServiciosPrivadoRoute
+  '/servicios': typeof ServiciosIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/estudio': typeof EstudioRoute
+  '/evaluacion': typeof EvaluacionRoute
+  '/joyeria': typeof JoyeriaRoute
   '/piercing-arica': typeof PiercingAricaRoute
+  '/precios': typeof PreciosRoute
+  '/privacidad': typeof PrivacidadRoute
+  '/sobre-cote': typeof SobreCoteRoute
   '/servicios/$slug': typeof ServiciosSlugRoute
+  '/servicios/cuerpo': typeof ServiciosCuerpoRoute
+  '/servicios/labio-boca': typeof ServiciosLabioBocaRoute
+  '/servicios/nariz-rostro': typeof ServiciosNarizRostroRoute
+  '/servicios/oreja': typeof ServiciosOrejaRoute
+  '/servicios/privado': typeof ServiciosPrivadoRoute
+  '/servicios/': typeof ServiciosIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/piercing-arica' | '/servicios/$slug'
+  fullPaths:
+    | '/'
+    | '/estudio'
+    | '/evaluacion'
+    | '/joyeria'
+    | '/piercing-arica'
+    | '/precios'
+    | '/privacidad'
+    | '/sobre-cote'
+    | '/servicios/$slug'
+    | '/servicios/cuerpo'
+    | '/servicios/labio-boca'
+    | '/servicios/nariz-rostro'
+    | '/servicios/oreja'
+    | '/servicios/privado'
+    | '/servicios/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/piercing-arica' | '/servicios/$slug'
-  id: '__root__' | '/' | '/piercing-arica' | '/servicios/$slug'
+  to:
+    | '/'
+    | '/estudio'
+    | '/evaluacion'
+    | '/joyeria'
+    | '/piercing-arica'
+    | '/precios'
+    | '/privacidad'
+    | '/sobre-cote'
+    | '/servicios/$slug'
+    | '/servicios/cuerpo'
+    | '/servicios/labio-boca'
+    | '/servicios/nariz-rostro'
+    | '/servicios/oreja'
+    | '/servicios/privado'
+    | '/servicios'
+  id:
+    | '__root__'
+    | '/'
+    | '/estudio'
+    | '/evaluacion'
+    | '/joyeria'
+    | '/piercing-arica'
+    | '/precios'
+    | '/privacidad'
+    | '/sobre-cote'
+    | '/servicios/$slug'
+    | '/servicios/cuerpo'
+    | '/servicios/labio-boca'
+    | '/servicios/nariz-rostro'
+    | '/servicios/oreja'
+    | '/servicios/privado'
+    | '/servicios/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  EstudioRoute: typeof EstudioRoute
+  EvaluacionRoute: typeof EvaluacionRoute
+  JoyeriaRoute: typeof JoyeriaRoute
   PiercingAricaRoute: typeof PiercingAricaRoute
+  PreciosRoute: typeof PreciosRoute
+  PrivacidadRoute: typeof PrivacidadRoute
+  SobreCoteRoute: typeof SobreCoteRoute
   ServiciosSlugRoute: typeof ServiciosSlugRoute
+  ServiciosCuerpoRoute: typeof ServiciosCuerpoRoute
+  ServiciosLabioBocaRoute: typeof ServiciosLabioBocaRoute
+  ServiciosNarizRostroRoute: typeof ServiciosNarizRostroRoute
+  ServiciosOrejaRoute: typeof ServiciosOrejaRoute
+  ServiciosPrivadoRoute: typeof ServiciosPrivadoRoute
+  ServiciosIndexRoute: typeof ServiciosIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/sobre-cote': {
+      id: '/sobre-cote'
+      path: '/sobre-cote'
+      fullPath: '/sobre-cote'
+      preLoaderRoute: typeof SobreCoteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacidad': {
+      id: '/privacidad'
+      path: '/privacidad'
+      fullPath: '/privacidad'
+      preLoaderRoute: typeof PrivacidadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/precios': {
+      id: '/precios'
+      path: '/precios'
+      fullPath: '/precios'
+      preLoaderRoute: typeof PreciosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/piercing-arica': {
       id: '/piercing-arica'
       path: '/piercing-arica'
@@ -68,11 +255,74 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PiercingAricaRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/joyeria': {
+      id: '/joyeria'
+      path: '/joyeria'
+      fullPath: '/joyeria'
+      preLoaderRoute: typeof JoyeriaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/evaluacion': {
+      id: '/evaluacion'
+      path: '/evaluacion'
+      fullPath: '/evaluacion'
+      preLoaderRoute: typeof EvaluacionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/estudio': {
+      id: '/estudio'
+      path: '/estudio'
+      fullPath: '/estudio'
+      preLoaderRoute: typeof EstudioRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/servicios/': {
+      id: '/servicios/'
+      path: '/servicios'
+      fullPath: '/servicios/'
+      preLoaderRoute: typeof ServiciosIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/servicios/privado': {
+      id: '/servicios/privado'
+      path: '/servicios/privado'
+      fullPath: '/servicios/privado'
+      preLoaderRoute: typeof ServiciosPrivadoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/servicios/oreja': {
+      id: '/servicios/oreja'
+      path: '/servicios/oreja'
+      fullPath: '/servicios/oreja'
+      preLoaderRoute: typeof ServiciosOrejaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/servicios/nariz-rostro': {
+      id: '/servicios/nariz-rostro'
+      path: '/servicios/nariz-rostro'
+      fullPath: '/servicios/nariz-rostro'
+      preLoaderRoute: typeof ServiciosNarizRostroRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/servicios/labio-boca': {
+      id: '/servicios/labio-boca'
+      path: '/servicios/labio-boca'
+      fullPath: '/servicios/labio-boca'
+      preLoaderRoute: typeof ServiciosLabioBocaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/servicios/cuerpo': {
+      id: '/servicios/cuerpo'
+      path: '/servicios/cuerpo'
+      fullPath: '/servicios/cuerpo'
+      preLoaderRoute: typeof ServiciosCuerpoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/servicios/$slug': {
@@ -87,8 +337,20 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  EstudioRoute: EstudioRoute,
+  EvaluacionRoute: EvaluacionRoute,
+  JoyeriaRoute: JoyeriaRoute,
   PiercingAricaRoute: PiercingAricaRoute,
+  PreciosRoute: PreciosRoute,
+  PrivacidadRoute: PrivacidadRoute,
+  SobreCoteRoute: SobreCoteRoute,
   ServiciosSlugRoute: ServiciosSlugRoute,
+  ServiciosCuerpoRoute: ServiciosCuerpoRoute,
+  ServiciosLabioBocaRoute: ServiciosLabioBocaRoute,
+  ServiciosNarizRostroRoute: ServiciosNarizRostroRoute,
+  ServiciosOrejaRoute: ServiciosOrejaRoute,
+  ServiciosPrivadoRoute: ServiciosPrivadoRoute,
+  ServiciosIndexRoute: ServiciosIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

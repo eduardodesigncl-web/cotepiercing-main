@@ -3,10 +3,13 @@
  * Incluye: LocalBusiness (HealthAndBeautyBusiness) + FAQPage
  */
 import { SITE_URL } from "@/lib/config";
+import { SITE } from "@/lib/site";
+import { faqs } from "@/data/faqs";
 
 const localBusinessSchema = {
   "@context": "https://schema.org",
   "@type": "HealthAndBeautyBusiness",
+  "@id": `${SITE_URL}/#local-business`,
   name: "Cotepiercing",
   description:
     "Estudio de body piercing profesional en Arica, Chile. Evaluación anatómica, asepsia clínica y joyería inicial incluida en cada servicio.",
@@ -14,24 +17,27 @@ const localBusinessSchema = {
   priceRange: "$5.000 - $45.000 CLP",
   currenciesAccepted: "CLP",
   paymentAccepted: "Efectivo, transferencia bancaria",
-  image: `${SITE_URL}/og-image.webp`,
+  image: `${SITE_URL}/cotepiercing-piercing-profesional-arica-chile-og.png`,
+  telephone: SITE.phoneE164,
+  sameAs: [SITE.googleBusinessUrl, SITE.instagramUrl],
   address: {
     "@type": "PostalAddress",
-    streetAddress: "San Marcos 393",
-    addressLocality: "Arica",
-    addressRegion: "Arica y Parinacota",
-    addressCountry: "CL",
+    streetAddress: SITE.streetAddress,
+    addressLocality: SITE.locality,
+    addressRegion: SITE.region,
+    addressCountry: SITE.country,
+    postalCode: SITE.postalCode,
   },
   geo: {
     "@type": "GeoCoordinates",
-    latitude: -18.4754,
-    longitude: -70.2979,
+    latitude: SITE.geo.latitude,
+    longitude: SITE.geo.longitude,
   },
   openingHoursSpecification: [
     {
       "@type": "OpeningHoursSpecification",
       dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-      opens: "10:00",
+      opens: "11:00",
       closes: "20:00",
     },
     {
@@ -65,7 +71,8 @@ const localBusinessSchema = {
         itemOffered: {
           "@type": "Service",
           name: "Piercing septum",
-          description: "Perforación de septum con evaluación anatómica obligatoria y joyería inicial incluida.",
+          description:
+            "Perforación de septum con evaluación anatómica obligatoria y joyería inicial incluida.",
         },
         price: "32000",
         priceCurrency: "CLP",
@@ -75,7 +82,8 @@ const localBusinessSchema = {
         itemOffered: {
           "@type": "Service",
           name: "Evaluación de piercing irritado",
-          description: "Evaluación profesional para piercings con irritación, bultitos o signos de infección.",
+          description:
+            "Evaluación profesional para piercings con irritación, bultitos o signos de infección.",
         },
         price: "10000",
         priceCurrency: "CLP",
@@ -85,7 +93,8 @@ const localBusinessSchema = {
         itemOffered: {
           "@type": "Service",
           name: "Cambio de joyería",
-          description: "Cambio de joyería para piercing realizado con técnica profesional y asepsia clínica.",
+          description:
+            "Cambio de joyería para piercing realizado con técnica profesional y asepsia clínica.",
         },
         price: "8000",
         priceCurrency: "CLP",
@@ -97,64 +106,14 @@ const localBusinessSchema = {
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  mainEntity: [
-    {
-      "@type": "Question",
-      name: "¿Todos los servicios incluyen joyería?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Sí. Todos los servicios de Cotepiercing incluyen joyería inicial seleccionada según la zona, anatomía y proceso de cicatrización.",
-      },
+  mainEntity: faqs.map(({ question, answer }) => ({
+    "@type": "Question",
+    name: question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: answer,
     },
-    {
-      "@type": "Question",
-      name: "¿Necesito evaluación antes de perforarme?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Algunos piercings requieren evaluación anatómica previa para confirmar si son viables y seguros. Cotepiercing indica en cada servicio si la evaluación es recomendada u obligatoria.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "¿Cómo puedo reservar en Cotepiercing?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Puedes reservar por WhatsApp. Para confirmar la hora se solicita un abono previo. Cotepiercing atiende en Recina Tattoo, San Marcos 393, Arica, Chile.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "¿Realizan piercings íntimos?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Sí. Cotepiercing realiza piercings íntimos femeninos y masculinos con privacidad, higiene rigurosa y evaluación anatómica previa obligatoria.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "¿Qué hago si mi piercing tiene un bulto o está irritado?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "No manipules la zona ni cambies la joya por tu cuenta. Cotepiercing ofrece evaluaciones profesionales para piercings irritados, granulomas y queloides.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "¿Cuánto cuesta el cambio de joyería?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "El cambio de joyería tiene un valor de $8.000 CLP en Cotepiercing. El retiro de joyería cuesta $5.000 CLP.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "¿Qué piercings no se realizan en Cotepiercing?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "No se realizan Snake Eyes, Bridge ni otros procedimientos que no cumplan con criterios de seguridad profesional.",
-      },
-    },
-  ],
+  })),
 };
 
 export function SchemaScript() {

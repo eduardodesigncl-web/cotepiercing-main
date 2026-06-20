@@ -1,7 +1,11 @@
-export const WA_NUMBER = "56900000000";
+import { SITE } from "./site";
+
+export const WA_NUMBER = SITE.whatsappNumber;
 
 export const waLink = (msg?: string) => {
-  const text = msg ?? `Hola María José, quiero reservar una hora.
+  const text =
+    msg ??
+    `Hola María José, quiero reservar una hora.
 Nombre:
 Edad:
 Servicio o piercing que quiero:

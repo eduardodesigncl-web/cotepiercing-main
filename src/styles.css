@@ -9,7 +9,8 @@
   font-style: normal;
   font-weight: 400 900;
   font-display: swap;
-  src: url("https://fonts.gstatic.com/s/playfairdisplay/v37/nuFvD-vYSZviVYUb_rj3ij__anPXJzDwcbmjWBN2PKdFvUDQ.woff2") format("woff2");
+  src: url("https://fonts.gstatic.com/s/playfairdisplay/v37/nuFvD-vYSZviVYUb_rj3ij__anPXJzDwcbmjWBN2PKdFvUDQ.woff2")
+    format("woff2");
 }
 
 @font-face {
@@ -17,7 +18,8 @@
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
-  src: url("https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50ojIa1ZL7.woff2") format("woff2");
+  src: url("https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50ojIa1ZL7.woff2")
+    format("woff2");
 }
 
 @theme inline {
@@ -173,8 +175,12 @@
   }
 
   @keyframes jewelry-scroll {
-    0%   { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
   }
 
   .jewelry-marquee-inner figure {
@@ -193,23 +199,46 @@
 
   .jewelry-marquee-inner figure img {
     display: block;
-    height: 100%;   /* llena exactamente la figure */
+    height: 100%; /* llena exactamente la figure */
     width: auto;
     object-fit: cover;
     object-position: center 25%;
     transition: transform 0.7s ease;
   }
-  .jewelry-marquee-inner figure:hover img { transform: scale(1.06); }
+  .jewelry-marquee-inner figure:hover img {
+    transform: scale(1.06);
+  }
 
   /* Anchos por tipo de imagen */
-  .jewelry-marquee-inner .jm-wide   img { width: 440px; }
-  .jewelry-marquee-inner .jm-tall   img { width: 220px; }
-  .jewelry-marquee-inner .jm-square img { width: 310px; }
+  .jewelry-marquee-inner .jm-wide img {
+    width: 440px;
+  }
+  .jewelry-marquee-inner .jm-tall img {
+    width: 220px;
+  }
+  .jewelry-marquee-inner .jm-square img {
+    width: 310px;
+  }
 
   @media (min-width: 768px) {
-    .jewelry-marquee-inner figure          { height: 420px; }
-    .jewelry-marquee-inner .jm-wide   img { width: 580px; }
-    .jewelry-marquee-inner .jm-tall   img { width: 290px; }
-    .jewelry-marquee-inner .jm-square img { width: 400px; }
+    .jewelry-marquee-inner figure {
+      height: 420px;
+    }
+    .jewelry-marquee-inner .jm-wide img {
+      width: 580px;
+    }
+    .jewelry-marquee-inner .jm-tall img {
+      width: 290px;
+    }
+    .jewelry-marquee-inner .jm-square img {
+      width: 400px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-marquee,
+    .jewelry-marquee-inner {
+      animation: none;
+    }
   }
 }

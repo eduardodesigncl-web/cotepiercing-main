@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://cotepiercing-main.eduardo-design-cl.workers.dev/sitemap.xml
+Sitemap: https://cotepiercing.cl/sitemap.xml

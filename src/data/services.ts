@@ -57,9 +57,7 @@ export type Service = {
   slug: string;
 };
 
-const make = (
-  s: Omit<Service, "description"> & { description?: string }
-): Service => ({
+const make = (s: Omit<Service, "description"> & { description?: string }): Service => ({
   ...s,
   description:
     s.description ??
@@ -88,7 +86,8 @@ export const services: Service[] = [
     category: "Oreja",
     slug: "piercing-segundo-lobulo-oreja-arica",
     image: imgSegundoLobulo,
-    imageAlt: "Segundo piercing de lóbulo en oreja con joyería dorada realizado por Cotepiercing en Arica",
+    imageAlt:
+      "Segundo piercing de lóbulo en oreja con joyería dorada realizado por Cotepiercing en Arica",
   }),
   make({
     name: "Helix",
@@ -99,7 +98,8 @@ export const services: Service[] = [
     category: "Oreja",
     slug: "piercing-helix-oreja-arica",
     image: imgHelix,
-    imageAlt: "Piercing helix en cartílago superior de oreja con joyería dorada realizado por Cotepiercing",
+    imageAlt:
+      "Piercing helix en cartílago superior de oreja con joyería dorada realizado por Cotepiercing",
   }),
   make({
     name: "Forward Helix",
@@ -110,7 +110,8 @@ export const services: Service[] = [
     category: "Oreja",
     slug: "piercing-forward-helix-oreja-arica",
     image: imgForwardHelix,
-    imageAlt: "Piercing forward helix en cartílago frontal de oreja con joyería dorada realizado por Cotepiercing",
+    imageAlt:
+      "Piercing forward helix en cartílago frontal de oreja con joyería dorada realizado por Cotepiercing",
   }),
   make({
     name: "Tragus",
@@ -143,7 +144,8 @@ export const services: Service[] = [
     category: "Oreja",
     slug: "piercing-daith-oreja-arica",
     image: imgDaith,
-    imageAlt: "Piercing daith en pliegue interno de oreja con joyería dorada realizado por Cotepiercing",
+    imageAlt:
+      "Piercing daith en pliegue interno de oreja con joyería dorada realizado por Cotepiercing",
   }),
   make({
     name: "Rook",
@@ -154,7 +156,8 @@ export const services: Service[] = [
     category: "Oreja",
     slug: "piercing-rook-oreja-arica",
     image: imgRook,
-    imageAlt: "Piercing rook en cartílago antihélix de oreja con joyería dorada realizado por Cotepiercing",
+    imageAlt:
+      "Piercing rook en cartílago antihélix de oreja con joyería dorada realizado por Cotepiercing",
   }),
   make({
     name: "Industrial",
@@ -224,7 +227,8 @@ export const services: Service[] = [
     category: "Labio y boca",
     slug: "piercing-medusa-labio-arica",
     image: imgMedusa,
-    imageAlt: "Piercing medusa sobre el labio superior con joyería dorada realizado por Cotepiercing",
+    imageAlt:
+      "Piercing medusa sobre el labio superior con joyería dorada realizado por Cotepiercing",
   }),
   make({
     name: "Madonna / Monroe",
@@ -235,7 +239,8 @@ export const services: Service[] = [
     category: "Labio y boca",
     slug: "piercing-madonna-monroe-labio-arica",
     image: imgMadonna,
-    imageAlt: "Piercing Madonna o Monroe en labio superior lateral con joyería dorada realizado por Cotepiercing",
+    imageAlt:
+      "Piercing Madonna o Monroe en labio superior lateral con joyería dorada realizado por Cotepiercing",
   }),
   make({
     name: "Smiley",
@@ -270,7 +275,8 @@ export const services: Service[] = [
     category: "Íntimos",
     slug: "piercing-pezon-intimo-arica",
     image: catIntimo,
-    imageAlt: "Piercing corporal profesional realizado por Cotepiercing en Arica con joyería inicial incluida",
+    imageAlt:
+      "Piercing corporal profesional realizado por Cotepiercing en Arica con joyería inicial incluida",
   }),
   make({
     name: "Microdermal",
@@ -305,7 +311,8 @@ export const services: Service[] = [
     category: "Íntimos",
     slug: "piercing-intimo-femenino-arica",
     image: catIntimo,
-    imageAlt: "Piercing íntimo femenino realizado con privacidad e higiene rigurosa por Cotepiercing",
+    imageAlt:
+      "Piercing íntimo femenino realizado con privacidad e higiene rigurosa por Cotepiercing",
   }),
   make({
     name: "Íntimo masculino",
@@ -316,7 +323,8 @@ export const services: Service[] = [
     category: "Íntimos",
     slug: "piercing-intimo-masculino-arica",
     image: catIntimo,
-    imageAlt: "Piercing íntimo masculino realizado con privacidad e higiene rigurosa por Cotepiercing",
+    imageAlt:
+      "Piercing íntimo masculino realizado con privacidad e higiene rigurosa por Cotepiercing",
   }),
 
   // ── Evaluación ────────────────────────────────────────────────────────────
@@ -329,7 +337,8 @@ export const services: Service[] = [
     category: "Evaluación",
     slug: "evaluacion-piercing-irritado-arica",
     image: imgEvalIrritado,
-    imageAlt: "Evaluación de piercing irritado realizada por Cotepiercing en un entorno profesional",
+    imageAlt:
+      "Evaluación de piercing irritado realizada por Cotepiercing en un entorno profesional",
   }),
   make({
     name: "Cambio de joyería",
@@ -396,4 +405,3 @@ export const categories: Category[] = [
   "Íntimos",
   "Evaluación",
 ];
-

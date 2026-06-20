@@ -26,7 +26,10 @@ import {
 import { Button } from "@/components/ui/button";
 import { Nav } from "@/components/site/Nav";
 import { SchemaScript } from "@/components/site/SchemaScript";
+import { GoogleReviews } from "@/components/site/GoogleReviews";
+import { SiteFooter } from "@/components/site/SiteFooter";
 import { services, categories, type Category, type Service } from "@/data/services";
+import { faqs } from "@/data/faqs";
 import { waLink } from "@/lib/wa";
 import { SITE_URL } from "@/lib/config";
 
@@ -40,10 +43,7 @@ import aboutImg from "@/assets/maria-jose-piercer-profesional-cotepiercing-arica
 
 import gExpansion from "@/assets/gallery/expansion-lobulo-doble-helix-oreja-cotepiercing.webp";
 import gSeptum from "@/assets/gallery/septum-piercing-con-herradura-cotepiercing-arica.webp";
-import gSnake from "@/assets/gallery/snake-bites-piercing-labio-cotepiercing-arica.webp";
-import gQueloide from "@/assets/gallery/extraccion-queloide-piercing-oreja-cotepiercing-arica.webp";
 import gEyebrow from "@/assets/gallery/eyebrow-piercing-vertical-cotepiercing-arica.webp";
-import gSurfaceEspalda from "@/assets/gallery/surface-piercing-espalda-baja-cotepiercing-arica.webp";
 import gTongue from "@/assets/gallery/tongue-piercing-con-joyeria-personalizada-cotepiercing-arica.webp";
 import gEstudio from "@/assets/gallery/estudio-piercing-cotepiercing-espacio-de-trabajo.webp";
 
@@ -71,32 +71,11 @@ const galleryItems: GalleryItem[] = [
     caption: "Septum con herradura",
   },
   {
-    src: gSnake,
-    filename: "snake-bites-piercing-labio-cotepiercing-arica.webp",
-    alt: "Snake Bites piercing en labio con joyería plateada realizado por María José de Cotepiercing en Arica, Chile.",
-    category: "Labios",
-    caption: "Snake Bites en labio",
-  },
-  {
-    src: gQueloide,
-    filename: "extraccion-queloide-piercing-oreja-cotepiercing-arica.webp",
-    alt: "Evaluación de queloides o granulomas en piercing de oreja realizada por Cotepiercing en Arica, Chile.",
-    category: "Evaluación",
-    caption: "Evaluación de queloides o granulomas",
-  },
-  {
     src: gEyebrow,
     filename: "eyebrow-piercing-vertical-cotepiercing-arica.webp",
     alt: "Vertical eyebrow piercing realizado por María José de Cotepiercing en Arica, Chile.",
     category: "Rostro",
     caption: "Vertical eyebrow",
-  },
-  {
-    src: gSurfaceEspalda,
-    filename: "surface-piercing-espalda-baja-cotepiercing-arica.webp",
-    alt: "Surface piercing en espalda baja realizado por María José de Cotepiercing en Arica, Chile.",
-    category: "Surface / corporal",
-    caption: "Surface en espalda baja",
   },
   {
     src: gTongue,
@@ -117,17 +96,17 @@ const galleryItems: GalleryItem[] = [
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Cotepiercing — Piercing profesional en Arica, Chile | María José" },
+      { title: "Cotepiercing | Piercings cerca de ti en Arica" },
       {
         name: "description",
         content:
-          "Body piercing profesional con María José en Arica, Chile. Lóbulo, helix, nostril, septum, labret, íntimos y evaluaciones. Joyería inicial incluida. Reserva por WhatsApp en Recina Tattoo, San Marcos 393.",
+          "Cotepiercing ofrece piercing profesional en Arica con María José: evaluación anatómica, asepsia rigurosa, joyería inicial incluida, cuidados personalizados y reserva por WhatsApp.",
       },
-      { property: "og:title", content: "Cotepiercing — Piercing profesional en Arica, Chile" },
+      { property: "og:title", content: "Cotepiercing | Piercings cerca de ti en Arica" },
       {
         property: "og:description",
         content:
-          "Precisión, higiene y diseño en cada detalle. María José — Recina Tattoo, San Marcos 393, Arica.",
+          "Piercing profesional en Arica con evaluación anatómica, joyería inicial incluida, cuidados seguros y reserva por WhatsApp.",
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: `${SITE_URL}/` },
@@ -170,9 +149,7 @@ function SectionHead({
   return (
     <div className={`max-w-2xl ${center ? "mx-auto text-center" : ""}`}>
       {eyebrow && <div className="eyebrow mb-4">{eyebrow}</div>}
-      <h2 className="font-serif text-3xl lg:text-5xl leading-[1.1] text-foreground">
-        {title}
-      </h2>
+      <h2 className="font-serif text-3xl lg:text-5xl leading-[1.1] text-foreground">{title}</h2>
       {intro && (
         <p className="mt-6 text-base lg:text-[17px] leading-relaxed text-muted-foreground">
           {intro}
@@ -215,16 +192,19 @@ function Page() {
         <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-6 lg:px-10 h-full flex items-center">
           <div className="max-w-xl pt-24 lg:pt-0">
             <h1 className="font-serif text-[44px] leading-[1] sm:text-6xl lg:text-7xl xl:text-[88px] tracking-tight text-foreground">
-              No perforo
+              Piercings cerca
               <br />
-              cuerpos,{" "}
-              <span className="italic">diseño</span>
-              <br />
-              anatomías.
+              de ti en <span className="italic">Arica</span>
             </h1>
-            <p className="mt-8 max-w-md text-base lg:text-lg text-foreground/75 leading-relaxed">
-              Body piercing profesional con enfoque en seguridad, estética y
-              evaluación anatómica personalizada.
+            <p className="mt-6 text-sm lg:text-base tracking-[0.14em] uppercase text-[var(--gold)] font-medium">
+              Piercing profesional en Arica con enfoque anatómico, seguro y personalizado.
+            </p>
+            <p className="mt-4 max-w-md text-base lg:text-lg text-foreground/75 leading-relaxed">
+              Cotepiercing atiende en Arica con María José, piercer profesional especializada en
+              evaluación anatómica, técnica segura y joyería inicial incluida.
+            </p>
+            <p className="mt-3 font-serif text-xl italic text-foreground/75">
+              “No perforo cuerpos, diseño anatomías.”
             </p>
             <div className="mt-10">
               <a
@@ -244,8 +224,8 @@ function Page() {
       <Section className="bg-[var(--warm-white)]">
         <div className="grid grid-cols-2 md:grid-cols-5 gap-px bg-border border border-border">
           {[
-            { icon: GraduationCap, label: "8 años de experiencia" },
-            { icon: Sparkles, label: "Formación básica, intermedia y avanzada" },
+            { icon: GraduationCap, label: "Atención profesional especializada" },
+            { icon: Sparkles, label: "Especialización exclusiva en piercing" },
             { icon: ShieldCheck, label: "Asepsia y seguridad" },
             { icon: Gem, label: "Joyería inicial incluida" },
             { icon: HeartHandshake, label: "Evaluación según anatomía" },
@@ -262,8 +242,8 @@ function Page() {
           ))}
         </div>
         <p className="mt-10 max-w-2xl text-sm lg:text-base text-muted-foreground leading-relaxed">
-          Cada perforación se realiza considerando anatomía, ubicación, tipo de
-          joyería, proceso de cicatrización y cuidado posterior.
+          Cada perforación se realiza considerando anatomía, ubicación, tipo de joyería, proceso de
+          cicatrización y cuidado posterior.
         </p>
       </Section>
 
@@ -271,8 +251,8 @@ function Page() {
       <Section id="servicios" className="bg-[var(--stone)]/40">
         <SectionHead
           eyebrow="Catálogo"
-          title="Servicios"
-          intro="Explora los servicios de piercing profesional de Cotepiercing en Arica. Cada perforación es realizada por María José con evaluación anatómica, higiene rigurosa, técnica segura y joyería inicial incluida."
+          title="Servicios de piercing en Arica"
+          intro="Revisa precios, zonas, tiempos de cicatrización y recomendaciones antes de reservar tu piercing en Arica. Cada perforación es realizada por María José con evaluación anatómica, higiene rigurosa, técnica segura y joyería inicial incluida."
         />
 
         <div className="mt-8 sm:mt-12 flex flex-wrap gap-1.5 sm:gap-2">
@@ -331,13 +311,10 @@ function Page() {
         </div>
 
         <p className="mt-10 max-w-3xl text-sm text-muted-foreground italic">
-          Todos los valores incluyen joyería inicial. Algunos servicios
-          requieren evaluación anatómica previa para confirmar viabilidad,
-          ubicación y tipo de joyería adecuada.
+          Todos los valores incluyen joyería inicial. Algunos servicios requieren evaluación
+          anatómica previa para confirmar viabilidad, ubicación y tipo de joyería adecuada.
         </p>
       </Section>
-
-
 
       {/* JEWELRY */}
       <Section id="joyeria">
@@ -353,24 +330,64 @@ function Page() {
           <div className="jewelry-marquee-inner" aria-hidden="false">
             {/* Set 1 — imágenes reales */}
             <figure className="jm-wide">
-              <img src={joyeriaPremiumArica} alt="Joyería premium para piercing en tonos dorado y plata utilizada por Cotepiercing en Arica" loading="lazy" width={680} height={420} />
-              <figcaption className="sr-only">Joyería premium para piercing en tonos dorado y plata — Cotepiercing Arica</figcaption>
+              <img
+                src={joyeriaPremiumArica}
+                alt="Joyería premium para piercing en tonos dorado y plata utilizada por Cotepiercing en Arica"
+                loading="lazy"
+                width={680}
+                height={420}
+              />
+              <figcaption className="sr-only">
+                Joyería premium para piercing en tonos dorado y plata — Cotepiercing Arica
+              </figcaption>
             </figure>
             <figure className="jm-tall">
-              <img src={joyeriaSatin} alt="Joyería de piercing premium sobre tela satinada utilizada por Cotepiercing" loading="lazy" width={600} height={800} />
-              <figcaption className="sr-only">Joyería de piercing premium sobre tela satinada — Cotepiercing</figcaption>
+              <img
+                src={joyeriaSatin}
+                alt="Joyería de piercing premium sobre tela satinada utilizada por Cotepiercing"
+                loading="lazy"
+                width={600}
+                height={800}
+              />
+              <figcaption className="sr-only">
+                Joyería de piercing premium sobre tela satinada — Cotepiercing
+              </figcaption>
             </figure>
             <figure className="jm-tall">
-              <img src={earImg} alt="Oreja con composición de piercings finos y joyería premium realizada por Cotepiercing" loading="lazy" width={600} height={800} />
-              <figcaption className="sr-only">Oreja con composición de piercings finos y joyería premium — Cotepiercing</figcaption>
+              <img
+                src={earImg}
+                alt="Oreja con composición de piercings finos y joyería premium realizada por Cotepiercing"
+                loading="lazy"
+                width={600}
+                height={800}
+              />
+              <figcaption className="sr-only">
+                Oreja con composición de piercings finos y joyería premium — Cotepiercing
+              </figcaption>
             </figure>
             <figure className="jm-square">
-              <img src={joyeriaMarmol} alt="Colección de joyería para piercing sobre fondo mármol estilo premium de Cotepiercing" loading="lazy" width={600} height={450} />
-              <figcaption className="sr-only">Colección de joyería sobre fondo mármol premium — Cotepiercing</figcaption>
+              <img
+                src={joyeriaMarmol}
+                alt="Colección de joyería para piercing sobre fondo mármol estilo premium de Cotepiercing"
+                loading="lazy"
+                width={600}
+                height={450}
+              />
+              <figcaption className="sr-only">
+                Colección de joyería sobre fondo mármol premium — Cotepiercing
+              </figcaption>
             </figure>
             <figure className="jm-wide">
-              <img src={joyeriaDetalle} alt="Detalle de joyería para piercing en acero quirúrgico dorado y plata de Cotepiercing" loading="lazy" width={680} height={420} />
-              <figcaption className="sr-only">Detalle de joyería en acero quirúrgico dorado y plata — Cotepiercing</figcaption>
+              <img
+                src={joyeriaDetalle}
+                alt="Detalle de joyería para piercing en acero quirúrgico dorado y plata de Cotepiercing"
+                loading="lazy"
+                width={680}
+                height={420}
+              />
+              <figcaption className="sr-only">
+                Detalle de joyería en acero quirúrgico dorado y plata — Cotepiercing
+              </figcaption>
             </figure>
             {/* Set 2 — copia idéntica para loop sin cortes (aria-hidden) */}
             <figure className="jm-wide" aria-hidden="true">
@@ -390,7 +407,6 @@ function Page() {
             </figure>
           </div>
         </div>
-
       </Section>
 
       {/* ANATOMY */}
@@ -451,17 +467,30 @@ function Page() {
             <div className="eyebrow mb-5">Cuidados por zona</div>
             <Accordion type="single" collapsible className="border-t border-border">
               {[
-                ["Oreja", "Evitar dormir sobre la zona, audífonos, cascos, cabello enganchado y presión directa."],
-                ["Nariz y rostro", "Evitar maquillaje, skincare activo, toallas, mascarillas y manipulación."],
-                ["Labio y boca", "Mantener higiene oral, usar enjuague sin alcohol y evitar jugar con la joya."],
+                [
+                  "Oreja",
+                  "Evitar dormir sobre la zona, audífonos, cascos, cabello enganchado y presión directa.",
+                ],
+                [
+                  "Nariz y rostro",
+                  "Evitar maquillaje, skincare activo, toallas, mascarillas y manipulación.",
+                ],
+                [
+                  "Labio y boca",
+                  "Mantener higiene oral, usar enjuague sin alcohol y evitar jugar con la joya.",
+                ],
                 ["Cuerpo", "Evitar ropa apretada, golpes, presión y humedad excesiva."],
-                ["Íntimos", "Servicio con indicaciones privadas según evaluación, anatomía y tipo de perforación."],
-                ["Surface y Microdermal", "Evitar golpes, tirones, presión, ropa ajustada y manipulación directa."],
+                [
+                  "Íntimos",
+                  "Servicio con indicaciones privadas según evaluación, anatomía y tipo de perforación.",
+                ],
+                [
+                  "Surface y Microdermal",
+                  "Evitar golpes, tirones, presión, ropa ajustada y manipulación directa.",
+                ],
               ].map(([title, body]) => (
                 <AccordionItem key={title} value={title}>
-                  <AccordionTrigger className="font-serif text-lg">
-                    {title}
-                  </AccordionTrigger>
+                  <AccordionTrigger className="font-serif text-lg">{title}</AccordionTrigger>
                   <AccordionContent className="text-muted-foreground leading-relaxed">
                     {body}
                   </AccordionContent>
@@ -478,7 +507,8 @@ function Page() {
               ¿Tu piercing está irritado o tiene un bultito?
             </p>
             <p className="mt-1 text-sm text-muted-foreground">
-              Cotepiercing ofrece evaluaciones profesionales en Arica. No manipules la zona por tu cuenta.
+              Cotepiercing ofrece evaluaciones profesionales en Arica. No manipules la zona por tu
+              cuenta.
             </p>
           </div>
           <a
@@ -540,15 +570,18 @@ function Page() {
             "Reconstrucción de lóbulos",
             "Revisión de cicatrización",
           ].map((label) => (
-            <div key={label} className="bg-background px-5 py-4 sm:p-7 flex items-start gap-3 sm:gap-4">
+            <div
+              key={label}
+              className="bg-background px-5 py-4 sm:p-7 flex items-start gap-3 sm:gap-4"
+            >
               <span className="mt-1.5 sm:mt-2 w-1.5 h-1.5 sm:w-2 sm:h-2 bg-[var(--gold)] shrink-0" />
               <p className="text-[14px] sm:text-[15px]">{label}</p>
             </div>
           ))}
         </div>
         <p className="mt-8 max-w-3xl text-sm text-muted-foreground italic">
-          En casos de dolor intenso, fiebre, secreción con mal olor o signos de
-          infección, se recomienda acudir a atención médica.
+          En casos de dolor intenso, fiebre, secreción con mal olor o signos de infección, se
+          recomienda acudir a atención médica.
         </p>
         {/* Interlinking: evaluaciones → cuidados y reserva */}
         <div className="mt-10 flex flex-wrap gap-4">
@@ -573,19 +606,18 @@ function Page() {
       <Section className="bg-[var(--stone)]/40">
         <div className="max-w-3xl">
           <div className="eyebrow mb-4">Privado</div>
-          <h2 className="font-serif text-3xl lg:text-5xl leading-tight">
-            Piercings íntimos
-          </h2>
+          <h2 className="font-serif text-3xl lg:text-5xl leading-tight">Piercings íntimos</h2>
           <div className="gold-rule mt-8" />
           <p className="mt-8 text-base lg:text-lg text-muted-foreground leading-relaxed">
-            Servicio realizado con privacidad, higiene rigurosa y evaluación
-            anatómica previa. La viabilidad depende de la anatomía, condiciones
-            de seguridad y criterio profesional.
+            Servicio realizado con privacidad, higiene rigurosa y evaluación anatómica previa. La
+            viabilidad depende de la anatomía, condiciones de seguridad y criterio profesional.
           </p>
           <div className="mt-10">
             <Button asChild variant="goldOutline" size="lg">
               <a
-                href={waLink("Hola María José, quiero consultar disponibilidad para piercing íntimo.")}
+                href={waLink(
+                  "Hola María José, quiero consultar disponibilidad para piercing íntimo.",
+                )}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -604,32 +636,30 @@ function Page() {
           intro="Explora algunos trabajos realizados por María José en Cotepiercing: perforaciones, joyería corporal y procedimientos especializados con enfoque profesional, seguro y personalizado."
         />
         <div className="mt-8 sm:mt-12">
-          {/* Mobile Marquee */}
-          <div className="flex sm:hidden relative w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
-            <div className="flex animate-marquee gap-3 min-w-max hover:[animation-play-state:paused]">
-              {[...galleryItems, ...galleryItems].map((g, i) => (
-                <button
-                  key={`mobile-${g.filename}-${i}`}
-                  type="button"
-                  onClick={() => setLightbox(g)}
-                  className="group relative block w-[160px] h-[220px] shrink-0 overflow-hidden rounded-xl border border-border bg-[var(--stone)] shadow-sm"
-                  aria-label={`Ampliar: ${g.caption}`}
-                >
-                  <img
-                    src={g.src}
-                    alt={g.alt}
-                    loading="lazy"
-                    decoding="async"
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="pointer-events-none absolute inset-x-0 bottom-0 p-3 bg-gradient-to-t from-black/70 to-transparent">
-                    <p className="mt-1 font-serif text-white text-[13px] leading-tight line-clamp-2">
-                      {g.caption}
-                    </p>
-                  </div>
-                </button>
-              ))}
-            </div>
+          {/* Mobile horizontal gallery: touch-friendly and motion-free */}
+          <div className="flex snap-x snap-mandatory gap-3 overflow-x-auto pb-3 sm:hidden">
+            {galleryItems.map((g) => (
+              <button
+                key={`mobile-${g.filename}`}
+                type="button"
+                onClick={() => setLightbox(g)}
+                className="group relative block h-[220px] w-[160px] shrink-0 snap-start overflow-hidden rounded-xl border border-border bg-[var(--stone)] shadow-sm"
+                aria-label={`Ampliar: ${g.caption}`}
+              >
+                <img
+                  src={g.src}
+                  alt={g.alt}
+                  loading="lazy"
+                  decoding="async"
+                  className="h-full w-full object-cover"
+                />
+                <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-3">
+                  <p className="mt-1 line-clamp-2 font-serif text-[13px] leading-tight text-white">
+                    {g.caption}
+                  </p>
+                </div>
+              </button>
+            ))}
           </div>
 
           {/* Desktop Masonry */}
@@ -655,9 +685,7 @@ function Page() {
                   <p className="text-[10px] tracking-[0.28em] uppercase text-[var(--gold-soft)]">
                     {g.category}
                   </p>
-                  <p className="mt-1 font-serif text-white text-lg leading-snug">
-                    {g.caption}
-                  </p>
+                  <p className="mt-1 font-serif text-white text-lg leading-snug">{g.caption}</p>
                 </div>
               </button>
             ))}
@@ -703,7 +731,9 @@ function Page() {
                 <div className="mt-7">
                   <Button asChild variant="gold" size="lg" className="w-full">
                     <a
-                      href={waLink(`Hola María José, vi tu trabajo "${lightbox.caption}" y quiero más información.`)}
+                      href={waLink(
+                        `Hola María José, vi tu trabajo "${lightbox.caption}" y quiero más información.`,
+                      )}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
@@ -726,22 +756,13 @@ function Page() {
           </div>
           <div className="lg:col-span-8">
             <Accordion type="single" collapsible className="border-t border-border">
-              {[
-                ["¿Todos los servicios incluyen joyería?", "Sí. Todos los servicios incluyen joyería inicial seleccionada según la zona, anatomía y proceso de cicatrización."],
-                ["¿Necesito evaluación antes de perforarme?", "Algunos piercings requieren evaluación anatómica previa para confirmar si son viables y seguros."],
-                ["¿Cómo puedo reservar?", "Puedes reservar por WhatsApp. Para confirmar la hora se solicita abono previo."],
-                ["¿Cuánto es el abono?", "El monto del abono será informado al momento de coordinar la reserva."],
-                ["¿Puedo reagendar mi hora?", "La política de reagendamiento será informada al confirmar la reserva."],
-                ["¿Atienden piercings íntimos?", "Sí, se realizan con privacidad, higiene rigurosa y evaluación previa."],
-                ["¿Qué hago si mi piercing tiene un bulto o está irritado?", "No manipules la zona ni cambies la joya por tu cuenta. Puedes solicitar una evaluación profesional."],
-                ["¿Qué piercings no se realizan?", "No se realizan Snake Eyes, Bridge ni otros procedimientos que no cumplan con criterios de seguridad profesional."],
-              ].map(([q, a]) => (
-                <AccordionItem key={q} value={q}>
+              {faqs.map(({ question, answer }) => (
+                <AccordionItem key={question} value={question}>
                   <AccordionTrigger className="font-serif text-lg py-6">
-                    {q}
+                    {question}
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground leading-relaxed pb-6">
-                    {a}
+                    {answer}
                   </AccordionContent>
                 </AccordionItem>
               ))}
@@ -779,14 +800,15 @@ function Page() {
                 <MapPin className="w-4 h-4 text-[var(--gold)] mt-1 shrink-0" strokeWidth={1.4} />
                 <div>
                   <address className="not-italic text-[15px] leading-relaxed">
-                    Recina Tattoo<br />
+                    Recina Tattoo
+                    <br />
                     San Marcos 393, Arica, Chile
                   </address>
                   <p className="mt-1 text-[13px] text-muted-foreground">
                     Cotepiercing atiende en Recina Tattoo, ubicado en San Marcos 393, Arica, Chile.
                   </p>
                   <a
-                    href="https://maps.app.goo.gl/d3F2wC6gm6gT2wpZ8"
+                    href="https://share.google/ME2YGIzY4MLKa7LHC"
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Ver ubicación de Cotepiercing en Google Maps"
@@ -800,7 +822,10 @@ function Page() {
             </div>
 
             {/* Mapa */}
-            <div className="overflow-hidden border border-border shadow-sm" style={{ borderRadius: "4px" }}>
+            <div
+              className="overflow-hidden border border-border shadow-sm"
+              style={{ borderRadius: "4px" }}
+            >
               <iframe
                 title="Mapa de ubicación de Cotepiercing en Recina Tattoo, San Marcos 393, Arica"
                 src="https://maps.google.com/maps?q=San+Marcos+393+Arica+Chile&output=embed&hl=es&z=16"
@@ -821,7 +846,7 @@ function Page() {
               <div className="flex items-start gap-3">
                 <Clock className="w-4 h-4 text-[var(--gold)] mt-1 shrink-0" strokeWidth={1.4} />
                 <ul className="text-[15px] space-y-1">
-                  <li>Lunes a viernes · 10:00 — 20:00</li>
+                  <li>Lunes a viernes · 11:00 — 20:00</li>
                   <li>Sábado · 11:00 — 20:00</li>
                   <li className="text-muted-foreground">Domingo · cerrado</li>
                 </ul>
@@ -831,59 +856,9 @@ function Page() {
         </div>
       </Section>
 
-      {/* FOOTER */}
-      <footer className="border-t border-border bg-background py-12">
-        <div className="mx-auto max-w-7xl px-6 lg:px-10">
-          {/* Top row: brand + nav links */}
-          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
-            <div>
-              <div className="font-serif text-lg tracking-[0.2em] uppercase">Cotepiercing</div>
-              <p className="mt-1 text-xs text-muted-foreground">
-                Recina Tattoo · San Marcos 393, Arica, Chile
-              </p>
-            </div>
-            {/* Nav links internos — interlinking SEO */}
-            <nav aria-label="Enlaces de pie de página">
-              <ul className="flex flex-wrap gap-x-6 gap-y-3">
-                {[
-                  { href: "#servicios", label: "Servicios" },
-                  { href: "#galeria",   label: "Galería" },
-                  { href: "#cuidados",  label: "Cuidados" },
-                  { href: "#sobre",     label: "Sobre mí" },
-                  { href: "#reserva",   label: "Reservar hora" },
-                ].map(({ href, label }) => (
-                  <li key={href}>
-                    <a
-                      href={href}
-                      className="text-[11px] tracking-[0.2em] uppercase text-muted-foreground hover:text-[var(--gold)] transition-colors"
-                    >
-                      {label}
-                    </a>
-                  </li>
-                ))}
-                <li>
-                  <Link
-                    to="/piercing-arica/"
-                    className="text-[11px] tracking-[0.2em] uppercase text-muted-foreground hover:text-[var(--gold)] transition-colors"
-                    aria-label="Página SEO: Piercing en Arica con Cotepiercing"
-                  >
-                    Piercing en Arica
-                  </Link>
-                </li>
-              </ul>
-            </nav>
-          </div>
-          {/* Bottom row: tagline + copyright */}
-          <div className="mt-8 pt-6 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-3">
-            <p className="text-xs tracking-[0.22em] uppercase text-muted-foreground">
-              Precisión piercing · Timeless you
-            </p>
-            <p className="text-xs text-muted-foreground">
-              © {new Date().getFullYear()} María José — Cotepiercing, Arica, Chile
-            </p>
-          </div>
-        </div>
-      </footer>
+      <GoogleReviews />
+
+      <SiteFooter />
     </div>
   );
 }

@@ -3,11 +3,11 @@ import { Link } from "@tanstack/react-router";
 import { waLink } from "@/lib/wa";
 
 const links = [
-  { href: "#servicios", label: "Servicios" },
-  { href: "#galeria", label: "Galería" },
-  { href: "#sobre", label: "Sobre mí" },
-  { href: "#cuidados", label: "Cuidados" },
-  { href: "#reserva", label: "Contacto" },
+  { href: "/servicios/", label: "Servicios" },
+  { href: "/precios/", label: "Precios" },
+  { href: "/evaluacion/", label: "Evaluación" },
+  { href: "/estudio/", label: "Estudio" },
+  { href: "/#reserva", label: "Contacto" },
 ];
 
 export function Nav() {
@@ -62,6 +62,8 @@ export function Nav() {
 
         <button
           aria-label="Menú"
+          aria-expanded={open}
+          aria-controls="mobile-navigation"
           onClick={() => setOpen((v) => !v)}
           className="lg:hidden inline-flex flex-col gap-[5px] p-2"
         >
@@ -71,7 +73,7 @@ export function Nav() {
         </button>
       </div>
       {open && (
-        <div className="lg:hidden bg-background border-t border-border">
+        <div id="mobile-navigation" className="lg:hidden bg-background border-t border-border">
           <div className="px-6 py-4 flex flex-col gap-3">
             {links.map((l) => (
               <a

@@ -1,9 +1,11 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { services } from "@/data/services";
+import { services, type Service } from "@/data/services";
 import { Nav } from "@/components/site/Nav";
+import { SiteFooter } from "@/components/site/SiteFooter";
 import { Button } from "@/components/ui/button";
 import { waLink } from "@/lib/wa";
 import { SITE_URL } from "@/lib/config";
+import { SITE } from "@/lib/site";
 import { ArrowLeft, MessageCircle, Clock, Stethoscope, Tag, MapPin } from "lucide-react";
 
 export const Route = createFileRoute("/servicios/$slug")({
@@ -23,11 +25,12 @@ export const Route = createFileRoute("/servicios/$slug")({
         { property: "og:description", content: description.slice(0, 160) },
         { property: "og:type", content: "article" },
         { property: "og:url", content: `${SITE_URL}/servicios/${params.slug}` },
-        { property: "og:image", content: `${SITE_URL}/cotepiercing-piercing-profesional-arica-chile-og.png` },
+        {
+          property: "og:image",
+          content: `${SITE_URL}/cotepiercing-piercing-profesional-arica-chile-og.png`,
+        },
       ],
-      links: [
-        { rel: "canonical", href: `${SITE_URL}/servicios/${params.slug}` },
-      ],
+      links: [{ rel: "canonical", href: `${SITE_URL}/servicios/${params.slug}` }],
     };
   },
   loader: ({ params }) => {
@@ -39,7 +42,10 @@ export const Route = createFileRoute("/servicios/$slug")({
   notFoundComponent: () => (
     <div className="min-h-screen flex flex-col items-center justify-center gap-6 px-6">
       <p className="font-serif text-3xl text-foreground">Servicio no encontrado</p>
-      <Link to="/" className="text-[var(--gold)] text-sm uppercase tracking-widest hover:opacity-70">
+      <Link
+        to="/"
+        className="text-[var(--gold)] text-sm uppercase tracking-widest hover:opacity-70"
+      >
         ← Volver al inicio
       </Link>
     </div>
@@ -47,7 +53,7 @@ export const Route = createFileRoute("/servicios/$slug")({
 });
 
 function ServicePage() {
-  const { service } = Route.useLoaderData();
+  const { service } = Route.useLoaderData() as { service: Service };
   const related = services
     .filter((s) => s.category === service.category && s.slug !== service.slug)
     .slice(0, 3);
@@ -64,6 +70,8 @@ function ServicePage() {
           "@type": "HealthAndBeautyBusiness",
           name: "Cotepiercing",
           url: `${SITE_URL}/`,
+          telephone: SITE.phoneE164,
+          sameAs: [SITE.googleBusinessUrl, SITE.instagramUrl],
           address: {
             "@type": "PostalAddress",
             streetAddress: "San Marcos 393",
@@ -82,7 +90,7 @@ function ServicePage() {
           availability: "https://schema.org/InStock",
         },
         url: `${SITE_URL}/servicios/${service.slug}`,
-        image: service.image,
+        image: service.image.startsWith("http") ? service.image : `${SITE_URL}${service.image}`,
       },
       {
         "@type": "BreadcrumbList",
@@ -91,27 +99,27 @@ function ServicePage() {
             "@type": "ListItem",
             position: 1,
             name: "Inicio",
-            item: `${SITE_URL}/`
+            item: `${SITE_URL}/`,
           },
           {
             "@type": "ListItem",
             position: 2,
             name: "Servicios",
-            item: `${SITE_URL}/#servicios`
+            item: `${SITE_URL}/#servicios`,
           },
           {
             "@type": "ListItem",
             position: 3,
             name: service.name,
-            item: `${SITE_URL}/servicios/${service.slug}`
-          }
-        ]
-      }
-    ]
+            item: `${SITE_URL}/servicios/${service.slug}`,
+          },
+        ],
+      },
+    ],
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen overflow-x-hidden bg-background text-foreground">
       <Nav />
 
       {/* JSON-LD */}
@@ -122,14 +130,25 @@ function ServicePage() {
 
       {/* BREADCRUMB + BACK */}
       <div className="mx-auto max-w-7xl px-6 lg:px-10 pt-28 pb-4">
-        <Link to="/" hash="servicios" className="inline-flex items-center gap-2 text-[13px] text-muted-foreground hover:text-[var(--gold)] mb-6 transition-colors font-medium">
+        <Link
+          to="/"
+          hash="servicios"
+          className="inline-flex items-center gap-2 text-[13px] text-muted-foreground hover:text-[var(--gold)] mb-6 transition-colors font-medium"
+        >
           <ArrowLeft className="w-4 h-4" />
           Volver a servicios
         </Link>
-        <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-[11px] tracking-[0.18em] uppercase text-muted-foreground">
-          <Link to="/" className="hover:text-[var(--gold)] transition-colors">Inicio</Link>
+        <nav
+          aria-label="Breadcrumb"
+          className="flex items-center gap-2 text-[11px] tracking-[0.18em] uppercase text-muted-foreground"
+        >
+          <Link to="/" className="hover:text-[var(--gold)] transition-colors">
+            Inicio
+          </Link>
           <span>/</span>
-          <Link to="/" hash="servicios" className="hover:text-[var(--gold)] transition-colors">Servicios</Link>
+          <Link to="/" hash="servicios" className="hover:text-[var(--gold)] transition-colors">
+            Servicios
+          </Link>
           <span>/</span>
           <span className="text-foreground">{service.name}</span>
         </nav>
@@ -156,9 +175,7 @@ function ServicePage() {
           <div className="eyebrow mb-3 lg:mb-4">{service.category}</div>
 
           {/* Nombre H1 */}
-          <h1 className="font-serif text-4xl lg:text-6xl leading-tight">
-            {service.name}
-          </h1>
+          <h1 className="font-serif text-4xl lg:text-6xl leading-tight">{service.name}</h1>
           <p className="mt-1 font-serif text-xl lg:text-2xl text-muted-foreground">
             en Arica, Chile
           </p>
@@ -179,7 +196,9 @@ function ServicePage() {
             <div className="flex flex-col gap-1.5 p-3.5 sm:p-4 rounded-lg bg-[var(--stone)]/30 border border-border">
               <div className="flex items-center gap-2">
                 <Tag className="w-3.5 h-3.5 text-[var(--gold)]" strokeWidth={1.5} />
-                <span className="text-[10px] sm:text-[11px] tracking-[0.15em] uppercase text-muted-foreground">Joyería</span>
+                <span className="text-[10px] sm:text-[11px] tracking-[0.15em] uppercase text-muted-foreground">
+                  Joyería
+                </span>
               </div>
               <span className="text-[13px] sm:text-[14px] font-medium">Incluida</span>
             </div>
@@ -187,7 +206,9 @@ function ServicePage() {
             <div className="flex flex-col gap-1.5 p-3.5 sm:p-4 rounded-lg bg-[var(--stone)]/30 border border-border">
               <div className="flex items-center gap-2">
                 <Clock className="w-3.5 h-3.5 text-[var(--gold)]" strokeWidth={1.5} />
-                <span className="text-[10px] sm:text-[11px] tracking-[0.15em] uppercase text-muted-foreground">Cicatrización</span>
+                <span className="text-[10px] sm:text-[11px] tracking-[0.15em] uppercase text-muted-foreground">
+                  Cicatrización
+                </span>
               </div>
               <span className="text-[13px] sm:text-[14px] font-medium">{service.healing}</span>
             </div>
@@ -195,7 +216,9 @@ function ServicePage() {
             <div className="flex flex-col gap-1.5 p-3.5 sm:p-4 rounded-lg bg-[var(--stone)]/30 border border-border">
               <div className="flex items-center gap-2">
                 <Stethoscope className="w-3.5 h-3.5 text-[var(--gold)]" strokeWidth={1.5} />
-                <span className="text-[10px] sm:text-[11px] tracking-[0.15em] uppercase text-muted-foreground">Evaluación</span>
+                <span className="text-[10px] sm:text-[11px] tracking-[0.15em] uppercase text-muted-foreground">
+                  Evaluación
+                </span>
               </div>
               <span className="text-[13px] sm:text-[14px] font-medium">{service.evaluation}</span>
             </div>
@@ -203,7 +226,9 @@ function ServicePage() {
             <div className="flex flex-col gap-1.5 p-3.5 sm:p-4 rounded-lg bg-[var(--stone)]/30 border border-border">
               <div className="flex items-center gap-2">
                 <MapPin className="w-3.5 h-3.5 text-[var(--gold)]" strokeWidth={1.5} />
-                <span className="text-[10px] sm:text-[11px] tracking-[0.15em] uppercase text-muted-foreground">Zona</span>
+                <span className="text-[10px] sm:text-[11px] tracking-[0.15em] uppercase text-muted-foreground">
+                  Zona
+                </span>
               </div>
               <span className="text-[13px] sm:text-[14px] font-medium">{service.zone}</span>
             </div>
@@ -213,7 +238,9 @@ function ServicePage() {
           <div className="mt-10 lg:mt-12 flex flex-col sm:flex-row gap-3 sm:gap-4">
             <Button asChild variant="gold" size="lg" className="w-full sm:w-auto h-12 sm:h-14">
               <a
-                href={waLink(`Hola María José, quiero reservar un piercing ${service.name}. ¿Me puedes indicar disponibilidad?`)}
+                href={waLink(
+                  `Hola María José, quiero reservar un piercing ${service.name}. ¿Me puedes indicar disponibilidad?`,
+                )}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -221,7 +248,12 @@ function ServicePage() {
                 Reservar {service.name} por WhatsApp
               </a>
             </Button>
-            <Button asChild variant="goldOutline" size="lg" className="w-full sm:w-auto h-12 sm:h-14">
+            <Button
+              asChild
+              variant="goldOutline"
+              size="lg"
+              className="w-full sm:w-auto h-12 sm:h-14"
+            >
               <Link to="/" hash="servicios">
                 <ArrowLeft className="w-4 h-4 mr-2" />
                 Ver todos los servicios
@@ -237,20 +269,24 @@ function ServicePage() {
           <div>
             <div className="eyebrow mb-3">Asepsia clínica</div>
             <p className="text-[15px] text-muted-foreground leading-relaxed">
-              Cada procedimiento se realiza con materiales estériles, guantes quirúrgicos y protocolo de higiene estricto para garantizar tu seguridad.
+              Cada procedimiento se realiza con materiales estériles, guantes quirúrgicos y
+              protocolo de higiene estricto para garantizar tu seguridad.
             </p>
           </div>
           <div>
             <div className="eyebrow mb-3">Joyería inicial incluida</div>
             <p className="text-[15px] text-muted-foreground leading-relaxed">
-              La joyería inicial está seleccionada según la zona y anatomía. Se elige el material adecuado para un proceso de cicatrización óptimo.
+              La joyería inicial está seleccionada según la zona y anatomía. Se elige el material
+              adecuado para un proceso de cicatrización óptimo.
             </p>
           </div>
           <div>
             <div className="eyebrow mb-3">Ubicación</div>
             <address className="not-italic text-[15px] text-muted-foreground leading-relaxed">
-              Cotepiercing atiende en<br />
-              <strong className="text-foreground">Recina Tattoo</strong><br />
+              Cotepiercing atiende en
+              <br />
+              <strong className="text-foreground">Recina Tattoo</strong>
+              <br />
               San Marcos 393, Arica, Chile
             </address>
           </div>
@@ -293,15 +329,7 @@ function ServicePage() {
         </section>
       )}
 
-      {/* FOOTER MÍNIMO */}
-      <footer className="border-t border-border py-10">
-        <div className="mx-auto max-w-7xl px-6 lg:px-10 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="font-serif text-base tracking-[0.2em] uppercase">Cotepiercing</div>
-          <p className="text-xs text-muted-foreground">
-            © {new Date().getFullYear()} María José — Arica, Chile
-          </p>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }

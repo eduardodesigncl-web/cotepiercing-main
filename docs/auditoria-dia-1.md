@@ -147,6 +147,14 @@ coinciden. En producción también exige que el ID del binding de Cloudflare coi
 `X-Cloudflare-Worker-Version`. Wrangler podrá usarse como comprobación adicional cuando se
 proporcione un `CLOUDFLARE_API_TOKEN`.
 
+### Despliegue técnico verificado
+
+- Commit GitHub: `caa5963d47ee2f302b87cbbfe7a0f1ed44a1a1ea`
+- ID de versión Cloudflare: `654a26cb-d2f9-4c65-b198-8aa2adac0fd6`
+- Fecha de build: `2026-06-22T16:07:52.744Z`
+- Resultado de `audit:day1` remoto: 42/42 URLs conformes, sin fallos.
+- Este registro se añadió en un commit exclusivamente documental posterior al despliegue técnico.
+
 ## Riesgos y pendientes fuera del Día 1
 
 - Falta comprar y conectar `cotepiercing.cl`.

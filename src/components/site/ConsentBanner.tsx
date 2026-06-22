@@ -62,7 +62,7 @@ export function ConsentBanner() {
       <p className="text-sm leading-relaxed text-foreground/80">
         Usamos analítica para entender qué contenidos ayudan a reservar. Puedes aceptar o continuar
         sin medición publicitaria.{" "}
-        <a href="/privacidad/" className="text-[var(--gold)] underline underline-offset-4">
+        <a href="/privacidad" className="text-[var(--gold)] underline underline-offset-4">
           Política de privacidad
         </a>
       </p>

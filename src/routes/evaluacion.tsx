@@ -14,7 +14,7 @@ export const Route = createFileRoute("/evaluacion")({
           "Evaluación profesional de piercing irritado en Arica, granulomas, cambios y retiros de joyería. No sustituye una consulta médica.",
       },
     ],
-    links: [{ rel: "canonical", href: `${SITE_URL}/evaluacion/` }],
+    links: [{ rel: "canonical", href: `${SITE_URL}/evaluacion` }],
   }),
   component: EvaluationPage,
 });

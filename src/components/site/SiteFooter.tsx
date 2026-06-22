@@ -1,12 +1,12 @@
 import { SITE } from "@/lib/site";
 
 const links = [
-  { href: "/servicios/", label: "Servicios" },
-  { href: "/precios/", label: "Precios" },
-  { href: "/evaluacion/", label: "Evaluación" },
-  { href: "/estudio/", label: "Estudio" },
-  { href: "/sobre-cote/", label: "Sobre María José" },
-  { href: "/privacidad/", label: "Privacidad" },
+  { href: "/servicios", label: "Servicios" },
+  { href: "/precios", label: "Precios" },
+  { href: "/evaluacion", label: "Evaluación" },
+  { href: "/estudio", label: "Estudio" },
+  { href: "/sobre-cote", label: "Sobre María José" },
+  { href: "/privacidad", label: "Privacidad" },
 ];
 
 export function SiteFooter() {

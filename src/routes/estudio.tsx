@@ -13,7 +13,7 @@ export const Route = createFileRoute("/estudio")({
           "Conoce el espacio de atención de Cotepiercing en Recina Tattoo, San Marcos 393, Arica: protocolo de asepsia, ubicación y horarios.",
       },
     ],
-    links: [{ rel: "canonical", href: `${SITE_URL}/estudio/` }],
+    links: [{ rel: "canonical", href: `${SITE_URL}/estudio` }],
   }),
   component: StudioPage,
 });

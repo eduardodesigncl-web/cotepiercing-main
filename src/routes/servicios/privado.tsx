@@ -5,7 +5,7 @@ import { SITE_URL } from "@/lib/site";
 export const Route = createFileRoute("/servicios/privado")({
   head: () => ({
     meta: [{ title: "Piercings privados en Arica | Cotepiercing" }],
-    links: [{ rel: "canonical", href: `${SITE_URL}/servicios/privado/` }],
+    links: [{ rel: "canonical", href: `${SITE_URL}/servicios/privado` }],
   }),
   component: () => (
     <CategoryLanding

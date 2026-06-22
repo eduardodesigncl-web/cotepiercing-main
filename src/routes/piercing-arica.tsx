@@ -14,7 +14,7 @@ export const Route = createFileRoute("/piercing-arica")({
           "Piercing profesional en Arica con evaluación anatómica, joyería inicial incluida, material estéril y reserva por WhatsApp en Cotepiercing.",
       },
     ],
-    links: [{ rel: "canonical", href: `${SITE_URL}/piercing-arica/` }],
+    links: [{ rel: "canonical", href: `${SITE_URL}/piercing-arica` }],
   }),
   component: PiercingArica,
 });
@@ -61,12 +61,12 @@ function PiercingArica() {
           <h2 className="font-serif text-3xl">Servicios disponibles</h2>
           <div className="mt-7 grid gap-4 sm:grid-cols-2">
             {[
-              ["/servicios/oreja/", "Piercings de oreja"],
-              ["/servicios/nariz-rostro/", "Nariz y rostro"],
-              ["/servicios/labio-boca/", "Labio y boca"],
-              ["/servicios/cuerpo/", "Piercings de cuerpo"],
-              ["/servicios/privado/", "Servicios privados"],
-              ["/evaluacion/", "Evaluaciones y cambios de joyería"],
+              ["/servicios/oreja", "Piercings de oreja"],
+              ["/servicios/nariz-rostro", "Nariz y rostro"],
+              ["/servicios/labio-boca", "Labio y boca"],
+              ["/servicios/cuerpo", "Piercings de cuerpo"],
+              ["/servicios/privado", "Servicios privados"],
+              ["/evaluacion", "Evaluaciones y cambios de joyería"],
             ].map(([href, label]) => (
               <a
                 key={href}

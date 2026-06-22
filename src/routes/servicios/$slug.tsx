@@ -105,7 +105,7 @@ function ServicePage() {
             "@type": "ListItem",
             position: 2,
             name: "Servicios",
-            item: `${SITE_URL}/#servicios`,
+            item: `${SITE_URL}/servicios`,
           },
           {
             "@type": "ListItem",
@@ -131,8 +131,7 @@ function ServicePage() {
       {/* BREADCRUMB + BACK */}
       <div className="mx-auto max-w-7xl px-6 lg:px-10 pt-28 pb-4">
         <Link
-          to="/"
-          hash="servicios"
+          to="/servicios"
           className="inline-flex items-center gap-2 text-[13px] text-muted-foreground hover:text-[var(--gold)] mb-6 transition-colors font-medium"
         >
           <ArrowLeft className="w-4 h-4" />
@@ -146,7 +145,7 @@ function ServicePage() {
             Inicio
           </Link>
           <span>/</span>
-          <Link to="/" hash="servicios" className="hover:text-[var(--gold)] transition-colors">
+          <Link to="/servicios" className="hover:text-[var(--gold)] transition-colors">
             Servicios
           </Link>
           <span>/</span>
@@ -254,7 +253,7 @@ function ServicePage() {
               size="lg"
               className="w-full sm:w-auto h-12 sm:h-14"
             >
-              <Link to="/" hash="servicios">
+              <Link to="/servicios">
                 <ArrowLeft className="w-4 h-4 mr-2" />
                 Ver todos los servicios
               </Link>

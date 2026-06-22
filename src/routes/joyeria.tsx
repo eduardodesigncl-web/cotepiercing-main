@@ -15,7 +15,7 @@ export const Route = createFileRoute("/joyeria")({
           "Conoce cómo Cotepiercing selecciona la joyería inicial según anatomía, zona y proceso de cicatrización.",
       },
     ],
-    links: [{ rel: "canonical", href: `${SITE_URL}/joyeria/` }],
+    links: [{ rel: "canonical", href: `${SITE_URL}/joyeria` }],
   }),
   component: JewelryPage,
 });

@@ -5,7 +5,7 @@ import { SITE, SITE_URL } from "@/lib/site";
 export const Route = createFileRoute("/privacidad")({
   head: () => ({
     meta: [{ title: "Política de privacidad | Cotepiercing" }],
-    links: [{ rel: "canonical", href: `${SITE_URL}/privacidad/` }],
+    links: [{ rel: "canonical", href: `${SITE_URL}/privacidad` }],
   }),
   component: PrivacyPage,
 });

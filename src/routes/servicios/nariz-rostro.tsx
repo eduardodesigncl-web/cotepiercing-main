@@ -5,7 +5,7 @@ import { SITE_URL } from "@/lib/site";
 export const Route = createFileRoute("/servicios/nariz-rostro")({
   head: () => ({
     meta: [{ title: "Piercings de nariz y rostro en Arica | Cotepiercing" }],
-    links: [{ rel: "canonical", href: `${SITE_URL}/servicios/nariz-rostro/` }],
+    links: [{ rel: "canonical", href: `${SITE_URL}/servicios/nariz-rostro` }],
   }),
   component: () => (
     <CategoryLanding

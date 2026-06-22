@@ -13,7 +13,7 @@ export const Route = createFileRoute("/precios")({
           "Consulta precios de piercings, evaluaciones, cambios y retiros de joyería en Cotepiercing Arica. Los servicios de perforación incluyen joyería inicial.",
       },
     ],
-    links: [{ rel: "canonical", href: `${SITE_URL}/precios/` }],
+    links: [{ rel: "canonical", href: `${SITE_URL}/precios` }],
   }),
   component: PricesPage,
 });

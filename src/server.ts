@@ -12,6 +12,11 @@ type ServerEntry = {
 type RuntimeEnv = {
   GOOGLE_PLACES_API_KEY?: string;
   GOOGLE_PLACE_ID?: string;
+  CF_VERSION_METADATA?: {
+    id: string;
+    tag: string;
+    timestamp: string;
+  };
 };
 
 type RuntimeContext = {
@@ -43,6 +48,8 @@ type PlaceDetails = {
 };
 
 const REVIEW_CACHE_SECONDS = 60 * 60 * 24;
+const APP_COMMIT = __APP_COMMIT__;
+const APP_BUILD_TIME = __APP_BUILD_TIME__;
 
 function unavailableReviews(): GooglePlaceSummary {
   return {
@@ -234,13 +241,40 @@ const SECURITY_HEADERS: Record<string, string> = {
   ].join("; "),
 };
 
-function addSecurityHeaders(response: Response): Response {
+function cachePolicyFor(url: URL, response: Response): string | undefined {
+  if (response.headers.has("Cache-Control")) return undefined;
+  if (url.pathname === "/version.json") return "no-store";
+  if (url.pathname.startsWith("/assets/")) return "public, max-age=31536000, immutable";
+  if (
+    url.pathname === "/robots.txt" ||
+    url.pathname === "/sitemap.xml" ||
+    url.pathname === "/llms.txt"
+  ) {
+    return "public, max-age=3600, stale-while-revalidate=86400";
+  }
+  const contentType = response.headers.get("content-type") ?? "";
+  if (contentType.includes("text/html")) return "public, max-age=0, must-revalidate";
+  return undefined;
+}
+
+function addResponseHeaders(
+  request: Request,
+  response: Response,
+  runtimeEnv?: RuntimeEnv,
+): Response {
+  const url = new URL(request.url);
   const headers = new Headers(response.headers);
   for (const [key, value] of Object.entries(SECURITY_HEADERS)) {
     if (!headers.has(key)) {
       headers.set(key, value);
     }
   }
+  headers.set("X-App-Commit", APP_COMMIT);
+  if (runtimeEnv?.CF_VERSION_METADATA?.id) {
+    headers.set("X-Cloudflare-Worker-Version", runtimeEnv.CF_VERSION_METADATA.id);
+  }
+  const cacheControl = cachePolicyFor(url, response);
+  if (cacheControl) headers.set("Cache-Control", cacheControl);
   return new Response(response.body, {
     status: response.status,
     statusText: response.statusText,
@@ -248,20 +282,59 @@ function addSecurityHeaders(response: Response): Response {
   });
 }
 
+function trailingSlashRedirect(request: Request): Response | undefined {
+  const url = new URL(request.url);
+  const { pathname } = url;
+  if (pathname === "/" || !pathname.endsWith("/") || pathname.startsWith("/api/")) {
+    return undefined;
+  }
+
+  const lastSegment = pathname.slice(0, -1).split("/").pop() ?? "";
+  if (lastSegment.includes(".")) return undefined;
+
+  url.pathname = pathname.slice(0, -1);
+  return new Response(null, {
+    status: 301,
+    headers: {
+      Location: `${url.pathname}${url.search}`,
+      "Cache-Control": "public, max-age=86400",
+    },
+  });
+}
+
 export default {
   async fetch(request: Request, env: unknown, ctx: unknown) {
     const url = new URL(request.url);
+    const runtimeEnv = env as RuntimeEnv;
+    const redirect = trailingSlashRedirect(request);
+    if (redirect) return addResponseHeaders(request, redirect, runtimeEnv);
+
+    if (url.pathname === "/version.json" && request.method === "GET") {
+      return addResponseHeaders(
+        request,
+        Response.json({
+          commit: APP_COMMIT,
+          buildTime: APP_BUILD_TIME,
+          cloudflareVersion: runtimeEnv.CF_VERSION_METADATA ?? null,
+        }),
+        runtimeEnv,
+      );
+    }
     if (url.pathname === "/api/google-reviews" && request.method === "GET") {
-      return addSecurityHeaders(
-        await handleGoogleReviews(request, env as RuntimeEnv, ctx as RuntimeContext),
+      return addResponseHeaders(
+        request,
+        await handleGoogleReviews(request, runtimeEnv, ctx as RuntimeContext),
+        runtimeEnv,
       );
     }
     if (url.pathname === "/google6dcbd8f7e36626a2.html") {
-      return addSecurityHeaders(
+      return addResponseHeaders(
+        request,
         new Response("google-site-verification: google6dcbd8f7e36626a2.html", {
           status: 200,
           headers: { "content-type": "text/html; charset=utf-8" },
         }),
+        runtimeEnv,
       );
     }
 
@@ -269,10 +342,10 @@ export default {
       const handler = await getServerEntry();
       const response = await handler.fetch(request, env, ctx);
       const normalized = await normalizeCatastrophicSsrResponse(response);
-      return addSecurityHeaders(normalized);
+      return addResponseHeaders(request, normalized, runtimeEnv);
     } catch (error) {
       console.error(error);
-      return addSecurityHeaders(brandedErrorResponse());
+      return addResponseHeaders(request, brandedErrorResponse(), runtimeEnv);
     }
   },
 };

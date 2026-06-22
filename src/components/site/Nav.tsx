@@ -3,10 +3,10 @@ import { Link } from "@tanstack/react-router";
 import { waLink } from "@/lib/wa";
 
 const links = [
-  { href: "/servicios/", label: "Servicios" },
-  { href: "/precios/", label: "Precios" },
-  { href: "/evaluacion/", label: "Evaluación" },
-  { href: "/estudio/", label: "Estudio" },
+  { href: "/servicios", label: "Servicios" },
+  { href: "/precios", label: "Precios" },
+  { href: "/evaluacion", label: "Evaluación" },
+  { href: "/estudio", label: "Estudio" },
   { href: "/#reserva", label: "Contacto" },
 ];
 

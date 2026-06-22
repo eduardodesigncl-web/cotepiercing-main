@@ -5,7 +5,7 @@ import { SITE_URL } from "@/lib/site";
 export const Route = createFileRoute("/servicios/labio-boca")({
   head: () => ({
     meta: [{ title: "Piercings de labio y boca en Arica | Cotepiercing" }],
-    links: [{ rel: "canonical", href: `${SITE_URL}/servicios/labio-boca/` }],
+    links: [{ rel: "canonical", href: `${SITE_URL}/servicios/labio-boca` }],
   }),
   component: () => (
     <CategoryLanding

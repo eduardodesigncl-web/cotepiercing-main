@@ -4,32 +4,32 @@ import { SITE_URL } from "@/lib/site";
 
 const categories = [
   {
-    href: "/servicios/oreja/",
+    href: "/servicios/oreja",
     title: "Piercings de oreja",
     text: "Lóbulo, helix, tragus, conch, daith, rook e industrial.",
   },
   {
-    href: "/servicios/nariz-rostro/",
+    href: "/servicios/nariz-rostro",
     title: "Nariz y rostro",
     text: "Nostril, septum y ceja con marcación y evaluación previa.",
   },
   {
-    href: "/servicios/labio-boca/",
+    href: "/servicios/labio-boca",
     title: "Labio y boca",
     text: "Labret, medusa, Monroe y smiley con joyería adecuada para la zona.",
   },
   {
-    href: "/servicios/cuerpo/",
+    href: "/servicios/cuerpo",
     title: "Piercings de cuerpo",
     text: "Ombligo, microdermal y surface sujetos a viabilidad anatómica.",
   },
   {
-    href: "/servicios/privado/",
+    href: "/servicios/privado",
     title: "Servicios privados",
     text: "Atención discreta y evaluación anatómica obligatoria.",
   },
   {
-    href: "/evaluacion/",
+    href: "/evaluacion",
     title: "Evaluaciones",
     text: "Piercings irritados, cambios y retiros de joyería.",
   },
@@ -45,7 +45,7 @@ export const Route = createFileRoute("/servicios/")({
           "Explora los servicios de piercing de Cotepiercing en Arica por zona corporal, con precios, cicatrización, joyería inicial y evaluación anatómica.",
       },
     ],
-    links: [{ rel: "canonical", href: `${SITE_URL}/servicios/` }],
+    links: [{ rel: "canonical", href: `${SITE_URL}/servicios` }],
   }),
   component: ServicesHub,
 });

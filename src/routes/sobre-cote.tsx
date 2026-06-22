@@ -13,7 +13,7 @@ export const Route = createFileRoute("/sobre-cote")({
           "Conoce el enfoque de María José en Cotepiercing: evaluación anatómica, marcación precisa, asepsia y orientación honesta.",
       },
     ],
-    links: [{ rel: "canonical", href: `${SITE_URL}/sobre-cote/` }],
+    links: [{ rel: "canonical", href: `${SITE_URL}/sobre-cote` }],
   }),
   component: AboutPage,
 });

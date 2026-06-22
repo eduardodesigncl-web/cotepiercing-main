@@ -5,7 +5,7 @@ import { SITE_URL } from "@/lib/site";
 export const Route = createFileRoute("/servicios/oreja")({
   head: () => ({
     meta: [{ title: "Piercings de oreja en Arica | Cotepiercing" }],
-    links: [{ rel: "canonical", href: `${SITE_URL}/servicios/oreja/` }],
+    links: [{ rel: "canonical", href: `${SITE_URL}/servicios/oreja` }],
   }),
   component: () => (
     <CategoryLanding

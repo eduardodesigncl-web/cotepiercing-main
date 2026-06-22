@@ -1,6 +1,6 @@
 import { ContentPage } from "./ContentPage";
 import { ServiceGrid } from "./ServiceGrid";
-import { services, type Category } from "@/data/services";
+import { categoryNavigation, services, type Category } from "@/data/services";
 import { waLink } from "@/lib/wa";
 
 export function CategoryLanding({
@@ -18,7 +18,16 @@ export function CategoryLanding({
 }) {
   const items = services.filter((service) => service.category === category);
   return (
-    <ContentPage eyebrow={eyebrow} title={title} intro={intro}>
+    <ContentPage
+      eyebrow={eyebrow}
+      title={title}
+      intro={intro}
+      breadcrumbs={[
+        { label: "Inicio", href: "/" },
+        { label: "Servicios", href: "/servicios" },
+        { label: categoryNavigation[category].label, href: categoryNavigation[category].href },
+      ]}
+    >
       <div className="mb-12 border-l-2 border-[var(--gold)] pl-6 text-sm leading-relaxed text-muted-foreground">
         {guidance}
       </div>

@@ -32,6 +32,9 @@ export function ServiceGrid({ items }: { items: Service[] }) {
               <span className="font-serif text-lg text-[var(--gold)]">{service.price}</span>
             </div>
             <p className="mt-4 text-xs text-muted-foreground">Cicatrización: {service.healing}</p>
+            <p className="mt-4 text-xs uppercase tracking-widest text-[var(--gold)]">
+              Conocer precio y cuidados de {service.name} →
+            </p>
           </div>
         </Link>
       ))}

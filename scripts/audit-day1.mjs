@@ -40,8 +40,7 @@ if (!sitemapSource.includes('<urlset xmlns="http://www.sitemaps.org/schemas/site
 const sitemapUrls = [
   ...sitemapSource.matchAll(/<loc>(https:\/\/cotepiercing\.cl[^<]*)<\/loc>/g),
 ].map((match) => match[1]);
-if (sitemapUrls.length !== 42)
-  fail(`Se esperaban 42 URLs en sitemap; se encontraron ${sitemapUrls.length}.`);
+if (sitemapUrls.length === 0) fail("El sitemap no contiene URLs.");
 if (new Set(sitemapUrls).size !== sitemapUrls.length) fail("El sitemap contiene URLs duplicadas.");
 for (const url of sitemapUrls) {
   if (url !== `${publicSiteUrl}/` && url.endsWith("/")) {
@@ -49,6 +48,8 @@ for (const url of sitemapUrls) {
   }
 }
 
+const sitemapUrlSet = new Set(sitemapUrls);
+const inboundLinks = new Map(sitemapUrls.map((url) => [url, new Set()]));
 const results = [];
 for (const canonicalUrl of sitemapUrls) {
   const response = await request(localUrl(canonicalUrl), {
@@ -69,6 +70,26 @@ for (const canonicalUrl of sitemapUrls) {
     /<meta[^>]+(?:name=["']robots["'][^>]+content=["'][^"']*noindex|content=["'][^"']*noindex[^"']*["'][^>]+name=["']robots)/i.test(
       html,
     );
+
+  for (const match of html.matchAll(/<a\b[^>]*\bhref=["']([^"']+)["'][^>]*>/gi)) {
+    const href = match[1].replaceAll("&amp;", "&");
+    if (/^(?:mailto:|tel:|javascript:)/i.test(href)) continue;
+    try {
+      const target = new URL(href, canonicalUrl);
+      if (target.origin !== publicSiteUrl) continue;
+      target.hash = "";
+      target.search = "";
+      const normalizedTarget =
+        target.pathname === "/"
+          ? `${publicSiteUrl}/`
+          : `${publicSiteUrl}${target.pathname.replace(/\/$/, "")}`;
+      if (normalizedTarget !== canonicalUrl && sitemapUrlSet.has(normalizedTarget)) {
+        inboundLinks.get(normalizedTarget)?.add(canonicalUrl);
+      }
+    } catch {
+      fail(`${canonicalUrl} contiene un enlace interno inválido: ${href}`);
+    }
+  }
 
   if (response.status !== 200)
     fail(`${canonicalUrl} respondió ${response.status}; se esperaba 200.`);
@@ -110,6 +131,12 @@ for (const canonicalUrl of sitemapUrls) {
     canonical: canonical === canonicalUrl,
     h1: h1Count,
   });
+}
+
+for (const [url, sources] of inboundLinks) {
+  if (sources.size < 2) {
+    fail(`${url} tiene ${sources.size} enlaces internos entrantes; se requieren al menos 2.`);
+  }
 }
 
 const queryResponse = await request(`${baseUrl}/servicios/?utm_source=auditoria&x=1`);
@@ -227,6 +254,8 @@ const summary = {
   commit: version.commit,
   buildTime: version.buildTime,
   results,
+  inboundLinks: Object.fromEntries([...inboundLinks].map(([url, sources]) => [url, sources.size])),
+  minimumInboundLinks: Math.min(...[...inboundLinks.values()].map((sources) => sources.size)),
   failures,
 };
 

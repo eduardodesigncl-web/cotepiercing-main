@@ -1,11 +1,12 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { services, type Service } from "@/data/services";
+import { categoryNavigation, services, type Service } from "@/data/services";
 import { Nav } from "@/components/site/Nav";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { Button } from "@/components/ui/button";
 import { waLink } from "@/lib/wa";
 import { SITE_URL } from "@/lib/config";
 import { SITE } from "@/lib/site";
+import { SiteBreadcrumbs } from "@/components/site/SiteBreadcrumbs";
 import { ArrowLeft, MessageCircle, Clock, Stethoscope, Tag, MapPin } from "lucide-react";
 
 export const Route = createFileRoute("/servicios/$slug")({
@@ -54,6 +55,7 @@ export const Route = createFileRoute("/servicios/$slug")({
 
 function ServicePage() {
   const { service } = Route.useLoaderData() as { service: Service };
+  const category = categoryNavigation[service.category];
   const related = services
     .filter((s) => s.category === service.category && s.slug !== service.slug)
     .slice(0, 3);
@@ -92,29 +94,6 @@ function ServicePage() {
         url: `${SITE_URL}/servicios/${service.slug}`,
         image: service.image.startsWith("http") ? service.image : `${SITE_URL}${service.image}`,
       },
-      {
-        "@type": "BreadcrumbList",
-        itemListElement: [
-          {
-            "@type": "ListItem",
-            position: 1,
-            name: "Inicio",
-            item: `${SITE_URL}/`,
-          },
-          {
-            "@type": "ListItem",
-            position: 2,
-            name: "Servicios",
-            item: `${SITE_URL}/servicios`,
-          },
-          {
-            "@type": "ListItem",
-            position: 3,
-            name: service.name,
-            item: `${SITE_URL}/servicios/${service.slug}`,
-          },
-        ],
-      },
     ],
   };
 
@@ -137,20 +116,14 @@ function ServicePage() {
           <ArrowLeft className="w-4 h-4" />
           Volver a servicios
         </Link>
-        <nav
-          aria-label="Breadcrumb"
-          className="flex items-center gap-2 text-[11px] tracking-[0.18em] uppercase text-muted-foreground"
-        >
-          <Link to="/" className="hover:text-[var(--gold)] transition-colors">
-            Inicio
-          </Link>
-          <span>/</span>
-          <Link to="/servicios" className="hover:text-[var(--gold)] transition-colors">
-            Servicios
-          </Link>
-          <span>/</span>
-          <span className="text-foreground">{service.name}</span>
-        </nav>
+        <SiteBreadcrumbs
+          items={[
+            { label: "Inicio", href: "/" },
+            { label: "Servicios", href: "/servicios" },
+            { label: category.label, href: category.href },
+            { label: service.name, href: `/servicios/${service.slug}` },
+          ]}
+        />
       </div>
 
       {/* HERO de servicio */}
@@ -327,6 +300,48 @@ function ServicePage() {
           </div>
         </section>
       )}
+
+      <section className="border-t border-border bg-[var(--stone)]/25 py-16">
+        <div className="mx-auto max-w-7xl px-6 lg:px-10">
+          <div className="eyebrow mb-6">Antes y después de tu servicio</div>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              {
+                href: "/joyeria",
+                title: "Joyería adecuada",
+                text: "Conoce cómo se selecciona la joya inicial según anatomía y cicatrización.",
+              },
+              {
+                href: "/evaluacion",
+                title: "Evaluación profesional",
+                text: "Revisa irritación, cambios, retiros o dudas sobre la viabilidad.",
+              },
+              {
+                href: "/precios",
+                title: "Precios de piercing",
+                text: "Compara valores y servicios con joyería inicial incluida.",
+              },
+              {
+                href: "/piercing-arica",
+                title: "Atención en Arica",
+                text: "Consulta ubicación, horario y forma de reservar en Cotepiercing.",
+              },
+            ].map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                className="border border-border bg-background p-6 transition-colors hover:border-[var(--gold)]"
+              >
+                <h2 className="font-serif text-xl">{item.title}</h2>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{item.text}</p>
+                <span className="mt-5 inline-block text-xs uppercase tracking-widest text-[var(--gold)]">
+                  {item.title} →
+                </span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
 
       <SiteFooter />
     </div>

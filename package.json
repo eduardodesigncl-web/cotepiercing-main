@@ -8,6 +8,7 @@
     "build": "vite build && tsc --noEmit",
     "build:dev": "vite build --mode development",
     "preview": "vite preview",
+    "preview:ci": "vite preview --host 127.0.0.1 --port 4173",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "audit:day1": "node scripts/audit-day1.mjs",

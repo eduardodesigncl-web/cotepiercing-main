@@ -4,6 +4,7 @@ import { waLink } from "@/lib/wa";
 
 const links = [
   { href: "/servicios", label: "Servicios" },
+  { href: "/piercing-arica", label: "Piercing en Arica" },
   { href: "/precios", label: "Precios" },
   { href: "/evaluacion", label: "Evaluación" },
   { href: "/estudio", label: "Estudio" },

@@ -405,3 +405,12 @@ export const categories: Category[] = [
   "Íntimos",
   "Evaluación",
 ];
+
+export const categoryNavigation: Record<Category, { href: string; label: string }> = {
+  Oreja: { href: "/servicios/oreja", label: "Piercings de oreja" },
+  "Nariz y rostro": { href: "/servicios/nariz-rostro", label: "Nariz y rostro" },
+  "Labio y boca": { href: "/servicios/labio-boca", label: "Labio y boca" },
+  Cuerpo: { href: "/servicios/cuerpo", label: "Piercings de cuerpo" },
+  Íntimos: { href: "/servicios/privado", label: "Servicios privados" },
+  Evaluación: { href: "/evaluacion", label: "Evaluaciones" },
+};

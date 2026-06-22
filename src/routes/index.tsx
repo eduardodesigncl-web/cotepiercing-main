@@ -207,14 +207,22 @@ function Page() {
               “No perforo cuerpos, diseño anatomías.”
             </p>
             <div className="mt-10">
-              <a
-                href={waLink()}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center w-full sm:w-auto px-12 py-4 rounded-full bg-[var(--gold)] text-white text-[11px] tracking-[0.32em] uppercase hover:opacity-90 transition-opacity"
-              >
-                Reservar
-              </a>
+              <div className="flex flex-col gap-3 sm:flex-row">
+                <a
+                  href={waLink()}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center w-full sm:w-auto px-12 py-4 rounded-full bg-[var(--gold)] text-white text-[11px] tracking-[0.32em] uppercase hover:opacity-90 transition-opacity"
+                >
+                  Reservar
+                </a>
+                <Link
+                  to="/piercing-arica"
+                  className="inline-flex items-center justify-center w-full sm:w-auto px-8 py-4 rounded-full border border-foreground/25 text-[11px] tracking-[0.25em] uppercase hover:border-[var(--gold)] hover:text-[var(--gold)] transition-colors"
+                >
+                  Piercing profesional en Arica
+                </Link>
+              </div>
             </div>
           </div>
         </div>
@@ -406,6 +414,19 @@ function Page() {
               <img src={joyeriaDetalle} alt="" loading="lazy" width={680} height={420} />
             </figure>
           </div>
+        </div>
+        <div className="mt-8 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+          <p>
+            Esta sección <strong className="text-foreground">#joyeria</strong> resume la propuesta
+            dentro de la portada. La información canónica sobre selección, ajuste y disponibilidad
+            está en la página de joyería.
+          </p>
+          <Link
+            to="/joyeria"
+            className="mt-4 inline-block text-xs uppercase tracking-widest text-[var(--gold)] hover:opacity-70"
+          >
+            Conocer cómo elegimos la joyería para cada piercing →
+          </Link>
         </div>
       </Section>
 

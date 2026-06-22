@@ -3,7 +3,8 @@ import { cloudflare } from "@cloudflare/vite-plugin";
 import { execFileSync } from "node:child_process";
 
 function getBuildCommit() {
-  const environmentCommit = process.env.CF_PAGES_COMMIT_SHA ?? process.env.GITHUB_SHA;
+  const environmentCommit =
+    process.env.APP_COMMIT_SHA ?? process.env.CF_PAGES_COMMIT_SHA ?? process.env.GITHUB_SHA;
   if (environmentCommit) return environmentCommit;
 
   try {

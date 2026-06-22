@@ -47,7 +47,7 @@ jobs:
       - name: Build
         run: npm run build
         env:
-          GITHUB_SHA: ${{ github.event.pull_request.head.sha }}
+          APP_COMMIT_SHA: ${{ github.event.pull_request.head.sha }}
 
       - name: Audit production build
         shell: bash

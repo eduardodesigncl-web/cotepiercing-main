@@ -31,14 +31,22 @@ import { SiteFooter } from "@/components/site/SiteFooter";
 import { services, categories, type Category, type Service } from "@/data/services";
 import { faqs } from "@/data/faqs";
 import { waLink } from "@/lib/wa";
-import { SITE_URL } from "@/lib/config";
+import { findPageSeo, seoHead } from "@/lib/seo";
 
-import heroPortrait from "@/assets/hero-portrait.jpg";
+import heroPortrait960Avif from "@/assets/hero-portrait-960w.avif";
+import heroPortrait1440Avif from "@/assets/hero-portrait-1440w.avif";
+import heroPortrait1920Avif from "@/assets/hero-portrait-1920w.avif";
+import heroPortrait960Webp from "@/assets/hero-portrait-960w.webp";
+import heroPortrait1440Webp from "@/assets/hero-portrait-1440w.webp";
+import heroPortrait1920Webp from "@/assets/hero-portrait-1920w.webp";
 import joyeriaPremiumArica from "@/assets/joyeria/joyeria-piercing-premium-cotepiercing-arica.webp";
 import joyeriaSatin from "@/assets/joyeria/joyeria-piercing-satin-lujo-cotepiercing.webp";
 import joyeriaMarmol from "@/assets/joyeria/joyeria-piercing-marmol-premium-cotepiercing.webp";
 import joyeriaDetalle from "@/assets/joyeria/joyeria-piercing-detalle-dorado-plata-cotepiercing.webp";
-import earImg from "@/assets/ear.jpg";
+import ear600Avif from "@/assets/ear-600w.avif";
+import ear900Avif from "@/assets/ear-900w.avif";
+import ear600Webp from "@/assets/ear-600w.webp";
+import ear900Webp from "@/assets/ear-900w.webp";
 import aboutImg from "@/assets/maria-jose-piercer-profesional-cotepiercing-arica-chile.webp";
 
 import gExpansion from "@/assets/gallery/expansion-lobulo-doble-helix-oreja-cotepiercing.webp";
@@ -54,6 +62,11 @@ type GalleryItem = {
   category: string;
   caption: string;
 };
+
+const heroAvifSrcSet = `${heroPortrait960Avif} 960w, ${heroPortrait1440Avif} 1440w, ${heroPortrait1920Avif} 1920w`;
+const heroWebpSrcSet = `${heroPortrait960Webp} 960w, ${heroPortrait1440Webp} 1440w, ${heroPortrait1920Webp} 1920w`;
+const earAvifSrcSet = `${ear600Avif} 600w, ${ear900Avif} 900w`;
+const earWebpSrcSet = `${ear600Webp} 600w, ${ear900Webp} 900w`;
 
 const galleryItems: GalleryItem[] = [
   {
@@ -94,28 +107,16 @@ const galleryItems: GalleryItem[] = [
 ];
 
 export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "Cotepiercing | Piercings cerca de ti en Arica" },
-      {
-        name: "description",
-        content:
-          "Cotepiercing ofrece piercing profesional en Arica con María José: evaluación anatómica, asepsia rigurosa, joyería inicial incluida, cuidados personalizados y reserva por WhatsApp.",
-      },
-      { property: "og:title", content: "Cotepiercing | Piercings cerca de ti en Arica" },
-      {
-        property: "og:description",
-        content:
-          "Piercing profesional en Arica con evaluación anatómica, joyería inicial incluida, cuidados seguros y reserva por WhatsApp.",
-      },
-      { property: "og:type", content: "website" },
-      { property: "og:url", content: `${SITE_URL}/` },
-    ],
-    links: [
-      { rel: "canonical", href: `${SITE_URL}/` },
-      { rel: "preload", as: "image", href: heroPortrait, fetchPriority: "high" },
-    ],
-  }),
+  head: () => {
+    const head = seoHead(findPageSeo("/")!);
+    return {
+      ...head,
+      links: [
+        ...head.links,
+        { rel: "preload", as: "image", href: heroPortrait1440Webp, fetchPriority: "high" },
+      ],
+    };
+  },
   component: Page,
 });
 
@@ -160,6 +161,32 @@ function SectionHead({
   );
 }
 
+function EarImage({
+  alt,
+  className = "",
+  loading = "lazy",
+}: {
+  alt: string;
+  className?: string;
+  loading?: "lazy" | "eager";
+}) {
+  return (
+    <picture>
+      <source type="image/avif" srcSet={earAvifSrcSet} sizes="(min-width: 1024px) 50vw, 100vw" />
+      <source type="image/webp" srcSet={earWebpSrcSet} sizes="(min-width: 1024px) 50vw, 100vw" />
+      <img
+        src={ear900Webp}
+        alt={alt}
+        loading={loading}
+        decoding="async"
+        width={900}
+        height={1100}
+        className={className}
+      />
+    </picture>
+  );
+}
+
 function Page() {
   const [cat, setCat] = useState<Category>("Oreja");
   const [lightbox, setLightbox] = useState<GalleryItem | null>(null);
@@ -173,15 +200,19 @@ function Page() {
 
       {/* HERO — full-bleed editorial */}
       <section id="inicio" className="relative h-[100svh] min-h-[640px] w-full overflow-hidden">
-        <img
-          src={heroPortrait}
-          alt="Retrato editorial con piercings dorados delicados — Cotepiercing Arica"
-          width={1920}
-          height={1080}
-          fetchPriority="high"
-          decoding="async"
-          className="absolute inset-0 w-full h-full object-cover object-[70%_center] lg:object-[60%_center]"
-        />
+        <picture>
+          <source type="image/avif" srcSet={heroAvifSrcSet} sizes="100vw" />
+          <source type="image/webp" srcSet={heroWebpSrcSet} sizes="100vw" />
+          <img
+            src={heroPortrait1440Webp}
+            alt="Retrato editorial con piercings dorados delicados — Cotepiercing Arica"
+            width={1920}
+            height={1080}
+            fetchPriority="high"
+            decoding="async"
+            className="absolute inset-0 w-full h-full object-cover object-[70%_center] lg:object-[60%_center]"
+          />
+        </picture>
         <div
           className="absolute inset-0"
           style={{
@@ -362,13 +393,7 @@ function Page() {
               </figcaption>
             </figure>
             <figure className="jm-tall">
-              <img
-                src={earImg}
-                alt="Oreja con composición de piercings finos y joyería premium realizada por Cotepiercing"
-                loading="lazy"
-                width={600}
-                height={800}
-              />
+              <EarImage alt="Oreja con composición de piercings finos y joyería premium realizada por Cotepiercing" />
               <figcaption className="sr-only">
                 Oreja con composición de piercings finos y joyería premium — Cotepiercing
               </figcaption>
@@ -405,7 +430,7 @@ function Page() {
               <img src={joyeriaSatin} alt="" loading="lazy" width={600} height={800} />
             </figure>
             <figure className="jm-tall" aria-hidden="true">
-              <img src={earImg} alt="" loading="lazy" width={600} height={800} />
+              <EarImage alt="" />
             </figure>
             <figure className="jm-square" aria-hidden="true">
               <img src={joyeriaMarmol} alt="" loading="lazy" width={600} height={450} />
@@ -434,12 +459,9 @@ function Page() {
       <Section className="bg-[var(--stone)]/40">
         <div className="grid lg:grid-cols-12 gap-12 items-center">
           <div className="lg:col-span-6">
-            <img
-              src={earImg}
+            <EarImage
               alt="Evaluación anatómica"
               loading="lazy"
-              width={900}
-              height={1100}
               className="w-full aspect-[4/5] object-cover"
             />
           </div>

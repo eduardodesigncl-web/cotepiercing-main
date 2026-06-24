@@ -1,10 +1,12 @@
 import { execFileSync } from "node:child_process";
 import { readFile } from "node:fs/promises";
+import { absoluteUrl, sitemapPages } from "../src/lib/seo.ts";
 
 const baseUrl = (process.env.AUDIT_BASE_URL || process.argv[2] || "http://127.0.0.1:4173").replace(
   /\/$/,
   "",
 );
+const auditedHostname = new URL(baseUrl).hostname;
 const publicSiteUrl = "https://cotepiercing.cl";
 const failures = [];
 
@@ -40,8 +42,17 @@ if (!sitemapSource.includes('<urlset xmlns="http://www.sitemaps.org/schemas/site
 const sitemapUrls = [
   ...sitemapSource.matchAll(/<loc>(https:\/\/cotepiercing\.cl[^<]*)<\/loc>/g),
 ].map((match) => match[1]);
+const expectedSitemapUrls = sitemapPages.map((page) => absoluteUrl(page.path));
 if (sitemapUrls.length === 0) fail("El sitemap no contiene URLs.");
 if (new Set(sitemapUrls).size !== sitemapUrls.length) fail("El sitemap contiene URLs duplicadas.");
+if (sitemapUrls.length !== expectedSitemapUrls.length) {
+  fail(
+    `El sitemap contiene ${sitemapUrls.length} URLs; la fuente dinámica declara ${expectedSitemapUrls.length}.`,
+  );
+}
+for (const url of expectedSitemapUrls) {
+  if (!sitemapUrls.includes(url)) fail(`El sitemap no contiene la URL dinámica esperada: ${url}`);
+}
 for (const url of sitemapUrls) {
   if (url !== `${publicSiteUrl}/` && url.endsWith("/")) {
     fail(`URL no canónica con barra final en sitemap: ${url}`);
@@ -192,6 +203,13 @@ for (const header of requiredHeaders) {
 }
 if (homeResponse.headers.get("cache-control") !== "public, max-age=0, must-revalidate") {
   fail(`Cache-Control HTML inesperado: ${homeResponse.headers.get("cache-control")}`);
+}
+if (auditedHostname.endsWith(".workers.dev")) {
+  if (homeResponse.headers.get("x-robots-tag") !== "noindex, follow") {
+    fail("El Worker temporal debe responder X-Robots-Tag: noindex, follow.");
+  }
+} else if ((homeResponse.headers.get("x-robots-tag") ?? "").includes("noindex")) {
+  fail("El dominio auditado no debe responder noindex por X-Robots-Tag.");
 }
 
 const assetPath = extract(homeHtml, [/(?:href|src)=["'](\/assets\/[^"']+)/i]);

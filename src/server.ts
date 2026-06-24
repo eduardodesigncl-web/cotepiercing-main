@@ -273,6 +273,9 @@ function addResponseHeaders(
   if (runtimeEnv?.CF_VERSION_METADATA?.id) {
     headers.set("X-Cloudflare-Worker-Version", runtimeEnv.CF_VERSION_METADATA.id);
   }
+  if (url.hostname.endsWith(".workers.dev")) {
+    headers.set("X-Robots-Tag", "noindex, follow");
+  }
   const cacheControl = cachePolicyFor(url, response);
   if (cacheControl) headers.set("Cache-Control", cacheControl);
   return new Response(response.body, {

@@ -4,8 +4,9 @@ import { Nav } from "@/components/site/Nav";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { Button } from "@/components/ui/button";
 import { waLink } from "@/lib/wa";
-import { SITE_URL } from "@/lib/config";
-import { SITE } from "@/lib/site";
+import { SITE_URL } from "@/lib/site";
+import { seoHead, serviceSeo } from "@/lib/seo";
+import { serviceSchema } from "@/lib/schema";
 import { SiteBreadcrumbs } from "@/components/site/SiteBreadcrumbs";
 import { ArrowLeft, MessageCircle, Clock, Stethoscope, Tag, MapPin } from "lucide-react";
 
@@ -13,26 +14,7 @@ export const Route = createFileRoute("/servicios/$slug")({
   head: ({ params }) => {
     const service = services.find((s) => s.slug === params.slug);
     if (!service) return { meta: [{ title: "Servicio no encontrado — Cotepiercing" }] };
-
-    const title = `${service.name} en Arica — Cotepiercing | Piercing profesional`;
-    const description = `${service.description} Zona: ${service.zone}. Cicatrización: ${service.healing}. Precio desde ${service.price} CLP. Reserva por WhatsApp en Cotepiercing, Recina Tattoo, Arica, Chile.`;
-
-    return {
-      meta: [
-        { title },
-        { name: "description", content: description.slice(0, 160) },
-        { name: "robots", content: "index, follow" },
-        { property: "og:title", content: title },
-        { property: "og:description", content: description.slice(0, 160) },
-        { property: "og:type", content: "article" },
-        { property: "og:url", content: `${SITE_URL}/servicios/${params.slug}` },
-        {
-          property: "og:image",
-          content: `${SITE_URL}/cotepiercing-piercing-profesional-arica-chile-og.png`,
-        },
-      ],
-      links: [{ rel: "canonical", href: `${SITE_URL}/servicios/${params.slug}` }],
-    };
+    return seoHead(serviceSeo(service), service.image);
   },
   loader: ({ params }) => {
     const service = services.find((s) => s.slug === params.slug);
@@ -60,42 +42,10 @@ function ServicePage() {
     .filter((s) => s.category === service.category && s.slug !== service.slug)
     .slice(0, 3);
 
-  // Schema.org Service & Breadcrumb JSON-LD
-  const schema = {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Service",
-        name: service.name,
-        description: service.description,
-        provider: {
-          "@type": "HealthAndBeautyBusiness",
-          name: "Cotepiercing",
-          url: `${SITE_URL}/`,
-          telephone: SITE.phoneE164,
-          sameAs: [SITE.googleBusinessUrl, SITE.instagramUrl],
-          address: {
-            "@type": "PostalAddress",
-            streetAddress: "San Marcos 393",
-            addressLocality: "Arica",
-            addressCountry: "CL",
-          },
-        },
-        areaServed: {
-          "@type": "City",
-          name: "Arica",
-        },
-        offers: {
-          "@type": "Offer",
-          price: service.price.replace(/[^0-9]/g, "") || undefined,
-          priceCurrency: "CLP",
-          availability: "https://schema.org/InStock",
-        },
-        url: `${SITE_URL}/servicios/${service.slug}`,
-        image: service.image.startsWith("http") ? service.image : `${SITE_URL}${service.image}`,
-      },
-    ],
-  };
+  const image = service.image.startsWith("http")
+    ? service.image
+    : new URL(service.image, SITE_URL).toString();
+  const schema = serviceSchema(service, image);
 
   return (
     <div className="min-h-screen overflow-x-hidden bg-background text-foreground">

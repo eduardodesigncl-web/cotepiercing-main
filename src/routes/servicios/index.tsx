@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ContentPage } from "@/components/site/ContentPage";
-import { SITE_URL } from "@/lib/site";
+import { absoluteUrl, findPageSeo, itemListSchema, seoHead } from "@/lib/seo";
 
 const categories = [
   {
@@ -36,27 +36,31 @@ const categories = [
 ];
 
 export const Route = createFileRoute("/servicios/")({
-  head: () => ({
-    meta: [
-      { title: "Servicios de piercing en Arica | Cotepiercing" },
-      {
-        name: "description",
-        content:
-          "Explora los servicios de piercing de Cotepiercing en Arica por zona corporal, con precios, cicatrización, joyería inicial y evaluación anatómica.",
-      },
-    ],
-    links: [{ rel: "canonical", href: `${SITE_URL}/servicios` }],
-  }),
+  head: () => seoHead(findPageSeo("/servicios")!),
   component: ServicesHub,
 });
 
 function ServicesHub() {
+  const schema = itemListSchema({
+    id: `${absoluteUrl("/servicios")}#itemlist`,
+    name: "Servicios de piercing en Arica",
+    description: findPageSeo("/servicios")!.description,
+    items: categories.map((category) => ({
+      name: category.title,
+      url: absoluteUrl(category.href),
+    })),
+  });
+
   return (
     <ContentPage
       eyebrow="Catálogo"
       title="Servicios de piercing en Arica"
       intro="Encuentra cada servicio organizado por zona corporal. Las fichas individuales incluyen precio, tiempo estimado de cicatrización y necesidad de evaluación."
     >
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      />
       <div className="grid gap-5 sm:grid-cols-2">
         {categories.map((category) => (
           <a

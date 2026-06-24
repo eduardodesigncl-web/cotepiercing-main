@@ -1,22 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ContentPage } from "@/components/site/ContentPage";
-import { SITE_URL } from "@/lib/site";
+import { findPageSeo, seoHead } from "@/lib/seo";
 import premium from "@/assets/joyeria/joyeria-piercing-premium-cotepiercing-arica.webp";
 import satin from "@/assets/joyeria/joyeria-piercing-satin-lujo-cotepiercing.webp";
 import detail from "@/assets/joyeria/joyeria-piercing-detalle-dorado-plata-cotepiercing.webp";
 
 export const Route = createFileRoute("/joyeria")({
-  head: () => ({
-    meta: [
-      { title: "Joyería para piercing en Arica | Cotepiercing" },
-      {
-        name: "description",
-        content:
-          "Conoce cómo Cotepiercing selecciona la joyería inicial según anatomía, zona y proceso de cicatrización.",
-      },
-    ],
-    links: [{ rel: "canonical", href: `${SITE_URL}/joyeria` }],
-  }),
+  head: () => seoHead(findPageSeo("/joyeria")!),
   component: JewelryPage,
 });
 

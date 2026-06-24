@@ -1,20 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ContentPage } from "@/components/site/ContentPage";
-import { SITE, SITE_URL } from "@/lib/site";
+import { SITE } from "@/lib/site";
+import { findPageSeo, seoHead } from "@/lib/seo";
 import studio from "@/assets/gallery/estudio-piercing-cotepiercing-espacio-de-trabajo.webp";
 
 export const Route = createFileRoute("/estudio")({
-  head: () => ({
-    meta: [
-      { title: "Estudio de piercing en Arica | Cotepiercing" },
-      {
-        name: "description",
-        content:
-          "Conoce el espacio de atención de Cotepiercing en Recina Tattoo, San Marcos 393, Arica: protocolo de asepsia, ubicación y horarios.",
-      },
-    ],
-    links: [{ rel: "canonical", href: `${SITE_URL}/estudio` }],
-  }),
+  head: () => seoHead(findPageSeo("/estudio")!),
   component: StudioPage,
 });
 

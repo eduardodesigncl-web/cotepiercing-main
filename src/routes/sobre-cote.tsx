@@ -1,20 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ContentPage } from "@/components/site/ContentPage";
-import { SITE_URL } from "@/lib/site";
+import { findPageSeo, seoHead } from "@/lib/seo";
 import portrait from "@/assets/maria-jose-piercer-profesional-cotepiercing-arica-chile.webp";
 
 export const Route = createFileRoute("/sobre-cote")({
-  head: () => ({
-    meta: [
-      { title: "María José, piercer profesional en Arica | Cotepiercing" },
-      {
-        name: "description",
-        content:
-          "Conoce el enfoque de María José en Cotepiercing: evaluación anatómica, marcación precisa, asepsia y orientación honesta.",
-      },
-    ],
-    links: [{ rel: "canonical", href: `${SITE_URL}/sobre-cote` }],
-  }),
+  head: () => seoHead(findPageSeo("/sobre-cote")!),
   component: AboutPage,
 });
 

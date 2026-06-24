@@ -1,12 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { CategoryLanding } from "@/components/site/CategoryLanding";
-import { SITE_URL } from "@/lib/site";
+import { findPageSeo, seoHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/servicios/oreja")({
-  head: () => ({
-    meta: [{ title: "Piercings de oreja en Arica | Cotepiercing" }],
-    links: [{ rel: "canonical", href: `${SITE_URL}/servicios/oreja` }],
-  }),
+  head: () => seoHead(findPageSeo("/servicios/oreja")!),
   component: () => (
     <CategoryLanding
       category="Oreja"

@@ -1,12 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ContentPage } from "@/components/site/ContentPage";
-import { SITE, SITE_URL } from "@/lib/site";
+import { SITE } from "@/lib/site";
+import { findPageSeo, seoHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/privacidad")({
-  head: () => ({
-    meta: [{ title: "Política de privacidad | Cotepiercing" }],
-    links: [{ rel: "canonical", href: `${SITE_URL}/privacidad` }],
-  }),
+  head: () => seoHead(findPageSeo("/privacidad")!),
   component: PrivacyPage,
 });
 

@@ -1,20 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ContentPage } from "@/components/site/ContentPage";
 import { categories, services } from "@/data/services";
-import { SITE_URL } from "@/lib/site";
+import { findPageSeo, seoHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/precios")({
-  head: () => ({
-    meta: [
-      { title: "Precios de piercing en Arica | Cotepiercing" },
-      {
-        name: "description",
-        content:
-          "Consulta precios de piercings, evaluaciones, cambios y retiros de joyería en Cotepiercing Arica. Los servicios de perforación incluyen joyería inicial.",
-      },
-    ],
-    links: [{ rel: "canonical", href: `${SITE_URL}/precios` }],
-  }),
+  head: () => seoHead(findPageSeo("/precios")!),
   component: PricesPage,
 });
 

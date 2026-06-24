@@ -8,7 +8,6 @@ import {
   Scripts,
 } from "@tanstack/react-router";
 
-import { SITE_URL } from "@/lib/config";
 import { ConsentBanner } from "@/components/site/ConsentBanner";
 import appCss from "@/styles.css?url";
 
@@ -74,39 +73,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Cotepiercing | Body piercing profesional" },
-      {
-        name: "description",
-        content:
-          "Cotepiercing es el espacio profesional de María José, piercer en Arica especializada en evaluación anatómica, asepsia rigurosa, joyería inicial incluida y cuidados seguros.",
-      },
       { name: "author", content: "María José — Cotepiercing" },
-      { name: "robots", content: "index, follow" },
-      { property: "og:type", content: "website" },
-      { property: "og:site_name", content: "Cotepiercing" },
-      { property: "og:locale", content: "es_CL" },
-      { property: "og:title", content: "Cotepiercing | Body piercing profesional" },
-      {
-        property: "og:description",
-        content:
-          "Body piercing profesional con María José: evaluación anatómica, higiene, joyería inicial incluida y reserva por WhatsApp.",
-      },
-      { property: "og:url", content: SITE_URL },
-      {
-        property: "og:image",
-        content: `${SITE_URL}/cotepiercing-piercing-profesional-arica-chile-og.png`,
-      },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Cotepiercing | Body piercing profesional" },
-      {
-        name: "twitter:description",
-        content:
-          "Piercing profesional con evaluación anatómica, higiene y joyería inicial incluida.",
-      },
-      {
-        name: "twitter:image",
-        content: `${SITE_URL}/cotepiercing-piercing-profesional-arica-chile-og.png`,
-      },
     ],
     links: [
       { rel: "stylesheet", href: appCss },

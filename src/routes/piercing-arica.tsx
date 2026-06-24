@@ -1,21 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ContentPage } from "@/components/site/ContentPage";
 import { GoogleReviews } from "@/components/site/GoogleReviews";
-import { SITE, SITE_URL } from "@/lib/site";
+import { SITE } from "@/lib/site";
+import { findPageSeo, seoHead } from "@/lib/seo";
 import { waLink } from "@/lib/wa";
 
 export const Route = createFileRoute("/piercing-arica")({
-  head: () => ({
-    meta: [
-      { title: "Piercing profesional en Arica | Cotepiercing" },
-      {
-        name: "description",
-        content:
-          "Piercing profesional en Arica con evaluación anatómica, joyería inicial incluida, material estéril y reserva por WhatsApp en Cotepiercing.",
-      },
-    ],
-    links: [{ rel: "canonical", href: `${SITE_URL}/piercing-arica` }],
-  }),
+  head: () => seoHead(findPageSeo("/piercing-arica")!),
   component: PiercingArica,
 });
 

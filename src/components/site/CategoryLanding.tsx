@@ -1,6 +1,7 @@
 import { ContentPage } from "./ContentPage";
 import { ServiceGrid } from "./ServiceGrid";
 import { categoryNavigation, services, type Category } from "@/data/services";
+import { categoryItemList } from "@/lib/seo";
 import { waLink } from "@/lib/wa";
 
 export function CategoryLanding({
@@ -17,6 +18,7 @@ export function CategoryLanding({
   guidance: string;
 }) {
   const items = services.filter((service) => service.category === category);
+  const schema = categoryItemList(category);
   return (
     <ContentPage
       eyebrow={eyebrow}
@@ -28,6 +30,10 @@ export function CategoryLanding({
         { label: categoryNavigation[category].label, href: categoryNavigation[category].href },
       ]}
     >
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      />
       <div className="mb-12 border-l-2 border-[var(--gold)] pl-6 text-sm leading-relaxed text-muted-foreground">
         {guidance}
       </div>

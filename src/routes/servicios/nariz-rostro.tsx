@@ -1,12 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { CategoryLanding } from "@/components/site/CategoryLanding";
-import { SITE_URL } from "@/lib/site";
+import { findPageSeo, seoHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/servicios/nariz-rostro")({
-  head: () => ({
-    meta: [{ title: "Piercings de nariz y rostro en Arica | Cotepiercing" }],
-    links: [{ rel: "canonical", href: `${SITE_URL}/servicios/nariz-rostro` }],
-  }),
+  head: () => seoHead(findPageSeo("/servicios/nariz-rostro")!),
   component: () => (
     <CategoryLanding
       category="Nariz y rostro"

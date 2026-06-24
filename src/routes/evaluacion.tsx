@@ -2,20 +2,10 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ContentPage } from "@/components/site/ContentPage";
 import { ServiceGrid } from "@/components/site/ServiceGrid";
 import { services } from "@/data/services";
-import { SITE_URL } from "@/lib/site";
+import { findPageSeo, seoHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/evaluacion")({
-  head: () => ({
-    meta: [
-      { title: "Evaluación de piercing en Arica | Cotepiercing" },
-      {
-        name: "description",
-        content:
-          "Evaluación profesional de piercing irritado en Arica, granulomas, cambios y retiros de joyería. No sustituye una consulta médica.",
-      },
-    ],
-    links: [{ rel: "canonical", href: `${SITE_URL}/evaluacion` }],
-  }),
+  head: () => seoHead(findPageSeo("/evaluacion")!),
   component: EvaluationPage,
 });
 

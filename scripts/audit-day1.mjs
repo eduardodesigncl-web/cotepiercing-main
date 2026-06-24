@@ -1,6 +1,6 @@
 import { execFileSync } from "node:child_process";
 import { readFile } from "node:fs/promises";
-import { absoluteUrl, sitemapPages } from "../src/lib/seo.ts";
+import { absoluteUrl, sitemapPages } from "./sitemap-source.mjs";
 
 const baseUrl = (process.env.AUDIT_BASE_URL || process.argv[2] || "http://127.0.0.1:4173").replace(
   /\/$/,

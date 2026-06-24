@@ -1,5 +1,5 @@
 import { writeFile } from "node:fs/promises";
-import { absoluteUrl, SITEMAP_LASTMOD, sitemapPages } from "../src/lib/seo.ts";
+import { absoluteUrl, SITEMAP_LASTMOD, sitemapPages } from "./sitemap-source.mjs";
 
 const sitemapPath = new URL("../public/sitemap.xml", import.meta.url);
 

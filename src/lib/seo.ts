@@ -111,7 +111,7 @@ export const corePageSeo: PageSeo[] = [
     path: "/privacidad",
     title: "Política de privacidad | Cotepiercing",
     description:
-      "Política de privacidad de Cotepiercing: datos de navegación, medición publicitaria con consentimiento y contacto para consultas.",
+      "Política de privacidad de Cotepiercing: consultas por WhatsApp, fotos autorizadas, redes sociales, enlaces externos y Cloudflare Analytics sin cookies.",
   },
 ];
 

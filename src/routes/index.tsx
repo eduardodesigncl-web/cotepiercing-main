@@ -32,6 +32,7 @@ import { services, categories, type Category, type Service } from "@/data/servic
 import { faqs } from "@/data/faqs";
 import { waLink } from "@/lib/wa";
 import { findPageSeo, seoHead } from "@/lib/seo";
+import { BUSINESS_ADDRESS_WITH_COUNTRY, SITE } from "@/lib/site";
 
 import heroPortrait960Avif from "@/assets/hero-portrait-960w.avif";
 import heroPortrait1440Avif from "@/assets/hero-portrait-1440w.avif";
@@ -241,6 +242,7 @@ function Page() {
               <div className="flex flex-col gap-3 sm:flex-row">
                 <a
                   href={waLink()}
+                  data-cta="reservation"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center w-full sm:w-auto px-12 py-4 rounded-full bg-[var(--gold)] text-white text-[11px] tracking-[0.32em] uppercase hover:opacity-90 transition-opacity"
@@ -556,6 +558,7 @@ function Page() {
           </div>
           <a
             href="#reserva"
+            data-cta="reservation"
             className="shrink-0 inline-flex items-center gap-2 px-6 py-3 border border-[var(--gold)] text-[var(--gold)] text-[11px] tracking-[0.22em] uppercase hover:bg-[var(--gold)] hover:text-white transition-colors"
             aria-label="Reservar evaluación de piercing en Cotepiercing"
           >
@@ -586,7 +589,7 @@ function Page() {
             />
             <div className="mt-8">
               <Button asChild variant="gold" size="lg">
-                <a href={waLink()} target="_blank" rel="noopener noreferrer">
+                <a href={waLink()} data-cta="reservation" target="_blank" rel="noopener noreferrer">
                   <MessageCircle className="w-4 h-4" />
                   Reservar por WhatsApp
                 </a>
@@ -637,6 +640,7 @@ function Page() {
           </a>
           <a
             href="#reserva"
+            data-cta="reservation"
             className="inline-flex items-center gap-1.5 text-[11px] tracking-[0.2em] uppercase text-[var(--gold)] hover:opacity-70 transition-opacity"
             aria-label="Reservar una evaluación en Cotepiercing"
           >
@@ -661,6 +665,7 @@ function Page() {
                 href={waLink(
                   "Hola María José, quiero consultar disponibilidad para piercing íntimo.",
                 )}
+                data-cta="whatsapp"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -777,6 +782,7 @@ function Page() {
                       href={waLink(
                         `Hola María José, vi tu trabajo "${lightbox.caption}" y quiero más información.`,
                       )}
+                      data-cta="reservation"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
@@ -826,6 +832,7 @@ function Page() {
             <div className="mt-8 sm:mt-10">
               <a
                 href={waLink()}
+                data-cta="reservation"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center w-full sm:w-auto px-10 py-4 rounded-full bg-[var(--gold)] text-white text-[11px] tracking-[0.32em] uppercase hover:opacity-90 transition-opacity gap-2"
@@ -843,15 +850,16 @@ function Page() {
                 <MapPin className="w-4 h-4 text-[var(--gold)] mt-1 shrink-0" strokeWidth={1.4} />
                 <div>
                   <address className="not-italic text-[15px] leading-relaxed">
-                    Recina Tattoo
+                    {SITE.venue}
                     <br />
-                    San Marcos 393, Arica, Chile
+                    {BUSINESS_ADDRESS_WITH_COUNTRY}
                   </address>
                   <p className="mt-1 text-[13px] text-muted-foreground">
-                    Cotepiercing atiende en Recina Tattoo, ubicado en San Marcos 393, Arica, Chile.
+                    {SITE.name} atiende en {SITE.venue}, ubicado en {BUSINESS_ADDRESS_WITH_COUNTRY}.
                   </p>
                   <a
-                    href="https://share.google/ME2YGIzY4MLKa7LHC"
+                    href={SITE.mapsShareUrl}
+                    data-cta="location"
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Ver ubicación de Cotepiercing en Google Maps"
@@ -870,8 +878,8 @@ function Page() {
               style={{ borderRadius: "4px" }}
             >
               <iframe
-                title="Mapa de ubicación de Cotepiercing en Recina Tattoo, San Marcos 393, Arica"
-                src="https://maps.google.com/maps?q=San+Marcos+393+Arica+Chile&output=embed&hl=es&z=16"
+                title={`Mapa de ubicación de ${SITE.name} en ${SITE.venue}, ${BUSINESS_ADDRESS_WITH_COUNTRY}`}
+                src={SITE.mapsEmbedUrl}
                 width="100%"
                 height="240"
                 loading="lazy"
@@ -889,9 +897,9 @@ function Page() {
               <div className="flex items-start gap-3">
                 <Clock className="w-4 h-4 text-[var(--gold)] mt-1 shrink-0" strokeWidth={1.4} />
                 <ul className="text-[15px] space-y-1">
-                  <li>Lunes a viernes · 11:00 — 20:00</li>
-                  <li>Sábado · 11:00 — 20:00</li>
-                  <li className="text-muted-foreground">Domingo · cerrado</li>
+                  <li>{SITE.openingHoursText.weekdays}</li>
+                  <li>{SITE.openingHoursText.saturday}</li>
+                  <li className="text-muted-foreground">{SITE.openingHoursText.sunday}</li>
                 </ul>
               </div>
             </div>

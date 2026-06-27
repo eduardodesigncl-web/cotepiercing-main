@@ -10,12 +10,15 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SobreCoteRouteImport } from './routes/sobre-cote'
+import { Route as ReservasAbonosCancelacionesRouteImport } from './routes/reservas-abonos-cancelaciones'
 import { Route as PrivacidadRouteImport } from './routes/privacidad'
 import { Route as PreciosRouteImport } from './routes/precios'
 import { Route as PiercingAricaRouteImport } from './routes/piercing-arica'
 import { Route as JoyeriaRouteImport } from './routes/joyeria'
+import { Route as InformacionSanitariaRouteImport } from './routes/informacion-sanitaria'
 import { Route as EvaluacionRouteImport } from './routes/evaluacion'
 import { Route as EstudioRouteImport } from './routes/estudio'
+import { Route as AtencionMenoresRouteImport } from './routes/atencion-menores'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ServiciosIndexRouteImport } from './routes/servicios/index'
 import { Route as ServiciosPrivadoRouteImport } from './routes/servicios/privado'
@@ -30,6 +33,12 @@ const SobreCoteRoute = SobreCoteRouteImport.update({
   path: '/sobre-cote',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ReservasAbonosCancelacionesRoute =
+  ReservasAbonosCancelacionesRouteImport.update({
+    id: '/reservas-abonos-cancelaciones',
+    path: '/reservas-abonos-cancelaciones',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const PrivacidadRoute = PrivacidadRouteImport.update({
   id: '/privacidad',
   path: '/privacidad',
@@ -50,6 +59,11 @@ const JoyeriaRoute = JoyeriaRouteImport.update({
   path: '/joyeria',
   getParentRoute: () => rootRouteImport,
 } as any)
+const InformacionSanitariaRoute = InformacionSanitariaRouteImport.update({
+  id: '/informacion-sanitaria',
+  path: '/informacion-sanitaria',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const EvaluacionRoute = EvaluacionRouteImport.update({
   id: '/evaluacion',
   path: '/evaluacion',
@@ -58,6 +72,11 @@ const EvaluacionRoute = EvaluacionRouteImport.update({
 const EstudioRoute = EstudioRouteImport.update({
   id: '/estudio',
   path: '/estudio',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AtencionMenoresRoute = AtencionMenoresRouteImport.update({
+  id: '/atencion-menores',
+  path: '/atencion-menores',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -103,12 +122,15 @@ const ServiciosSlugRoute = ServiciosSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/atencion-menores': typeof AtencionMenoresRoute
   '/estudio': typeof EstudioRoute
   '/evaluacion': typeof EvaluacionRoute
+  '/informacion-sanitaria': typeof InformacionSanitariaRoute
   '/joyeria': typeof JoyeriaRoute
   '/piercing-arica': typeof PiercingAricaRoute
   '/precios': typeof PreciosRoute
   '/privacidad': typeof PrivacidadRoute
+  '/reservas-abonos-cancelaciones': typeof ReservasAbonosCancelacionesRoute
   '/sobre-cote': typeof SobreCoteRoute
   '/servicios/$slug': typeof ServiciosSlugRoute
   '/servicios/cuerpo': typeof ServiciosCuerpoRoute
@@ -120,12 +142,15 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/atencion-menores': typeof AtencionMenoresRoute
   '/estudio': typeof EstudioRoute
   '/evaluacion': typeof EvaluacionRoute
+  '/informacion-sanitaria': typeof InformacionSanitariaRoute
   '/joyeria': typeof JoyeriaRoute
   '/piercing-arica': typeof PiercingAricaRoute
   '/precios': typeof PreciosRoute
   '/privacidad': typeof PrivacidadRoute
+  '/reservas-abonos-cancelaciones': typeof ReservasAbonosCancelacionesRoute
   '/sobre-cote': typeof SobreCoteRoute
   '/servicios/$slug': typeof ServiciosSlugRoute
   '/servicios/cuerpo': typeof ServiciosCuerpoRoute
@@ -138,12 +163,15 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/atencion-menores': typeof AtencionMenoresRoute
   '/estudio': typeof EstudioRoute
   '/evaluacion': typeof EvaluacionRoute
+  '/informacion-sanitaria': typeof InformacionSanitariaRoute
   '/joyeria': typeof JoyeriaRoute
   '/piercing-arica': typeof PiercingAricaRoute
   '/precios': typeof PreciosRoute
   '/privacidad': typeof PrivacidadRoute
+  '/reservas-abonos-cancelaciones': typeof ReservasAbonosCancelacionesRoute
   '/sobre-cote': typeof SobreCoteRoute
   '/servicios/$slug': typeof ServiciosSlugRoute
   '/servicios/cuerpo': typeof ServiciosCuerpoRoute
@@ -157,12 +185,15 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/atencion-menores'
     | '/estudio'
     | '/evaluacion'
+    | '/informacion-sanitaria'
     | '/joyeria'
     | '/piercing-arica'
     | '/precios'
     | '/privacidad'
+    | '/reservas-abonos-cancelaciones'
     | '/sobre-cote'
     | '/servicios/$slug'
     | '/servicios/cuerpo'
@@ -174,12 +205,15 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/atencion-menores'
     | '/estudio'
     | '/evaluacion'
+    | '/informacion-sanitaria'
     | '/joyeria'
     | '/piercing-arica'
     | '/precios'
     | '/privacidad'
+    | '/reservas-abonos-cancelaciones'
     | '/sobre-cote'
     | '/servicios/$slug'
     | '/servicios/cuerpo'
@@ -191,12 +225,15 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/atencion-menores'
     | '/estudio'
     | '/evaluacion'
+    | '/informacion-sanitaria'
     | '/joyeria'
     | '/piercing-arica'
     | '/precios'
     | '/privacidad'
+    | '/reservas-abonos-cancelaciones'
     | '/sobre-cote'
     | '/servicios/$slug'
     | '/servicios/cuerpo'
@@ -209,12 +246,15 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AtencionMenoresRoute: typeof AtencionMenoresRoute
   EstudioRoute: typeof EstudioRoute
   EvaluacionRoute: typeof EvaluacionRoute
+  InformacionSanitariaRoute: typeof InformacionSanitariaRoute
   JoyeriaRoute: typeof JoyeriaRoute
   PiercingAricaRoute: typeof PiercingAricaRoute
   PreciosRoute: typeof PreciosRoute
   PrivacidadRoute: typeof PrivacidadRoute
+  ReservasAbonosCancelacionesRoute: typeof ReservasAbonosCancelacionesRoute
   SobreCoteRoute: typeof SobreCoteRoute
   ServiciosSlugRoute: typeof ServiciosSlugRoute
   ServiciosCuerpoRoute: typeof ServiciosCuerpoRoute
@@ -232,6 +272,13 @@ declare module '@tanstack/react-router' {
       path: '/sobre-cote'
       fullPath: '/sobre-cote'
       preLoaderRoute: typeof SobreCoteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reservas-abonos-cancelaciones': {
+      id: '/reservas-abonos-cancelaciones'
+      path: '/reservas-abonos-cancelaciones'
+      fullPath: '/reservas-abonos-cancelaciones'
+      preLoaderRoute: typeof ReservasAbonosCancelacionesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/privacidad': {
@@ -262,6 +309,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof JoyeriaRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/informacion-sanitaria': {
+      id: '/informacion-sanitaria'
+      path: '/informacion-sanitaria'
+      fullPath: '/informacion-sanitaria'
+      preLoaderRoute: typeof InformacionSanitariaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/evaluacion': {
       id: '/evaluacion'
       path: '/evaluacion'
@@ -274,6 +328,13 @@ declare module '@tanstack/react-router' {
       path: '/estudio'
       fullPath: '/estudio'
       preLoaderRoute: typeof EstudioRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/atencion-menores': {
+      id: '/atencion-menores'
+      path: '/atencion-menores'
+      fullPath: '/atencion-menores'
+      preLoaderRoute: typeof AtencionMenoresRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -337,12 +398,15 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AtencionMenoresRoute: AtencionMenoresRoute,
   EstudioRoute: EstudioRoute,
   EvaluacionRoute: EvaluacionRoute,
+  InformacionSanitariaRoute: InformacionSanitariaRoute,
   JoyeriaRoute: JoyeriaRoute,
   PiercingAricaRoute: PiercingAricaRoute,
   PreciosRoute: PreciosRoute,
   PrivacidadRoute: PrivacidadRoute,
+  ReservasAbonosCancelacionesRoute: ReservasAbonosCancelacionesRoute,
   SobreCoteRoute: SobreCoteRoute,
   ServiciosSlugRoute: ServiciosSlugRoute,
   ServiciosCuerpoRoute: ServiciosCuerpoRoute,

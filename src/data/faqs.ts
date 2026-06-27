@@ -1,8 +1,9 @@
+import { BUSINESS_LOCATION } from "@/lib/site";
+
 export const faqs = [
   {
     question: "¿Dónde puedo hacerme un piercing profesional en Arica?",
-    answer:
-      "Cotepiercing atiende en Recina Tattoo, San Marcos 393, Arica. Cada servicio considera evaluación anatómica, joyería inicial y un protocolo de asepsia profesional.",
+    answer: `Cotepiercing atiende en ${BUSINESS_LOCATION}. Cada servicio considera evaluación anatómica, joyería inicial y un protocolo de asepsia profesional.`,
   },
   {
     question: "¿Cuánto cuesta hacerse un piercing en Arica?",

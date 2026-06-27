@@ -34,8 +34,9 @@ function StudioPage() {
           </ul>
           <h2 className="mt-10 font-serif text-3xl">Ubicación y horario</h2>
           <p className="mt-5 text-sm leading-relaxed text-muted-foreground">
-            {SITE.venue}, {SITE.streetAddress}, {SITE.locality}. Atención de lunes a sábado entre
-            11:00 y 20:00, con reserva previa.
+            {SITE.venue}, {SITE.streetAddress}, {SITE.locality}. {SITE.openingHoursText.weekdays},{" "}
+            {SITE.openingHoursText.saturday.toLowerCase()} y{" "}
+            {SITE.openingHoursText.sunday.toLowerCase()}, con reserva previa.
           </p>
         </div>
       </div>

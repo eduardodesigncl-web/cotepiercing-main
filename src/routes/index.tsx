@@ -184,7 +184,7 @@ function Page() {
           height={1080}
           fetchPriority="high"
           decoding="async"
-          className="absolute inset-0 h-full w-full object-cover object-[62%_center] motion-safe:animate-hero-kenburns"
+          className="absolute inset-0 h-full w-full animate-hero-kenburns object-cover object-[62%_center]"
         />
         <div
           className="absolute inset-0"
@@ -201,13 +201,13 @@ function Page() {
           }}
         />
         <div className="pointer-events-none absolute inset-0 overflow-hidden mix-blend-soft-light">
-          <div className="absolute -top-1/4 left-0 h-[150%] w-[22%] bg-gradient-to-r from-transparent via-white/55 to-transparent motion-safe:animate-hero-sheen" />
+          <div className="absolute -top-1/4 left-0 h-[150%] w-[22%] animate-hero-sheen bg-gradient-to-r from-transparent via-white/55 to-transparent" />
         </div>
         <div aria-hidden="true" className="pointer-events-none absolute inset-0">
           {Array.from({ length: 14 }).map((_, index) => (
             <span
               key={index}
-              className="absolute h-1 w-1 rounded-full bg-[var(--gold)] opacity-0 motion-safe:animate-hero-particle"
+              className="absolute h-1 w-1 animate-hero-particle rounded-full bg-[var(--gold)] opacity-0"
               style={{
                 left: `${10 + ((index * 19) % 82)}%`,
                 bottom: `${8 + ((index * 23) % 54)}%`,
@@ -220,7 +220,7 @@ function Page() {
 
         <div className="relative z-10 mx-auto flex h-full max-w-7xl items-center px-5 sm:px-6 lg:px-10">
           <div className="max-w-[650px] pt-24 lg:pt-8">
-            <div className="mb-6 flex items-center gap-3 motion-safe:animate-hero-rise">
+            <div className="mb-6 flex animate-hero-rise items-center gap-3">
               <span className="h-px w-10 bg-[var(--gold)]" />
               <span className="text-[11px] font-medium uppercase tracking-[0.34em] text-[var(--gold)]">
                 Piercing profesional · Arica
@@ -228,43 +228,43 @@ function Page() {
             </div>
 
             <h1 className="font-serif text-[48px] leading-[0.98] tracking-tight text-foreground sm:text-6xl lg:text-7xl xl:text-[92px]">
-              <span className="block motion-safe:animate-hero-rise motion-safe:[animation-delay:120ms]">
+              <span className="block animate-hero-rise" style={{ animationDelay: "120ms" }}>
                 Piercings cerca
               </span>
-              <span className="block motion-safe:animate-hero-rise motion-safe:[animation-delay:240ms]">
+              <span className="block animate-hero-rise" style={{ animationDelay: "240ms" }}>
                 de ti en{" "}
-                <span className="italic text-transparent bg-gradient-to-r from-[var(--gold)] via-[var(--gold-soft)] to-[var(--gold)] bg-[length:200%_auto] bg-clip-text motion-safe:animate-hero-shimmer">
+                <span className="animate-hero-shimmer bg-gradient-to-r from-[var(--gold)] via-[var(--gold-soft)] to-[var(--gold)] bg-[length:200%_auto] bg-clip-text italic text-transparent">
                   Arica
                 </span>
               </span>
             </h1>
 
-            <p className="mt-7 max-w-lg text-base leading-relaxed text-foreground/78 motion-safe:animate-hero-rise motion-safe:[animation-delay:360ms] sm:text-lg">
-              Estudio especializado en perforaciones de{" "}
-              <strong className="font-semibold text-foreground">oreja</strong>,{" "}
-              <strong className="font-semibold text-foreground">nariz</strong>,{" "}
-              <strong className="font-semibold text-foreground">labio</strong> y{" "}
-              <strong className="font-semibold text-foreground">cuerpo</strong> en Arica. Con María
-              José recibes evaluación anatómica, asepsia rigurosa y joyería inicial incluida.
+            <p
+              className="mt-7 max-w-md animate-hero-rise text-base leading-relaxed text-foreground/78 sm:text-lg"
+              style={{ animationDelay: "360ms" }}
+            >
+              Evaluación anatómica, técnica segura y joyería inicial incluida. Cada perforación,
+              diseñada para tu cuerpo y tu proceso de cicatrización.
             </p>
 
-            <p className="mt-5 text-[12px] uppercase tracking-[0.24em] text-foreground/60 motion-safe:animate-hero-rise motion-safe:[animation-delay:460ms]">
-              Helix · Lóbulo · Septum · Nostril · Evaluaciones
-            </p>
-
-            <p className="mt-5 font-serif text-xl italic text-foreground/72 motion-safe:animate-hero-rise motion-safe:[animation-delay:560ms]">
+            <p
+              className="mt-5 animate-hero-rise font-serif text-xl italic text-foreground/72"
+              style={{ animationDelay: "520ms" }}
+            >
               “No perforo cuerpos, diseño anatomías.”
             </p>
 
-            <div className="mt-10 flex flex-col gap-3 motion-safe:animate-hero-rise motion-safe:[animation-delay:680ms] sm:flex-row sm:flex-wrap">
+            <div
+              className="mt-10 flex animate-hero-rise flex-col gap-3 sm:flex-row sm:flex-wrap"
+              style={{ animationDelay: "680ms" }}
+            >
               <a
                 href={waLink()}
                 data-cta="reservation"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex min-h-14 w-full items-center justify-center gap-2 rounded-full bg-[var(--gold)] px-8 py-4 text-center text-[11px] uppercase tracking-[0.28em] text-white shadow-[0_18px_42px_-18px_var(--gold)] transition-all hover:-translate-y-0.5 hover:bg-[var(--gold-soft)] sm:w-auto sm:px-11"
+                className="inline-flex min-h-14 w-full items-center justify-center rounded-full bg-[var(--gold)] px-8 py-4 text-center text-[11px] uppercase tracking-[0.3em] text-white shadow-[0_18px_42px_-18px_var(--gold)] transition-all hover:-translate-y-0.5 hover:bg-[var(--gold-soft)] sm:w-auto sm:px-11"
               >
-                <MessageCircle className="h-4 w-4" strokeWidth={1.5} />
                 Reservar por WhatsApp
               </a>
               <Link
@@ -275,11 +275,14 @@ function Page() {
               </Link>
             </div>
 
-            <div className="mt-11 grid max-w-xl grid-cols-3 gap-4 motion-safe:animate-hero-fade motion-safe:[animation-delay:900ms]">
+            <div
+              className="mt-11 grid max-w-xl animate-hero-fade grid-cols-3 gap-4"
+              style={{ animationDelay: "900ms" }}
+            >
               {[
-                { value: "Arica", label: "Atención local" },
-                { value: "Anatomía", label: "Evaluación previa" },
-                { value: "Joyería", label: "Inicial incluida" },
+                { value: "+8 años", label: "De experiencia" },
+                { value: "100%", label: "Asepsia certificada" },
+                { value: "5.0★", label: "Reseñas Google" },
               ].map((item) => (
                 <div key={item.label} className="min-w-0">
                   <p className="font-serif text-2xl leading-none text-[var(--gold)] sm:text-[28px]">
@@ -294,7 +297,7 @@ function Page() {
           </div>
         </div>
 
-        <div className="absolute bottom-20 right-5 z-20 hidden items-center gap-3 rounded-2xl border border-white/70 bg-white/65 p-3 pr-5 shadow-[0_20px_55px_-25px_rgba(60,50,40,0.45)] backdrop-blur-xl motion-safe:animate-hero-float lg:flex">
+        <div className="absolute bottom-20 right-5 z-20 hidden animate-hero-float items-center gap-3 rounded-2xl border border-white/70 bg-white/65 p-3 pr-5 shadow-[0_20px_55px_-25px_rgba(60,50,40,0.45)] backdrop-blur-xl lg:flex">
           <img
             src={earImg}
             alt="Detalle de joyería de piercing"
@@ -308,7 +311,7 @@ function Page() {
               Joyería incluida
             </p>
             <p className="mt-1 font-serif text-[15px] leading-tight text-foreground">
-              Selección según anatomía
+              Titanio implant-grade
             </p>
           </div>
         </div>
@@ -316,11 +319,12 @@ function Page() {
         <a
           href="#servicios"
           aria-label="Bajar a servicios"
-          className="absolute bottom-6 left-1/2 z-20 hidden -translate-x-1/2 flex-col items-center gap-2 text-[9px] uppercase tracking-[0.34em] text-foreground/55 motion-safe:animate-hero-fade sm:flex"
+          className="absolute bottom-6 left-1/2 z-20 hidden -translate-x-1/2 animate-hero-fade flex-col items-center gap-2 text-[9px] uppercase tracking-[0.34em] text-foreground/55 sm:flex"
+          style={{ animationDelay: "1.1s" }}
         >
           Scroll
           <span className="relative block h-8 w-5 rounded-full border border-foreground/30">
-            <span className="absolute left-1/2 top-2 h-1 w-1 -translate-x-1/2 rounded-full bg-[var(--gold)] motion-safe:animate-hero-scroll-dot" />
+            <span className="absolute left-1/2 top-2 h-1 w-1 -translate-x-1/2 rounded-full bg-[var(--gold)] animate-hero-scroll-dot" />
           </span>
         </a>
       </section>

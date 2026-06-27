@@ -28,6 +28,7 @@ export function SiteFooter() {
             </p>
             <a
               href={`tel:${SITE.phoneE164}`}
+              data-cta="phone"
               className="mt-2 inline-block text-xs text-[var(--gold)] hover:opacity-70"
             >
               {SITE.phoneDisplay}

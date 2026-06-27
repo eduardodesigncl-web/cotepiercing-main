@@ -42,6 +42,7 @@ export function GoogleReviews() {
           <div className="flex flex-col gap-3 sm:flex-row">
             <a
               href={data.googleMapsUri}
+              data-cta="reviews"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 border border-[var(--gold)] px-6 py-3 text-[11px] tracking-[0.2em] uppercase text-[var(--gold)]"
@@ -50,6 +51,7 @@ export function GoogleReviews() {
             </a>
             <a
               href={data.writeReviewUri}
+              data-cta="reviews"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 bg-[var(--gold)] px-6 py-3 text-[11px] tracking-[0.2em] uppercase text-white"

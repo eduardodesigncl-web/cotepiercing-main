@@ -36,8 +36,9 @@ function PiercingArica() {
               entre clientes.
             </p>
             <ul className="mt-6 space-y-2 text-sm">
-              <li>Lunes a sábado: 11:00–20:00</li>
-              <li>Domingo: cerrado</li>
+              <li>{SITE.openingHoursText.weekdays}</li>
+              <li>{SITE.openingHoursText.saturday}</li>
+              <li>{SITE.openingHoursText.sunday}</li>
               <li>Reserva previa por WhatsApp</li>
             </ul>
           </section>
@@ -49,6 +50,7 @@ function PiercingArica() {
             </p>
             <a
               href={waLink()}
+              data-cta="reservation"
               target="_blank"
               rel="noopener noreferrer"
               className="mt-7 inline-flex bg-[var(--gold)] px-7 py-3 text-xs uppercase tracking-widest text-white"
@@ -86,6 +88,7 @@ function PiercingArica() {
           </p>
           <a
             href={SITE.mapsShareUrl}
+            data-cta="location"
             target="_blank"
             rel="noopener noreferrer"
             className="mt-6 inline-block text-xs uppercase tracking-widest text-[var(--gold)]"

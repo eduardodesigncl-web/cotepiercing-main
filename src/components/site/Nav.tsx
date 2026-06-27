@@ -53,6 +53,7 @@ export function Nav() {
           ))}
           <a
             href={waLink()}
+            data-cta="reservation"
             target="_blank"
             rel="noopener noreferrer"
             className="ml-2 inline-flex items-center justify-center px-7 py-3 rounded-full border border-[var(--gold)] text-[11px] tracking-[0.28em] uppercase text-foreground hover:bg-[var(--gold)] hover:text-white transition-colors"
@@ -88,6 +89,7 @@ export function Nav() {
             ))}
             <a
               href={waLink()}
+              data-cta="reservation"
               target="_blank"
               rel="noopener noreferrer"
               className="mt-2 text-xs tracking-[0.28em] uppercase py-3 border border-[var(--gold)] rounded-full text-center"

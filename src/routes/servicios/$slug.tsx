@@ -5,7 +5,7 @@ import { SiteFooter } from "@/components/site/SiteFooter";
 import { Button } from "@/components/ui/button";
 import { waLink } from "@/lib/wa";
 import { SITE_URL } from "@/lib/config";
-import { SITE } from "@/lib/site";
+import { BUSINESS_ADDRESS_WITH_COUNTRY, SITE } from "@/lib/site";
 import { SiteBreadcrumbs } from "@/components/site/SiteBreadcrumbs";
 import { ArrowLeft, MessageCircle, Clock, Stethoscope, Tag, MapPin } from "lucide-react";
 
@@ -213,6 +213,7 @@ function ServicePage() {
                 href={waLink(
                   `Hola María José, quiero reservar un piercing ${service.name}. ¿Me puedes indicar disponibilidad?`,
                 )}
+                data-cta="reservation"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -255,11 +256,11 @@ function ServicePage() {
           <div>
             <div className="eyebrow mb-3">Ubicación</div>
             <address className="not-italic text-[15px] text-muted-foreground leading-relaxed">
-              Cotepiercing atiende en
+              {SITE.name} atiende en
               <br />
-              <strong className="text-foreground">Recina Tattoo</strong>
+              <strong className="text-foreground">{SITE.venue}</strong>
               <br />
-              San Marcos 393, Arica, Chile
+              {BUSINESS_ADDRESS_WITH_COUNTRY}
             </address>
           </div>
         </div>

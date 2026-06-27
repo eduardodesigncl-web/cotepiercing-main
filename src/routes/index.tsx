@@ -172,8 +172,11 @@ function Page() {
 
       <SchemaScript />
 
-      {/* HERO — full-bleed editorial */}
-      <section id="inicio" className="relative h-[100svh] min-h-[640px] w-full overflow-hidden">
+      {/* HERO — cinematic editorial */}
+      <section
+        id="inicio"
+        className="relative h-[100svh] min-h-[690px] w-full overflow-hidden bg-[var(--warm-white)]"
+      >
         <img
           src={heroPortrait}
           alt="Retrato editorial con piercings dorados delicados — Cotepiercing Arica"
@@ -181,53 +184,145 @@ function Page() {
           height={1080}
           fetchPriority="high"
           decoding="async"
-          className="absolute inset-0 w-full h-full object-cover object-[70%_center] lg:object-[60%_center]"
+          className="absolute inset-0 h-full w-full object-cover object-[62%_center] motion-safe:animate-hero-kenburns"
         />
         <div
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(90deg, var(--warm-white) 0%, color-mix(in oklab, var(--warm-white) 92%, transparent) 30%, color-mix(in oklab, var(--warm-white) 40%, transparent) 55%, transparent 75%)",
+              "linear-gradient(90deg, var(--warm-white) 0%, color-mix(in oklab, var(--warm-white) 96%, transparent) 28%, color-mix(in oklab, var(--warm-white) 60%, transparent) 52%, color-mix(in oklab, var(--warm-white) 14%, transparent) 72%, transparent 88%)",
           }}
         />
-        <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-6 lg:px-10 h-full flex items-center">
-          <div className="max-w-xl pt-24 lg:pt-0">
-            <h1 className="font-serif text-[44px] leading-[1] sm:text-6xl lg:text-7xl xl:text-[88px] tracking-tight text-foreground">
-              Piercings cerca
-              <br />
-              de ti en <span className="italic">Arica</span>
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(180deg, color-mix(in oklab, var(--warm-white) 72%, transparent) 0%, transparent 22%, transparent 72%, color-mix(in oklab, var(--foreground) 12%, transparent) 100%)",
+          }}
+        />
+        <div className="pointer-events-none absolute inset-0 overflow-hidden mix-blend-soft-light">
+          <div className="absolute -top-1/4 left-0 h-[150%] w-[22%] bg-gradient-to-r from-transparent via-white/55 to-transparent motion-safe:animate-hero-sheen" />
+        </div>
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+          {Array.from({ length: 14 }).map((_, index) => (
+            <span
+              key={index}
+              className="absolute h-1 w-1 rounded-full bg-[var(--gold)] opacity-0 motion-safe:animate-hero-particle"
+              style={{
+                left: `${10 + ((index * 19) % 82)}%`,
+                bottom: `${8 + ((index * 23) % 54)}%`,
+                animationDelay: `${(index % 7) * 1.15}s`,
+                animationDuration: `${7 + (index % 5)}s`,
+              }}
+            />
+          ))}
+        </div>
+
+        <div className="relative z-10 mx-auto flex h-full max-w-7xl items-center px-5 sm:px-6 lg:px-10">
+          <div className="max-w-[650px] pt-24 lg:pt-8">
+            <div className="mb-6 flex items-center gap-3 motion-safe:animate-hero-rise">
+              <span className="h-px w-10 bg-[var(--gold)]" />
+              <span className="text-[11px] font-medium uppercase tracking-[0.34em] text-[var(--gold)]">
+                Piercing profesional · Arica
+              </span>
+            </div>
+
+            <h1 className="font-serif text-[48px] leading-[0.98] tracking-tight text-foreground sm:text-6xl lg:text-7xl xl:text-[92px]">
+              <span className="block motion-safe:animate-hero-rise motion-safe:[animation-delay:120ms]">
+                Piercings cerca
+              </span>
+              <span className="block motion-safe:animate-hero-rise motion-safe:[animation-delay:240ms]">
+                de ti en{" "}
+                <span className="italic text-transparent bg-gradient-to-r from-[var(--gold)] via-[var(--gold-soft)] to-[var(--gold)] bg-[length:200%_auto] bg-clip-text motion-safe:animate-hero-shimmer">
+                  Arica
+                </span>
+              </span>
             </h1>
-            <p className="mt-6 text-sm lg:text-base tracking-[0.14em] uppercase text-[var(--gold)] font-medium">
-              Piercing profesional en Arica con enfoque anatómico, seguro y personalizado.
+
+            <p className="mt-7 max-w-lg text-base leading-relaxed text-foreground/78 motion-safe:animate-hero-rise motion-safe:[animation-delay:360ms] sm:text-lg">
+              Estudio especializado en perforaciones de{" "}
+              <strong className="font-semibold text-foreground">oreja</strong>,{" "}
+              <strong className="font-semibold text-foreground">nariz</strong>,{" "}
+              <strong className="font-semibold text-foreground">labio</strong> y{" "}
+              <strong className="font-semibold text-foreground">cuerpo</strong> en Arica. Con María
+              José recibes evaluación anatómica, asepsia rigurosa y joyería inicial incluida.
             </p>
-            <p className="mt-4 max-w-md text-base lg:text-lg text-foreground/75 leading-relaxed">
-              Cotepiercing atiende en Arica con María José, piercer profesional especializada en
-              evaluación anatómica, técnica segura y joyería inicial incluida.
+
+            <p className="mt-5 text-[12px] uppercase tracking-[0.24em] text-foreground/60 motion-safe:animate-hero-rise motion-safe:[animation-delay:460ms]">
+              Helix · Lóbulo · Septum · Nostril · Evaluaciones
             </p>
-            <p className="mt-3 font-serif text-xl italic text-foreground/75">
+
+            <p className="mt-5 font-serif text-xl italic text-foreground/72 motion-safe:animate-hero-rise motion-safe:[animation-delay:560ms]">
               “No perforo cuerpos, diseño anatomías.”
             </p>
-            <div className="mt-10">
-              <div className="flex flex-col gap-3 sm:flex-row">
-                <a
-                  href={waLink()}
-                  data-cta="reservation"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center w-full sm:w-auto px-12 py-4 rounded-full bg-[var(--gold)] text-white text-[11px] tracking-[0.32em] uppercase hover:opacity-90 transition-opacity"
-                >
-                  Reservar
-                </a>
-                <Link
-                  to="/piercing-arica"
-                  className="inline-flex items-center justify-center w-full sm:w-auto px-8 py-4 rounded-full border border-foreground/25 text-[11px] tracking-[0.25em] uppercase hover:border-[var(--gold)] hover:text-[var(--gold)] transition-colors"
-                >
-                  Piercing profesional en Arica
-                </Link>
-              </div>
+
+            <div className="mt-10 flex flex-col gap-3 motion-safe:animate-hero-rise motion-safe:[animation-delay:680ms] sm:flex-row sm:flex-wrap">
+              <a
+                href={waLink()}
+                data-cta="reservation"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex min-h-14 w-full items-center justify-center gap-2 rounded-full bg-[var(--gold)] px-8 py-4 text-center text-[11px] uppercase tracking-[0.28em] text-white shadow-[0_18px_42px_-18px_var(--gold)] transition-all hover:-translate-y-0.5 hover:bg-[var(--gold-soft)] sm:w-auto sm:px-11"
+              >
+                <MessageCircle className="h-4 w-4" strokeWidth={1.5} />
+                Reservar por WhatsApp
+              </a>
+              <Link
+                to="/servicios"
+                className="inline-flex min-h-14 w-full items-center justify-center rounded-full border border-foreground/25 px-8 py-4 text-center text-[11px] uppercase tracking-[0.24em] text-foreground transition-colors hover:border-[var(--gold)] hover:text-[var(--gold)] sm:w-auto"
+              >
+                Ver servicios
+              </Link>
+            </div>
+
+            <div className="mt-11 grid max-w-xl grid-cols-3 gap-4 motion-safe:animate-hero-fade motion-safe:[animation-delay:900ms]">
+              {[
+                { value: "Arica", label: "Atención local" },
+                { value: "Anatomía", label: "Evaluación previa" },
+                { value: "Joyería", label: "Inicial incluida" },
+              ].map((item) => (
+                <div key={item.label} className="min-w-0">
+                  <p className="font-serif text-2xl leading-none text-[var(--gold)] sm:text-[28px]">
+                    {item.value}
+                  </p>
+                  <p className="mt-2 text-[9px] uppercase tracking-[0.2em] text-foreground/60 sm:text-[10px]">
+                    {item.label}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
         </div>
+
+        <div className="absolute bottom-20 right-5 z-20 hidden items-center gap-3 rounded-2xl border border-white/70 bg-white/65 p-3 pr-5 shadow-[0_20px_55px_-25px_rgba(60,50,40,0.45)] backdrop-blur-xl motion-safe:animate-hero-float lg:flex">
+          <img
+            src={earImg}
+            alt="Detalle de joyería de piercing"
+            width={52}
+            height={52}
+            decoding="async"
+            className="h-14 w-14 rounded-xl object-cover"
+          />
+          <div>
+            <p className="text-[10px] uppercase tracking-[0.24em] text-[var(--gold)]">
+              Joyería incluida
+            </p>
+            <p className="mt-1 font-serif text-[15px] leading-tight text-foreground">
+              Selección según anatomía
+            </p>
+          </div>
+        </div>
+
+        <a
+          href="#servicios"
+          aria-label="Bajar a servicios"
+          className="absolute bottom-6 left-1/2 z-20 hidden -translate-x-1/2 flex-col items-center gap-2 text-[9px] uppercase tracking-[0.34em] text-foreground/55 motion-safe:animate-hero-fade sm:flex"
+        >
+          Scroll
+          <span className="relative block h-8 w-5 rounded-full border border-foreground/30">
+            <span className="absolute left-1/2 top-2 h-1 w-1 -translate-x-1/2 rounded-full bg-[var(--gold)] motion-safe:animate-hero-scroll-dot" />
+          </span>
+        </a>
       </section>
 
       {/* TRUST */}

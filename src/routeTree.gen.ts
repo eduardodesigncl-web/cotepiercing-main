@@ -14,7 +14,6 @@ import { Route as ReservasAbonosCancelacionesRouteImport } from './routes/reserv
 import { Route as PrivacidadRouteImport } from './routes/privacidad'
 import { Route as PreciosRouteImport } from './routes/precios'
 import { Route as PiercingAricaRouteImport } from './routes/piercing-arica'
-import { Route as JoyeriaRouteImport } from './routes/joyeria'
 import { Route as InformacionSanitariaRouteImport } from './routes/informacion-sanitaria'
 import { Route as EvaluacionRouteImport } from './routes/evaluacion'
 import { Route as EstudioRouteImport } from './routes/estudio'
@@ -52,11 +51,6 @@ const PreciosRoute = PreciosRouteImport.update({
 const PiercingAricaRoute = PiercingAricaRouteImport.update({
   id: '/piercing-arica',
   path: '/piercing-arica',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const JoyeriaRoute = JoyeriaRouteImport.update({
-  id: '/joyeria',
-  path: '/joyeria',
   getParentRoute: () => rootRouteImport,
 } as any)
 const InformacionSanitariaRoute = InformacionSanitariaRouteImport.update({
@@ -126,7 +120,6 @@ export interface FileRoutesByFullPath {
   '/estudio': typeof EstudioRoute
   '/evaluacion': typeof EvaluacionRoute
   '/informacion-sanitaria': typeof InformacionSanitariaRoute
-  '/joyeria': typeof JoyeriaRoute
   '/piercing-arica': typeof PiercingAricaRoute
   '/precios': typeof PreciosRoute
   '/privacidad': typeof PrivacidadRoute
@@ -146,7 +139,6 @@ export interface FileRoutesByTo {
   '/estudio': typeof EstudioRoute
   '/evaluacion': typeof EvaluacionRoute
   '/informacion-sanitaria': typeof InformacionSanitariaRoute
-  '/joyeria': typeof JoyeriaRoute
   '/piercing-arica': typeof PiercingAricaRoute
   '/precios': typeof PreciosRoute
   '/privacidad': typeof PrivacidadRoute
@@ -167,7 +159,6 @@ export interface FileRoutesById {
   '/estudio': typeof EstudioRoute
   '/evaluacion': typeof EvaluacionRoute
   '/informacion-sanitaria': typeof InformacionSanitariaRoute
-  '/joyeria': typeof JoyeriaRoute
   '/piercing-arica': typeof PiercingAricaRoute
   '/precios': typeof PreciosRoute
   '/privacidad': typeof PrivacidadRoute
@@ -189,7 +180,6 @@ export interface FileRouteTypes {
     | '/estudio'
     | '/evaluacion'
     | '/informacion-sanitaria'
-    | '/joyeria'
     | '/piercing-arica'
     | '/precios'
     | '/privacidad'
@@ -209,7 +199,6 @@ export interface FileRouteTypes {
     | '/estudio'
     | '/evaluacion'
     | '/informacion-sanitaria'
-    | '/joyeria'
     | '/piercing-arica'
     | '/precios'
     | '/privacidad'
@@ -229,7 +218,6 @@ export interface FileRouteTypes {
     | '/estudio'
     | '/evaluacion'
     | '/informacion-sanitaria'
-    | '/joyeria'
     | '/piercing-arica'
     | '/precios'
     | '/privacidad'
@@ -250,7 +238,6 @@ export interface RootRouteChildren {
   EstudioRoute: typeof EstudioRoute
   EvaluacionRoute: typeof EvaluacionRoute
   InformacionSanitariaRoute: typeof InformacionSanitariaRoute
-  JoyeriaRoute: typeof JoyeriaRoute
   PiercingAricaRoute: typeof PiercingAricaRoute
   PreciosRoute: typeof PreciosRoute
   PrivacidadRoute: typeof PrivacidadRoute
@@ -300,13 +287,6 @@ declare module '@tanstack/react-router' {
       path: '/piercing-arica'
       fullPath: '/piercing-arica'
       preLoaderRoute: typeof PiercingAricaRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/joyeria': {
-      id: '/joyeria'
-      path: '/joyeria'
-      fullPath: '/joyeria'
-      preLoaderRoute: typeof JoyeriaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/informacion-sanitaria': {
@@ -402,7 +382,6 @@ const rootRouteChildren: RootRouteChildren = {
   EstudioRoute: EstudioRoute,
   EvaluacionRoute: EvaluacionRoute,
   InformacionSanitariaRoute: InformacionSanitariaRoute,
-  JoyeriaRoute: JoyeriaRoute,
   PiercingAricaRoute: PiercingAricaRoute,
   PreciosRoute: PreciosRoute,
   PrivacidadRoute: PrivacidadRoute,

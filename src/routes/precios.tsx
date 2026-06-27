@@ -54,12 +54,6 @@ function PricesPage() {
           Los servicios de perforación incluyen joyería inicial. El material, forma y tamaño se
           confirman según la anatomía y el proceso de cicatrización.
         </p>
-        <a
-          href="/joyeria"
-          className="mt-6 inline-block text-xs uppercase tracking-widest text-[var(--gold)]"
-        >
-          Revisar criterios de joyería para piercing →
-        </a>
       </section>
     </ContentPage>
   );

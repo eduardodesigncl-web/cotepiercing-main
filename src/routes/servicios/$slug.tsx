@@ -5,7 +5,7 @@ import { SiteFooter } from "@/components/site/SiteFooter";
 import { Button } from "@/components/ui/button";
 import { waLink } from "@/lib/wa";
 import { SITE_URL } from "@/lib/config";
-import { BUSINESS_ADDRESS_WITH_COUNTRY, SITE } from "@/lib/site";
+import { BUSINESS_LOCATION, SITE } from "@/lib/site";
 import { SiteBreadcrumbs } from "@/components/site/SiteBreadcrumbs";
 import { ArrowLeft, MessageCircle, Clock, Stethoscope, Tag, MapPin } from "lucide-react";
 
@@ -15,7 +15,7 @@ export const Route = createFileRoute("/servicios/$slug")({
     if (!service) return { meta: [{ title: "Servicio no encontrado — Cotepiercing" }] };
 
     const title = `${service.name} en Arica — Cotepiercing | Piercing profesional`;
-    const description = `${service.description} Zona: ${service.zone}. Cicatrización: ${service.healing}. Precio desde ${service.price} CLP. Reserva por WhatsApp en Cotepiercing, Recina Tattoo, Arica, Chile.`;
+    const description = `${service.description} Zona: ${service.zone}. Cicatrización: ${service.healing}. Precio desde ${service.price} CLP. Reserva por WhatsApp en ${SITE.name}, ${BUSINESS_LOCATION}.`;
 
     return {
       meta: [
@@ -70,20 +70,22 @@ function ServicePage() {
         description: service.description,
         provider: {
           "@type": "HealthAndBeautyBusiness",
-          name: "Cotepiercing",
+          name: SITE.name,
           url: `${SITE_URL}/`,
           telephone: SITE.phoneE164,
           sameAs: [SITE.googleBusinessUrl, SITE.instagramUrl],
           address: {
             "@type": "PostalAddress",
-            streetAddress: "San Marcos 393",
-            addressLocality: "Arica",
-            addressCountry: "CL",
+            streetAddress: SITE.streetAddress,
+            addressLocality: SITE.locality,
+            addressRegion: SITE.region,
+            addressCountry: SITE.country,
+            postalCode: SITE.postalCode,
           },
         },
         areaServed: {
           "@type": "City",
-          name: "Arica",
+          name: SITE.locality,
         },
         offers: {
           "@type": "Offer",
@@ -108,10 +110,10 @@ function ServicePage() {
       />
 
       {/* BREADCRUMB + BACK */}
-      <div className="mx-auto max-w-7xl px-6 lg:px-10 pt-28 pb-4">
+      <div className="mx-auto max-w-7xl px-5 pb-4 pt-24 sm:px-6 lg:px-10 lg:pt-28">
         <Link
           to="/servicios"
-          className="inline-flex items-center gap-2 text-[13px] text-muted-foreground hover:text-[var(--gold)] mb-6 transition-colors font-medium"
+          className="mb-5 inline-flex items-center gap-2 text-[13px] font-medium text-muted-foreground transition-colors hover:text-[var(--gold)] sm:mb-6"
         >
           <ArrowLeft className="w-4 h-4" />
           Volver a servicios
@@ -127,10 +129,10 @@ function ServicePage() {
       </div>
 
       {/* HERO de servicio */}
-      <section className="mx-auto max-w-7xl px-6 lg:px-10 py-4 lg:py-8 grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+      <section className="mx-auto grid max-w-7xl items-start gap-7 px-5 py-4 sm:px-6 lg:grid-cols-12 lg:gap-12 lg:px-10 lg:py-8">
         {/* Imagen */}
         <div className="lg:col-span-5">
-          <div className="relative overflow-hidden rounded-xl h-[300px] sm:h-[400px] lg:h-auto lg:aspect-[4/5] bg-[var(--stone)] w-full">
+          <div className="relative h-[300px] w-full overflow-hidden rounded-lg bg-[var(--stone)] shadow-sm sm:h-[420px] lg:h-auto lg:aspect-[4/5]">
             <img
               src={service.image}
               alt={service.imageAlt}
@@ -142,30 +144,32 @@ function ServicePage() {
         </div>
 
         {/* Info */}
-        <div className="lg:col-span-7 pt-2 lg:pt-4">
+        <div className="pt-1 lg:col-span-7 lg:pt-4">
           {/* Categoría */}
           <div className="eyebrow mb-3 lg:mb-4">{service.category}</div>
 
           {/* Nombre H1 */}
-          <h1 className="font-serif text-4xl lg:text-6xl leading-tight">{service.name}</h1>
-          <p className="mt-1 font-serif text-xl lg:text-2xl text-muted-foreground">
+          <h1 className="font-serif text-3xl leading-tight sm:text-4xl lg:text-6xl">
+            {service.name}
+          </h1>
+          <p className="mt-1 font-serif text-lg text-muted-foreground sm:text-xl lg:text-2xl">
             en Arica, Chile
           </p>
 
-          <div className="mt-4 lg:mt-6 font-serif text-2xl lg:text-3xl text-[var(--gold)]">
+          <div className="mt-4 font-serif text-2xl text-[var(--gold)] lg:mt-6 lg:text-3xl">
             {service.price}
           </div>
 
-          <div className="gold-rule mt-6 lg:mt-8" />
+          <div className="gold-rule mt-5 lg:mt-8" />
 
           {/* Descripción */}
-          <p className="mt-6 lg:mt-8 text-[15px] sm:text-base lg:text-lg text-foreground/80 leading-relaxed">
+          <p className="mt-5 text-base leading-relaxed text-foreground/80 lg:mt-8 lg:text-lg">
             {service.description}
           </p>
 
           {/* Datos clave */}
-          <div className="mt-8 lg:mt-10 grid grid-cols-2 gap-3 sm:gap-4">
-            <div className="flex flex-col gap-1.5 p-3.5 sm:p-4 rounded-lg bg-[var(--stone)]/30 border border-border">
+          <div className="mt-7 grid grid-cols-1 gap-3 min-[380px]:grid-cols-2 sm:gap-4 lg:mt-10">
+            <div className="flex flex-col gap-1.5 rounded-lg border border-border bg-[var(--stone)]/30 p-4">
               <div className="flex items-center gap-2">
                 <Tag className="w-3.5 h-3.5 text-[var(--gold)]" strokeWidth={1.5} />
                 <span className="text-[10px] sm:text-[11px] tracking-[0.15em] uppercase text-muted-foreground">
@@ -175,7 +179,7 @@ function ServicePage() {
               <span className="text-[13px] sm:text-[14px] font-medium">Incluida</span>
             </div>
 
-            <div className="flex flex-col gap-1.5 p-3.5 sm:p-4 rounded-lg bg-[var(--stone)]/30 border border-border">
+            <div className="flex flex-col gap-1.5 rounded-lg border border-border bg-[var(--stone)]/30 p-4">
               <div className="flex items-center gap-2">
                 <Clock className="w-3.5 h-3.5 text-[var(--gold)]" strokeWidth={1.5} />
                 <span className="text-[10px] sm:text-[11px] tracking-[0.15em] uppercase text-muted-foreground">
@@ -185,7 +189,7 @@ function ServicePage() {
               <span className="text-[13px] sm:text-[14px] font-medium">{service.healing}</span>
             </div>
 
-            <div className="flex flex-col gap-1.5 p-3.5 sm:p-4 rounded-lg bg-[var(--stone)]/30 border border-border">
+            <div className="flex flex-col gap-1.5 rounded-lg border border-border bg-[var(--stone)]/30 p-4">
               <div className="flex items-center gap-2">
                 <Stethoscope className="w-3.5 h-3.5 text-[var(--gold)]" strokeWidth={1.5} />
                 <span className="text-[10px] sm:text-[11px] tracking-[0.15em] uppercase text-muted-foreground">
@@ -195,7 +199,7 @@ function ServicePage() {
               <span className="text-[13px] sm:text-[14px] font-medium">{service.evaluation}</span>
             </div>
 
-            <div className="flex flex-col gap-1.5 p-3.5 sm:p-4 rounded-lg bg-[var(--stone)]/30 border border-border">
+            <div className="flex flex-col gap-1.5 rounded-lg border border-border bg-[var(--stone)]/30 p-4">
               <div className="flex items-center gap-2">
                 <MapPin className="w-3.5 h-3.5 text-[var(--gold)]" strokeWidth={1.5} />
                 <span className="text-[10px] sm:text-[11px] tracking-[0.15em] uppercase text-muted-foreground">
@@ -207,8 +211,13 @@ function ServicePage() {
           </div>
 
           {/* CTA */}
-          <div className="mt-10 lg:mt-12 flex flex-col sm:flex-row gap-3 sm:gap-4">
-            <Button asChild variant="gold" size="lg" className="w-full sm:w-auto h-12 sm:h-14">
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:gap-4 lg:mt-12">
+            <Button
+              asChild
+              variant="gold"
+              size="lg"
+              className="h-auto min-h-12 w-full whitespace-normal px-4 py-3 text-center leading-relaxed sm:w-auto sm:min-w-64"
+            >
               <a
                 href={waLink(
                   `Hola María José, quiero reservar un piercing ${service.name}. ¿Me puedes indicar disponibilidad?`,
@@ -218,14 +227,15 @@ function ServicePage() {
                 rel="noopener noreferrer"
               >
                 <MessageCircle className="w-4 h-4 mr-2" />
-                Reservar {service.name} por WhatsApp
+                <span className="sm:hidden">Reservar por WhatsApp</span>
+                <span className="hidden sm:inline">Reservar {service.name} por WhatsApp</span>
               </a>
             </Button>
             <Button
               asChild
               variant="goldOutline"
               size="lg"
-              className="w-full sm:w-auto h-12 sm:h-14"
+              className="h-auto min-h-12 w-full whitespace-normal px-4 py-3 text-center leading-relaxed sm:w-auto"
             >
               <Link to="/servicios">
                 <ArrowLeft className="w-4 h-4 mr-2" />
@@ -236,50 +246,20 @@ function ServicePage() {
         </div>
       </section>
 
-      {/* INFO ADICIONAL */}
-      <section className="bg-[var(--stone)]/40 py-16 mt-12">
-        <div className="mx-auto max-w-7xl px-6 lg:px-10 grid lg:grid-cols-3 gap-10">
-          <div>
-            <div className="eyebrow mb-3">Asepsia clínica</div>
-            <p className="text-[15px] text-muted-foreground leading-relaxed">
-              Cada procedimiento se realiza con materiales estériles, guantes quirúrgicos y
-              protocolo de higiene estricto para garantizar tu seguridad.
-            </p>
-          </div>
-          <div>
-            <div className="eyebrow mb-3">Joyería inicial incluida</div>
-            <p className="text-[15px] text-muted-foreground leading-relaxed">
-              La joyería inicial está seleccionada según la zona y anatomía. Se elige el material
-              adecuado para un proceso de cicatrización óptimo.
-            </p>
-          </div>
-          <div>
-            <div className="eyebrow mb-3">Ubicación</div>
-            <address className="not-italic text-[15px] text-muted-foreground leading-relaxed">
-              {SITE.name} atiende en
-              <br />
-              <strong className="text-foreground">{SITE.venue}</strong>
-              <br />
-              {BUSINESS_ADDRESS_WITH_COUNTRY}
-            </address>
-          </div>
-        </div>
-      </section>
-
       {/* SERVICIOS RELACIONADOS */}
       {related.length > 0 && (
-        <section className="py-20">
-          <div className="mx-auto max-w-7xl px-6 lg:px-10">
+        <section className="border-t border-border/70 py-10 lg:py-20">
+          <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-10">
             <div className="eyebrow mb-6">Servicios relacionados</div>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="max-h-[25rem] space-y-3 overflow-y-auto pr-1 sm:max-h-none sm:grid sm:grid-cols-2 sm:gap-6 sm:space-y-0 sm:overflow-visible sm:pr-0 lg:grid-cols-3">
               {related.map((s) => (
                 <Link
                   key={s.slug}
                   to="/servicios/$slug"
                   params={{ slug: s.slug }}
-                  className="group block overflow-hidden rounded-xl border border-border bg-card hover:shadow-md transition-shadow"
+                  className="group grid grid-cols-[7rem_minmax(0,1fr)] overflow-hidden rounded-lg border border-border bg-card transition-shadow hover:shadow-md sm:block sm:rounded-xl"
                 >
-                  <div className="relative overflow-hidden aspect-[4/3] bg-[var(--stone)]">
+                  <div className="relative min-h-32 overflow-hidden bg-[var(--stone)] sm:aspect-[4/3]">
                     <img
                       src={s.image}
                       alt={s.imageAlt}
@@ -288,7 +268,7 @@ function ServicePage() {
                       className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
                     />
                   </div>
-                  <div className="p-5">
+                  <div className="flex min-w-0 flex-col justify-center p-4 sm:block sm:p-5">
                     <p className="font-serif text-lg">{s.name}</p>
                     <p className="mt-1 text-sm text-muted-foreground">{s.price}</p>
                     <p className="mt-3 text-[11px] tracking-[0.2em] uppercase text-[var(--gold)] group-hover:opacity-70 transition-opacity">
@@ -302,16 +282,11 @@ function ServicePage() {
         </section>
       )}
 
-      <section className="border-t border-border bg-[var(--stone)]/25 py-16">
-        <div className="mx-auto max-w-7xl px-6 lg:px-10">
+      <section className="border-t border-border bg-[var(--stone)]/25 py-12 lg:py-16">
+        <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-10">
           <div className="eyebrow mb-6">Antes y después de tu servicio</div>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {[
-              {
-                href: "/joyeria",
-                title: "Joyería adecuada",
-                text: "Conoce cómo se selecciona la joya inicial según anatomía y cicatrización.",
-              },
               {
                 href: "/evaluacion",
                 title: "Evaluación profesional",

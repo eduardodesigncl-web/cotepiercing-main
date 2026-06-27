@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ContentPage } from "@/components/site/ContentPage";
 import { GoogleReviews } from "@/components/site/GoogleReviews";
-import { SITE, SITE_URL } from "@/lib/site";
+import { BUSINESS_LOCATION, SITE, SITE_URL } from "@/lib/site";
 import { waLink } from "@/lib/wa";
 
 export const Route = createFileRoute("/piercing-arica")({
@@ -31,9 +31,9 @@ function PiercingArica() {
           <section>
             <h2 className="font-serif text-3xl">Atención en el centro de Arica</h2>
             <p className="mt-5 text-sm leading-relaxed text-muted-foreground">
-              La atención se realiza en {SITE.venue}, {SITE.streetAddress}. Se trabaja con aguja
-              estéril descartable, joyería esterilizada en autoclave y desinfección de superficies
-              entre clientes.
+              La atención se realiza en {BUSINESS_LOCATION}. Se trabaja con aguja estéril
+              descartable, joyería esterilizada en autoclave y desinfección de superficies entre
+              clientes.
             </p>
             <ul className="mt-6 space-y-2 text-sm">
               <li>{SITE.openingHoursText.weekdays}</li>
@@ -83,8 +83,7 @@ function PiercingArica() {
         <section className="mt-16">
           <h2 className="font-serif text-3xl">Cómo llegar</h2>
           <p className="mt-5 text-sm leading-relaxed text-muted-foreground">
-            Cotepiercing atiende en {SITE.venue}, {SITE.streetAddress}, {SITE.locality}. Confirma tu
-            hora antes de asistir.
+            {SITE.name} atiende en {BUSINESS_LOCATION}. Confirma tu hora antes de asistir.
           </p>
           <a
             href={SITE.mapsShareUrl}

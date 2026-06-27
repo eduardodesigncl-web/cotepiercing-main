@@ -259,11 +259,7 @@ function Page() {
 
       {/* SERVICES — image cards */}
       <Section id="servicios" className="bg-[var(--stone)]/40">
-        <SectionHead
-          eyebrow="Catálogo"
-          title="Servicios de piercing en Arica"
-          intro="Revisa precios, zonas, tiempos de cicatrización y recomendaciones antes de reservar tu piercing en Arica. Cada perforación es realizada por María José con evaluación anatómica, higiene rigurosa, técnica segura y joyería inicial incluida."
-        />
+        <SectionHead eyebrow="Catálogo" title="Servicios de piercing en Arica" />
 
         <div className="mt-8 sm:mt-12 flex flex-wrap gap-1.5 sm:gap-2">
           {categories.map((c) => (
@@ -319,11 +315,6 @@ function Page() {
             </Link>
           ))}
         </div>
-
-        <p className="mt-10 max-w-3xl text-sm text-muted-foreground italic">
-          Todos los valores incluyen joyería inicial. Algunos servicios requieren evaluación
-          anatómica previa para confirmar viabilidad, ubicación y tipo de joyería adecuada.
-        </p>
       </Section>
 
       {/* JEWELRY */}
@@ -415,45 +406,6 @@ function Page() {
             <figure className="jm-wide" aria-hidden="true">
               <img src={joyeriaDetalle} alt="" loading="lazy" width={680} height={420} />
             </figure>
-          </div>
-        </div>
-        <div className="mt-8 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-          <p>
-            Esta sección <strong className="text-foreground">#joyeria</strong> resume la propuesta
-            dentro de la portada. La información canónica sobre selección, ajuste y disponibilidad
-            está en la página de joyería.
-          </p>
-          <Link
-            to="/joyeria"
-            className="mt-4 inline-block text-xs uppercase tracking-widest text-[var(--gold)] hover:opacity-70"
-          >
-            Conocer cómo elegimos la joyería para cada piercing →
-          </Link>
-        </div>
-      </Section>
-
-      {/* ANATOMY */}
-      <Section className="bg-[var(--stone)]/40">
-        <div className="grid lg:grid-cols-12 gap-12 items-center">
-          <div className="lg:col-span-6">
-            <img
-              src={earImg}
-              alt="Evaluación anatómica"
-              loading="lazy"
-              width={900}
-              height={1100}
-              className="w-full aspect-[4/5] object-cover"
-            />
-          </div>
-          <div className="lg:col-span-6">
-            <SectionHead
-              eyebrow="Diseño según anatomía"
-              title="No todas las perforaciones son para todas las anatomías"
-              intro="Antes de realizar ciertos piercings, se evalúa la anatomía de la zona para determinar si la perforación es viable, segura y estéticamente armónica. Así evitamos malas posiciones, presión innecesaria, irritaciones o procesos de cicatrización complejos."
-            />
-            <blockquote className="mt-10 font-serif text-2xl lg:text-3xl italic text-foreground/85 leading-snug border-l-2 border-[var(--gold)] pl-6">
-              “No perforo cuerpos, diseño anatomías.”
-            </blockquote>
           </div>
         </div>
       </Section>
@@ -577,83 +529,6 @@ function Page() {
         </div>
       </Section>
 
-      {/* EVALUATION SERVICES */}
-      <Section>
-        <SectionHead
-          eyebrow="Evaluación y cuidado"
-          title="Servicios complementarios"
-          intro="Realizamos evaluaciones profesionales para perforaciones con irritación, bultitos, granulomas, queloides, cambios de joyería o reconstrucción de lóbulos. Cada caso se revisa de forma individual."
-        />
-        <div className="mt-8 sm:mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border border border-border">
-          {[
-            "Evaluación de piercing irritado",
-            "Cambio de joyería",
-            "Retiro de joyería",
-            "Evaluación de granulomas",
-            "Evaluación de queloides",
-            "Reconstrucción de lóbulos",
-            "Revisión de cicatrización",
-          ].map((label) => (
-            <div
-              key={label}
-              className="bg-background px-5 py-4 sm:p-7 flex items-start gap-3 sm:gap-4"
-            >
-              <span className="mt-1.5 sm:mt-2 w-1.5 h-1.5 sm:w-2 sm:h-2 bg-[var(--gold)] shrink-0" />
-              <p className="text-[14px] sm:text-[15px]">{label}</p>
-            </div>
-          ))}
-        </div>
-        <p className="mt-8 max-w-3xl text-sm text-muted-foreground italic">
-          En casos de dolor intenso, fiebre, secreción con mal olor o signos de infección, se
-          recomienda acudir a atención médica.
-        </p>
-        {/* Interlinking: evaluaciones → cuidados y reserva */}
-        <div className="mt-10 flex flex-wrap gap-4">
-          <a
-            href="#cuidados"
-            className="inline-flex items-center gap-1.5 text-[11px] tracking-[0.2em] uppercase text-[var(--gold)] hover:opacity-70 transition-opacity"
-            aria-label="Ver guía de cuidados post-piercing"
-          >
-            Ver cuidados generales →
-          </a>
-          <a
-            href="#reserva"
-            data-cta="reservation"
-            className="inline-flex items-center gap-1.5 text-[11px] tracking-[0.2em] uppercase text-[var(--gold)] hover:opacity-70 transition-opacity"
-            aria-label="Reservar una evaluación en Cotepiercing"
-          >
-            Reservar evaluación →
-          </a>
-        </div>
-      </Section>
-
-      {/* INTIMATE */}
-      <Section className="bg-[var(--stone)]/40">
-        <div className="max-w-3xl">
-          <div className="eyebrow mb-4">Privado</div>
-          <h2 className="font-serif text-3xl lg:text-5xl leading-tight">Piercings íntimos</h2>
-          <div className="gold-rule mt-8" />
-          <p className="mt-8 text-base lg:text-lg text-muted-foreground leading-relaxed">
-            Servicio realizado con privacidad, higiene rigurosa y evaluación anatómica previa. La
-            viabilidad depende de la anatomía, condiciones de seguridad y criterio profesional.
-          </p>
-          <div className="mt-10">
-            <Button asChild variant="goldOutline" size="lg">
-              <a
-                href={waLink(
-                  "Hola María José, quiero consultar disponibilidad para piercing íntimo.",
-                )}
-                data-cta="whatsapp"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Consultar disponibilidad
-              </a>
-            </Button>
-          </div>
-        </div>
-      </Section>
-
       {/* GALLERY */}
       <Section id="galeria">
         <SectionHead
@@ -731,22 +606,22 @@ function Page() {
 
       {/* GALLERY LIGHTBOX */}
       <Dialog open={!!lightbox} onOpenChange={(o) => !o && setLightbox(null)}>
-        <DialogContent className="max-w-5xl p-0 overflow-hidden bg-background border-border">
+        <DialogContent className="h-[100dvh] w-screen max-w-none overflow-hidden border-0 bg-background p-0 sm:h-auto sm:max-h-[92dvh] sm:w-[min(92vw,72rem)] sm:rounded-lg sm:border sm:border-border [&>button]:right-3 [&>button]:top-3 [&>button]:z-20 [&>button]:rounded-full [&>button]:bg-background/90 [&>button]:p-2 [&>button]:opacity-100">
           {lightbox && (
-            <div className="grid md:grid-cols-[1.6fr_1fr]">
-              <div className="bg-black flex items-center justify-center max-h-[80vh]">
+            <div className="grid h-full grid-rows-[minmax(0,58dvh)_minmax(0,1fr)] md:max-h-[92dvh] md:grid-cols-[minmax(0,1.6fr)_minmax(280px,0.8fr)] md:grid-rows-none">
+              <div className="flex min-h-0 items-center justify-center bg-black">
                 <img
                   src={lightbox.src}
                   alt={lightbox.alt}
-                  className="w-full h-full max-h-[80vh] object-contain"
+                  className="h-full w-full object-contain"
                 />
               </div>
-              <div className="p-7 lg:p-9 flex flex-col">
+              <div className="flex min-h-0 flex-col overflow-y-auto p-5 sm:p-7 lg:p-9">
                 <DialogHeader className="text-left space-y-3">
                   <p className="text-[10px] tracking-[0.28em] uppercase text-muted-foreground">
                     {lightbox.category}
                   </p>
-                  <DialogTitle className="font-serif text-2xl lg:text-3xl leading-tight">
+                  <DialogTitle className="font-serif text-2xl leading-tight lg:text-3xl">
                     {lightbox.caption}
                   </DialogTitle>
                 </DialogHeader>
@@ -754,8 +629,13 @@ function Page() {
                 <DialogDescription className="mt-5 text-[15px] leading-relaxed text-foreground/75">
                   {lightbox.alt}
                 </DialogDescription>
-                <div className="mt-7">
-                  <Button asChild variant="gold" size="lg" className="w-full">
+                <div className="mt-7 pb-2">
+                  <Button
+                    asChild
+                    variant="gold"
+                    size="lg"
+                    className="h-auto min-h-12 w-full whitespace-normal px-4 py-3 text-center leading-relaxed"
+                  >
                     <a
                       href={waLink(
                         `Hola María José, vi tu trabajo "${lightbox.caption}" y quiero más información.`,

@@ -2,17 +2,9 @@ import { SITE } from "@/lib/site";
 
 const links = [
   { href: "/servicios", label: "Servicios" },
-  { href: "/piercing-arica", label: "Piercing en Arica" },
-  { href: "/joyeria", label: "Joyería" },
-  { href: "/servicios/oreja", label: "Oreja" },
-  { href: "/servicios/nariz-rostro", label: "Nariz y rostro" },
-  { href: "/servicios/labio-boca", label: "Labio y boca" },
-  { href: "/servicios/cuerpo", label: "Cuerpo" },
   { href: "/servicios/privado", label: "Servicios privados" },
-  { href: "/precios", label: "Precios" },
-  { href: "/evaluacion", label: "Evaluación" },
-  { href: "/estudio", label: "Estudio" },
-  { href: "/sobre-cote", label: "Sobre María José" },
+  { href: "/evaluacion", label: "Evaluaciones" },
+  { href: "/sobre-cote", label: "Sobre María" },
   { href: "/privacidad", label: "Privacidad" },
 ];
 

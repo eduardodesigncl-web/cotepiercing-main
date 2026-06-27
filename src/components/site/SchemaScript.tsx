@@ -10,7 +10,7 @@ const localBusinessSchema = {
   "@context": "https://schema.org",
   "@type": "HealthAndBeautyBusiness",
   "@id": `${SITE_URL}/#local-business`,
-  name: "Cotepiercing",
+  name: SITE.name,
   description:
     "Estudio de body piercing profesional en Arica, Chile. Evaluación anatómica, asepsia clínica y joyería inicial incluida en cada servicio.",
   url: `${SITE_URL}/`,
@@ -49,7 +49,7 @@ const localBusinessSchema = {
   ],
   founder: {
     "@type": "Person",
-    name: "María José",
+    name: SITE.professional,
     jobTitle: "Piercer profesional",
   },
   hasOfferCatalog: {

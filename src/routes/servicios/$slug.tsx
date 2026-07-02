@@ -9,6 +9,9 @@ import { BUSINESS_LOCATION, SITE } from "@/lib/site";
 import { SiteBreadcrumbs } from "@/components/site/SiteBreadcrumbs";
 import { ArrowLeft, MessageCircle, Clock, Stethoscope, Tag, MapPin } from "lucide-react";
 
+const numericPrice = (price: string) =>
+  price.match(/\$\d{1,3}(?:\.\d{3})*/)?.[0].replace(/\D/g, "");
+
 export const Route = createFileRoute("/servicios/$slug")({
   head: ({ params }) => {
     const service = services.find((s) => s.slug === params.slug);
@@ -89,7 +92,7 @@ function ServicePage() {
         },
         offers: {
           "@type": "Offer",
-          price: service.price.replace(/[^0-9]/g, "") || undefined,
+          price: numericPrice(service.price),
           priceCurrency: "CLP",
           availability: "https://schema.org/InStock",
         },

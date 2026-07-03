@@ -12,7 +12,7 @@ export const SITE = {
   region: "Arica y Parinacota",
   country: "CL",
   countryName: "Chile",
-  postalCode: "1000000",
+  postalCode: "1000576",
   openingHours: {
     weekdays: "11:00–20:00",
     saturday: "11:00–20:00",
@@ -24,7 +24,8 @@ export const SITE = {
     sunday: "Domingo · cerrado",
   },
   mapsShareUrl: "https://share.google/B3q1HFQe02aDTyBVm",
-  mapsEmbedUrl: "https://maps.google.com/maps?q=San+Marcos+393+Arica+Chile&output=embed&hl=es&z=16",
+  mapsEmbedUrl:
+    "https://maps.google.com/maps?q=Cotepiercing+San+Marcos+393+1000576+Arica+Chile&output=embed&hl=es&z=16",
   googleBusinessUrl: "https://www.google.com/search?kgmid=/g/11l5ktjh6h&q=Cotepiercing",
   googleKnowledgeGraphId: "/g/11l5ktjh6h",
   instagramUrl: "https://www.instagram.com/cote_piercing/",

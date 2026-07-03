@@ -47,10 +47,17 @@ import gSeptum from "@/assets/gallery/septum-piercing-con-herradura-cotepiercing
 import gEyebrow from "@/assets/gallery/eyebrow-piercing-vertical-cotepiercing-arica.webp";
 import gTongue from "@/assets/gallery/tongue-piercing-con-joyeria-personalizada-cotepiercing-arica.webp";
 import gEstudio from "@/assets/gallery/estudio-piercing-cotepiercing-espacio-de-trabajo.webp";
+import gPerforacionHelix from "@/assets/gallery/perforacion-helix-cotepiercing.webp";
+import gMicrodermalZonaBaja from "@/assets/gallery/piercing-microdermal-vertical-zona-baja-cotepiercing.webp";
+import gMicrodermal from "@/assets/gallery/microdermal-cotepiercing.webp";
+import gPiercingHelix from "@/assets/gallery/piercing-helix-cotepiercing.webp";
+import gIndustrial from "@/assets/gallery/ambas-perforaciones-para-industrial-cotepiercing.webp";
 
 type GalleryItem = {
   src: string;
   filename: string;
+  width: number;
+  height: number;
   alt: string;
   category: string;
   caption: string;
@@ -60,6 +67,8 @@ const galleryItems: GalleryItem[] = [
   {
     src: gExpansion,
     filename: "expansion-lobulo-doble-helix-oreja-cotepiercing.webp",
+    width: 530,
+    height: 577,
     alt: "Oreja con expansión de lóbulo y doble piercing hélix, trabajo profesional realizado por María José de Cotepiercing.",
     category: "Oreja",
     caption: "Expansión de lóbulo y doble hélix",
@@ -67,6 +76,8 @@ const galleryItems: GalleryItem[] = [
   {
     src: gSeptum,
     filename: "septum-piercing-con-herradura-cotepiercing-arica.webp",
+    width: 1200,
+    height: 1600,
     alt: "Septum piercing con joyería tipo herradura realizado por María José de Cotepiercing en Arica, Chile.",
     category: "Nariz / rostro",
     caption: "Septum con herradura",
@@ -74,6 +85,8 @@ const galleryItems: GalleryItem[] = [
   {
     src: gEyebrow,
     filename: "eyebrow-piercing-vertical-cotepiercing-arica.webp",
+    width: 1311,
+    height: 1200,
     alt: "Vertical eyebrow piercing realizado por María José de Cotepiercing en Arica, Chile.",
     category: "Rostro",
     caption: "Vertical eyebrow",
@@ -81,13 +94,62 @@ const galleryItems: GalleryItem[] = [
   {
     src: gTongue,
     filename: "tongue-piercing-con-joyeria-personalizada-cotepiercing-arica.webp",
+    width: 1080,
+    height: 1062,
     alt: "Tongue piercing con joyería personalizada realizado por María José de Cotepiercing en Arica, Chile.",
     category: "Oral",
     caption: "Tongue con joyería personalizada",
   },
   {
+    src: gPerforacionHelix,
+    filename: "perforacion-helix-cotepiercing.webp",
+    width: 853,
+    height: 888,
+    alt: "Perforación hélix con joyería curva de cristales en la oreja, trabajo realizado por Cotepiercing.",
+    category: "Oreja",
+    caption: "Perforación Hélix",
+  },
+  {
+    src: gMicrodermalZonaBaja,
+    filename: "piercing-microdermal-vertical-zona-baja-cotepiercing.webp",
+    width: 891,
+    height: 900,
+    alt: "Piercing microdermal vertical en zona baja de la espalda con dos joyas de cristal.",
+    category: "Cuerpo",
+    caption: "Piercing microdermal vertical zona baja",
+  },
+  {
+    src: gMicrodermal,
+    filename: "microdermal-cotepiercing.webp",
+    width: 887,
+    height: 881,
+    alt: "Microdermal en mejilla con joyería de cristales, trabajo realizado por Cotepiercing.",
+    category: "Rostro",
+    caption: "Microdermal",
+  },
+  {
+    src: gPiercingHelix,
+    filename: "piercing-helix-cotepiercing.webp",
+    width: 900,
+    height: 887,
+    alt: "Piercing hélix en oreja con joyería de tres cristales.",
+    category: "Oreja",
+    caption: "Piercing Hélix",
+  },
+  {
+    src: gIndustrial,
+    filename: "ambas-perforaciones-para-industrial-cotepiercing.webp",
+    width: 900,
+    height: 899,
+    alt: "Ambas perforaciones para piercing industrial en oreja con joyería inicial.",
+    category: "Oreja",
+    caption: "Ambas perforaciones para industrial",
+  },
+  {
     src: gEstudio,
     filename: "estudio-piercing-cotepiercing-espacio-de-trabajo.webp",
+    width: 905,
+    height: 1600,
     alt: "Espacio de trabajo de estudio de piercing con camilla, mesón, insumos y decoración profesional.",
     category: "Estudio",
     caption: "El estudio",
@@ -649,6 +711,8 @@ function Page() {
                 <img
                   src={g.src}
                   alt={g.alt}
+                  width={g.width}
+                  height={g.height}
                   loading="lazy"
                   decoding="async"
                   className="h-full w-full object-cover"
@@ -676,6 +740,8 @@ function Page() {
                 <img
                   src={g.src}
                   alt={g.alt}
+                  width={g.width}
+                  height={g.height}
                   loading="lazy"
                   decoding="async"
                   className="w-full h-auto object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
@@ -712,6 +778,8 @@ function Page() {
                 <img
                   src={lightbox.src}
                   alt={lightbox.alt}
+                  width={lightbox.width}
+                  height={lightbox.height}
                   className="h-full w-full object-contain"
                 />
               </div>

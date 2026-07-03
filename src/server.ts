@@ -2,7 +2,7 @@ import "./lib/error-capture";
 
 import { consumeLastCapturedError } from "./lib/error-capture";
 import { renderErrorPage } from "./lib/error-page";
-import { SITE } from "./lib/site";
+import { BUSINESS_ADDRESS_WITH_COUNTRY, SITE } from "./lib/site";
 import type { GooglePlaceSummary, GoogleReview } from "./lib/google-reviews";
 
 type ServerEntry = {
@@ -36,6 +36,12 @@ type PlacesReview = {
   text?: { text?: string };
   originalText?: { text?: string };
   publishTime?: string;
+};
+
+type TextSearchPlace = {
+  id?: string;
+  displayName?: { text?: string };
+  formattedAddress?: string;
 };
 
 type PlaceDetails = {
@@ -78,18 +84,28 @@ async function resolvePlaceId(apiKey: string): Promise<string | undefined> {
       "X-Goog-FieldMask": "places.id,places.displayName,places.formattedAddress",
     },
     body: JSON.stringify({
-      textQuery: `${SITE.name}, ${SITE.streetAddress}, ${SITE.locality}, Chile`,
+      textQuery: `${SITE.name}, ${BUSINESS_ADDRESS_WITH_COUNTRY}`,
       languageCode: "es",
       regionCode: "CL",
     }),
   });
   if (!response.ok) return undefined;
   const payload = (await response.json()) as {
-    places?: Array<{ id?: string; displayName?: { text?: string } }>;
+    places?: TextSearchPlace[];
   };
-  return payload.places?.find((place) =>
-    place.displayName?.text?.toLocaleLowerCase("es").includes("cotepiercing"),
-  )?.id;
+  const places = payload.places ?? [];
+  const businessName = SITE.name.toLocaleLowerCase("es");
+  const streetAddress = SITE.streetAddress.toLocaleLowerCase("es");
+
+  const exactNameMatch = places.find((place) =>
+    place.displayName?.text?.toLocaleLowerCase("es").includes(businessName),
+  );
+  if (exactNameMatch?.id) return exactNameMatch.id;
+
+  const addressMatch = places.find((place) =>
+    place.formattedAddress?.toLocaleLowerCase("es").includes(streetAddress),
+  );
+  return addressMatch?.id ?? places[0]?.id;
 }
 
 function normalizeReview(review: PlacesReview): GoogleReview | null {

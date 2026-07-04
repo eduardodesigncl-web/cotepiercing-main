@@ -43,7 +43,7 @@ export function SiteFooter() {
         </div>
         <div className="mt-8 flex flex-col gap-3 border-t border-border pt-6 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-xs tracking-[0.22em] uppercase text-muted-foreground">
-            Precisión piercing · Timeless you
+            Hecho por Mouselab.cl
           </p>
           <p className="text-xs text-muted-foreground">
             © {new Date().getFullYear()} {SITE.professional} — {SITE.name}

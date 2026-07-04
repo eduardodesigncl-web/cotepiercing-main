@@ -34,7 +34,11 @@ import { waLink } from "@/lib/wa";
 import { SITE_URL } from "@/lib/config";
 import { BUSINESS_ADDRESS_WITH_COUNTRY, SITE } from "@/lib/site";
 
-import heroPortrait from "@/assets/hero-portrait.jpg";
+import heroCarouselEarWide from "@/assets/hero/hero-carousel-ear-wide.webp";
+import heroCarouselJewelryHands from "@/assets/hero/hero-carousel-jewelry-hands.webp";
+import heroCarouselJewelryTray from "@/assets/hero/hero-carousel-jewelry-tray.webp";
+import heroCarouselMarking from "@/assets/hero/hero-carousel-marking.webp";
+import heroCarouselEarStar from "@/assets/hero/hero-carousel-ear-star.webp";
 import joyeriaPremiumArica from "@/assets/joyeria/joyeria-piercing-premium-cotepiercing-arica.webp";
 import joyeriaSatin from "@/assets/joyeria/joyeria-piercing-satin-lujo-cotepiercing.webp";
 import joyeriaMarmol from "@/assets/joyeria/joyeria-piercing-marmol-premium-cotepiercing.webp";
@@ -156,6 +160,40 @@ const galleryItems: GalleryItem[] = [
   },
 ];
 
+const heroCarouselImages = [
+  {
+    src: heroCarouselEarWide,
+    alt: "Oreja con piercings dorados y joyería fina.",
+  },
+  {
+    src: heroCarouselJewelryHands,
+    alt: "Manos con guantes negros manipulando joyería dorada.",
+  },
+  {
+    src: heroCarouselJewelryTray,
+    alt: "Selección de joyería para piercing en una bandeja beige.",
+  },
+  {
+    src: heroCarouselEarStar,
+    alt: "Oreja con piercings dorados y colgante de estrella.",
+  },
+  {
+    src: heroCarouselMarking,
+    alt: "María José evaluando la anatomía facial antes de una perforación.",
+  },
+];
+
+const heroCarouselLoop = [...heroCarouselImages, ...heroCarouselImages];
+const heroCardTone = [
+  "hero-card-left-outer",
+  "hero-card-left",
+  "hero-card-center",
+  "hero-card-right",
+  "hero-card-right-outer",
+];
+const faqMidpoint = Math.ceil(faqs.length / 2);
+const faqColumns = [faqs.slice(0, faqMidpoint), faqs.slice(faqMidpoint)];
+
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
@@ -176,7 +214,7 @@ export const Route = createFileRoute("/")({
     ],
     links: [
       { rel: "canonical", href: `${SITE_URL}/` },
-      { rel: "preload", as: "image", href: heroPortrait, fetchPriority: "high" },
+      { rel: "preload", as: "image", href: heroCarouselEarWide, fetchPriority: "high" },
     ],
   }),
   component: Page,
@@ -192,7 +230,10 @@ function Section({
   children: React.ReactNode;
 }) {
   return (
-    <section id={id} className={`scroll-mt-24 py-12 sm:py-20 lg:py-32 ${className}`}>
+    <section
+      id={id}
+      className={`landing-section scroll-mt-24 py-12 sm:py-20 lg:py-32 ${className}`}
+    >
       <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-10">{children}</div>
     </section>
   );
@@ -210,7 +251,7 @@ function SectionHead({
   center?: boolean;
 }) {
   return (
-    <div className={`max-w-2xl ${center ? "mx-auto text-center" : ""}`}>
+    <div className={`landing-section-head max-w-2xl ${center ? "mx-auto text-center" : ""}`}>
       {eyebrow && <div className="eyebrow mb-4">{eyebrow}</div>}
       <h2 className="font-serif text-3xl lg:text-5xl leading-[1.1] text-foreground">{title}</h2>
       {intro && (
@@ -218,7 +259,7 @@ function SectionHead({
           {intro}
         </p>
       )}
-      <div className={`gold-rule mt-8 ${center ? "mx-auto" : ""}`} />
+      <div className={`landing-gold-rule gold-rule mt-8 ${center ? "mx-auto" : ""}`} />
     </div>
   );
 }
@@ -229,171 +270,110 @@ function Page() {
   const filtered = services.filter((s) => s.category === cat);
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      <Nav />
+    <div className="landing-color-study min-h-screen overflow-x-hidden bg-background text-foreground">
+      <Nav overlay />
 
       <SchemaScript />
 
-      {/* HERO — cinematic editorial */}
+      {/* HERO — editorial carousel */}
       <section
         id="inicio"
-        className="relative h-[100svh] min-h-[690px] w-full overflow-hidden bg-[var(--warm-white)]"
+        className="relative flex min-h-[100svh] w-full overflow-hidden bg-[#080807] text-white"
       >
-        <img
-          src={heroPortrait}
-          alt="Retrato editorial con piercings dorados delicados — Cotepiercing Arica"
-          width={1920}
-          height={1080}
-          fetchPriority="high"
-          decoding="async"
-          className="absolute inset-0 h-full w-full animate-hero-kenburns object-cover object-[62%_center]"
-        />
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(90deg, var(--warm-white) 0%, color-mix(in oklab, var(--warm-white) 96%, transparent) 28%, color-mix(in oklab, var(--warm-white) 60%, transparent) 52%, color-mix(in oklab, var(--warm-white) 14%, transparent) 72%, transparent 88%)",
-          }}
-        />
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(180deg, color-mix(in oklab, var(--warm-white) 72%, transparent) 0%, transparent 22%, transparent 72%, color-mix(in oklab, var(--foreground) 12%, transparent) 100%)",
-          }}
-        />
-        <div className="pointer-events-none absolute inset-0 overflow-hidden mix-blend-soft-light">
-          <div className="absolute -top-1/4 left-0 h-[150%] w-[22%] animate-hero-sheen bg-gradient-to-r from-transparent via-white/55 to-transparent" />
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_18%,rgba(198,158,102,0.12),transparent_31%),radial-gradient(circle_at_20%_70%,rgba(255,255,255,0.05),transparent_25%)]" />
+        <div className="pointer-events-none absolute inset-0 overflow-hidden opacity-50 mix-blend-screen">
+          <div className="absolute -top-1/4 left-0 h-[150%] w-[18%] animate-hero-sheen bg-gradient-to-r from-transparent via-white/20 to-transparent" />
         </div>
         <div aria-hidden="true" className="pointer-events-none absolute inset-0">
-          {Array.from({ length: 14 }).map((_, index) => (
+          {Array.from({ length: 18 }).map((_, index) => (
             <span
               key={index}
-              className="absolute h-1 w-1 animate-hero-particle rounded-full bg-[var(--gold)] opacity-0"
+              className="absolute h-1 w-1 animate-hero-particle rounded-full bg-[var(--gold-soft)] opacity-0"
               style={{
-                left: `${10 + ((index * 19) % 82)}%`,
-                bottom: `${8 + ((index * 23) % 54)}%`,
+                left: `${6 + ((index * 17) % 88)}%`,
+                bottom: `${8 + ((index * 19) % 62)}%`,
                 animationDelay: `${(index % 7) * 1.15}s`,
-                animationDuration: `${7 + (index % 5)}s`,
+                animationDuration: `${8 + (index % 5)}s`,
               }}
             />
           ))}
         </div>
 
-        <div className="relative z-10 mx-auto flex h-full max-w-7xl items-center px-5 sm:px-6 lg:px-10">
-          <div className="max-w-[650px] pt-24 lg:pt-8">
-            <div className="mb-6 flex animate-hero-rise items-center gap-3">
-              <span className="h-px w-10 bg-[var(--gold)]" />
-              <span className="text-[11px] font-medium uppercase tracking-[0.34em] text-[var(--gold)]">
-                Piercing profesional · Arica
-              </span>
+        <div className="relative z-10 mx-auto flex min-h-[100svh] w-full max-w-[1500px] flex-col justify-between px-4 pb-7 pt-28 sm:px-6 sm:pb-10 lg:px-10 lg:pt-32">
+          <div className="mx-auto flex w-full max-w-4xl flex-1 flex-col items-center justify-center pb-8 pt-6 text-center sm:pb-10 lg:pt-0">
+            <div className="mb-7 flex w-full max-w-xs animate-hero-rise items-center justify-center gap-4 sm:max-w-md">
+              <span className="h-px flex-1 bg-[var(--gold)]/55" />
+              <span className="h-2 w-2 rotate-45 border border-[var(--gold-soft)]" />
+              <span className="h-px flex-1 bg-[var(--gold)]/55" />
             </div>
 
-            <h1 className="font-serif text-[48px] leading-[0.98] tracking-tight text-foreground sm:text-6xl lg:text-7xl xl:text-[92px]">
-              <span className="block animate-hero-rise" style={{ animationDelay: "120ms" }}>
-                Piercings cerca
-              </span>
-              <span className="block animate-hero-rise" style={{ animationDelay: "240ms" }}>
-                de ti en{" "}
-                <span className="animate-hero-shimmer bg-gradient-to-r from-[var(--gold)] via-[var(--gold-soft)] to-[var(--gold)] bg-[length:200%_auto] bg-clip-text italic text-transparent">
-                  Arica
-                </span>
-              </span>
+            <h1 className="animate-hero-rise max-w-5xl font-serif text-[42px] uppercase leading-[1.08] tracking-[0.02em] text-[var(--warm-white)] sm:text-6xl lg:text-[78px]">
+              Piercings diseñados
+              <span className="block">para tu anatomía</span>
             </h1>
 
             <p
-              className="mt-7 max-w-md animate-hero-rise text-base leading-relaxed text-foreground/78 sm:text-lg"
-              style={{ animationDelay: "360ms" }}
+              className="mt-5 max-w-xl animate-hero-rise text-sm leading-relaxed text-white/78 sm:text-base"
+              style={{ animationDelay: "180ms" }}
             >
-              Evaluación anatómica, técnica segura y joyería inicial incluida. Cada perforación,
-              diseñada para tu cuerpo y tu proceso de cicatrización.
-            </p>
-
-            <p
-              className="mt-5 animate-hero-rise font-serif text-xl italic text-foreground/72"
-              style={{ animationDelay: "520ms" }}
-            >
-              “No perforo cuerpos, diseño anatomías.”
+              Evaluación, perforación y joyería con un enfoque profesional, seguro y personalizado.
             </p>
 
             <div
-              className="mt-10 flex animate-hero-rise flex-col gap-3 sm:flex-row sm:flex-wrap"
-              style={{ animationDelay: "680ms" }}
+              className="mt-8 flex animate-hero-rise flex-col items-center gap-4 sm:flex-row"
+              style={{ animationDelay: "320ms" }}
             >
               <a
                 href={waLink()}
                 data-cta="reservation"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex min-h-14 w-full items-center justify-center rounded-full bg-[var(--gold)] px-8 py-4 text-center text-[11px] uppercase tracking-[0.3em] text-white shadow-[0_18px_42px_-18px_var(--gold)] transition-all hover:-translate-y-0.5 hover:bg-[var(--gold-soft)] sm:w-auto sm:px-11"
+                className="inline-flex min-h-12 items-center justify-center rounded-full bg-[var(--warm-white)] px-8 py-3 text-center text-[11px] font-medium text-foreground shadow-[0_18px_45px_-24px_rgba(255,255,255,0.7)] transition-all hover:-translate-y-0.5 hover:bg-white sm:px-10"
               >
-                Reservar por WhatsApp
+                Reservar cita
+                <span aria-hidden="true" className="ml-3 text-base leading-none">
+                  ›
+                </span>
               </a>
               <Link
                 to="/servicios"
-                className="inline-flex min-h-14 w-full items-center justify-center rounded-full border border-foreground/25 px-8 py-4 text-center text-[11px] uppercase tracking-[0.24em] text-foreground transition-colors hover:border-[var(--gold)] hover:text-[var(--gold)] sm:w-auto"
+                className="inline-flex min-h-12 items-center justify-center border-b border-[var(--gold)] px-3 py-3 text-center text-[11px] text-white transition-colors hover:text-[var(--gold-soft)]"
               >
                 Ver servicios
               </Link>
             </div>
+          </div>
 
-            <div
-              className="mt-11 grid max-w-xl animate-hero-fade grid-cols-3 gap-4"
-              style={{ animationDelay: "900ms" }}
-            >
-              {[
-                { value: "+8 años", label: "De experiencia" },
-                { value: "100%", label: "Asepsia certificada" },
-                { value: "5.0★", label: "Reseñas Google" },
-              ].map((item) => (
-                <div key={item.label} className="min-w-0">
-                  <p className="font-serif text-2xl leading-none text-[var(--gold)] sm:text-[28px]">
-                    {item.value}
-                  </p>
-                  <p className="mt-2 text-[9px] uppercase tracking-[0.2em] text-foreground/60 sm:text-[10px]">
-                    {item.label}
-                  </p>
-                </div>
-              ))}
+          <div className="hero-carousel-mask -mx-4 animate-hero-fade pb-3 sm:-mx-6 lg:-mx-10">
+            <div className="hero-carousel-track">
+              {heroCarouselLoop.map((image, index) => {
+                const tone = heroCardTone[index % heroCardTone.length];
+
+                return (
+                  <figure
+                    key={`${image.src}-${index}`}
+                    className={`hero-carousel-card ${tone} h-[162px] w-[118px] overflow-hidden bg-white/5 shadow-[0_30px_80px_-42px_rgba(0,0,0,0.95)] sm:h-[220px] sm:w-[172px] lg:h-[286px] lg:w-[228px]`}
+                  >
+                    <img
+                      src={image.src}
+                      alt={image.alt}
+                      width={900}
+                      height={1125}
+                      loading={index < heroCarouselImages.length ? "eager" : "lazy"}
+                      decoding="async"
+                      className="h-full w-full object-cover"
+                    />
+                  </figure>
+                );
+              })}
             </div>
           </div>
         </div>
-
-        <div className="absolute bottom-20 right-5 z-20 hidden animate-hero-float items-center gap-3 rounded-2xl border border-white/70 bg-white/65 p-3 pr-5 shadow-[0_20px_55px_-25px_rgba(60,50,40,0.45)] backdrop-blur-xl lg:flex">
-          <img
-            src={earImg}
-            alt="Detalle de joyería de piercing"
-            width={52}
-            height={52}
-            decoding="async"
-            className="h-14 w-14 rounded-xl object-cover"
-          />
-          <div>
-            <p className="text-[10px] uppercase tracking-[0.24em] text-[var(--gold)]">
-              Joyería incluida
-            </p>
-            <p className="mt-1 font-serif text-[15px] leading-tight text-foreground">
-              Titanio implant-grade
-            </p>
-          </div>
-        </div>
-
-        <a
-          href="#servicios"
-          aria-label="Bajar a servicios"
-          className="absolute bottom-6 left-1/2 z-20 hidden -translate-x-1/2 animate-hero-fade flex-col items-center gap-2 text-[9px] uppercase tracking-[0.34em] text-foreground/55 sm:flex"
-          style={{ animationDelay: "1.1s" }}
-        >
-          Scroll
-          <span className="relative block h-8 w-5 rounded-full border border-foreground/30">
-            <span className="absolute left-1/2 top-2 h-1 w-1 -translate-x-1/2 rounded-full bg-[var(--gold)] animate-hero-scroll-dot" />
-          </span>
-        </a>
       </section>
 
       {/* TRUST */}
-      <Section className="bg-[var(--warm-white)]">
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-px bg-border border border-border">
+      <Section className="landing-band landing-band-cream landing-trust-section">
+        <div className="landing-trust-grid grid grid-cols-2 md:grid-cols-5 gap-px bg-border border border-border">
           {[
             { icon: GraduationCap, label: "Atención profesional especializada" },
             { icon: Sparkles, label: "Especialización exclusiva en piercing" },
@@ -403,7 +383,7 @@ function Page() {
           ].map(({ icon: Icon, label }) => (
             <div
               key={label}
-              className="bg-background p-5 sm:p-8 flex flex-col items-center text-center gap-3 sm:gap-4 last:col-span-2 md:last:col-span-1"
+              className="landing-glass-tile bg-background p-5 sm:p-8 flex flex-col items-center text-center gap-3 sm:gap-4 last:col-span-2 md:last:col-span-1"
             >
               <Icon className="w-5 h-5 sm:w-6 sm:h-6 text-[var(--gold)]" strokeWidth={1.2} />
               <p className="text-[11px] sm:text-xs lg:text-sm leading-snug text-foreground/80">
@@ -412,15 +392,11 @@ function Page() {
             </div>
           ))}
         </div>
-        <p className="mt-10 max-w-2xl text-sm lg:text-base text-muted-foreground leading-relaxed">
-          Cada perforación se realiza considerando anatomía, ubicación, tipo de joyería, proceso de
-          cicatrización y cuidado posterior.
-        </p>
       </Section>
 
       {/* SERVICES — image cards */}
-      <Section id="servicios" className="bg-[var(--stone)]/40">
-        <SectionHead eyebrow="Catálogo" title="Servicios de piercing en Arica" />
+      <Section id="servicios" className="landing-band landing-band-sand landing-catalog-section">
+        <SectionHead title="Catálogo" />
 
         <div className="mt-8 sm:mt-12 flex flex-wrap gap-1.5 sm:gap-2">
           {categories.map((c) => (
@@ -444,7 +420,7 @@ function Page() {
               key={s.name}
               to="/servicios/$slug"
               params={{ slug: s.slug }}
-              className="group flex flex-col h-full w-full text-left bg-background overflow-hidden border border-border hover:border-[var(--gold)] transition-colors"
+              className="landing-card group flex flex-col h-full w-full text-left bg-background overflow-hidden border border-border hover:border-[var(--gold)] transition-colors"
             >
               <div className="relative w-full aspect-[4/5] shrink-0 overflow-hidden bg-[var(--stone)]">
                 <img
@@ -479,7 +455,7 @@ function Page() {
       </Section>
 
       {/* JEWELRY */}
-      <Section id="joyeria">
+      <Section id="joyeria" className="landing-band landing-band-cream landing-band-glow">
         {/* Texto intro */}
         <SectionHead
           eyebrow="Joyería"
@@ -572,15 +548,15 @@ function Page() {
       </Section>
 
       {/* CARE */}
-      <Section id="cuidados">
+      <Section id="cuidados" className="landing-band landing-band-dark landing-care-section">
         <SectionHead
           eyebrow="Cuidados"
           title="Cuidados para una cicatrización segura"
           intro="El cuidado posterior es parte esencial del proceso. Cada perforación requiere atención según la zona, tipo de joyería y evolución individual."
         />
 
-        <div className="mt-12 grid lg:grid-cols-2 gap-12">
-          <div>
+        <div className="landing-care-grid mt-10 grid gap-5 lg:grid-cols-2 lg:gap-6">
+          <div className="landing-care-panel">
             <div className="eyebrow mb-5">Cuidados generales</div>
             <ul className="space-y-3 text-[15px] leading-relaxed text-foreground/85">
               {[
@@ -599,7 +575,7 @@ function Page() {
               ))}
             </ul>
           </div>
-          <div>
+          <div className="landing-care-panel">
             <div className="eyebrow mb-5">Cuidados por zona</div>
             <Accordion type="single" collapsible className="border-t border-border">
               {[
@@ -637,7 +613,7 @@ function Page() {
         </div>
 
         {/* CTA interlinking: cuidados → reserva */}
-        <div className="mt-14 pt-10 border-t border-border flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+        <div className="landing-care-cta mt-8 pt-6 border-t border-border flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
           <div>
             <p className="font-serif text-lg lg:text-xl text-foreground">
               ¿Tu piercing está irritado o tiene un bultito?
@@ -658,8 +634,10 @@ function Page() {
         </div>
       </Section>
 
+      <GoogleReviews />
+
       {/* ABOUT */}
-      <Section id="sobre" className="bg-[var(--stone)]/40">
+      <Section id="sobre" className="landing-band landing-band-sand">
         <div className="grid lg:grid-cols-12 gap-12 items-center">
           <div className="lg:col-span-5">
             <img
@@ -674,8 +652,7 @@ function Page() {
           </div>
           <div className="lg:col-span-7">
             <SectionHead
-              eyebrow="Sobre María José"
-              title="Sobre María José, piercer profesional en Arica"
+              title="Sobre María José"
               intro="María José es piercer profesional en Arica, Chile, con años de experiencia en perforaciones corporales, asesoría anatómica y procedimientos especializados. En Cotepiercing trabaja con un enfoque seguro, personalizado y respetuoso del cuerpo, priorizando la higiene, la precisión técnica y la elección adecuada de la joyería para cada anatomía."
             />
             <div className="mt-8">
@@ -691,12 +668,8 @@ function Page() {
       </Section>
 
       {/* GALLERY */}
-      <Section id="galeria">
-        <SectionHead
-          eyebrow="Galería"
-          title="Galería de piercings profesionales en Arica"
-          intro="Explora algunos trabajos realizados por María José en Cotepiercing: perforaciones, joyería corporal y procedimientos especializados con enfoque profesional, seguro y personalizado."
-        />
+      <Section id="galeria" className="landing-band landing-band-cream">
+        <SectionHead title="Galería" />
         <div className="mt-8 sm:mt-12">
           {/* Mobile horizontal gallery: touch-friendly and motion-free */}
           <div className="flex snap-x snap-mandatory gap-3 overflow-x-auto pb-3 sm:hidden">
@@ -823,32 +796,41 @@ function Page() {
       </Dialog>
 
       {/* FAQ */}
-      <Section className="bg-[var(--stone)]/40">
-        <div className="grid lg:grid-cols-12 gap-12">
+      <Section className="landing-band landing-band-smoke landing-faq-section">
+        <div className="grid gap-8 lg:grid-cols-12 lg:gap-10">
           <div className="lg:col-span-4">
             <SectionHead eyebrow="FAQ" title="Preguntas frecuentes" />
           </div>
           <div className="lg:col-span-8">
-            <Accordion type="single" collapsible className="border-t border-border">
-              {faqs.map(({ question, answer }) => (
-                <AccordionItem key={question} value={question}>
-                  <AccordionTrigger className="font-serif text-lg py-6">
-                    {question}
-                  </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground leading-relaxed pb-6">
-                    {answer}
-                  </AccordionContent>
-                </AccordionItem>
+            <div className="grid gap-x-8 md:grid-cols-2">
+              {faqColumns.map((column, columnIndex) => (
+                <Accordion
+                  key={columnIndex}
+                  type="single"
+                  collapsible
+                  className="landing-faq-accordion border-t"
+                >
+                  {column.map(({ question, answer }) => (
+                    <AccordionItem key={question} value={question}>
+                      <AccordionTrigger className="font-serif text-[16px] leading-snug py-4 sm:text-[17px]">
+                        {question}
+                      </AccordionTrigger>
+                      <AccordionContent className="text-muted-foreground leading-relaxed pb-5">
+                        {answer}
+                      </AccordionContent>
+                    </AccordionItem>
+                  ))}
+                </Accordion>
               ))}
-            </Accordion>
+            </div>
           </div>
         </div>
       </Section>
 
       {/* RESERVE */}
-      <Section id="reserva">
-        <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-          <div className="lg:col-span-7">
+      <Section id="reserva" className="landing-band landing-band-dark landing-band-reserve">
+        <div className="landing-reserve-grid grid lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+          <div className="lg:col-span-6">
             <SectionHead
               eyebrow="Reserva"
               title="Reserva tu hora"
@@ -867,7 +849,7 @@ function Page() {
               </a>
             </div>
           </div>
-          <div className="lg:col-span-5 bg-[var(--stone)]/50 p-6 sm:p-8 lg:p-10 space-y-5 sm:space-y-6">
+          <div className="landing-reserve-panel lg:col-span-6 bg-[var(--stone)]/50 p-5 sm:p-6 lg:p-7 space-y-4">
             {/* Ubicación */}
             <div>
               <div className="eyebrow mb-3">Ubicación</div>
@@ -914,10 +896,8 @@ function Page() {
               />
             </div>
 
-            <div className="gold-rule" />
-
             {/* Horario */}
-            <div>
+            <div className="border-t border-white/10 pt-4">
               <div className="eyebrow mb-3">Horario</div>
               <div className="flex items-start gap-3">
                 <Clock className="w-4 h-4 text-[var(--gold)] mt-1 shrink-0" strokeWidth={1.4} />
@@ -931,8 +911,6 @@ function Page() {
           </div>
         </div>
       </Section>
-
-      <GoogleReviews />
 
       <SiteFooter />
     </div>

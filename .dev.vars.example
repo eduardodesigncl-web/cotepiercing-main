@@ -1,0 +1,4 @@
+GOOGLE_PLACES_API_KEY=replace-with-your-google-places-api-key
+# Optional but recommended once you confirm the Google Place ID for:
+# Cotepiercing - San Marcos 393, 1000576 Arica, Arica y Parinacota
+GOOGLE_PLACE_ID=

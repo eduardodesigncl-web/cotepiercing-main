@@ -2,7 +2,7 @@ import "./lib/error-capture";
 
 import { consumeLastCapturedError } from "./lib/error-capture";
 import { renderErrorPage } from "./lib/error-page";
-import { SITE } from "./lib/site";
+import { BUSINESS_ADDRESS_WITH_COUNTRY, SITE } from "./lib/site";
 import type { GooglePlaceSummary, GoogleReview } from "./lib/google-reviews";
 
 type ServerEntry = {
@@ -10,6 +10,9 @@ type ServerEntry = {
 };
 
 type RuntimeEnv = {
+  ASSETS?: {
+    fetch: (request: Request) => Promise<Response> | Response;
+  };
   GOOGLE_PLACES_API_KEY?: string;
   GOOGLE_PLACE_ID?: string;
   CF_VERSION_METADATA?: {
@@ -38,6 +41,12 @@ type PlacesReview = {
   publishTime?: string;
 };
 
+type TextSearchPlace = {
+  id?: string;
+  displayName?: { text?: string };
+  formattedAddress?: string;
+};
+
 type PlaceDetails = {
   id?: string;
   displayName?: { text?: string };
@@ -50,6 +59,15 @@ type PlaceDetails = {
 const REVIEW_CACHE_SECONDS = 60 * 60 * 24;
 const APP_COMMIT = __APP_COMMIT__;
 const APP_BUILD_TIME = __APP_BUILD_TIME__;
+const PUBLIC_ASSET_PATHS = new Set([
+  "/apple-touch-icon.png",
+  "/cotepiercing-piercing-profesional-arica-chile-og.png",
+  "/favicon.ico",
+  "/llms.txt",
+  "/og-image.png",
+  "/robots.txt",
+  "/sitemap.xml",
+]);
 
 function unavailableReviews(): GooglePlaceSummary {
   return {
@@ -78,18 +96,28 @@ async function resolvePlaceId(apiKey: string): Promise<string | undefined> {
       "X-Goog-FieldMask": "places.id,places.displayName,places.formattedAddress",
     },
     body: JSON.stringify({
-      textQuery: `${SITE.name}, ${SITE.streetAddress}, ${SITE.locality}, Chile`,
+      textQuery: `${SITE.name}, ${BUSINESS_ADDRESS_WITH_COUNTRY}`,
       languageCode: "es",
       regionCode: "CL",
     }),
   });
   if (!response.ok) return undefined;
   const payload = (await response.json()) as {
-    places?: Array<{ id?: string; displayName?: { text?: string } }>;
+    places?: TextSearchPlace[];
   };
-  return payload.places?.find((place) =>
-    place.displayName?.text?.toLocaleLowerCase("es").includes("cotepiercing"),
-  )?.id;
+  const places = payload.places ?? [];
+  const businessName = SITE.name.toLocaleLowerCase("es");
+  const streetAddress = SITE.streetAddress.toLocaleLowerCase("es");
+
+  const exactNameMatch = places.find((place) =>
+    place.displayName?.text?.toLocaleLowerCase("es").includes(businessName),
+  );
+  if (exactNameMatch?.id) return exactNameMatch.id;
+
+  const addressMatch = places.find((place) =>
+    place.formattedAddress?.toLocaleLowerCase("es").includes(streetAddress),
+  );
+  return addressMatch?.id ?? places[0]?.id;
 }
 
 function normalizeReview(review: PlacesReview): GoogleReview | null {
@@ -282,6 +310,23 @@ function addResponseHeaders(
   });
 }
 
+function shouldServeStaticAsset(pathname: string): boolean {
+  return pathname.startsWith("/assets/") || PUBLIC_ASSET_PATHS.has(pathname);
+}
+
+async function serveStaticAsset(
+  request: Request,
+  runtimeEnv: RuntimeEnv,
+): Promise<Response | undefined> {
+  if (request.method !== "GET" && request.method !== "HEAD") return undefined;
+  if (!shouldServeStaticAsset(new URL(request.url).pathname)) return undefined;
+  if (!runtimeEnv.ASSETS) return undefined;
+
+  const response = await runtimeEnv.ASSETS.fetch(request);
+  if (response.status === 404) return undefined;
+  return addResponseHeaders(request, response, runtimeEnv);
+}
+
 function trailingSlashRedirect(request: Request): Response | undefined {
   const url = new URL(request.url);
   const { pathname } = url;
@@ -308,6 +353,9 @@ export default {
     const runtimeEnv = env as RuntimeEnv;
     const redirect = trailingSlashRedirect(request);
     if (redirect) return addResponseHeaders(request, redirect, runtimeEnv);
+
+    const staticAsset = await serveStaticAsset(request, runtimeEnv);
+    if (staticAsset) return staticAsset;
 
     if (url.pathname === "/version.json" && request.method === "GET") {
       return addResponseHeaders(

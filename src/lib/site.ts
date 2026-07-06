@@ -11,13 +11,21 @@ export const SITE = {
   locality: "Arica",
   region: "Arica y Parinacota",
   country: "CL",
-  postalCode: "1000000",
+  countryName: "Chile",
+  postalCode: "1000576",
   openingHours: {
     weekdays: "11:00–20:00",
     saturday: "11:00–20:00",
     sunday: "Cerrado",
   },
-  mapsShareUrl: "https://share.google/ME2YGIzY4MLKa7LHC",
+  openingHoursText: {
+    weekdays: "Lunes a viernes · 11:00 — 20:00",
+    saturday: "Sábado · 11:00 — 20:00",
+    sunday: "Domingo · cerrado",
+  },
+  mapsShareUrl: "https://share.google/B3q1HFQe02aDTyBVm",
+  mapsEmbedUrl:
+    "https://maps.google.com/maps?q=Cotepiercing+San+Marcos+393+1000576+Arica+Chile&output=embed&hl=es&z=16",
   googleBusinessUrl: "https://www.google.com/search?kgmid=/g/11l5ktjh6h&q=Cotepiercing",
   googleKnowledgeGraphId: "/g/11l5ktjh6h",
   instagramUrl: "https://www.instagram.com/cote_piercing/",
@@ -29,4 +37,6 @@ export const SITE = {
 
 export const SITE_URL = SITE.url;
 
-export const BUSINESS_ADDRESS = `${SITE.venue}, ${SITE.streetAddress}, ${SITE.locality}, Chile`;
+export const BUSINESS_ADDRESS = `${SITE.streetAddress}, ${SITE.postalCode} ${SITE.locality}, ${SITE.region}`;
+export const BUSINESS_ADDRESS_WITH_COUNTRY = `${BUSINESS_ADDRESS}, ${SITE.countryName}`;
+export const BUSINESS_LOCATION = `${SITE.venue}, ${BUSINESS_ADDRESS_WITH_COUNTRY}`;

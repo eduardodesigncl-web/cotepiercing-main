@@ -12,7 +12,7 @@ export const Route = createFileRoute("/servicios/privado")({
       category="Íntimos"
       eyebrow="Servicios privados"
       title="Piercings privados en Arica"
-      intro="Atención discreta, higiene rigurosa y evaluación anatómica obligatoria antes de confirmar el procedimiento."
+      intro="Nipple individual o en par con atención discreta, higiene rigurosa y evaluación anatómica obligatoria antes de confirmar el procedimiento."
       guidance="La consulta se coordina directamente por WhatsApp. La viabilidad, preparación y cuidados se conversan de forma privada."
     />
   ),

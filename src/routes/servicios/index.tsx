@@ -6,27 +6,27 @@ const categories = [
   {
     href: "/servicios/oreja",
     title: "Piercings de oreja",
-    text: "Lóbulo, helix, tragus, conch, daith, rook e industrial.",
+    text: "Lóbulo, upper lobe, helix, tragus, conch, flat, daith, rook e industrial.",
   },
   {
     href: "/servicios/nariz-rostro",
     title: "Nariz y rostro",
-    text: "Nostril, septum y ceja con marcación y evaluación previa.",
+    text: "Nostril, septum, bridge, third eye, Austin Bar, septril y ceja.",
   },
   {
     href: "/servicios/labio-boca",
     title: "Labio y boca",
-    text: "Labret, medusa, Monroe y smiley con joyería adecuada para la zona.",
+    text: "Labret, meduza, Madonna, Monroe, smiley, lengua y bites.",
   },
   {
     href: "/servicios/cuerpo",
     title: "Piercings de cuerpo",
-    text: "Ombligo, microdermal y surface sujetos a viabilidad anatómica.",
+    text: "Ombligo, microdermal, surface y expansión sujetos a viabilidad anatómica.",
   },
   {
     href: "/servicios/privado",
     title: "Servicios privados",
-    text: "Atención discreta y evaluación anatómica obligatoria.",
+    text: "Nipple individual o en par con atención discreta y evaluación anatómica obligatoria.",
   },
   {
     href: "/evaluacion",

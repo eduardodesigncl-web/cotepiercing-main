@@ -14,6 +14,7 @@ export default tseslint.config(
       ".wrangler",
       ".tanstack",
       ".codex",
+      "olffy-src",
       "esbuild-test.js",
       "src/routeTree.gen.ts",
     ],

@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ContentPage } from "@/components/site/ContentPage";
-import { SITE, SITE_URL } from "@/lib/site";
+import { BUSINESS_LOCATION, SITE, SITE_URL } from "@/lib/site";
 import studio from "@/assets/gallery/estudio-piercing-cotepiercing-espacio-de-trabajo.webp";
 
 export const Route = createFileRoute("/estudio")({
@@ -9,8 +9,7 @@ export const Route = createFileRoute("/estudio")({
       { title: "Estudio de piercing en Arica | Cotepiercing" },
       {
         name: "description",
-        content:
-          "Conoce el espacio de atención de Cotepiercing en Recina Tattoo, San Marcos 393, Arica: protocolo de asepsia, ubicación y horarios.",
+        content: `Conoce el espacio de atención de ${SITE.name} en ${BUSINESS_LOCATION}: protocolo de asepsia, ubicación y horarios.`,
       },
     ],
     links: [{ rel: "canonical", href: `${SITE_URL}/estudio` }],
@@ -43,8 +42,9 @@ function StudioPage() {
           </ul>
           <h2 className="mt-10 font-serif text-3xl">Ubicación y horario</h2>
           <p className="mt-5 text-sm leading-relaxed text-muted-foreground">
-            {SITE.venue}, {SITE.streetAddress}, {SITE.locality}. Atención de lunes a sábado entre
-            11:00 y 20:00, con reserva previa.
+            {BUSINESS_LOCATION}. {SITE.openingHoursText.weekdays},{" "}
+            {SITE.openingHoursText.saturday.toLowerCase()} y{" "}
+            {SITE.openingHoursText.sunday.toLowerCase()}, con reserva previa.
           </p>
         </div>
       </div>

@@ -43,9 +43,6 @@ export function ContentPage({
               <a href="/piercing-arica" className="text-[var(--gold)] hover:opacity-70">
                 Conocer la atención de piercing profesional en Arica
               </a>
-              <a href="/joyeria" className="text-[var(--gold)] hover:opacity-70">
-                Revisar la selección de joyería para piercing
-              </a>
               <a href="/precios" className="text-[var(--gold)] hover:opacity-70">
                 Consultar precios de servicios
               </a>

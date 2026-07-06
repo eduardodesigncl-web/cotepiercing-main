@@ -2,17 +2,10 @@ import { SITE } from "@/lib/site";
 
 const links = [
   { href: "/servicios", label: "Servicios" },
-  { href: "/piercing-arica", label: "Piercing en Arica" },
-  { href: "/joyeria", label: "Joyería" },
-  { href: "/servicios/oreja", label: "Oreja" },
-  { href: "/servicios/nariz-rostro", label: "Nariz y rostro" },
-  { href: "/servicios/labio-boca", label: "Labio y boca" },
-  { href: "/servicios/cuerpo", label: "Cuerpo" },
   { href: "/servicios/privado", label: "Servicios privados" },
-  { href: "/precios", label: "Precios" },
-  { href: "/evaluacion", label: "Evaluación" },
   { href: "/estudio", label: "Estudio" },
-  { href: "/sobre-cote", label: "Sobre María José" },
+  { href: "/evaluacion", label: "Evaluaciones" },
+  { href: "/sobre-cote", label: "Sobre María" },
   { href: "/privacidad", label: "Privacidad" },
 ];
 
@@ -28,6 +21,7 @@ export function SiteFooter() {
             </p>
             <a
               href={`tel:${SITE.phoneE164}`}
+              data-cta="phone"
               className="mt-2 inline-block text-xs text-[var(--gold)] hover:opacity-70"
             >
               {SITE.phoneDisplay}
@@ -50,7 +44,7 @@ export function SiteFooter() {
         </div>
         <div className="mt-8 flex flex-col gap-3 border-t border-border pt-6 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-xs tracking-[0.22em] uppercase text-muted-foreground">
-            Precisión piercing · Timeless you
+            Hecho por Mouselab.cl
           </p>
           <p className="text-xs text-muted-foreground">
             © {new Date().getFullYear()} {SITE.professional} — {SITE.name}

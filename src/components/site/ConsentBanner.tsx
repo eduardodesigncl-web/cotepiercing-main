@@ -1,4 +1,13 @@
 import { useEffect, useState } from "react";
+import {
+  GA4_MEASUREMENT_ID,
+  GOOGLE_ADS_ID,
+  GTM_CONTAINER_ID,
+  adsConversionTarget,
+  analyticsConfig,
+  googleMarketingEnabled,
+  type ConversionCta,
+} from "@/lib/analytics";
 
 const CONSENT_KEY = "cotepiercing-analytics-consent";
 
@@ -9,22 +18,49 @@ declare global {
   }
 }
 
-function enableGoogleAnalytics() {
-  if (document.querySelector('script[data-cotepiercing-gtag="true"]')) return;
+function ensureDataLayer() {
   window.dataLayer = window.dataLayer || [];
+}
+
+function loadGtm() {
+  if (!analyticsConfig.gtmEnabled) return;
+  if (document.querySelector('script[data-cotepiercing-gtm="true"]')) return;
+  ensureDataLayer();
+  window.dataLayer?.push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+
+  const script = document.createElement("script");
+  script.async = true;
+  script.dataset.cotepiercingGtm = "true";
+  script.src = `https://www.googletagmanager.com/gtm.js?id=${encodeURIComponent(GTM_CONTAINER_ID)}`;
+  document.head.appendChild(script);
+}
+
+function loadGtag() {
+  if (!analyticsConfig.ga4Enabled && !analyticsConfig.googleAdsEnabled) return;
+  if (document.querySelector('script[data-cotepiercing-gtag="true"]')) return;
+  ensureDataLayer();
   window.gtag =
     window.gtag ||
     function gtag(...args: unknown[]) {
       window.dataLayer?.push(args);
     };
   window.gtag("js", new Date());
-  window.gtag("config", "AW-18170149975");
+  if (analyticsConfig.ga4Enabled) window.gtag("config", GA4_MEASUREMENT_ID);
+  if (analyticsConfig.googleAdsEnabled) window.gtag("config", GOOGLE_ADS_ID);
 
   const script = document.createElement("script");
   script.async = true;
   script.dataset.cotepiercingGtag = "true";
-  script.src = "https://www.googletagmanager.com/gtag/js?id=AW-18170149975";
+  script.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(
+    GA4_MEASUREMENT_ID || GOOGLE_ADS_ID,
+  )}`;
   document.head.appendChild(script);
+}
+
+function enableGoogleMarketing() {
+  if (!googleMarketingEnabled) return;
+  loadGtm();
+  loadGtag();
 }
 
 export function ConsentBanner() {
@@ -33,28 +69,54 @@ export function ConsentBanner() {
   useEffect(() => {
     const saved = window.localStorage.getItem(CONSENT_KEY);
     setChoice(saved);
-    if (saved === "accepted") enableGoogleAnalytics();
+    if (saved === "accepted") enableGoogleMarketing();
 
-    const trackWhatsApp = (event: MouseEvent) => {
+    const trackCta = (event: MouseEvent) => {
       const target = event.target as Element | null;
-      const link = target?.closest('a[href*="wa.me"]');
-      if (link && window.gtag) {
-        window.gtag("event", "generate_lead", {
+      const link = target?.closest<HTMLAnchorElement>("a[data-cta]");
+      if (
+        !link ||
+        window.localStorage.getItem(CONSENT_KEY) !== "accepted" ||
+        !googleMarketingEnabled
+      ) {
+        return;
+      }
+
+      const cta = link.dataset.cta as ConversionCta | undefined;
+      if (!cta) return;
+
+      window.dataLayer?.push({
+        event: "cotepiercing_cta_click",
+        cta_type: cta,
+        cta_href: link.href,
+      });
+
+      if (window.gtag) {
+        window.gtag("event", "cta_click", {
           event_category: "contact",
-          event_label: "whatsapp",
+          event_label: cta,
         });
+
+        const sendTo = adsConversionTarget();
+        if (sendTo) {
+          window.gtag("event", "conversion", {
+            send_to: sendTo,
+            event_label: cta,
+          });
+        }
       }
     };
-    document.addEventListener("click", trackWhatsApp);
-    return () => document.removeEventListener("click", trackWhatsApp);
+    document.addEventListener("click", trackCta);
+    return () => document.removeEventListener("click", trackCta);
   }, []);
 
+  if (!googleMarketingEnabled) return null;
   if (choice) return null;
 
   const choose = (value: "accepted" | "rejected") => {
     window.localStorage.setItem(CONSENT_KEY, value);
     setChoice(value);
-    if (value === "accepted") enableGoogleAnalytics();
+    if (value === "accepted") enableGoogleMarketing();
   };
 
   return (

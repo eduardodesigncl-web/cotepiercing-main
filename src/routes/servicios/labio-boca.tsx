@@ -12,7 +12,7 @@ export const Route = createFileRoute("/servicios/labio-boca")({
       category="Labio y boca"
       eyebrow="Servicios · Labio y boca"
       title="Piercings de labio y boca en Arica"
-      intro="Labret, medusa, Monroe y smiley con joyería seleccionada para la zona."
+      intro="Labret, meduza, Madonna, Monroe, smiley, lengua y bites con joyería seleccionada para la zona."
       guidance="La ubicación y el largo de la joyería deben considerar labios, mucosa, dientes y encías. Cada caso se revisa de forma individual."
     />
   ),

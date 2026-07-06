@@ -40,6 +40,7 @@ export function CategoryLanding({
         </p>
         <a
           href={waLink(`Hola María José, quiero orientación sobre piercings de ${category}.`)}
+          data-cta="whatsapp"
           target="_blank"
           rel="noopener noreferrer"
           className="mt-7 inline-flex bg-[var(--gold)] px-7 py-3 text-xs uppercase tracking-widest text-white"

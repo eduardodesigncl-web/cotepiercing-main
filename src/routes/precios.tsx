@@ -54,12 +54,12 @@ function PricesPage() {
           Los servicios de perforación incluyen joyería inicial. El material, forma y tamaño se
           confirman según la anatomía y el proceso de cicatrización.
         </p>
-        <a
-          href="/joyeria"
-          className="mt-6 inline-block text-xs uppercase tracking-widest text-[var(--gold)]"
-        >
-          Revisar criterios de joyería para piercing →
-        </a>
+      </section>
+      <section className="mt-6 border border-border bg-background p-7">
+        <h2 className="font-serif text-3xl">No hacemos</h2>
+        <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+          Rhino y Dahlla Bites no están disponibles dentro de los servicios publicados.
+        </p>
       </section>
     </ContentPage>
   );

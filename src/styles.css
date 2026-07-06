@@ -564,7 +564,7 @@
 
   .landing-color-study #sobre .landing-about-photo {
     animation: landing-soft-pulse 7s ease-in-out infinite;
-    object-position: 50% 58%;
+    object-position: 68% center;
   }
 
   .landing-color-study #sobre .landing-about-panel,
@@ -605,7 +605,7 @@
       aspect-ratio: auto;
       border-radius: 18px;
       object-fit: cover;
-      object-position: center 30%;
+      object-position: 65% center;
       display: block;
     }
   }

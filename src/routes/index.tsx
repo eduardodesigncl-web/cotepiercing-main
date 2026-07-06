@@ -671,7 +671,7 @@ function Page() {
                   decoding="async"
                   width={900}
                   height={1200}
-                  className="landing-about-photo mx-auto h-auto w-full max-w-[34rem] aspect-[5/6] rounded-xl object-cover object-[50%_34%] shadow-sm lg:mx-0 lg:max-w-none lg:aspect-[16/7]"
+                  className="landing-about-photo mx-auto h-auto w-full max-w-[34rem] aspect-[5/6] rounded-xl object-cover shadow-sm lg:mx-0 lg:max-w-none lg:aspect-[16/7]"
                 />
               </div>
 

@@ -33,7 +33,7 @@ export const faqs = [
   {
     question: "¿Qué piercing conviene para una primera vez?",
     answer:
-      "Lóbulo, nostril o un helix simple pueden ser opciones iniciales, pero la recomendación final depende de tu anatomía, rutina y preferencias.",
+      "Lobe, nostril o un helix simple pueden ser opciones iniciales, pero la recomendación final depende de tu anatomía, rutina y preferencias.",
   },
   {
     question: "¿Trabajan con aguja o con pistola?",

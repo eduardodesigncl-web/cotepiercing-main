@@ -6,7 +6,7 @@ const categories = [
   {
     href: "/servicios/oreja",
     title: "Piercings de oreja",
-    text: "Lóbulo, upper lobe, helix, tragus, conch, flat, daith, rook e industrial.",
+    text: "Lobe, upper lobe, helix, tragus, conch, flat, daith, rook e industrial.",
   },
   {
     href: "/servicios/nariz-rostro",

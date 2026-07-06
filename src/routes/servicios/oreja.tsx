@@ -12,7 +12,7 @@ export const Route = createFileRoute("/servicios/oreja")({
       category="Oreja"
       eyebrow="Servicios · Oreja"
       title="Piercings de oreja en Arica"
-      intro="Lóbulo, upper lobe, helix, tragus, conch, flat, daith, rook e industrial con joyería inicial incluida."
+      intro="Lobe, upper lobe, helix, tragus, conch, flat, daith, rook e industrial con joyería inicial incluida."
       guidance="La forma y grosor del cartílago cambian en cada persona. Por eso, la ubicación y viabilidad de los piercings de oreja se confirman antes de perforar."
     />
   ),

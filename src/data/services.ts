@@ -15,22 +15,39 @@ import imgConch from "@/assets/servicios/piercing-conch-oreja-cotepiercing.webp"
 import imgDaith from "@/assets/servicios/piercing-daith-oreja-cotepiercing.webp";
 import imgRook from "@/assets/servicios/piercing-rook-oreja-cotepiercing.webp";
 import imgIndustrial from "@/assets/servicios/piercing-industrial-oreja-cotepiercing.webp";
+import imgAntihelix from "@/assets/servicios/piercing-antihelix-oreja-cotepiercing.webp";
+import imgFlat from "@/assets/servicios/piercing-flat-oreja-cotepiercing.webp";
 
 // ─── Nariz y rostro ──────────────────────────────────────────────────────────
 import imgNostril from "@/assets/servicios/piercing-nostril-nariz-cotepiercing.webp";
 import imgSeptum from "@/assets/servicios/piercing-septum-nariz-cotepiercing.webp";
 import imgCeja from "@/assets/servicios/piercing-ceja-eyebrow-piercing-cotepiercing.webp";
+import imgThirdEye from "@/assets/servicios/piercing-third-eye-rostro-cotepiercing.webp";
+import imgBridge from "@/assets/servicios/piercing-bridge-rostro-cotepiercing.webp";
+import imgNasallang from "@/assets/servicios/piercing-nasallang-nariz-cotepiercing.webp";
+import imgSeptril from "@/assets/servicios/piercing-septril-nariz-cotepiercing.webp";
 
 // ─── Labio y boca ────────────────────────────────────────────────────────────
 import imgLabret from "@/assets/servicios/piercing-labret-labio-cotepiercing.webp";
 import imgMedusa from "@/assets/servicios/piercing-medusa-labio-cotepiercing.webp";
 import imgMadonna from "@/assets/servicios/piercing-madonna-monroe-labio-cotepiercing.webp";
 import imgSmiley from "@/assets/servicios/piercing-smiley-frenillo-cotepiercing.webp";
+import imgAngelBites from "@/assets/servicios/piercing-angel-bites-labio-cotepiercing.webp";
+import imgCanineBites from "@/assets/servicios/piercing-canine-bites-labio-cotepiercing.webp";
+import imgCyberBites from "@/assets/servicios/piercing-cyber-bites-labio-cotepiercing.webp";
+import imgDolphinBites from "@/assets/servicios/piercing-dolphin-bites-labio-cotepiercing.webp";
+import imgSnakeBites from "@/assets/servicios/piercing-snake-bites-labio-cotepiercing.webp";
+import imgSpiderBites from "@/assets/servicios/piercing-spider-bites-labio-cotepiercing.webp";
+import imgSharkBites from "@/assets/servicios/piercing-shark-bites-labio-cotepiercing.webp";
+import imgLabretVertical from "@/assets/servicios/piercing-labret-vertical-labio-cotepiercing.webp";
+import imgLabretHorizontal from "@/assets/servicios/piercing-labret-horizontal-labio-cotepiercing.webp";
+import imgLengua from "@/assets/servicios/piercing-lengua-boca-cotepiercing.webp";
 
 // ─── Cuerpo ──────────────────────────────────────────────────────────────────
 import imgOmbligo from "@/assets/servicios/piercing-ombligo-abdomen-cotepiercing.webp";
 import imgMicrodermal from "@/assets/servicios/piercing-microdermal-mejilla-cotepiercing.webp";
 import imgSurface from "@/assets/servicios/piercing-surface-cuerpo-cotepiercing.webp";
+import imgExpansion from "@/assets/servicios/expansion-lobulo-cotepiercing.webp";
 
 // ─── Evaluaciones ────────────────────────────────────────────────────────────
 import imgEvalIrritado from "@/assets/servicios/evaluacion-piercing-irritado-cotepiercing.webp";
@@ -71,7 +88,7 @@ const make = (s: Omit<Service, "description"> & { description?: string }): Servi
 export const services: Service[] = [
   // ── Oreja ────────────────────────────────────────────────────────────────
   make({
-    name: "Lóbulo",
+    name: "Lobe",
     zone: "Oreja",
     price: "$25.000",
     healing: "2 a 3 meses",
@@ -123,7 +140,7 @@ export const services: Service[] = [
     evaluation: "Obligatoria",
     category: "Oreja",
     slug: "piercing-antihelix-oreja-arica",
-    image: catOreja,
+    image: imgAntihelix,
     imageAlt: "Piercing antihelix de oreja realizado por Cotepiercing en Arica",
   }),
   make({
@@ -169,7 +186,7 @@ export const services: Service[] = [
     evaluation: "Recomendada",
     category: "Oreja",
     slug: "piercing-flat-oreja-arica",
-    image: catOreja,
+    image: imgFlat,
     imageAlt: "Piercing flat en oreja realizado por Cotepiercing en Arica",
   }),
   make({
@@ -217,7 +234,7 @@ export const services: Service[] = [
     evaluation: "Obligatoria",
     category: "Nariz y rostro",
     slug: "piercing-third-eye-rostro-arica",
-    image: catNariz,
+    image: imgThirdEye,
     imageAlt: "Piercing third eye en rostro realizado por Cotepiercing en Arica",
   }),
   make({
@@ -228,7 +245,7 @@ export const services: Service[] = [
     evaluation: "Obligatoria",
     category: "Nariz y rostro",
     slug: "piercing-bridge-rostro-arica",
-    image: catNariz,
+    image: imgBridge,
     imageAlt: "Piercing bridge en rostro realizado por Cotepiercing en Arica",
   }),
   make({
@@ -250,7 +267,7 @@ export const services: Service[] = [
     evaluation: "Obligatoria",
     category: "Nariz y rostro",
     slug: "piercing-nasallang-nariz-arica",
-    image: catNariz,
+    image: imgNasallang,
     imageAlt: "Piercing nasallang en nariz realizado por Cotepiercing en Arica",
   }),
   make({
@@ -294,7 +311,7 @@ export const services: Service[] = [
     evaluation: "Obligatoria",
     category: "Nariz y rostro",
     slug: "piercing-septril-nariz-arica",
-    image: catNariz,
+    image: imgSeptril,
     imageAlt: "Piercing septril en nariz realizado por Cotepiercing en Arica",
   }),
   make({
@@ -318,7 +335,7 @@ export const services: Service[] = [
     evaluation: "Obligatoria",
     category: "Labio y boca",
     slug: "piercing-angel-bites-labio-arica",
-    image: catLabio,
+    image: imgAngelBites,
     imageAlt: "Piercing Angel Bites en labio realizado por Cotepiercing en Arica",
   }),
   make({
@@ -329,7 +346,7 @@ export const services: Service[] = [
     evaluation: "Obligatoria",
     category: "Labio y boca",
     slug: "piercing-canine-bites-labio-arica",
-    image: catLabio,
+    image: imgCanineBites,
     imageAlt: "Piercing Canine Bites en labio realizado por Cotepiercing en Arica",
   }),
   make({
@@ -340,7 +357,7 @@ export const services: Service[] = [
     evaluation: "Obligatoria",
     category: "Labio y boca",
     slug: "piercing-cyber-bites-labio-arica",
-    image: catLabio,
+    image: imgCyberBites,
     imageAlt: "Piercing Cyber Bites en labio realizado por Cotepiercing en Arica",
   }),
   make({
@@ -351,7 +368,7 @@ export const services: Service[] = [
     evaluation: "Obligatoria",
     category: "Labio y boca",
     slug: "piercing-dolphin-bites-labio-arica",
-    image: catLabio,
+    image: imgDolphinBites,
     imageAlt: "Piercing Dolphin Bites en labio realizado por Cotepiercing en Arica",
   }),
   make({
@@ -362,7 +379,7 @@ export const services: Service[] = [
     evaluation: "Obligatoria",
     category: "Labio y boca",
     slug: "piercing-snake-bites-labio-arica",
-    image: catLabio,
+    image: imgSnakeBites,
     imageAlt: "Piercing Snake Bites en labio realizado por Cotepiercing en Arica",
   }),
   make({
@@ -373,7 +390,7 @@ export const services: Service[] = [
     evaluation: "Obligatoria",
     category: "Labio y boca",
     slug: "piercing-spider-bites-labio-arica",
-    image: catLabio,
+    image: imgSpiderBites,
     imageAlt: "Piercing Spider Bites en labio realizado por Cotepiercing en Arica",
   }),
   make({
@@ -384,7 +401,7 @@ export const services: Service[] = [
     evaluation: "Obligatoria",
     category: "Labio y boca",
     slug: "piercing-shark-bites-labio-arica",
-    image: catLabio,
+    image: imgSharkBites,
     imageAlt: "Piercing Shark Bites en labio realizado por Cotepiercing en Arica",
   }),
   make({
@@ -406,7 +423,7 @@ export const services: Service[] = [
     evaluation: "Recomendada",
     category: "Labio y boca",
     slug: "piercing-labret-vertical-labio-arica",
-    image: imgLabret,
+    image: imgLabretVertical,
     imageAlt: "Piercing labret vertical con joyería dorada realizado por Cotepiercing",
   }),
   make({
@@ -417,7 +434,7 @@ export const services: Service[] = [
     evaluation: "Recomendada",
     category: "Labio y boca",
     slug: "piercing-labret-horizontal-labio-arica",
-    image: imgLabret,
+    image: imgLabretHorizontal,
     imageAlt: "Piercing labret horizontal con joyería dorada realizado por Cotepiercing",
   }),
   make({
@@ -464,7 +481,7 @@ export const services: Service[] = [
     evaluation: "Obligatoria",
     category: "Labio y boca",
     slug: "piercing-lengua-boca-arica",
-    image: catLabio,
+    image: imgLengua,
     imageAlt: "Piercing de lengua realizado por Cotepiercing en Arica",
   }),
   make({
@@ -521,7 +538,7 @@ export const services: Service[] = [
     evaluation: "Obligatoria",
     category: "Cuerpo",
     slug: "expansion-lobulo-hasta-6mm-arica",
-    image: catCuerpo,
+    image: imgExpansion,
     imageAlt: "Expansión de lóbulo hasta 6 mm realizada por Cotepiercing en Arica",
   }),
 

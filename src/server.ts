@@ -10,6 +10,9 @@ type ServerEntry = {
 };
 
 type RuntimeEnv = {
+  ASSETS?: {
+    fetch: (request: Request) => Promise<Response> | Response;
+  };
   GOOGLE_PLACES_API_KEY?: string;
   GOOGLE_PLACE_ID?: string;
   CF_VERSION_METADATA?: {
@@ -56,6 +59,15 @@ type PlaceDetails = {
 const REVIEW_CACHE_SECONDS = 60 * 60 * 24;
 const APP_COMMIT = __APP_COMMIT__;
 const APP_BUILD_TIME = __APP_BUILD_TIME__;
+const PUBLIC_ASSET_PATHS = new Set([
+  "/apple-touch-icon.png",
+  "/cotepiercing-piercing-profesional-arica-chile-og.png",
+  "/favicon.ico",
+  "/llms.txt",
+  "/og-image.png",
+  "/robots.txt",
+  "/sitemap.xml",
+]);
 
 function unavailableReviews(): GooglePlaceSummary {
   return {
@@ -298,6 +310,23 @@ function addResponseHeaders(
   });
 }
 
+function shouldServeStaticAsset(pathname: string): boolean {
+  return pathname.startsWith("/assets/") || PUBLIC_ASSET_PATHS.has(pathname);
+}
+
+async function serveStaticAsset(
+  request: Request,
+  runtimeEnv: RuntimeEnv,
+): Promise<Response | undefined> {
+  if (request.method !== "GET" && request.method !== "HEAD") return undefined;
+  if (!shouldServeStaticAsset(new URL(request.url).pathname)) return undefined;
+  if (!runtimeEnv.ASSETS) return undefined;
+
+  const response = await runtimeEnv.ASSETS.fetch(request);
+  if (response.status === 404) return undefined;
+  return addResponseHeaders(request, response, runtimeEnv);
+}
+
 function trailingSlashRedirect(request: Request): Response | undefined {
   const url = new URL(request.url);
   const { pathname } = url;
@@ -324,6 +353,9 @@ export default {
     const runtimeEnv = env as RuntimeEnv;
     const redirect = trailingSlashRedirect(request);
     if (redirect) return addResponseHeaders(request, redirect, runtimeEnv);
+
+    const staticAsset = await serveStaticAsset(request, runtimeEnv);
+    if (staticAsset) return staticAsset;
 
     if (url.pathname === "/version.json" && request.method === "GET") {
       return addResponseHeaders(

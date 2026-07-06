@@ -39,9 +39,7 @@ export function Nav({ overlay = false }: { overlay?: boolean }) {
     >
       <div className="mx-auto grid h-16 max-w-7xl grid-cols-[1fr_auto] items-center gap-6 px-6 lg:h-[68px] lg:grid-cols-[1fr_auto_1fr] lg:px-10">
         <Link to="/" className="flex flex-col items-start leading-none">
-          <span
-            className={`font-serif text-lg tracking-[0.24em] uppercase lg:text-xl ${logoTone}`}
-          >
+          <span className={`font-serif text-lg tracking-[0.24em] uppercase lg:text-xl ${logoTone}`}>
             Cotepiercing
           </span>
           <span className="mt-1.5 flex items-center gap-2">

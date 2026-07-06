@@ -676,9 +676,8 @@ function Page() {
                     strokeWidth={1.3}
                   />
                   <p className="text-[0.95rem] leading-7 text-foreground">
-                    Mi compromiso es ofrecer perforaciones de la más alta calidad, cuidando tu
-                    salud y garantizando un resultado estético que{" "}
-                    <strong>se adapte a ti.</strong>
+                    Mi compromiso es ofrecer perforaciones de la más alta calidad, cuidando tu salud
+                    y garantizando un resultado estético que <strong>se adapte a ti.</strong>
                   </p>
                 </div>
               </div>

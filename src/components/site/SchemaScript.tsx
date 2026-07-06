@@ -2,35 +2,46 @@
  * SchemaScript — inyecta JSON-LD de Schema.org en el <head>.
  * Incluye: LocalBusiness (HealthAndBeautyBusiness) + FAQPage
  */
+import { SITE_URL } from "@/lib/config";
+import { SITE } from "@/lib/site";
+import { faqs } from "@/data/faqs";
+import { services } from "@/data/services";
+
+const numericPrice = (price: string) =>
+  price.match(/\$\d{1,3}(?:\.\d{3})*/)?.[0].replace(/\D/g, "");
 
 const localBusinessSchema = {
   "@context": "https://schema.org",
   "@type": "HealthAndBeautyBusiness",
-  name: "Cotepiercing",
+  "@id": `${SITE_URL}/#local-business`,
+  name: SITE.name,
   description:
     "Estudio de body piercing profesional en Arica, Chile. Evaluación anatómica, asepsia clínica y joyería inicial incluida en cada servicio.",
-  url: "https://cotepiercing.cl",
-  priceRange: "$5.000 - $45.000 CLP",
+  url: `${SITE_URL}/`,
+  priceRange: "$5.000 - $100.000 CLP",
   currenciesAccepted: "CLP",
   paymentAccepted: "Efectivo, transferencia bancaria",
-  image: "https://cotepiercing.cl/og-image.webp",
+  image: `${SITE_URL}/cotepiercing-piercing-profesional-arica-chile-og.png`,
+  telephone: SITE.phoneE164,
+  sameAs: [SITE.googleBusinessUrl, SITE.instagramUrl],
   address: {
     "@type": "PostalAddress",
-    streetAddress: "San Marcos 393",
-    addressLocality: "Arica",
-    addressRegion: "Arica y Parinacota",
-    addressCountry: "CL",
+    streetAddress: SITE.streetAddress,
+    addressLocality: SITE.locality,
+    addressRegion: SITE.region,
+    addressCountry: SITE.country,
+    postalCode: SITE.postalCode,
   },
   geo: {
     "@type": "GeoCoordinates",
-    latitude: -18.4754,
-    longitude: -70.2979,
+    latitude: SITE.geo.latitude,
+    longitude: SITE.geo.longitude,
   },
   openingHoursSpecification: [
     {
       "@type": "OpeningHoursSpecification",
       dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-      opens: "10:00",
+      opens: "11:00",
       closes: "20:00",
     },
     {
@@ -42,118 +53,36 @@ const localBusinessSchema = {
   ],
   founder: {
     "@type": "Person",
-    name: "María José",
+    name: SITE.professional,
     jobTitle: "Piercer profesional",
   },
   hasOfferCatalog: {
     "@type": "OfferCatalog",
     name: "Catálogo de piercings",
-    itemListElement: [
-      {
-        "@type": "Offer",
-        itemOffered: {
-          "@type": "Service",
-          name: "Piercing de lóbulo",
-          description: "Perforación de lóbulo con joyería inicial incluida.",
-        },
-        price: "25000",
-        priceCurrency: "CLP",
+    itemListElement: services.map((service) => ({
+      "@type": "Offer",
+      itemOffered: {
+        "@type": "Service",
+        name: service.name,
+        description: service.description,
       },
-      {
-        "@type": "Offer",
-        itemOffered: {
-          "@type": "Service",
-          name: "Piercing septum",
-          description: "Perforación de septum con evaluación anatómica obligatoria y joyería inicial incluida.",
-        },
-        price: "32000",
-        priceCurrency: "CLP",
-      },
-      {
-        "@type": "Offer",
-        itemOffered: {
-          "@type": "Service",
-          name: "Evaluación de piercing irritado",
-          description: "Evaluación profesional para piercings con irritación, bultitos o signos de infección.",
-        },
-        price: "10000",
-        priceCurrency: "CLP",
-      },
-      {
-        "@type": "Offer",
-        itemOffered: {
-          "@type": "Service",
-          name: "Cambio de joyería",
-          description: "Cambio de joyería para piercing realizado con técnica profesional y asepsia clínica.",
-        },
-        price: "8000",
-        priceCurrency: "CLP",
-      },
-    ],
+      price: numericPrice(service.price),
+      priceCurrency: "CLP",
+    })),
   },
 };
 
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  mainEntity: [
-    {
-      "@type": "Question",
-      name: "¿Todos los servicios incluyen joyería?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Sí. Todos los servicios de Cotepiercing incluyen joyería inicial seleccionada según la zona, anatomía y proceso de cicatrización.",
-      },
+  mainEntity: faqs.map(({ question, answer }) => ({
+    "@type": "Question",
+    name: question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: answer,
     },
-    {
-      "@type": "Question",
-      name: "¿Necesito evaluación antes de perforarme?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Algunos piercings requieren evaluación anatómica previa para confirmar si son viables y seguros. Cotepiercing indica en cada servicio si la evaluación es recomendada u obligatoria.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "¿Cómo puedo reservar en Cotepiercing?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Puedes reservar por WhatsApp. Para confirmar la hora se solicita un abono previo. Cotepiercing atiende en Recina Tattoo, San Marcos 393, Arica, Chile.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "¿Realizan piercings íntimos?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Sí. Cotepiercing realiza piercings íntimos femeninos y masculinos con privacidad, higiene rigurosa y evaluación anatómica previa obligatoria.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "¿Qué hago si mi piercing tiene un bulto o está irritado?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "No manipules la zona ni cambies la joya por tu cuenta. Cotepiercing ofrece evaluaciones profesionales para piercings irritados, granulomas y queloides.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "¿Cuánto cuesta el cambio de joyería?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "El cambio de joyería tiene un valor de $8.000 CLP en Cotepiercing. El retiro de joyería cuesta $5.000 CLP.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "¿Qué piercings no se realizan en Cotepiercing?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "No se realizan Snake Eyes, Bridge, Surface de cuello ni otros procedimientos que no cumplan con criterios de seguridad profesional.",
-      },
-    },
-  ],
+  })),
 };
 
 export function SchemaScript() {

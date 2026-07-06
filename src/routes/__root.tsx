@@ -1,30 +1,34 @@
+import { useEffect } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
   Outlet,
   Link,
   createRootRouteWithContext,
   useRouter,
+  useLocation,
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
 
-import appCss from "../styles.css?url";
+import { SITE_URL } from "@/lib/config";
+import { ConsentBanner } from "@/components/site/ConsentBanner";
+import appCss from "@/styles.css?url";
 
 function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
         <h1 className="text-7xl font-bold text-foreground">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
+        <h2 className="mt-4 text-xl font-semibold text-foreground">Página no encontrada</h2>
         <p className="mt-2 text-sm text-muted-foreground">
-          The page you're looking for doesn't exist or has been moved.
+          La página que buscas no existe o fue movida.
         </p>
         <div className="mt-6">
           <Link
             to="/"
             className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
           >
-            Go home
+            Volver al inicio
           </Link>
         </div>
       </div>
@@ -40,10 +44,10 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
         <h1 className="text-xl font-semibold tracking-tight text-foreground">
-          This page didn't load
+          Esta página no pudo cargar
         </h1>
         <p className="mt-2 text-sm text-muted-foreground">
-          Something went wrong on our end. You can try refreshing or head back home.
+          Ocurrió un problema. Puedes volver a intentar o regresar al inicio.
         </p>
         <div className="mt-6 flex flex-wrap justify-center gap-2">
           <button
@@ -53,13 +57,13 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
             }}
             className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
           >
-            Try again
+            Intentar nuevamente
           </button>
           <a
             href="/"
             className="inline-flex items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent"
           >
-            Go home
+            Volver al inicio
           </a>
         </div>
       </div>
@@ -72,37 +76,42 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Cotepiercing — Piercing profesional en Arica, Chile" },
+      { title: "Cotepiercing | Body piercing profesional" },
       {
         name: "description",
         content:
-          "Body piercing profesional con María José en Arica, Chile. Evaluación anatómica, asepsia clínica, joyería inicial incluida. Recina Tattoo, San Marcos 393.",
+          "Cotepiercing es el espacio profesional de María José, piercer en Arica especializada en evaluación anatómica, asepsia rigurosa, joyería inicial incluida y cuidados seguros.",
       },
       { name: "author", content: "María José — Cotepiercing" },
       { name: "robots", content: "index, follow" },
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "Cotepiercing" },
       { property: "og:locale", content: "es_CL" },
-      { property: "og:title", content: "Cotepiercing — Piercing profesional en Arica, Chile" },
+      { property: "og:title", content: "Cotepiercing | Body piercing profesional" },
       {
         property: "og:description",
         content:
-          "Piercing profesional con María José. Evaluación anatómica, asepsia clínica y joyería inicial incluida en Arica, Chile.",
+          "Body piercing profesional con María José: evaluación anatómica, higiene, joyería inicial incluida y reserva por WhatsApp.",
       },
-      { property: "og:url", content: "https://cotepiercing.cl" },
-      { property: "og:image", content: "https://cotepiercing.cl/cotepiercing-piercing-profesional-arica-chile-og.png" },
+      { property: "og:url", content: SITE_URL },
+      {
+        property: "og:image",
+        content: `${SITE_URL}/cotepiercing-piercing-profesional-arica-chile-og.png`,
+      },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Cotepiercing — Piercing profesional en Arica" },
+      { name: "twitter:title", content: "Cotepiercing | Body piercing profesional" },
       {
         name: "twitter:description",
         content:
-          "Piercing profesional con evaluación anatómica, higiene y joyería incluida. Arica, Chile.",
+          "Piercing profesional con evaluación anatómica, higiene y joyería inicial incluida.",
       },
-      { name: "twitter:image", content: "https://cotepiercing.cl/cotepiercing-piercing-profesional-arica-chile-og.png" },
+      {
+        name: "twitter:image",
+        content: `${SITE_URL}/cotepiercing-piercing-profesional-arica-chile-og.png`,
+      },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
-      { rel: "canonical", href: "https://cotepiercing.cl" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" as const },
       { rel: "icon", href: "/favicon.ico", sizes: "any" },
       { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
@@ -122,7 +131,14 @@ function RootShell({ children }: { children: React.ReactNode }) {
       </head>
       <body>
         {children}
+        <ConsentBanner />
         <Scripts />
+        {/* Cloudflare Web Analytics */}
+        <script
+          defer
+          src="https://static.cloudflareinsights.com/beacon.min.js"
+          data-cf-beacon='{"token": "7a9115eb1564479994964427e51bd929"}'
+        ></script>
       </body>
     </html>
   );
@@ -130,6 +146,11 @@ function RootShell({ children }: { children: React.ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const location = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, window.scrollY);
+  }, [location.pathname, location.hash]);
 
   return (
     <QueryClientProvider client={queryClient}>

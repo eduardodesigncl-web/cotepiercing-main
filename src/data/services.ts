@@ -2,7 +2,6 @@
 import catOreja from "@/assets/cat-oreja.jpg";
 import catNariz from "@/assets/cat-nariz.jpg";
 import catLabio from "@/assets/cat-labio.jpg";
-import catCuerpo from "@/assets/cat-cuerpo.jpg";
 import catIntimo from "@/assets/cat-intimo.jpg";
 
 // ─── Oreja ───────────────────────────────────────────────────────────────────
@@ -24,13 +23,15 @@ import imgSeptum from "@/assets/servicios/piercing-septum-nariz-cotepiercing.web
 import imgCeja from "@/assets/servicios/piercing-ceja-eyebrow-piercing-cotepiercing.webp";
 import imgThirdEye from "@/assets/servicios/piercing-third-eye-rostro-cotepiercing.webp";
 import imgBridge from "@/assets/servicios/piercing-bridge-rostro-cotepiercing.webp";
+import imgAustinBar from "@/assets/servicios/piercing-austin-bar-nariz-cotepiercing.webp";
 import imgNasallang from "@/assets/servicios/piercing-nasallang-nariz-cotepiercing.webp";
 import imgSeptril from "@/assets/servicios/piercing-septril-nariz-cotepiercing.webp";
 
 // ─── Labio y boca ────────────────────────────────────────────────────────────
 import imgLabret from "@/assets/servicios/piercing-labret-labio-cotepiercing.webp";
 import imgMedusa from "@/assets/servicios/piercing-medusa-labio-cotepiercing.webp";
-import imgMadonna from "@/assets/servicios/piercing-madonna-monroe-labio-cotepiercing.webp";
+import imgMadonnaMonroe from "@/assets/servicios/piercing-madonna-monroe-labio-cotepiercing.webp";
+import imgMadonna from "@/assets/servicios/piercing-madonna-labio-cotepiercing.webp";
 import imgSmiley from "@/assets/servicios/piercing-smiley-frenillo-cotepiercing.webp";
 import imgAngelBites from "@/assets/servicios/piercing-angel-bites-labio-cotepiercing.webp";
 import imgCanineBites from "@/assets/servicios/piercing-canine-bites-labio-cotepiercing.webp";
@@ -278,7 +279,7 @@ export const services: Service[] = [
     evaluation: "Obligatoria",
     category: "Nariz y rostro",
     slug: "piercing-austin-bar-nariz-arica",
-    image: catNariz,
+    image: imgAustinBar,
     imageAlt: "Piercing Austin Bar en nariz realizado por Cotepiercing en Arica",
   }),
   make({
@@ -469,7 +470,7 @@ export const services: Service[] = [
     evaluation: "Recomendada",
     category: "Labio y boca",
     slug: "piercing-monroe-labio-arica",
-    image: imgMadonna,
+    image: imgMadonnaMonroe,
     imageAlt:
       "Piercing Monroe en labio superior lateral con joyería dorada realizado por Cotepiercing",
   }),
@@ -536,7 +537,7 @@ export const services: Service[] = [
     price: "$60.000 hasta 6 mm",
     healing: "Variable",
     evaluation: "Obligatoria",
-    category: "Cuerpo",
+    category: "Oreja",
     slug: "expansion-lobulo-hasta-6mm-arica",
     image: imgExpansion,
     imageAlt: "Expansión de lóbulo hasta 6 mm realizada por Cotepiercing en Arica",

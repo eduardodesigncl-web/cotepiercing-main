@@ -12,7 +12,7 @@ export const Route = createFileRoute("/servicios/cuerpo")({
       category="Cuerpo"
       eyebrow="Servicios · Cuerpo"
       title="Piercings de cuerpo en Arica"
-      intro="Ombligo, microdermal, surface y expansión con evaluación anatómica y conversación clara sobre viabilidad."
+      intro="Ombligo, microdermal y surface con evaluación anatómica y conversación clara sobre viabilidad."
       guidance="Estos procedimientos dependen especialmente del tejido, la movilidad y la zona elegida. Si el riesgo de migración o rechazo es alto, se propondrá una alternativa."
     />
   ),

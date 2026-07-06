@@ -628,9 +628,9 @@ function Page() {
       <GoogleReviews />
 
       {/* ABOUT */}
-      <Section id="sobre" className="landing-band landing-band-sand !pt-6 !pb-12 lg:!py-14">
-        <div className="mx-auto max-w-5xl">
-          <div className="grid gap-8 lg:grid-cols-[0.86fr_0.72fr_0.92fr] lg:items-center lg:gap-6">
+      <Section id="sobre" className="landing-band landing-band-sand !pt-6 !pb-12 lg:!py-12">
+        <div className="mx-auto max-w-7xl">
+          <div className="grid gap-8 lg:grid-cols-[0.62fr_1.38fr] lg:items-center lg:gap-10">
             <div className="order-2 lg:order-none">
               <div className="eyebrow text-[0.78rem] tracking-[0.42em] text-[var(--gold)]">
                 Sobre
@@ -662,54 +662,56 @@ function Page() {
                 </div>
               </div>
             </div>
-            <div className="about-image order-1 lg:order-none">
-              <img
-                src={aboutImg}
-                alt="María José, piercer profesional de Cotepiercing en Arica, Chile, en su estudio de trabajo con uniforme clínico."
-                loading="lazy"
-                decoding="async"
-                width={900}
-                height={1200}
-                className="landing-about-photo mx-auto h-auto w-full max-w-[34rem] aspect-[5/6] rounded-xl object-cover shadow-sm lg:mx-0 lg:max-w-[19rem] lg:aspect-[4/5]"
-              />
-            </div>
+            <div className="contents lg:grid lg:gap-5">
+              <div className="about-image order-1 lg:order-none">
+                <img
+                  src={aboutImg}
+                  alt="María José, piercer profesional de Cotepiercing en Arica, Chile, en su estudio de trabajo con uniforme clínico."
+                  loading="lazy"
+                  decoding="async"
+                  width={900}
+                  height={1200}
+                  className="landing-about-photo mx-auto h-auto w-full max-w-[34rem] aspect-[5/6] rounded-xl object-cover object-[50%_34%] shadow-sm lg:mx-0 lg:max-w-none lg:aspect-[16/7]"
+                />
+              </div>
 
-            <div className="landing-about-panel order-3 overflow-hidden rounded-xl border border-border bg-background/55 lg:order-none lg:self-center">
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1">
-                <div className="flex gap-3 border-b border-border p-4 sm:gap-5 sm:border-r sm:p-8 lg:gap-3 lg:border-r-0 lg:p-3.5">
-                  <div className="landing-about-icon">
-                    <FlaskConical className="h-7 w-7 lg:h-5 lg:w-5" strokeWidth={1.6} />
+              <div className="landing-about-panel order-3 overflow-hidden rounded-xl border border-border bg-background/55 lg:order-none">
+                <div className="grid grid-cols-1 sm:grid-cols-[0.9fr_1.1fr]">
+                  <div className="flex gap-3 border-b border-border p-4 sm:gap-4 sm:border-r sm:p-5 lg:gap-3.5 lg:p-5">
+                    <div className="landing-about-icon">
+                      <FlaskConical className="h-7 w-7 lg:h-5 lg:w-5" strokeWidth={1.6} />
+                    </div>
+                    <p className="text-[0.88rem] leading-5 text-foreground sm:text-base sm:leading-6 lg:text-[0.92rem] lg:leading-5">
+                      Formación como
+                      <br />
+                      Analista Químico
+                    </p>
                   </div>
-                  <p className="text-[0.88rem] leading-5 text-foreground sm:text-lg sm:leading-7 lg:text-[0.9rem] lg:leading-5">
-                    Formación como
-                    <br />
-                    Analista Químico
-                  </p>
-                </div>
-                <div className="flex gap-3 border-b border-border p-4 sm:gap-5 sm:p-8 lg:gap-3 lg:p-3.5">
-                  <div className="landing-about-icon">
-                    <Award className="h-7 w-7 lg:h-5 lg:w-5" strokeWidth={1.6} />
+                  <div className="flex gap-3 border-b border-border p-4 sm:gap-4 sm:p-5 lg:gap-3.5 lg:p-5">
+                    <div className="landing-about-icon">
+                      <Award className="h-7 w-7 lg:h-5 lg:w-5" strokeWidth={1.6} />
+                    </div>
+                    <p className="text-[0.88rem] leading-5 text-foreground sm:text-base sm:leading-6 lg:text-[0.92rem] lg:leading-5">
+                      Certificaciones en Body Piercing (niveles básico, intermedio y avanzado) y
+                      Modificaciones Corporales Avanzadas
+                    </p>
                   </div>
-                  <p className="text-[0.88rem] leading-5 text-foreground sm:text-lg sm:leading-7 lg:text-[0.9rem] lg:leading-5">
-                    Certificaciones en Body Piercing (niveles básico, intermedio y avanzado) y
-                    Modificaciones Corporales Avanzadas
-                  </p>
-                </div>
-                <div className="flex gap-3 border-b border-border p-4 sm:gap-5 sm:border-r sm:border-b-0 sm:p-8 lg:gap-3 lg:border-r-0 lg:border-b lg:p-3.5">
-                  <div className="landing-about-icon">
-                    <ShieldCheck className="h-7 w-7 lg:h-5 lg:w-5" strokeWidth={1.6} />
+                  <div className="flex gap-3 border-b border-border p-4 sm:gap-4 sm:border-r sm:border-b-0 sm:p-5 lg:gap-3.5 lg:p-5">
+                    <div className="landing-about-icon">
+                      <ShieldCheck className="h-7 w-7 lg:h-5 lg:w-5" strokeWidth={1.6} />
+                    </div>
+                    <p className="text-[0.88rem] leading-5 text-foreground sm:text-base sm:leading-6 lg:text-[0.92rem] lg:leading-5">
+                      Protocolos de bioseguridad y materiales de alta biocompatibilidad
+                    </p>
                   </div>
-                  <p className="text-[0.88rem] leading-5 text-foreground sm:text-lg sm:leading-7 lg:text-[0.9rem] lg:leading-5">
-                    Protocolos de bioseguridad y materiales de alta biocompatibilidad
-                  </p>
-                </div>
-                <div className="flex gap-3 p-4 sm:gap-5 sm:p-8 lg:gap-3 lg:p-3.5">
-                  <div className="landing-about-icon">
-                    <Syringe className="h-7 w-7 lg:h-5 lg:w-5" strokeWidth={1.6} />
+                  <div className="flex gap-3 p-4 sm:gap-4 sm:p-5 lg:gap-3.5 lg:p-5">
+                    <div className="landing-about-icon">
+                      <Syringe className="h-7 w-7 lg:h-5 lg:w-5" strokeWidth={1.6} />
+                    </div>
+                    <p className="text-[0.88rem] leading-5 text-foreground sm:text-base sm:leading-6 lg:text-[0.92rem] lg:leading-5">
+                      Procedimientos seguros, precisos y personalizados para cada anatomía
+                    </p>
                   </div>
-                  <p className="text-[0.88rem] leading-5 text-foreground sm:text-lg sm:leading-7 lg:text-[0.9rem] lg:leading-5">
-                    Procedimientos seguros, precisos y personalizados para cada anatomía
-                  </p>
                 </div>
               </div>
             </div>

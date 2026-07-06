@@ -1,6 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import gsap from "gsap";
 import {
+  Award,
+  FlaskConical,
   ShieldCheck,
   Sparkles,
   GraduationCap,
@@ -9,6 +12,7 @@ import {
   MapPin,
   Clock,
   MessageCircle,
+  Syringe,
 } from "lucide-react";
 import {
   Accordion,
@@ -164,33 +168,31 @@ const heroCarouselImages = [
   {
     src: heroCarouselEarWide,
     alt: "Oreja con piercings dorados y joyería fina.",
+    objectPosition: "44% 44%",
   },
   {
     src: heroCarouselJewelryHands,
     alt: "Manos con guantes negros manipulando joyería dorada.",
+    objectPosition: "52% 46%",
   },
   {
     src: heroCarouselJewelryTray,
     alt: "Selección de joyería para piercing en una bandeja beige.",
+    objectPosition: "50% 49%",
   },
   {
     src: heroCarouselEarStar,
     alt: "Oreja con piercings dorados y colgante de estrella.",
+    objectPosition: "54% 44%",
   },
   {
     src: heroCarouselMarking,
     alt: "María José evaluando la anatomía facial antes de una perforación.",
+    objectPosition: "58% 43%",
   },
 ];
 
 const heroCarouselLoop = [...heroCarouselImages, ...heroCarouselImages];
-const heroCardTone = [
-  "hero-card-left-outer",
-  "hero-card-left",
-  "hero-card-center",
-  "hero-card-right",
-  "hero-card-right-outer",
-];
 const faqMidpoint = Math.ceil(faqs.length / 2);
 const faqColumns = [faqs.slice(0, faqMidpoint), faqs.slice(faqMidpoint)];
 
@@ -267,7 +269,52 @@ function SectionHead({
 function Page() {
   const [cat, setCat] = useState<Category>("Oreja");
   const [lightbox, setLightbox] = useState<GalleryItem | null>(null);
+  const heroRef = useRef<HTMLElement | null>(null);
   const filtered = services.filter((s) => s.category === cat);
+
+  useEffect(() => {
+    const root = heroRef.current;
+    if (!root) return;
+
+    const ctx = gsap.context(() => {
+      const track = root.querySelector<HTMLElement>(".hero-carousel-track");
+      const cards = track
+        ? Array.from(track.querySelectorAll<HTMLElement>(".hero-carousel-card"))
+        : [];
+
+      if (!track || cards.length <= heroCarouselImages.length) return;
+
+      const mm = gsap.matchMedia();
+
+      mm.add(
+        {
+          reduceMotion: "(prefers-reduced-motion: reduce)",
+          isDesktop: "(min-width: 1024px)",
+        },
+        (context) => {
+          const { reduceMotion, isDesktop } = context.conditions ?? {};
+          const distance = cards[heroCarouselImages.length].offsetLeft - cards[0].offsetLeft;
+
+          if (reduceMotion || !isDesktop || !distance) return undefined;
+
+          gsap.set(track, { x: 0, force3D: true });
+
+          const tween = gsap.to(track, {
+            x: -distance,
+            duration: 34,
+            ease: "none",
+            repeat: -1,
+          });
+
+          return () => tween.kill();
+        },
+      );
+
+      return () => mm.revert();
+    }, root);
+
+    return () => ctx.revert();
+  }, []);
 
   return (
     <div className="landing-color-study min-h-screen overflow-x-hidden bg-background text-foreground">
@@ -278,94 +325,58 @@ function Page() {
       {/* HERO — editorial carousel */}
       <section
         id="inicio"
-        className="relative flex min-h-[100svh] w-full overflow-hidden bg-[#080807] text-white"
+        ref={heroRef}
+        className="relative h-[100svh] max-h-[700px] min-h-[610px] w-full overflow-hidden bg-[#0D0D0D] text-white sm:min-h-[650px]"
       >
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_18%,rgba(198,158,102,0.12),transparent_31%),radial-gradient(circle_at_20%_70%,rgba(255,255,255,0.05),transparent_25%)]" />
-        <div className="pointer-events-none absolute inset-0 overflow-hidden opacity-50 mix-blend-screen">
-          <div className="absolute -top-1/4 left-0 h-[150%] w-[18%] animate-hero-sheen bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-        </div>
-        <div aria-hidden="true" className="pointer-events-none absolute inset-0">
-          {Array.from({ length: 18 }).map((_, index) => (
-            <span
-              key={index}
-              className="absolute h-1 w-1 animate-hero-particle rounded-full bg-[var(--gold-soft)] opacity-0"
-              style={{
-                left: `${6 + ((index * 17) % 88)}%`,
-                bottom: `${8 + ((index * 19) % 62)}%`,
-                animationDelay: `${(index % 7) * 1.15}s`,
-                animationDuration: `${8 + (index % 5)}s`,
-              }}
-            />
-          ))}
-        </div>
-
-        <div className="relative z-10 mx-auto flex min-h-[100svh] w-full max-w-[1500px] flex-col justify-between px-4 pb-7 pt-28 sm:px-6 sm:pb-10 lg:px-10 lg:pt-32">
-          <div className="mx-auto flex w-full max-w-4xl flex-1 flex-col items-center justify-center pb-8 pt-6 text-center sm:pb-10 lg:pt-0">
-            <div className="mb-7 flex w-full max-w-xs animate-hero-rise items-center justify-center gap-4 sm:max-w-md">
-              <span className="h-px flex-1 bg-[var(--gold)]/55" />
-              <span className="h-2 w-2 rotate-45 border border-[var(--gold-soft)]" />
-              <span className="h-px flex-1 bg-[var(--gold)]/55" />
-            </div>
-
-            <h1 className="animate-hero-rise max-w-5xl font-serif text-[42px] uppercase leading-[1.08] tracking-[0.02em] text-[var(--warm-white)] sm:text-6xl lg:text-[78px]">
+        <div className="relative z-10 mx-auto h-full w-full max-w-[1500px] px-4 pt-[112px] sm:px-6 sm:pt-[118px] lg:px-10 lg:pt-[122px]">
+          <div className="mx-auto flex w-full max-w-2xl flex-col items-center text-center">
+            <h1 className="animate-hero-rise max-w-2xl font-sans text-[28px] font-normal uppercase leading-[1.1] tracking-[0.01em] text-[#F5F0EA] sm:text-[36px] lg:text-[42px]">
               Piercings diseñados
               <span className="block">para tu anatomía</span>
             </h1>
 
             <p
-              className="mt-5 max-w-xl animate-hero-rise text-sm leading-relaxed text-white/78 sm:text-base"
+              className="mt-4 max-w-[440px] animate-hero-rise text-[12px] leading-relaxed text-[#CFC7BB] sm:text-[13px]"
               style={{ animationDelay: "180ms" }}
             >
               Evaluación, perforación y joyería con un enfoque profesional, seguro y personalizado.
             </p>
 
             <div
-              className="mt-8 flex animate-hero-rise flex-col items-center gap-4 sm:flex-row"
+              className="mt-6 flex animate-hero-rise flex-col items-center"
               style={{ animationDelay: "320ms" }}
             >
-              <a
-                href={waLink()}
-                data-cta="reservation"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex min-h-12 items-center justify-center rounded-full bg-[var(--warm-white)] px-8 py-3 text-center text-[11px] font-medium text-foreground shadow-[0_18px_45px_-24px_rgba(255,255,255,0.7)] transition-all hover:-translate-y-0.5 hover:bg-white sm:px-10"
-              >
-                Reservar cita
-                <span aria-hidden="true" className="ml-3 text-base leading-none">
-                  ›
-                </span>
-              </a>
               <Link
                 to="/servicios"
-                className="inline-flex min-h-12 items-center justify-center border-b border-[var(--gold)] px-3 py-3 text-center text-[11px] text-white transition-colors hover:text-[var(--gold-soft)]"
+                className="inline-flex min-h-9 items-center justify-center rounded-full bg-[#F5F0EA] px-6 py-2 text-center font-sans text-[10px] font-normal uppercase tracking-[0.18em] text-[#0D0D0D] transition-all hover:-translate-y-0.5 hover:bg-white sm:px-7"
               >
                 Ver servicios
+                <span aria-hidden="true" className="ml-2 text-sm leading-none">
+                  ›
+                </span>
               </Link>
             </div>
           </div>
 
-          <div className="hero-carousel-mask -mx-4 animate-hero-fade pb-3 sm:-mx-6 lg:-mx-10">
+          <div className="hero-carousel-mask animate-hero-fade">
             <div className="hero-carousel-track">
-              {heroCarouselLoop.map((image, index) => {
-                const tone = heroCardTone[index % heroCardTone.length];
-
-                return (
-                  <figure
-                    key={`${image.src}-${index}`}
-                    className={`hero-carousel-card ${tone} h-[162px] w-[118px] overflow-hidden bg-white/5 shadow-[0_30px_80px_-42px_rgba(0,0,0,0.95)] sm:h-[220px] sm:w-[172px] lg:h-[286px] lg:w-[228px]`}
-                  >
-                    <img
-                      src={image.src}
-                      alt={image.alt}
-                      width={900}
-                      height={1125}
-                      loading={index < heroCarouselImages.length ? "eager" : "lazy"}
-                      decoding="async"
-                      className="h-full w-full object-cover"
-                    />
-                  </figure>
-                );
-              })}
+              {heroCarouselLoop.map((image, index) => (
+                <figure
+                  key={`${image.src}-${index}`}
+                  className="hero-carousel-card overflow-hidden bg-white/5"
+                >
+                  <img
+                    src={image.src}
+                    alt={image.alt}
+                    width={900}
+                    height={1125}
+                    loading={index < heroCarouselImages.length ? "eager" : "lazy"}
+                    decoding="async"
+                    className="h-full w-full object-cover"
+                    style={{ objectPosition: image.objectPosition }}
+                  />
+                </figure>
+              ))}
             </div>
           </div>
         </div>
@@ -637,31 +648,102 @@ function Page() {
       <GoogleReviews />
 
       {/* ABOUT */}
-      <Section id="sobre" className="landing-band landing-band-sand">
-        <div className="grid lg:grid-cols-12 gap-12 items-center">
-          <div className="lg:col-span-5">
-            <img
-              src={aboutImg}
-              alt="María José, piercer profesional de Cotepiercing en Arica, Chile, en su estudio de trabajo con uniforme clínico."
-              loading="lazy"
-              decoding="async"
-              width={900}
-              height={1200}
-              className="w-full aspect-[4/5] object-cover rounded-xl shadow-sm"
-            />
+      <Section id="sobre" className="landing-band landing-band-sand !pt-6 !pb-12 lg:!py-20">
+        <div className="mx-auto max-w-6xl">
+          <div className="grid gap-8 lg:grid-cols-[0.92fr_0.78fr_1fr] lg:gap-8 lg:items-center">
+            <div className="order-2 lg:order-none">
+              <div className="eyebrow text-[0.78rem] tracking-[0.42em] text-[var(--gold)]">
+                Sobre
+              </div>
+              <h2 className="mt-5 font-serif text-5xl leading-[0.98] text-foreground sm:text-6xl lg:text-[4.35rem]">
+                María José
+              </h2>
+              <div className="mt-8 h-px w-24 bg-[var(--gold)] lg:mt-6" />
+              <p className="mt-8 max-w-md text-[1.05rem] leading-8 text-foreground sm:text-xl sm:leading-9 lg:mt-6 lg:text-[1.05rem] lg:leading-8">
+                Hola, soy la profesional detrás de <strong>Cotepiercing.</strong> Con 8 años de
+                trayectoria en el mundo de la modificación corporal, mi enfoque combina la pasión
+                por el arte con el máximo rigor técnico.
+                <span className="lg:hidden">
+                  {" "}
+                  Además de mi formación como Analista Químico, cuento con certificaciones
+                  profesionales en Body Piercing y en Modificaciones Corporales Avanzadas.
+                </span>
+              </p>
+              <div className="landing-about-commitment mt-7 hidden rounded-xl border border-border bg-background/55 p-5 lg:block">
+                <div className="flex gap-4">
+                  <Sparkles
+                    className="mt-1 h-6 w-6 shrink-0 text-[var(--gold)]"
+                    strokeWidth={1.3}
+                  />
+                  <p className="text-[0.95rem] leading-7 text-foreground">
+                    Mi compromiso es ofrecer perforaciones de la más alta calidad, cuidando tu
+                    salud y garantizando un resultado estético que{" "}
+                    <strong>se adapte a ti.</strong>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="about-image order-1 lg:order-none">
+              <img
+                src={aboutImg}
+                alt="María José, piercer profesional de Cotepiercing en Arica, Chile, en su estudio de trabajo con uniforme clínico."
+                loading="lazy"
+                decoding="async"
+                width={900}
+                height={1200}
+                className="landing-about-photo mx-auto h-auto w-full max-w-[34rem] aspect-[5/6] rounded-xl object-cover shadow-sm lg:mx-0 lg:max-w-[22rem] lg:aspect-[4/5]"
+              />
+            </div>
+
+            <div className="landing-about-panel order-3 overflow-hidden rounded-xl border border-border bg-background/55 lg:order-none lg:self-start">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1">
+                <div className="flex gap-3 border-b border-border p-4 sm:gap-5 sm:border-r sm:p-8 lg:gap-4 lg:border-r-0 lg:p-4">
+                  <div className="landing-about-icon">
+                    <FlaskConical className="h-7 w-7 lg:h-5 lg:w-5" strokeWidth={1.6} />
+                  </div>
+                  <p className="text-[0.88rem] leading-5 text-foreground sm:text-lg sm:leading-7 lg:text-[0.95rem] lg:leading-6">
+                    Formación como
+                    <br />
+                    Analista Químico
+                  </p>
+                </div>
+                <div className="flex gap-3 border-b border-border p-4 sm:gap-5 sm:p-8 lg:gap-4 lg:p-4">
+                  <div className="landing-about-icon">
+                    <Award className="h-7 w-7 lg:h-5 lg:w-5" strokeWidth={1.6} />
+                  </div>
+                  <p className="text-[0.88rem] leading-5 text-foreground sm:text-lg sm:leading-7 lg:text-[0.95rem] lg:leading-6">
+                    Certificaciones en Body Piercing (niveles básico, intermedio y avanzado) y
+                    Modificaciones Corporales Avanzadas
+                  </p>
+                </div>
+                <div className="flex gap-3 border-b border-border p-4 sm:gap-5 sm:border-r sm:border-b-0 sm:p-8 lg:gap-4 lg:border-r-0 lg:border-b lg:p-4">
+                  <div className="landing-about-icon">
+                    <ShieldCheck className="h-7 w-7 lg:h-5 lg:w-5" strokeWidth={1.6} />
+                  </div>
+                  <p className="text-[0.88rem] leading-5 text-foreground sm:text-lg sm:leading-7 lg:text-[0.95rem] lg:leading-6">
+                    Protocolos de bioseguridad y materiales de alta biocompatibilidad
+                  </p>
+                </div>
+                <div className="flex gap-3 p-4 sm:gap-5 sm:p-8 lg:gap-4 lg:p-4">
+                  <div className="landing-about-icon">
+                    <Syringe className="h-7 w-7 lg:h-5 lg:w-5" strokeWidth={1.6} />
+                  </div>
+                  <p className="text-[0.88rem] leading-5 text-foreground sm:text-lg sm:leading-7 lg:text-[0.95rem] lg:leading-6">
+                    Procedimientos seguros, precisos y personalizados para cada anatomía
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
-          <div className="lg:col-span-7">
-            <SectionHead
-              title="Sobre María José"
-              intro="María José es piercer profesional en Arica, Chile, con años de experiencia en perforaciones corporales, asesoría anatómica y procedimientos especializados. En Cotepiercing trabaja con un enfoque seguro, personalizado y respetuoso del cuerpo, priorizando la higiene, la precisión técnica y la elección adecuada de la joyería para cada anatomía."
-            />
-            <div className="mt-8">
-              <Button asChild variant="gold" size="lg">
-                <a href={waLink()} data-cta="reservation" target="_blank" rel="noopener noreferrer">
-                  <MessageCircle className="w-4 h-4" />
-                  Reservar por WhatsApp
-                </a>
-              </Button>
+
+          <div className="landing-about-commitment mt-8 rounded-xl border border-border bg-background/55 p-6 sm:p-8 lg:hidden">
+            <div className="flex flex-col gap-5 sm:flex-row sm:items-center">
+              <Sparkles className="h-8 w-8 shrink-0 text-[var(--gold)]" strokeWidth={1.3} />
+              <div className="hidden h-24 w-px bg-[var(--gold)] sm:block" />
+              <p className="max-w-4xl text-base leading-7 text-foreground sm:text-xl sm:leading-8">
+                Mi compromiso es ofrecer perforaciones de la más alta calidad, cuidando tu salud y
+                garantizando un resultado estético que <strong>se adapte a ti.</strong>
+              </p>
             </div>
           </div>
         </div>
@@ -815,7 +897,7 @@ function Page() {
                       <AccordionTrigger className="font-serif text-[16px] leading-snug py-4 sm:text-[17px]">
                         {question}
                       </AccordionTrigger>
-                      <AccordionContent className="text-muted-foreground leading-relaxed pb-5">
+                      <AccordionContent className="text-[#2f241d] leading-relaxed pb-5">
                         {answer}
                       </AccordionContent>
                     </AccordionItem>

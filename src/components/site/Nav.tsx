@@ -37,42 +37,45 @@ export function Nav({ overlay = false }: { overlay?: boolean }) {
           : "bg-transparent"
       }`}
     >
-      <div className="mx-auto max-w-7xl px-6 lg:px-10 h-20 lg:h-24 flex items-center justify-between gap-6">
+      <div className="mx-auto grid h-16 max-w-7xl grid-cols-[1fr_auto] items-center gap-6 px-6 lg:h-[68px] lg:grid-cols-[1fr_auto_1fr] lg:px-10">
         <Link to="/" className="flex flex-col items-start leading-none">
           <span
-            className={`font-serif text-xl lg:text-2xl tracking-[0.28em] uppercase ${logoTone}`}
+            className={`font-serif text-lg tracking-[0.24em] uppercase lg:text-xl ${logoTone}`}
           >
             Cotepiercing
           </span>
-          <span className="mt-2 flex items-center gap-2">
-            <span className="w-6 h-px bg-[var(--gold)]" />
-            <span className={`text-[10px] tracking-[0.4em] uppercase ${subtleTone}`}>
+          <span className="mt-1.5 flex items-center gap-2">
+            <span className="h-px w-5 bg-[var(--gold)]" />
+            <span className={`text-[9px] tracking-[0.38em] uppercase ${subtleTone}`}>
               María José
             </span>
-            <span className="w-6 h-px bg-[var(--gold)]" />
+            <span className="h-px w-5 bg-[var(--gold)]" />
           </span>
         </Link>
 
-        <nav className="hidden lg:flex items-center gap-9">
+        <nav className="hidden items-center justify-center gap-8 lg:flex">
           {links.map((l) => (
             <a
               key={l.href}
               href={l.href}
-              className={`text-[11px] tracking-[0.28em] uppercase transition-colors ${linkTone}`}
+              className={`text-[10px] tracking-[0.28em] uppercase transition-colors ${linkTone}`}
             >
               {l.label}
             </a>
           ))}
+        </nav>
+
+        <div className="hidden justify-end lg:flex">
           <a
             href={waLink()}
             data-cta="reservation"
             target="_blank"
             rel="noopener noreferrer"
-            className={`ml-2 inline-flex items-center justify-center px-7 py-3 rounded-full border text-[11px] tracking-[0.28em] uppercase transition-colors ${reservationTone}`}
+            className={`inline-flex items-center justify-center rounded-full border px-6 py-2.5 text-[10px] tracking-[0.28em] uppercase transition-colors ${reservationTone}`}
           >
             Reservar
           </a>
-        </nav>
+        </div>
 
         <button
           aria-label="Menú"

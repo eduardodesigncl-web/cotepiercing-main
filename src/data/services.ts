@@ -19,6 +19,7 @@ import imgFlat from "@/assets/servicios/piercing-flat-oreja-cotepiercing.webp";
 
 // ─── Nariz y rostro ──────────────────────────────────────────────────────────
 import imgNostril from "@/assets/servicios/piercing-nostril-nariz-cotepiercing.webp";
+import imgHighNostril from "@/assets/servicios/piercing-high-nostril-nariz-cotepiercing.webp";
 import imgSeptum from "@/assets/servicios/piercing-septum-nariz-cotepiercing.webp";
 import imgCeja from "@/assets/servicios/piercing-ceja-eyebrow-piercing-cotepiercing.webp";
 import imgThirdEye from "@/assets/servicios/piercing-third-eye-rostro-cotepiercing.webp";
@@ -257,7 +258,7 @@ export const services: Service[] = [
     evaluation: "Obligatoria",
     category: "Nariz y rostro",
     slug: "piercing-high-nostril-nariz-arica",
-    image: imgNostril,
+    image: imgHighNostril,
     imageAlt: "Piercing high nostril en nariz realizado por Cotepiercing",
   }),
   make({

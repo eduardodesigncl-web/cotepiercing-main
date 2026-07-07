@@ -51,8 +51,6 @@ import earImg from "@/assets/ear.jpg";
 import aboutImg from "@/assets/maria-jose-piercer-profesional-cotepiercing-arica-chile.webp";
 
 import gExpansion from "@/assets/gallery/expansion-lobulo-doble-helix-oreja-cotepiercing.webp";
-import gSeptum from "@/assets/gallery/septum-piercing-con-herradura-cotepiercing-arica.webp";
-import gEyebrow from "@/assets/gallery/eyebrow-piercing-vertical-cotepiercing-arica.webp";
 import gTongue from "@/assets/gallery/tongue-piercing-con-joyeria-personalizada-cotepiercing-arica.webp";
 import gEstudio from "@/assets/gallery/estudio-piercing-cotepiercing-espacio-de-trabajo.webp";
 import gPerforacionHelix from "@/assets/gallery/perforacion-helix-cotepiercing.webp";
@@ -80,24 +78,6 @@ const galleryItems: GalleryItem[] = [
     alt: "Oreja con expansión de lóbulo y doble piercing hélix, trabajo profesional realizado por María José de Cotepiercing.",
     category: "Oreja",
     caption: "Expansión de lóbulo y doble hélix",
-  },
-  {
-    src: gSeptum,
-    filename: "septum-piercing-con-herradura-cotepiercing-arica.webp",
-    width: 1200,
-    height: 1600,
-    alt: "Septum piercing con joyería tipo herradura realizado por María José de Cotepiercing en Arica, Chile.",
-    category: "Nariz / rostro",
-    caption: "Septum con herradura",
-  },
-  {
-    src: gEyebrow,
-    filename: "eyebrow-piercing-vertical-cotepiercing-arica.webp",
-    width: 1311,
-    height: 1200,
-    alt: "Vertical eyebrow piercing realizado por María José de Cotepiercing en Arica, Chile.",
-    category: "Rostro",
-    caption: "Vertical eyebrow",
   },
   {
     src: gTongue,
@@ -446,13 +426,13 @@ function Page() {
               </div>
               <div className="p-3 sm:p-5 flex flex-col gap-2 sm:gap-3 w-full flex-1">
                 <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-1 sm:gap-3">
-                  <div>
+                  <div className="min-w-0">
                     <h3 className="font-serif text-[17px] sm:text-xl leading-tight">{s.name}</h3>
                     <p className="mt-1 sm:mt-1.5 text-[9px] sm:text-[10px] tracking-[0.24em] uppercase text-muted-foreground">
                       {s.zone}
                     </p>
                   </div>
-                  <div className="font-serif text-[15px] sm:text-lg text-[var(--gold)] whitespace-nowrap">
+                  <div className="max-w-full font-serif text-[15px] leading-tight text-[var(--gold)] sm:max-w-[8.5rem] sm:text-right sm:text-lg">
                     {s.price}
                   </div>
                 </div>
@@ -648,18 +628,18 @@ function Page() {
       <GoogleReviews />
 
       {/* ABOUT */}
-      <Section id="sobre" className="landing-band landing-band-sand !pt-6 !pb-12 lg:!py-20">
-        <div className="mx-auto max-w-6xl">
-          <div className="grid gap-8 lg:grid-cols-[0.92fr_0.78fr_1fr] lg:gap-8 lg:items-center">
+      <Section id="sobre" className="landing-band landing-band-sand !pt-6 !pb-12 lg:!py-12">
+        <div className="mx-auto max-w-7xl">
+          <div className="grid gap-8 lg:grid-cols-[0.62fr_1.38fr] lg:items-center lg:gap-10">
             <div className="order-2 lg:order-none">
               <div className="eyebrow text-[0.78rem] tracking-[0.42em] text-[var(--gold)]">
                 Sobre
               </div>
-              <h2 className="mt-5 font-serif text-5xl leading-[0.98] text-foreground sm:text-6xl lg:text-[4.35rem]">
+              <h2 className="mt-5 font-serif text-5xl leading-[0.98] text-foreground sm:text-6xl lg:text-[3.85rem]">
                 María José
               </h2>
               <div className="mt-8 h-px w-24 bg-[var(--gold)] lg:mt-6" />
-              <p className="mt-8 max-w-md text-[1.05rem] leading-8 text-foreground sm:text-xl sm:leading-9 lg:mt-6 lg:text-[1.05rem] lg:leading-8">
+              <p className="mt-8 max-w-md text-[1.05rem] leading-8 text-foreground sm:text-xl sm:leading-9 lg:mt-6 lg:text-base lg:leading-7">
                 Hola, soy la profesional detrás de <strong>Cotepiercing.</strong> Con 8 años de
                 trayectoria en el mundo de la modificación corporal, mi enfoque combina la pasión
                 por el arte con el máximo rigor técnico.
@@ -669,67 +649,69 @@ function Page() {
                   profesionales en Body Piercing y en Modificaciones Corporales Avanzadas.
                 </span>
               </p>
-              <div className="landing-about-commitment mt-7 hidden rounded-xl border border-border bg-background/55 p-5 lg:block">
+              <div className="landing-about-commitment mt-6 hidden rounded-xl border border-border bg-background/55 p-4 lg:block">
                 <div className="flex gap-4">
                   <Sparkles
                     className="mt-1 h-6 w-6 shrink-0 text-[var(--gold)]"
                     strokeWidth={1.3}
                   />
-                  <p className="text-[0.95rem] leading-7 text-foreground">
+                  <p className="text-[0.92rem] leading-6 text-foreground">
                     Mi compromiso es ofrecer perforaciones de la más alta calidad, cuidando tu salud
                     y garantizando un resultado estético que <strong>se adapte a ti.</strong>
                   </p>
                 </div>
               </div>
             </div>
-            <div className="about-image order-1 lg:order-none">
-              <img
-                src={aboutImg}
-                alt="María José, piercer profesional de Cotepiercing en Arica, Chile, en su estudio de trabajo con uniforme clínico."
-                loading="lazy"
-                decoding="async"
-                width={900}
-                height={1200}
-                className="landing-about-photo mx-auto h-auto w-full max-w-[34rem] aspect-[5/6] rounded-xl object-cover shadow-sm lg:mx-0 lg:max-w-[22rem] lg:aspect-[4/5]"
-              />
-            </div>
+            <div className="contents lg:grid lg:gap-5">
+              <div className="about-image order-1 lg:order-none">
+                <img
+                  src={aboutImg}
+                  alt="María José, piercer profesional de Cotepiercing en Arica, Chile, en su estudio de trabajo con uniforme clínico."
+                  loading="lazy"
+                  decoding="async"
+                  width={900}
+                  height={1200}
+                  className="landing-about-photo mx-auto h-auto w-full max-w-[34rem] aspect-[5/6] rounded-xl object-cover shadow-sm lg:mx-0 lg:max-w-none lg:aspect-[16/7]"
+                />
+              </div>
 
-            <div className="landing-about-panel order-3 overflow-hidden rounded-xl border border-border bg-background/55 lg:order-none lg:self-start">
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1">
-                <div className="flex gap-3 border-b border-border p-4 sm:gap-5 sm:border-r sm:p-8 lg:gap-4 lg:border-r-0 lg:p-4">
-                  <div className="landing-about-icon">
-                    <FlaskConical className="h-7 w-7 lg:h-5 lg:w-5" strokeWidth={1.6} />
+              <div className="landing-about-panel order-3 overflow-hidden rounded-xl border border-border bg-background/55 lg:order-none">
+                <div className="grid grid-cols-1 sm:grid-cols-[0.9fr_1.1fr]">
+                  <div className="flex gap-3 border-b border-border p-4 sm:gap-4 sm:border-r sm:p-5 lg:gap-3.5 lg:p-5">
+                    <div className="landing-about-icon">
+                      <FlaskConical className="h-7 w-7 lg:h-5 lg:w-5" strokeWidth={1.6} />
+                    </div>
+                    <p className="text-[0.88rem] leading-5 text-foreground sm:text-base sm:leading-6 lg:text-[0.92rem] lg:leading-5">
+                      Formación como
+                      <br />
+                      Analista Químico
+                    </p>
                   </div>
-                  <p className="text-[0.88rem] leading-5 text-foreground sm:text-lg sm:leading-7 lg:text-[0.95rem] lg:leading-6">
-                    Formación como
-                    <br />
-                    Analista Químico
-                  </p>
-                </div>
-                <div className="flex gap-3 border-b border-border p-4 sm:gap-5 sm:p-8 lg:gap-4 lg:p-4">
-                  <div className="landing-about-icon">
-                    <Award className="h-7 w-7 lg:h-5 lg:w-5" strokeWidth={1.6} />
+                  <div className="flex gap-3 border-b border-border p-4 sm:gap-4 sm:p-5 lg:gap-3.5 lg:p-5">
+                    <div className="landing-about-icon">
+                      <Award className="h-7 w-7 lg:h-5 lg:w-5" strokeWidth={1.6} />
+                    </div>
+                    <p className="text-[0.88rem] leading-5 text-foreground sm:text-base sm:leading-6 lg:text-[0.92rem] lg:leading-5">
+                      Certificaciones en Body Piercing (niveles básico, intermedio y avanzado) y
+                      Modificaciones Corporales Avanzadas
+                    </p>
                   </div>
-                  <p className="text-[0.88rem] leading-5 text-foreground sm:text-lg sm:leading-7 lg:text-[0.95rem] lg:leading-6">
-                    Certificaciones en Body Piercing (niveles básico, intermedio y avanzado) y
-                    Modificaciones Corporales Avanzadas
-                  </p>
-                </div>
-                <div className="flex gap-3 border-b border-border p-4 sm:gap-5 sm:border-r sm:border-b-0 sm:p-8 lg:gap-4 lg:border-r-0 lg:border-b lg:p-4">
-                  <div className="landing-about-icon">
-                    <ShieldCheck className="h-7 w-7 lg:h-5 lg:w-5" strokeWidth={1.6} />
+                  <div className="flex gap-3 border-b border-border p-4 sm:gap-4 sm:border-r sm:border-b-0 sm:p-5 lg:gap-3.5 lg:p-5">
+                    <div className="landing-about-icon">
+                      <ShieldCheck className="h-7 w-7 lg:h-5 lg:w-5" strokeWidth={1.6} />
+                    </div>
+                    <p className="text-[0.88rem] leading-5 text-foreground sm:text-base sm:leading-6 lg:text-[0.92rem] lg:leading-5">
+                      Protocolos de bioseguridad y materiales de alta biocompatibilidad
+                    </p>
                   </div>
-                  <p className="text-[0.88rem] leading-5 text-foreground sm:text-lg sm:leading-7 lg:text-[0.95rem] lg:leading-6">
-                    Protocolos de bioseguridad y materiales de alta biocompatibilidad
-                  </p>
-                </div>
-                <div className="flex gap-3 p-4 sm:gap-5 sm:p-8 lg:gap-4 lg:p-4">
-                  <div className="landing-about-icon">
-                    <Syringe className="h-7 w-7 lg:h-5 lg:w-5" strokeWidth={1.6} />
+                  <div className="flex gap-3 p-4 sm:gap-4 sm:p-5 lg:gap-3.5 lg:p-5">
+                    <div className="landing-about-icon">
+                      <Syringe className="h-7 w-7 lg:h-5 lg:w-5" strokeWidth={1.6} />
+                    </div>
+                    <p className="text-[0.88rem] leading-5 text-foreground sm:text-base sm:leading-6 lg:text-[0.92rem] lg:leading-5">
+                      Procedimientos seguros, precisos y personalizados para cada anatomía
+                    </p>
                   </div>
-                  <p className="text-[0.88rem] leading-5 text-foreground sm:text-lg sm:leading-7 lg:text-[0.95rem] lg:leading-6">
-                    Procedimientos seguros, precisos y personalizados para cada anatomía
-                  </p>
                 </div>
               </div>
             </div>

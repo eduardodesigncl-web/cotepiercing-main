@@ -6,7 +6,7 @@ const categories = [
   {
     href: "/servicios/oreja",
     title: "Piercings de oreja",
-    text: "Lóbulo, upper lobe, helix, tragus, conch, flat, daith, rook e industrial.",
+    text: "Lobe, upper lobe, helix, tragus, conch, flat, daith, rook, industrial y expansión.",
   },
   {
     href: "/servicios/nariz-rostro",
@@ -21,7 +21,7 @@ const categories = [
   {
     href: "/servicios/cuerpo",
     title: "Piercings de cuerpo",
-    text: "Ombligo, microdermal, surface y expansión sujetos a viabilidad anatómica.",
+    text: "Ombligo, microdermal y surface sujetos a viabilidad anatómica.",
   },
   {
     href: "/servicios/privado",

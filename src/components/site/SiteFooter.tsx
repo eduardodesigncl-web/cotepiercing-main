@@ -2,8 +2,7 @@ import { SITE } from "@/lib/site";
 
 const links = [
   { href: "/servicios", label: "Servicios" },
-  { href: "/servicios/privado", label: "Servicios privados" },
-  { href: "/estudio", label: "Estudio" },
+  { href: "/precios", label: "Precios" },
   { href: "/evaluacion", label: "Evaluaciones" },
   { href: "/sobre-cote", label: "Sobre María" },
   { href: "/privacidad", label: "Privacidad" },

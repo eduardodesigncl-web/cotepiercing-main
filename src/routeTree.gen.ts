@@ -16,7 +16,6 @@ import { Route as PreciosRouteImport } from './routes/precios'
 import { Route as PiercingAricaRouteImport } from './routes/piercing-arica'
 import { Route as InformacionSanitariaRouteImport } from './routes/informacion-sanitaria'
 import { Route as EvaluacionRouteImport } from './routes/evaluacion'
-import { Route as EstudioRouteImport } from './routes/estudio'
 import { Route as AtencionMenoresRouteImport } from './routes/atencion-menores'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ServiciosIndexRouteImport } from './routes/servicios/index'
@@ -61,11 +60,6 @@ const InformacionSanitariaRoute = InformacionSanitariaRouteImport.update({
 const EvaluacionRoute = EvaluacionRouteImport.update({
   id: '/evaluacion',
   path: '/evaluacion',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const EstudioRoute = EstudioRouteImport.update({
-  id: '/estudio',
-  path: '/estudio',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AtencionMenoresRoute = AtencionMenoresRouteImport.update({
@@ -117,7 +111,6 @@ const ServiciosSlugRoute = ServiciosSlugRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/atencion-menores': typeof AtencionMenoresRoute
-  '/estudio': typeof EstudioRoute
   '/evaluacion': typeof EvaluacionRoute
   '/informacion-sanitaria': typeof InformacionSanitariaRoute
   '/piercing-arica': typeof PiercingAricaRoute
@@ -136,7 +129,6 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/atencion-menores': typeof AtencionMenoresRoute
-  '/estudio': typeof EstudioRoute
   '/evaluacion': typeof EvaluacionRoute
   '/informacion-sanitaria': typeof InformacionSanitariaRoute
   '/piercing-arica': typeof PiercingAricaRoute
@@ -156,7 +148,6 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/atencion-menores': typeof AtencionMenoresRoute
-  '/estudio': typeof EstudioRoute
   '/evaluacion': typeof EvaluacionRoute
   '/informacion-sanitaria': typeof InformacionSanitariaRoute
   '/piercing-arica': typeof PiercingAricaRoute
@@ -177,7 +168,6 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/atencion-menores'
-    | '/estudio'
     | '/evaluacion'
     | '/informacion-sanitaria'
     | '/piercing-arica'
@@ -196,7 +186,6 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/atencion-menores'
-    | '/estudio'
     | '/evaluacion'
     | '/informacion-sanitaria'
     | '/piercing-arica'
@@ -215,7 +204,6 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/atencion-menores'
-    | '/estudio'
     | '/evaluacion'
     | '/informacion-sanitaria'
     | '/piercing-arica'
@@ -235,7 +223,6 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AtencionMenoresRoute: typeof AtencionMenoresRoute
-  EstudioRoute: typeof EstudioRoute
   EvaluacionRoute: typeof EvaluacionRoute
   InformacionSanitariaRoute: typeof InformacionSanitariaRoute
   PiercingAricaRoute: typeof PiercingAricaRoute
@@ -301,13 +288,6 @@ declare module '@tanstack/react-router' {
       path: '/evaluacion'
       fullPath: '/evaluacion'
       preLoaderRoute: typeof EvaluacionRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/estudio': {
-      id: '/estudio'
-      path: '/estudio'
-      fullPath: '/estudio'
-      preLoaderRoute: typeof EstudioRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/atencion-menores': {
@@ -379,7 +359,6 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AtencionMenoresRoute: AtencionMenoresRoute,
-  EstudioRoute: EstudioRoute,
   EvaluacionRoute: EvaluacionRoute,
   InformacionSanitariaRoute: InformacionSanitariaRoute,
   PiercingAricaRoute: PiercingAricaRoute,

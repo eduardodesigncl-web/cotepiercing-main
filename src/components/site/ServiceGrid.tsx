@@ -23,13 +23,15 @@ export function ServiceGrid({ items }: { items: Service[] }) {
           </div>
           <div className="p-5">
             <div className="flex items-start justify-between gap-4">
-              <div>
+              <div className="min-w-0">
                 <h2 className="font-serif text-xl">{service.name}</h2>
                 <p className="mt-1 text-xs uppercase tracking-widest text-muted-foreground">
                   {service.zone}
                 </p>
               </div>
-              <span className="font-serif text-lg text-[var(--gold)]">{service.price}</span>
+              <span className="max-w-[8.5rem] text-right font-serif text-lg leading-tight text-[var(--gold)]">
+                {service.price}
+              </span>
             </div>
             <p className="mt-4 text-xs text-muted-foreground">Cicatrización: {service.healing}</p>
             <p className="mt-4 text-xs uppercase tracking-widest text-[var(--gold)]">

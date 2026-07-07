@@ -37,6 +37,7 @@ import { faqs } from "@/data/faqs";
 import { waLink } from "@/lib/wa";
 import { SITE_URL } from "@/lib/config";
 import { BUSINESS_ADDRESS_WITH_COUNTRY, SITE } from "@/lib/site";
+import { optimizedImageSrc, optimizedImageSrcSet } from "@/lib/responsive-images";
 
 import heroCarouselEarWide from "@/assets/hero/hero-carousel-ear-wide.webp";
 import heroCarouselJewelryHands from "@/assets/hero/hero-carousel-jewelry-hands.webp";
@@ -147,26 +148,36 @@ const galleryItems: GalleryItem[] = [
 const heroCarouselImages = [
   {
     src: heroCarouselEarWide,
+    optimizedSrc: optimizedImageSrc("hero", heroCarouselEarWide, 480),
+    srcSet: optimizedImageSrcSet("hero", heroCarouselEarWide, [320, 480, 640]),
     alt: "Oreja con piercings dorados y joyería fina.",
     objectPosition: "44% 44%",
   },
   {
     src: heroCarouselJewelryHands,
+    optimizedSrc: optimizedImageSrc("hero", heroCarouselJewelryHands, 480),
+    srcSet: optimizedImageSrcSet("hero", heroCarouselJewelryHands, [320, 480, 640]),
     alt: "Manos con guantes negros manipulando joyería dorada.",
     objectPosition: "52% 46%",
   },
   {
     src: heroCarouselJewelryTray,
+    optimizedSrc: optimizedImageSrc("hero", heroCarouselJewelryTray, 480),
+    srcSet: optimizedImageSrcSet("hero", heroCarouselJewelryTray, [320, 480, 640]),
     alt: "Selección de joyería para piercing en una bandeja beige.",
     objectPosition: "50% 49%",
   },
   {
     src: heroCarouselEarStar,
+    optimizedSrc: optimizedImageSrc("hero", heroCarouselEarStar, 480),
+    srcSet: optimizedImageSrcSet("hero", heroCarouselEarStar, [320, 480, 640]),
     alt: "Oreja con piercings dorados y colgante de estrella.",
     objectPosition: "54% 44%",
   },
   {
     src: heroCarouselMarking,
+    optimizedSrc: optimizedImageSrc("hero", heroCarouselMarking, 480),
+    srcSet: optimizedImageSrcSet("hero", heroCarouselMarking, [320, 480, 640]),
     alt: "María José evaluando la anatomía facial antes de una perforación.",
     objectPosition: "58% 43%",
   },
@@ -206,7 +217,14 @@ export const Route = createFileRoute("/")({
     ],
     links: [
       { rel: "canonical", href: `${SITE_URL}/` },
-      { rel: "preload", as: "image", href: heroCarouselEarWide, fetchPriority: "high" },
+      {
+        rel: "preload",
+        as: "image",
+        href: optimizedImageSrc("hero", heroCarouselEarWide, 480),
+        imageSrcSet: optimizedImageSrcSet("hero", heroCarouselEarWide, [320, 480, 640]),
+        imageSizes: "(min-width: 1024px) 245px, 46vw",
+        fetchPriority: "high",
+      },
     ],
   }),
   component: Page,
@@ -380,10 +398,12 @@ function Page() {
                   className="hero-carousel-card overflow-hidden bg-white/5"
                 >
                   <img
-                    src={image.src}
+                    src={image.optimizedSrc}
+                    srcSet={image.srcSet}
+                    sizes="(min-width: 1024px) 245px, 46vw"
                     alt={image.alt}
-                    width={900}
-                    height={1125}
+                    width={480}
+                    height={600}
                     loading={index < heroCarouselImages.length ? "eager" : "lazy"}
                     decoding="async"
                     className="h-full w-full object-cover"
@@ -450,12 +470,14 @@ function Page() {
             >
               <div className="relative w-full aspect-[4/5] shrink-0 overflow-hidden bg-[var(--stone)]">
                 <img
-                  src={s.image}
+                  src={s.cardImage}
+                  srcSet={s.cardImageSrcSet}
+                  sizes="(min-width: 1280px) 23vw, (min-width: 1024px) 31vw, (min-width: 640px) 47vw, 46vw"
                   alt={s.imageAlt}
                   loading="lazy"
                   decoding="async"
-                  width={800}
-                  height={1000}
+                  width={520}
+                  height={650}
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
                 />
               </div>

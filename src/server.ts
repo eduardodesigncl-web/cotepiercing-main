@@ -274,7 +274,9 @@ const SECURITY_HEADERS: Record<string, string> = {
 function cachePolicyFor(url: URL, response: Response): string | undefined {
   if (response.headers.has("Cache-Control")) return undefined;
   if (url.pathname === "/version.json") return "no-store";
-  if (url.pathname.startsWith("/assets/")) return "public, max-age=31536000, immutable";
+  if (url.pathname.startsWith("/assets/") || url.pathname.startsWith("/optimized/")) {
+    return "public, max-age=31536000, immutable";
+  }
   if (
     url.pathname === "/robots.txt" ||
     url.pathname === "/sitemap.xml" ||
@@ -313,7 +315,11 @@ function addResponseHeaders(
 }
 
 function shouldServeStaticAsset(pathname: string): boolean {
-  return pathname.startsWith("/assets/") || PUBLIC_ASSET_PATHS.has(pathname);
+  return (
+    pathname.startsWith("/assets/") ||
+    pathname.startsWith("/optimized/") ||
+    PUBLIC_ASSET_PATHS.has(pathname)
+  );
 }
 
 async function serveStaticAsset(

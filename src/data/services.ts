@@ -1,4 +1,5 @@
 // ─── Imágenes por categoría (fallback / servicios sin imagen individual) ───
+import { optimizedImageSrc, optimizedImageSrcSet } from "@/lib/responsive-images";
 import catOreja from "@/assets/cat-oreja.jpg";
 import catNariz from "@/assets/cat-nariz.jpg";
 import catLabio from "@/assets/cat-labio.jpg";
@@ -75,13 +76,19 @@ export type Service = {
   evaluation: "Recomendada" | "Obligatoria" | "—";
   category: Category;
   image: string;
+  cardImage: string;
+  cardImageSrcSet: string;
   imageAlt: string;
   description: string;
   slug: string;
 };
 
-const make = (s: Omit<Service, "description"> & { description?: string }): Service => ({
+const make = (
+  s: Omit<Service, "cardImage" | "cardImageSrcSet" | "description"> & { description?: string },
+): Service => ({
   ...s,
+  cardImage: optimizedImageSrc("services", s.image, 520),
+  cardImageSrcSet: optimizedImageSrcSet("services", s.image, [360, 520, 720]),
   description:
     s.description ??
     `${s.name} realizado con técnica profesional, asepsia clínica y joyería inicial incluida. Ubicación: ${s.zone}. La perforación se evalúa según anatomía para asegurar viabilidad, comodidad y un proceso de cicatrización óptimo.`,

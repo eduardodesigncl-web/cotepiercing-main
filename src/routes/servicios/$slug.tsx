@@ -264,7 +264,9 @@ function ServicePage() {
                 >
                   <div className="relative min-h-32 overflow-hidden bg-[var(--stone)] sm:aspect-[4/3]">
                     <img
-                      src={s.image}
+                      src={s.cardImage}
+                      srcSet={s.cardImageSrcSet}
+                      sizes="(min-width: 1024px) 31vw, (min-width: 640px) 47vw, 7rem"
                       alt={s.imageAlt}
                       loading="lazy"
                       decoding="async"

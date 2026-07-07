@@ -54,11 +54,11 @@ const reviews = [
 
 function RatingStars() {
   return (
-    <div className="flex gap-0.5" aria-label="5 de 5 estrellas">
+    <span className="flex gap-0.5" role="img" aria-label="5 de 5 estrellas">
       {Array.from({ length: 5 }).map((_, star) => (
         <Star key={star} className="h-3.5 w-3.5 fill-[var(--gold)] text-[var(--gold)]" />
       ))}
-    </div>
+    </span>
   );
 }
 

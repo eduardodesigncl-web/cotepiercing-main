@@ -12,6 +12,7 @@ import {
 
 import { SITE_URL } from "@/lib/config";
 import { ConsentBanner } from "@/components/site/ConsentBanner";
+import { registerCotepiercingWebMcpTools } from "@/lib/webmcp";
 import appCss from "@/styles.css?url";
 
 function NotFoundComponent() {
@@ -147,6 +148,11 @@ function RootShell({ children }: { children: React.ReactNode }) {
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const location = useLocation();
+
+  useEffect(() => {
+    const controller = registerCotepiercingWebMcpTools();
+    return () => controller?.abort();
+  }, []);
 
   useEffect(() => {
     window.scrollTo(0, window.scrollY);

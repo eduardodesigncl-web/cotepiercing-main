@@ -2,7 +2,6 @@ export const SITE = {
   name: "Cotepiercing",
   professional: "María José",
   url: "https://cotepiercing.cl",
-  temporaryUrl: "https://cotepiercing-main.eduardo-design-cl.workers.dev",
   phoneDisplay: "+56 9 4856 6852",
   phoneE164: "+56948566852",
   whatsappNumber: "56948566852",

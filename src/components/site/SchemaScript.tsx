@@ -13,11 +13,11 @@ const numericPrice = (price: string) =>
 const localBusinessSchema = {
   "@context": "https://schema.org",
   "@type": "HealthAndBeautyBusiness",
-  "@id": `${SITE_URL}/#local-business`,
+  "@id": `${SITE_URL}/#business`,
   name: SITE.name,
   description:
     "Estudio de body piercing profesional en Arica, Chile. Evaluación anatómica, asepsia clínica y joyería inicial incluida en cada servicio.",
-  url: `${SITE_URL}/`,
+  url: SITE_URL,
   priceRange: "$5.000 - $100.000 CLP",
   currenciesAccepted: "CLP",
   paymentAccepted: "Efectivo, transferencia bancaria",

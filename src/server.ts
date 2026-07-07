@@ -59,6 +59,11 @@ type PlaceDetails = {
 const REVIEW_CACHE_SECONDS = 60 * 60 * 24;
 const APP_COMMIT = __APP_COMMIT__;
 const APP_BUILD_TIME = __APP_BUILD_TIME__;
+const OFFICIAL_HOSTNAME = "cotepiercing.cl";
+const REDIRECT_HOSTNAMES = new Set([
+  "www.cotepiercing.cl",
+  "cotepiercing-main.eduardo-design-cl.workers.dev",
+]);
 const PUBLIC_ASSET_PATHS = new Set([
   "/apple-touch-icon.png",
   "/cotepiercing-piercing-profesional-arica-chile-og.png",
@@ -355,10 +360,29 @@ function trailingSlashRedirect(request: Request): Response | undefined {
   });
 }
 
+function canonicalHostRedirect(request: Request): Response | undefined {
+  const url = new URL(request.url);
+  if (!REDIRECT_HOSTNAMES.has(url.hostname.toLowerCase())) return undefined;
+
+  url.protocol = "https:";
+  url.hostname = OFFICIAL_HOSTNAME;
+  url.port = "";
+  return new Response(null, {
+    status: 301,
+    headers: {
+      Location: url.toString(),
+      "Cache-Control": "public, max-age=86400",
+    },
+  });
+}
+
 export default {
   async fetch(request: Request, env: unknown, ctx: unknown) {
     const url = new URL(request.url);
     const runtimeEnv = env as RuntimeEnv;
+    const hostRedirect = canonicalHostRedirect(request);
+    if (hostRedirect) return addResponseHeaders(request, hostRedirect, runtimeEnv);
+
     const redirect = trailingSlashRedirect(request);
     if (redirect) return addResponseHeaders(request, redirect, runtimeEnv);
 

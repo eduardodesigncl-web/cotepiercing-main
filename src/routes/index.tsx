@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useRef, useState } from "react";
+import { type FormEvent, useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import {
   Award,
@@ -175,6 +175,16 @@ const heroCarouselImages = [
 const heroCarouselLoop = [...heroCarouselImages, ...heroCarouselImages];
 const faqMidpoint = Math.ceil(faqs.length / 2);
 const faqColumns = [faqs.slice(0, faqMidpoint), faqs.slice(faqMidpoint)];
+const reservationFormWebMcpAttrs = {
+  toolname: "requestPiercingReservation",
+  tooldescription:
+    "Prepares a Cotepiercing reservation request with service, schedule and notes, then opens WhatsApp for user confirmation.",
+  toolautosubmit: "",
+};
+
+function webMcpParam(description: string) {
+  return { toolparamdescription: description };
+}
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -251,6 +261,30 @@ function Page() {
   const [lightbox, setLightbox] = useState<GalleryItem | null>(null);
   const heroRef = useRef<HTMLElement | null>(null);
   const filtered = services.filter((s) => s.category === cat);
+
+  const handleReservationSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const formData = new FormData(event.currentTarget);
+    const clientName = String(formData.get("clientName") ?? "").trim();
+    const serviceCategory = String(formData.get("serviceCategory") ?? "").trim();
+    const serviceName = String(formData.get("serviceName") ?? "").trim();
+    const preferredTime = String(formData.get("preferredTime") ?? "").trim();
+    const notes = String(formData.get("notes") ?? "").trim();
+
+    const message = [
+      `Hola María José, quiero reservar una hora en ${SITE.name}.`,
+      clientName ? `Nombre: ${clientName}` : undefined,
+      serviceCategory ? `Categoría: ${serviceCategory}` : undefined,
+      serviceName ? `Servicio o piercing: ${serviceName}` : undefined,
+      preferredTime ? `Horario ideal: ${preferredTime}` : undefined,
+      notes ? `Comentarios: ${notes}` : undefined,
+    ]
+      .filter(Boolean)
+      .join("\n");
+
+    window.location.href = waLink(message);
+  };
 
   useEffect(() => {
     const root = heroRef.current;
@@ -394,6 +428,7 @@ function Page() {
             <button
               key={c}
               onClick={() => setCat(c)}
+              data-service-category={c}
               className={`px-3 py-1.5 sm:px-4 sm:py-2 text-[10px] sm:text-xs tracking-[0.18em] uppercase border transition-colors ${
                 cat === c
                   ? "bg-[var(--gold)] text-white border-[var(--gold)]"
@@ -913,6 +948,97 @@ function Page() {
             </div>
           </div>
           <div className="landing-reserve-panel lg:col-span-6 bg-[var(--stone)]/50 p-5 sm:p-6 lg:p-7 space-y-4">
+            <form
+              {...reservationFormWebMcpAttrs}
+              action={waLink()}
+              onSubmit={handleReservationSubmit}
+              className="space-y-4 border-b border-white/10 pb-5"
+            >
+              <div>
+                <div className="eyebrow mb-3">Solicitud rápida</div>
+                <div className="grid gap-3 sm:grid-cols-2">
+                  <label className="block text-sm text-foreground">
+                    <span className="mb-1.5 block text-xs text-muted-foreground">Nombre</span>
+                    <input
+                      name="clientName"
+                      type="text"
+                      autoComplete="name"
+                      {...webMcpParam("Name of the person requesting the Cotepiercing booking.")}
+                      className="h-10 w-full border border-border bg-background px-3 text-sm text-foreground outline-none transition-colors focus:border-[var(--gold)]"
+                    />
+                  </label>
+                  <label className="block text-sm text-foreground">
+                    <span className="mb-1.5 block text-xs text-muted-foreground">Categoría</span>
+                    <select
+                      name="serviceCategory"
+                      required
+                      defaultValue=""
+                      {...webMcpParam("General service category for the requested appointment.")}
+                      className="h-10 w-full border border-border bg-background px-3 text-sm text-foreground outline-none transition-colors focus:border-[var(--gold)]"
+                    >
+                      <option value="" disabled>
+                        Selecciona
+                      </option>
+                      {categories.map((category) => (
+                        <option key={category} value={category}>
+                          {category}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                  <label className="block text-sm text-foreground sm:col-span-2">
+                    <span className="mb-1.5 block text-xs text-muted-foreground">
+                      Servicio o piercing
+                    </span>
+                    <input
+                      name="serviceName"
+                      type="text"
+                      required
+                      autoComplete="off"
+                      placeholder="Ej: nostril, hélix, cambio de joyería"
+                      {...webMcpParam(
+                        "Specific piercing, evaluation or jewelry service requested.",
+                      )}
+                      className="h-10 w-full border border-border bg-background px-3 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-[var(--gold)]"
+                    />
+                  </label>
+                  <label className="block text-sm text-foreground sm:col-span-2">
+                    <span className="mb-1.5 block text-xs text-muted-foreground">
+                      Horario ideal
+                    </span>
+                    <input
+                      name="preferredTime"
+                      type="text"
+                      autoComplete="off"
+                      placeholder="Ej: sábado en la tarde"
+                      {...webMcpParam("Preferred day or time written naturally by the user.")}
+                      className="h-10 w-full border border-border bg-background px-3 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-[var(--gold)]"
+                    />
+                  </label>
+                  <label className="block text-sm text-foreground sm:col-span-2">
+                    <span className="mb-1.5 block text-xs text-muted-foreground">Comentarios</span>
+                    <textarea
+                      name="notes"
+                      rows={3}
+                      placeholder="Edad, zona, dudas o evaluación necesaria"
+                      {...webMcpParam(
+                        "Relevant appointment context such as age, body zone or symptoms.",
+                      )}
+                      className="w-full resize-y border border-border bg-background px-3 py-2 text-sm leading-6 text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-[var(--gold)]"
+                    />
+                  </label>
+                </div>
+              </div>
+              <button
+                type="submit"
+                data-cta="reservation"
+                className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-full bg-[var(--gold)] px-6 py-3 text-[11px] uppercase tracking-[0.24em] text-white transition-opacity hover:opacity-90"
+              >
+                <MessageCircle className="h-4 w-4" />
+                Enviar por WhatsApp
+              </button>
+            </form>
+
             {/* Ubicación */}
             <div>
               <div className="eyebrow mb-3">Ubicación</div>

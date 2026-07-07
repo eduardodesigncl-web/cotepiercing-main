@@ -2,6 +2,13 @@ export function assetBaseName(assetUrl: string): string {
   const pathname = assetUrl.split("?")[0] ?? assetUrl;
   const filename = pathname.split("/").pop() ?? pathname;
   const withoutExtension = filename.replace(/\.(?:avif|jpe?g|png|webp)$/i, "");
+
+  const cotepiercingMarker = "-cotepiercing";
+  const cotepiercingIndex = withoutExtension.indexOf(cotepiercingMarker);
+  if (cotepiercingIndex !== -1) {
+    return withoutExtension.slice(0, cotepiercingIndex + cotepiercingMarker.length);
+  }
+
   const parts = withoutExtension.split("-");
 
   while (parts.length > 1) {

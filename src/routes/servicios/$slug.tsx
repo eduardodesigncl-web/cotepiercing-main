@@ -303,9 +303,9 @@ function ServicePage() {
                 text: "Compara valores y servicios con joyería inicial incluida.",
               },
               {
-                href: "/piercing-arica",
-                title: "Atención en Arica",
-                text: "Consulta ubicación, horario y forma de reservar en Cotepiercing.",
+                href: "/servicios",
+                title: "Servicios en Arica",
+                text: "Explora las zonas disponibles y elige el servicio que quieres reservar.",
               },
             ].map((item) => (
               <a

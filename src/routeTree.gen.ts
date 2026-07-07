@@ -9,11 +9,9 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as SobreCoteRouteImport } from './routes/sobre-cote'
 import { Route as ReservasAbonosCancelacionesRouteImport } from './routes/reservas-abonos-cancelaciones'
 import { Route as PrivacidadRouteImport } from './routes/privacidad'
 import { Route as PreciosRouteImport } from './routes/precios'
-import { Route as PiercingAricaRouteImport } from './routes/piercing-arica'
 import { Route as InformacionSanitariaRouteImport } from './routes/informacion-sanitaria'
 import { Route as EvaluacionRouteImport } from './routes/evaluacion'
 import { Route as AtencionMenoresRouteImport } from './routes/atencion-menores'
@@ -26,11 +24,6 @@ import { Route as ServiciosLabioBocaRouteImport } from './routes/servicios/labio
 import { Route as ServiciosCuerpoRouteImport } from './routes/servicios/cuerpo'
 import { Route as ServiciosSlugRouteImport } from './routes/servicios/$slug'
 
-const SobreCoteRoute = SobreCoteRouteImport.update({
-  id: '/sobre-cote',
-  path: '/sobre-cote',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const ReservasAbonosCancelacionesRoute =
   ReservasAbonosCancelacionesRouteImport.update({
     id: '/reservas-abonos-cancelaciones',
@@ -45,11 +38,6 @@ const PrivacidadRoute = PrivacidadRouteImport.update({
 const PreciosRoute = PreciosRouteImport.update({
   id: '/precios',
   path: '/precios',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PiercingAricaRoute = PiercingAricaRouteImport.update({
-  id: '/piercing-arica',
-  path: '/piercing-arica',
   getParentRoute: () => rootRouteImport,
 } as any)
 const InformacionSanitariaRoute = InformacionSanitariaRouteImport.update({
@@ -113,11 +101,9 @@ export interface FileRoutesByFullPath {
   '/atencion-menores': typeof AtencionMenoresRoute
   '/evaluacion': typeof EvaluacionRoute
   '/informacion-sanitaria': typeof InformacionSanitariaRoute
-  '/piercing-arica': typeof PiercingAricaRoute
   '/precios': typeof PreciosRoute
   '/privacidad': typeof PrivacidadRoute
   '/reservas-abonos-cancelaciones': typeof ReservasAbonosCancelacionesRoute
-  '/sobre-cote': typeof SobreCoteRoute
   '/servicios/$slug': typeof ServiciosSlugRoute
   '/servicios/cuerpo': typeof ServiciosCuerpoRoute
   '/servicios/labio-boca': typeof ServiciosLabioBocaRoute
@@ -131,11 +117,9 @@ export interface FileRoutesByTo {
   '/atencion-menores': typeof AtencionMenoresRoute
   '/evaluacion': typeof EvaluacionRoute
   '/informacion-sanitaria': typeof InformacionSanitariaRoute
-  '/piercing-arica': typeof PiercingAricaRoute
   '/precios': typeof PreciosRoute
   '/privacidad': typeof PrivacidadRoute
   '/reservas-abonos-cancelaciones': typeof ReservasAbonosCancelacionesRoute
-  '/sobre-cote': typeof SobreCoteRoute
   '/servicios/$slug': typeof ServiciosSlugRoute
   '/servicios/cuerpo': typeof ServiciosCuerpoRoute
   '/servicios/labio-boca': typeof ServiciosLabioBocaRoute
@@ -150,11 +134,9 @@ export interface FileRoutesById {
   '/atencion-menores': typeof AtencionMenoresRoute
   '/evaluacion': typeof EvaluacionRoute
   '/informacion-sanitaria': typeof InformacionSanitariaRoute
-  '/piercing-arica': typeof PiercingAricaRoute
   '/precios': typeof PreciosRoute
   '/privacidad': typeof PrivacidadRoute
   '/reservas-abonos-cancelaciones': typeof ReservasAbonosCancelacionesRoute
-  '/sobre-cote': typeof SobreCoteRoute
   '/servicios/$slug': typeof ServiciosSlugRoute
   '/servicios/cuerpo': typeof ServiciosCuerpoRoute
   '/servicios/labio-boca': typeof ServiciosLabioBocaRoute
@@ -170,11 +152,9 @@ export interface FileRouteTypes {
     | '/atencion-menores'
     | '/evaluacion'
     | '/informacion-sanitaria'
-    | '/piercing-arica'
     | '/precios'
     | '/privacidad'
     | '/reservas-abonos-cancelaciones'
-    | '/sobre-cote'
     | '/servicios/$slug'
     | '/servicios/cuerpo'
     | '/servicios/labio-boca'
@@ -188,11 +168,9 @@ export interface FileRouteTypes {
     | '/atencion-menores'
     | '/evaluacion'
     | '/informacion-sanitaria'
-    | '/piercing-arica'
     | '/precios'
     | '/privacidad'
     | '/reservas-abonos-cancelaciones'
-    | '/sobre-cote'
     | '/servicios/$slug'
     | '/servicios/cuerpo'
     | '/servicios/labio-boca'
@@ -206,11 +184,9 @@ export interface FileRouteTypes {
     | '/atencion-menores'
     | '/evaluacion'
     | '/informacion-sanitaria'
-    | '/piercing-arica'
     | '/precios'
     | '/privacidad'
     | '/reservas-abonos-cancelaciones'
-    | '/sobre-cote'
     | '/servicios/$slug'
     | '/servicios/cuerpo'
     | '/servicios/labio-boca'
@@ -225,11 +201,9 @@ export interface RootRouteChildren {
   AtencionMenoresRoute: typeof AtencionMenoresRoute
   EvaluacionRoute: typeof EvaluacionRoute
   InformacionSanitariaRoute: typeof InformacionSanitariaRoute
-  PiercingAricaRoute: typeof PiercingAricaRoute
   PreciosRoute: typeof PreciosRoute
   PrivacidadRoute: typeof PrivacidadRoute
   ReservasAbonosCancelacionesRoute: typeof ReservasAbonosCancelacionesRoute
-  SobreCoteRoute: typeof SobreCoteRoute
   ServiciosSlugRoute: typeof ServiciosSlugRoute
   ServiciosCuerpoRoute: typeof ServiciosCuerpoRoute
   ServiciosLabioBocaRoute: typeof ServiciosLabioBocaRoute
@@ -241,13 +215,6 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/sobre-cote': {
-      id: '/sobre-cote'
-      path: '/sobre-cote'
-      fullPath: '/sobre-cote'
-      preLoaderRoute: typeof SobreCoteRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/reservas-abonos-cancelaciones': {
       id: '/reservas-abonos-cancelaciones'
       path: '/reservas-abonos-cancelaciones'
@@ -267,13 +234,6 @@ declare module '@tanstack/react-router' {
       path: '/precios'
       fullPath: '/precios'
       preLoaderRoute: typeof PreciosRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/piercing-arica': {
-      id: '/piercing-arica'
-      path: '/piercing-arica'
-      fullPath: '/piercing-arica'
-      preLoaderRoute: typeof PiercingAricaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/informacion-sanitaria': {
@@ -361,11 +321,9 @@ const rootRouteChildren: RootRouteChildren = {
   AtencionMenoresRoute: AtencionMenoresRoute,
   EvaluacionRoute: EvaluacionRoute,
   InformacionSanitariaRoute: InformacionSanitariaRoute,
-  PiercingAricaRoute: PiercingAricaRoute,
   PreciosRoute: PreciosRoute,
   PrivacidadRoute: PrivacidadRoute,
   ReservasAbonosCancelacionesRoute: ReservasAbonosCancelacionesRoute,
-  SobreCoteRoute: SobreCoteRoute,
   ServiciosSlugRoute: ServiciosSlugRoute,
   ServiciosCuerpoRoute: ServiciosCuerpoRoute,
   ServiciosLabioBocaRoute: ServiciosLabioBocaRoute,

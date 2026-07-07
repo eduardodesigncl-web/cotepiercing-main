@@ -4,7 +4,6 @@ const links = [
   { href: "/servicios", label: "Servicios" },
   { href: "/precios", label: "Precios" },
   { href: "/evaluacion", label: "Evaluaciones" },
-  { href: "/sobre-cote", label: "Sobre María" },
   { href: "/privacidad", label: "Privacidad" },
 ];
 

@@ -64,6 +64,7 @@ const REDIRECT_HOSTNAMES = new Set([
   "www.cotepiercing.cl",
   "cotepiercing-main.eduardo-design-cl.workers.dev",
 ]);
+const DELETED_PUBLIC_PATHS = new Set(["/piercing-arica", "/sobre-cote"]);
 const PUBLIC_ASSET_PATHS = new Set([
   "/apple-touch-icon.png",
   "/cotepiercing-piercing-profesional-arica-chile-og.png",
@@ -360,6 +361,21 @@ function trailingSlashRedirect(request: Request): Response | undefined {
   });
 }
 
+function deletedUrlResponse(request: Request): Response | undefined {
+  const url = new URL(request.url);
+  const pathname = url.pathname === "/" ? url.pathname : url.pathname.replace(/\/+$/, "");
+  if (!DELETED_PUBLIC_PATHS.has(pathname)) return undefined;
+
+  return new Response("Esta URL fue eliminada permanentemente de Cotepiercing.", {
+    status: 410,
+    headers: {
+      "content-type": "text/plain; charset=utf-8",
+      "Cache-Control": "public, max-age=3600",
+      "X-Robots-Tag": "noindex, nofollow",
+    },
+  });
+}
+
 function canonicalHostRedirect(request: Request): Response | undefined {
   const url = new URL(request.url);
   if (!REDIRECT_HOSTNAMES.has(url.hostname.toLowerCase())) return undefined;
@@ -382,6 +398,9 @@ export default {
     const runtimeEnv = env as RuntimeEnv;
     const hostRedirect = canonicalHostRedirect(request);
     if (hostRedirect) return addResponseHeaders(request, hostRedirect, runtimeEnv);
+
+    const deletedResponse = deletedUrlResponse(request);
+    if (deletedResponse) return addResponseHeaders(request, deletedResponse, runtimeEnv);
 
     const redirect = trailingSlashRedirect(request);
     if (redirect) return addResponseHeaders(request, redirect, runtimeEnv);

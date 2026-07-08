@@ -619,6 +619,8 @@ export const services: Service[] = [
     evaluation: "—",
     category: "Evaluación",
     slug: "evaluacion-granuloma-piercing-arica",
+    description:
+      "Lo que tiene aquí es un granuloma, frecuentemente un granuloma piógeno o por cuerpo extraño. Para explicárselo de forma clara: no se trata de una infección grave ni de una herida normal. Es una respuesta de defensa exagerada de su cuerpo. Ante un pequeño estímulo como una perforación, un roce constante, una uña encarnada o una astilla, sus vasos sanguíneos y células de defensa intentaron reparar la zona tan rápido que crearon un exceso de tejido nuevo. Es como si el cuerpo hubiera construido un parche de emergencia demasiado grueso y lleno de sangre.",
     image: imgGranuloma,
     imageAlt: "Evaluación de granuloma en piercing realizada por Cotepiercing",
   }),
@@ -630,6 +632,8 @@ export const services: Service[] = [
     evaluation: "—",
     category: "Evaluación",
     slug: "evaluacion-queloide-piercing-arica",
+    description:
+      "Lo que estamos observando aquí es un queloide. Para que lo comprendamos de forma sencilla: cuando la piel sufre una herida, el cuerpo produce una proteína llamada colágeno para cerrarla. En su caso, las células encargadas de esto no recibieron la señal de detenerse y siguieron produciendo tejido de más. A diferencia de una cicatriz normal, el queloide desborda los límites de la herida original e invade la piel sana, comportándose como una cicatriz con exceso de energía. Para diseñar el mejor tratamiento para usted, necesito evaluar cuatro aspectos fundamentales de su cicatriz. Primero, la actividad y consistencia: voy a palpar el queloide. Si está muy duro, rojo o inflamado, significa que sigue creciendo de forma activa; si está más blando o pálido, está en una etapa más estable. Segundo, los síntomas asociados: necesito saber si experimenta picazón constante, dolor o punzadas. Estos síntomas indican qué tan inflamados están los nervios internos de la cicatriz. Tercero, el tiempo de evolución: no es lo mismo tratar un queloide que lleva tres meses que uno que lleva cinco años. Cuarto, su historial personal: analizaremos si tiene tendencia familiar o antecedentes de cicatrización similar.",
     image: imgQueloide,
     imageAlt: "Evaluación de queloide en piercing realizada por Cotepiercing",
   }),
@@ -641,6 +645,8 @@ export const services: Service[] = [
     evaluation: "Obligatoria",
     category: "Evaluación",
     slug: "reconstruccion-lobulos-arica",
+    description:
+      "La reconstrucción de lóbulo, conocida médicamente como lobuloplastia, es un procedimiento quirúrgico menor y ambulatorio diseñado para corregir, restaurar o rejuvenecer la estructura anatómica del lóbulo de la oreja. Su objetivo principal es devolver la simetría, consistencia y forma natural a tejidos que han sufrido deformaciones, elongaciones o desgarros completos debido a factores mecánicos o al envejecimiento.",
     image: imgReconstruccion,
     imageAlt: "Reconstrucción de lóbulos realizada por Cotepiercing con enfoque profesional",
   }),

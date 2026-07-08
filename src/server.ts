@@ -69,6 +69,8 @@ const PUBLIC_ASSET_PATHS = new Set([
   "/apple-touch-icon.png",
   "/cotepiercing-piercing-profesional-arica-chile-og.png",
   "/favicon.ico",
+  "/favicon-192.png",
+  "/favicon-512.png",
   "/llms.txt",
   "/og-image.png",
   "/robots.txt",

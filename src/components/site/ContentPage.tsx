@@ -40,8 +40,8 @@ export function ContentPage({
           <aside className="mt-16 border-t border-border pt-10" aria-label="Enlaces relacionados">
             <h2 className="font-serif text-2xl">Explora Cotepiercing en Arica</h2>
             <div className="mt-5 flex flex-wrap gap-x-6 gap-y-3 text-sm">
-              <a href="/piercing-arica" className="text-[var(--gold)] hover:opacity-70">
-                Conocer la atención de piercing profesional en Arica
+              <a href="/servicios" className="text-[var(--gold)] hover:opacity-70">
+                Conocer servicios de piercing profesional
               </a>
               <a href="/precios" className="text-[var(--gold)] hover:opacity-70">
                 Consultar precios de servicios

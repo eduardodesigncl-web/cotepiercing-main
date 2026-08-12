@@ -5,7 +5,7 @@ import { SiteFooter } from "@/components/site/SiteFooter";
 import { Button } from "@/components/ui/button";
 import { waLink } from "@/lib/wa";
 import { SITE_URL } from "@/lib/config";
-import { BUSINESS_LOCATION, SITE } from "@/lib/site";
+import { SITE } from "@/lib/site";
 import { SiteBreadcrumbs } from "@/components/site/SiteBreadcrumbs";
 import { ArrowLeft, MessageCircle, Clock, Stethoscope, Tag, MapPin } from "lucide-react";
 
@@ -18,7 +18,7 @@ export const Route = createFileRoute("/servicios/$slug")({
     if (!service) return { meta: [{ title: "Servicio no encontrado — Cotepiercing" }] };
 
     const title = `${service.name} en Arica — Cotepiercing | Piercing profesional`;
-    const description = `${service.description} Zona: ${service.zone}. Cicatrización: ${service.healing}. Precio desde ${service.price} CLP. Reserva por WhatsApp en ${SITE.name}, ${BUSINESS_LOCATION}.`;
+    const description = `${service.description} Zona: ${service.zone}. Cicatrización: ${service.healing}. Precio desde ${service.price} CLP. Reserva por WhatsApp en ${SITE.name}, Arica.`;
 
     return {
       meta: [
@@ -77,13 +77,9 @@ function ServicePage() {
           url: `${SITE_URL}/`,
           telephone: SITE.phoneE164,
           sameAs: [SITE.googleBusinessUrl, SITE.instagramUrl],
-          address: {
-            "@type": "PostalAddress",
-            streetAddress: SITE.streetAddress,
-            addressLocality: SITE.locality,
-            addressRegion: SITE.region,
-            addressCountry: SITE.country,
-            postalCode: SITE.postalCode,
+          areaServed: {
+            "@type": "City",
+            name: SITE.locality,
           },
         },
         areaServed: {
@@ -264,7 +260,9 @@ function ServicePage() {
                 >
                   <div className="relative min-h-32 overflow-hidden bg-[var(--stone)] sm:aspect-[4/3]">
                     <img
-                      src={s.image}
+                      src={s.cardImage}
+                      srcSet={s.cardImageSrcSet}
+                      sizes="(min-width: 1024px) 31vw, (min-width: 640px) 47vw, 7rem"
                       alt={s.imageAlt}
                       loading="lazy"
                       decoding="async"
@@ -301,9 +299,9 @@ function ServicePage() {
                 text: "Compara valores y servicios con joyería inicial incluida.",
               },
               {
-                href: "/piercing-arica",
-                title: "Atención en Arica",
-                text: "Consulta ubicación, horario y forma de reservar en Cotepiercing.",
+                href: "/servicios",
+                title: "Servicios en Arica",
+                text: "Explora las zonas disponibles y elige el servicio que quieres reservar.",
               },
             ].map((item) => (
               <a

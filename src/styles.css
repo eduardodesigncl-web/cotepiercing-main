@@ -286,7 +286,11 @@
       transform: translate3d(0, 0, 0);
     }
     100% {
-      transform: translate3d(calc(-1 * ((var(--hero-carousel-card-width) * 5) + (var(--hero-carousel-gap) * 5))), 0, 0);
+      transform: translate3d(
+        calc(-1 * ((var(--hero-carousel-card-width) * 5) + (var(--hero-carousel-gap) * 5))),
+        0,
+        0
+      );
     }
   }
 
@@ -307,7 +311,9 @@
     width: calc((var(--hero-carousel-card-width) * 10) + (var(--hero-carousel-gap) * 9));
     align-items: flex-start;
     gap: var(--hero-carousel-gap);
-    margin-left: calc(50vw - (((var(--hero-carousel-card-width) * 5) + (var(--hero-carousel-gap) * 4)) / 2));
+    margin-left: calc(
+      50vw - (((var(--hero-carousel-card-width) * 5) + (var(--hero-carousel-gap) * 4)) / 2)
+    );
     padding-bottom: clamp(20px, 3vw, 34px);
     will-change: transform;
   }
@@ -681,11 +687,6 @@
     backdrop-filter: blur(10px);
   }
 
-  .landing-color-study .landing-reserve-panel iframe {
-    height: 190px;
-    filter: saturate(0.72) contrast(0.96);
-  }
-
   .landing-color-study .landing-care-section {
     padding-top: clamp(4.25rem, 7vw, 6.5rem);
     padding-bottom: clamp(4.25rem, 7vw, 6.5rem);
@@ -718,7 +719,7 @@
     }
 
     .landing-color-study #inicio > div {
-      padding-top: 128px;
+      padding-top: 140px;
     }
 
     .hero-carousel-mask {
@@ -741,7 +742,7 @@
     }
 
     .landing-color-study #inicio > div {
-      padding-top: 116px;
+      padding-top: 148px;
     }
 
     .hero-carousel-mask {

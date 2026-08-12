@@ -36,7 +36,8 @@ import { services, categories, type Category, type Service } from "@/data/servic
 import { faqs } from "@/data/faqs";
 import { waLink } from "@/lib/wa";
 import { SITE_URL } from "@/lib/config";
-import { BUSINESS_ADDRESS_WITH_COUNTRY, SITE } from "@/lib/site";
+import { SITE } from "@/lib/site";
+import { optimizedImageSrc, optimizedImageSrcSet } from "@/lib/responsive-images";
 
 import heroCarouselEarWide from "@/assets/hero/hero-carousel-ear-wide.webp";
 import heroCarouselJewelryHands from "@/assets/hero/hero-carousel-jewelry-hands.webp";
@@ -147,26 +148,36 @@ const galleryItems: GalleryItem[] = [
 const heroCarouselImages = [
   {
     src: heroCarouselEarWide,
+    optimizedSrc: optimizedImageSrc("hero", heroCarouselEarWide, 480),
+    srcSet: optimizedImageSrcSet("hero", heroCarouselEarWide, [320, 480, 640]),
     alt: "Oreja con piercings dorados y joyería fina.",
     objectPosition: "44% 44%",
   },
   {
     src: heroCarouselJewelryHands,
+    optimizedSrc: optimizedImageSrc("hero", heroCarouselJewelryHands, 480),
+    srcSet: optimizedImageSrcSet("hero", heroCarouselJewelryHands, [320, 480, 640]),
     alt: "Manos con guantes negros manipulando joyería dorada.",
     objectPosition: "52% 46%",
   },
   {
     src: heroCarouselJewelryTray,
+    optimizedSrc: optimizedImageSrc("hero", heroCarouselJewelryTray, 480),
+    srcSet: optimizedImageSrcSet("hero", heroCarouselJewelryTray, [320, 480, 640]),
     alt: "Selección de joyería para piercing en una bandeja beige.",
     objectPosition: "50% 49%",
   },
   {
     src: heroCarouselEarStar,
+    optimizedSrc: optimizedImageSrc("hero", heroCarouselEarStar, 480),
+    srcSet: optimizedImageSrcSet("hero", heroCarouselEarStar, [320, 480, 640]),
     alt: "Oreja con piercings dorados y colgante de estrella.",
     objectPosition: "54% 44%",
   },
   {
     src: heroCarouselMarking,
+    optimizedSrc: optimizedImageSrc("hero", heroCarouselMarking, 480),
+    srcSet: optimizedImageSrcSet("hero", heroCarouselMarking, [320, 480, 640]),
     alt: "María José evaluando la anatomía facial antes de una perforación.",
     objectPosition: "58% 43%",
   },
@@ -175,6 +186,8 @@ const heroCarouselImages = [
 const heroCarouselLoop = [...heroCarouselImages, ...heroCarouselImages];
 const faqMidpoint = Math.ceil(faqs.length / 2);
 const faqColumns = [faqs.slice(0, faqMidpoint), faqs.slice(faqMidpoint)];
+const reservationWhatsAppMessage =
+  "Hola María José, quiero reservar una hora en Cotepiercing. Me gustaría consultar disponibilidad y coordinar el servicio.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -196,7 +209,14 @@ export const Route = createFileRoute("/")({
     ],
     links: [
       { rel: "canonical", href: `${SITE_URL}/` },
-      { rel: "preload", as: "image", href: heroCarouselEarWide, fetchPriority: "high" },
+      {
+        rel: "preload",
+        as: "image",
+        href: optimizedImageSrc("hero", heroCarouselEarWide, 480),
+        imageSrcSet: optimizedImageSrcSet("hero", heroCarouselEarWide, [320, 480, 640]),
+        imageSizes: "(min-width: 1024px) 245px, 46vw",
+        fetchPriority: "high",
+      },
     ],
   }),
   component: Page,
@@ -308,27 +328,20 @@ function Page() {
         ref={heroRef}
         className="relative h-[100svh] max-h-[700px] min-h-[610px] w-full overflow-hidden bg-[#0D0D0D] text-white sm:min-h-[650px]"
       >
-        <div className="relative z-10 mx-auto h-full w-full max-w-[1500px] px-4 pt-[112px] sm:px-6 sm:pt-[118px] lg:px-10 lg:pt-[122px]">
+        <div className="relative z-10 mx-auto h-full w-full max-w-[1500px] px-4 pt-[112px] sm:px-6 sm:pt-[118px] lg:px-10 lg:pt-[138px]">
           <div className="mx-auto flex w-full max-w-2xl flex-col items-center text-center">
             <h1 className="animate-hero-rise max-w-2xl font-sans text-[28px] font-normal uppercase leading-[1.1] tracking-[0.01em] text-[#F5F0EA] sm:text-[36px] lg:text-[42px]">
               Piercings diseñados
               <span className="block">para tu anatomía</span>
             </h1>
 
-            <p
-              className="mt-4 max-w-[440px] animate-hero-rise text-[12px] leading-relaxed text-[#CFC7BB] sm:text-[13px]"
-              style={{ animationDelay: "180ms" }}
-            >
-              Evaluación, perforación y joyería con un enfoque profesional, seguro y personalizado.
-            </p>
-
             <div
-              className="mt-6 flex animate-hero-rise flex-col items-center"
-              style={{ animationDelay: "320ms" }}
+              className="mt-7 flex animate-hero-rise flex-col items-center"
+              style={{ animationDelay: "180ms" }}
             >
               <Link
                 to="/servicios"
-                className="inline-flex min-h-9 items-center justify-center rounded-full bg-[#F5F0EA] px-6 py-2 text-center font-sans text-[10px] font-normal uppercase tracking-[0.18em] text-[#0D0D0D] transition-all hover:-translate-y-0.5 hover:bg-white sm:px-7"
+                className="inline-flex min-h-9 items-center justify-center rounded-full bg-[#F5F0EA] px-6 py-2 text-center font-sans text-[10px] font-medium uppercase tracking-[0.18em] text-[#0D0D0D] transition-all hover:-translate-y-0.5 hover:bg-white sm:px-7"
               >
                 Ver servicios
                 <span aria-hidden="true" className="ml-2 text-sm leading-none">
@@ -346,10 +359,12 @@ function Page() {
                   className="hero-carousel-card overflow-hidden bg-white/5"
                 >
                   <img
-                    src={image.src}
+                    src={image.optimizedSrc}
+                    srcSet={image.srcSet}
+                    sizes="(min-width: 1024px) 245px, 46vw"
                     alt={image.alt}
-                    width={900}
-                    height={1125}
+                    width={480}
+                    height={600}
                     loading={index < heroCarouselImages.length ? "eager" : "lazy"}
                     decoding="async"
                     className="h-full w-full object-cover"
@@ -394,6 +409,7 @@ function Page() {
             <button
               key={c}
               onClick={() => setCat(c)}
+              data-service-category={c}
               className={`px-3 py-1.5 sm:px-4 sm:py-2 text-[10px] sm:text-xs tracking-[0.18em] uppercase border transition-colors ${
                 cat === c
                   ? "bg-[var(--gold)] text-white border-[var(--gold)]"
@@ -415,12 +431,14 @@ function Page() {
             >
               <div className="relative w-full aspect-[4/5] shrink-0 overflow-hidden bg-[var(--stone)]">
                 <img
-                  src={s.image}
+                  src={s.cardImage}
+                  srcSet={s.cardImageSrcSet}
+                  sizes="(min-width: 1280px) 23vw, (min-width: 1024px) 31vw, (min-width: 640px) 47vw, 46vw"
                   alt={s.imageAlt}
                   loading="lazy"
                   decoding="async"
-                  width={800}
-                  height={1000}
+                  width={520}
+                  height={650}
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
                 />
               </div>
@@ -897,11 +915,11 @@ function Page() {
             <SectionHead
               eyebrow="Reserva"
               title="Reserva tu hora"
-              intro="Agenda tu piercing o evaluación directamente por WhatsApp. Indica el servicio que quieres realizar, zona del cuerpo y disponibilidad horaria para coordinar tu atención."
+              intro="Agenda tu piercing o evaluación directamente por WhatsApp. Indica el servicio, la zona del cuerpo y tu disponibilidad. La ubicación exacta se proporciona por DM al confirmar la reserva."
             />
             <div className="mt-8 sm:mt-10">
               <a
-                href={waLink()}
+                href={waLink(reservationWhatsAppMessage)}
                 data-cta="reservation"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -919,44 +937,12 @@ function Page() {
               <div className="flex items-start gap-3">
                 <MapPin className="w-4 h-4 text-[var(--gold)] mt-1 shrink-0" strokeWidth={1.4} />
                 <div>
-                  <address className="not-italic text-[15px] leading-relaxed">
-                    {SITE.venue}
-                    <br />
-                    {BUSINESS_ADDRESS_WITH_COUNTRY}
-                  </address>
+                  <p className="text-[15px] leading-relaxed text-foreground">{SITE.name}</p>
                   <p className="mt-1 text-[13px] text-muted-foreground">
-                    {SITE.name} atiende en {SITE.venue}, ubicado en {BUSINESS_ADDRESS_WITH_COUNTRY}.
+                    Atención en {SITE.locality}. {SITE.locationDisclosure}
                   </p>
-                  <a
-                    href={SITE.mapsShareUrl}
-                    data-cta="location"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Ver ubicación de Cotepiercing en Google Maps"
-                    className="inline-flex items-center gap-1.5 mt-3 text-[11px] tracking-[0.2em] uppercase text-[var(--gold)] hover:opacity-70 transition-opacity"
-                  >
-                    <MapPin className="w-3 h-3" strokeWidth={1.6} />
-                    Ver en Google Maps
-                  </a>
                 </div>
               </div>
-            </div>
-
-            {/* Mapa */}
-            <div
-              className="overflow-hidden border border-border shadow-sm"
-              style={{ borderRadius: "4px" }}
-            >
-              <iframe
-                title={`Mapa de ubicación de ${SITE.name} en ${SITE.venue}, ${BUSINESS_ADDRESS_WITH_COUNTRY}`}
-                src={SITE.mapsEmbedUrl}
-                width="100%"
-                height="240"
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                allowFullScreen
-                style={{ border: 0, display: "block" }}
-              />
             </div>
 
             {/* Horario */}

@@ -12,6 +12,7 @@ import {
 
 import { SITE_URL } from "@/lib/config";
 import { ConsentBanner } from "@/components/site/ConsentBanner";
+import { registerCotepiercingWebMcpTools } from "@/lib/webmcp";
 import appCss from "@/styles.css?url";
 
 function NotFoundComponent() {
@@ -113,8 +114,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     links: [
       { rel: "stylesheet", href: appCss },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" as const },
+      { rel: "icon", type: "image/png", href: "/favicon-512.png", sizes: "512x512" },
+      { rel: "icon", type: "image/png", href: "/favicon-192.png", sizes: "192x192" },
       { rel: "icon", href: "/favicon.ico", sizes: "any" },
-      { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
+      { rel: "apple-touch-icon", href: "/apple-touch-icon.png", sizes: "180x180" },
     ],
   }),
   shellComponent: RootShell,
@@ -147,6 +150,11 @@ function RootShell({ children }: { children: React.ReactNode }) {
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const location = useLocation();
+
+  useEffect(() => {
+    const controller = registerCotepiercingWebMcpTools();
+    return () => controller?.abort();
+  }, []);
 
   useEffect(() => {
     window.scrollTo(0, window.scrollY);

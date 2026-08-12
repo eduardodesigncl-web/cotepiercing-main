@@ -2,7 +2,7 @@ import "./lib/error-capture";
 
 import { consumeLastCapturedError } from "./lib/error-capture";
 import { renderErrorPage } from "./lib/error-page";
-import { BUSINESS_ADDRESS_WITH_COUNTRY, SITE } from "./lib/site";
+import { SITE } from "./lib/site";
 import type { GooglePlaceSummary, GoogleReview } from "./lib/google-reviews";
 
 type ServerEntry = {
@@ -59,10 +59,18 @@ type PlaceDetails = {
 const REVIEW_CACHE_SECONDS = 60 * 60 * 24;
 const APP_COMMIT = __APP_COMMIT__;
 const APP_BUILD_TIME = __APP_BUILD_TIME__;
+const OFFICIAL_HOSTNAME = "cotepiercing.cl";
+const REDIRECT_HOSTNAMES = new Set([
+  "www.cotepiercing.cl",
+  "cotepiercing-main.eduardo-design-cl.workers.dev",
+]);
+const DELETED_PUBLIC_PATHS = new Set(["/piercing-arica", "/sobre-cote"]);
 const PUBLIC_ASSET_PATHS = new Set([
   "/apple-touch-icon.png",
   "/cotepiercing-piercing-profesional-arica-chile-og.png",
   "/favicon.ico",
+  "/favicon-192.png",
+  "/favicon-512.png",
   "/llms.txt",
   "/og-image.png",
   "/robots.txt",
@@ -96,7 +104,7 @@ async function resolvePlaceId(apiKey: string): Promise<string | undefined> {
       "X-Goog-FieldMask": "places.id,places.displayName,places.formattedAddress",
     },
     body: JSON.stringify({
-      textQuery: `${SITE.name}, ${BUSINESS_ADDRESS_WITH_COUNTRY}`,
+      textQuery: `${SITE.name}, ${SITE.locality}, ${SITE.countryName}`,
       languageCode: "es",
       regionCode: "CL",
     }),
@@ -107,17 +115,17 @@ async function resolvePlaceId(apiKey: string): Promise<string | undefined> {
   };
   const places = payload.places ?? [];
   const businessName = SITE.name.toLocaleLowerCase("es");
-  const streetAddress = SITE.streetAddress.toLocaleLowerCase("es");
+  const locality = SITE.locality.toLocaleLowerCase("es");
 
   const exactNameMatch = places.find((place) =>
     place.displayName?.text?.toLocaleLowerCase("es").includes(businessName),
   );
   if (exactNameMatch?.id) return exactNameMatch.id;
 
-  const addressMatch = places.find((place) =>
-    place.formattedAddress?.toLocaleLowerCase("es").includes(streetAddress),
+  const localityMatch = places.find((place) =>
+    place.formattedAddress?.toLocaleLowerCase("es").includes(locality),
   );
-  return addressMatch?.id ?? places[0]?.id;
+  return localityMatch?.id ?? places[0]?.id;
 }
 
 function normalizeReview(review: PlacesReview): GoogleReview | null {
@@ -257,14 +265,15 @@ const SECURITY_HEADERS: Record<string, string> = {
   "X-Frame-Options": "SAMEORIGIN",
   "X-Content-Type-Options": "nosniff",
   "Referrer-Policy": "strict-origin-when-cross-origin",
-  "Permissions-Policy": "camera=(), microphone=(), geolocation=(), payment=()",
+  "Origin-Agent-Cluster": "?1",
+  "Cross-Origin-Opener-Policy": "same-origin",
+  "Permissions-Policy": "camera=(), microphone=(), geolocation=(), payment=(), tools=(self)",
   "Content-Security-Policy": [
     "default-src 'self'",
     "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://static.cloudflareinsights.com",
     "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
     "font-src 'self' https://fonts.gstatic.com",
     "img-src 'self' data: https:",
-    "frame-src https://maps.google.com https://www.google.com",
     "connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://www.googletagmanager.com https://cloudflareinsights.com",
   ].join("; "),
 };
@@ -272,7 +281,9 @@ const SECURITY_HEADERS: Record<string, string> = {
 function cachePolicyFor(url: URL, response: Response): string | undefined {
   if (response.headers.has("Cache-Control")) return undefined;
   if (url.pathname === "/version.json") return "no-store";
-  if (url.pathname.startsWith("/assets/")) return "public, max-age=31536000, immutable";
+  if (url.pathname.startsWith("/assets/") || url.pathname.startsWith("/optimized/")) {
+    return "public, max-age=31536000, immutable";
+  }
   if (
     url.pathname === "/robots.txt" ||
     url.pathname === "/sitemap.xml" ||
@@ -311,7 +322,11 @@ function addResponseHeaders(
 }
 
 function shouldServeStaticAsset(pathname: string): boolean {
-  return pathname.startsWith("/assets/") || PUBLIC_ASSET_PATHS.has(pathname);
+  return (
+    pathname.startsWith("/assets/") ||
+    pathname.startsWith("/optimized/") ||
+    PUBLIC_ASSET_PATHS.has(pathname)
+  );
 }
 
 async function serveStaticAsset(
@@ -347,10 +362,47 @@ function trailingSlashRedirect(request: Request): Response | undefined {
   });
 }
 
+function deletedUrlResponse(request: Request): Response | undefined {
+  const url = new URL(request.url);
+  const pathname = url.pathname === "/" ? url.pathname : url.pathname.replace(/\/+$/, "");
+  if (!DELETED_PUBLIC_PATHS.has(pathname)) return undefined;
+
+  return new Response("Esta URL fue eliminada permanentemente de Cotepiercing.", {
+    status: 410,
+    headers: {
+      "content-type": "text/plain; charset=utf-8",
+      "Cache-Control": "public, max-age=3600",
+      "X-Robots-Tag": "noindex, nofollow",
+    },
+  });
+}
+
+function canonicalHostRedirect(request: Request): Response | undefined {
+  const url = new URL(request.url);
+  if (!REDIRECT_HOSTNAMES.has(url.hostname.toLowerCase())) return undefined;
+
+  url.protocol = "https:";
+  url.hostname = OFFICIAL_HOSTNAME;
+  url.port = "";
+  return new Response(null, {
+    status: 301,
+    headers: {
+      Location: url.toString(),
+      "Cache-Control": "public, max-age=86400",
+    },
+  });
+}
+
 export default {
   async fetch(request: Request, env: unknown, ctx: unknown) {
     const url = new URL(request.url);
     const runtimeEnv = env as RuntimeEnv;
+    const hostRedirect = canonicalHostRedirect(request);
+    if (hostRedirect) return addResponseHeaders(request, hostRedirect, runtimeEnv);
+
+    const deletedResponse = deletedUrlResponse(request);
+    if (deletedResponse) return addResponseHeaders(request, deletedResponse, runtimeEnv);
+
     const redirect = trailingSlashRedirect(request);
     if (redirect) return addResponseHeaders(request, redirect, runtimeEnv);
 

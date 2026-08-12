@@ -21,9 +21,10 @@ function PrivacyPage() {
         <section>
           <h2 className="font-serif text-3xl text-foreground">Responsable y contacto</h2>
           <p className="mt-4">
-            El sitio corresponde a {SITE.name}, atención de piercing profesional en{" "}
-            {SITE.streetAddress}, {SITE.postalCode} {SITE.locality}, {SITE.region}. Para consultas
-            sobre privacidad o atención, escribe por WhatsApp al{" "}
+            El sitio corresponde a {SITE.name}, servicio independiente de piercing profesional en{" "}
+            {SITE.locality}, {SITE.countryName}. La ubicación exacta se proporciona por DM al
+            confirmar una reserva. Para consultas sobre privacidad o atención, escribe por WhatsApp
+            al{" "}
             <a
               href={`https://wa.me/${SITE.whatsappNumber}`}
               data-cta="whatsapp"
@@ -68,10 +69,9 @@ function PrivacyPage() {
         <section>
           <h2 className="font-serif text-3xl text-foreground">Enlaces externos</h2>
           <p className="mt-4">
-            Al abrir WhatsApp, Instagram, Google Business, Google Maps o Google Reviews abandonas
-            este sitio y aplican las políticas de privacidad de esas plataformas. Google Maps y
-            Google Business se usan como enlaces externos para ubicación, reseñas e indicaciones de
-            llegada; no equivalen a Google Analytics.
+            Al abrir WhatsApp, Instagram, Google Business o Google Reviews abandonas este sitio y
+            aplican las políticas de privacidad de esas plataformas. Google Business se usa como
+            enlace externo para consultar reseñas; no equivale a Google Analytics.
           </p>
         </section>
         <section>

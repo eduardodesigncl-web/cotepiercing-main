@@ -13,7 +13,9 @@ export function ServiceGrid({ items }: { items: Service[] }) {
         >
           <div className="aspect-[4/3] overflow-hidden bg-[var(--stone)]">
             <img
-              src={service.image}
+              src={service.cardImage}
+              srcSet={service.cardImageSrcSet}
+              sizes="(min-width: 1024px) 31vw, (min-width: 640px) 47vw, 92vw"
               alt={service.imageAlt}
               loading="lazy"
               width={800}

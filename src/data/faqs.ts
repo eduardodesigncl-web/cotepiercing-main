@@ -1,9 +1,9 @@
-import { BUSINESS_LOCATION } from "@/lib/site";
+import { SITE } from "@/lib/site";
 
 export const faqs = [
   {
     question: "¿Dónde puedo hacerme un piercing profesional en Arica?",
-    answer: `Cotepiercing atiende en ${BUSINESS_LOCATION}. Cada servicio considera evaluación anatómica, joyería inicial y un protocolo de asepsia profesional.`,
+    answer: `${SITE.name} ofrece piercing profesional en ${SITE.locality}. Cada servicio considera evaluación anatómica, joyería inicial y un protocolo de asepsia profesional. ${SITE.locationDisclosure}`,
   },
   {
     question: "¿Cuánto cuesta hacerse un piercing en Arica?",

@@ -15,7 +15,7 @@ export function SiteFooter() {
           <div>
             <div className="font-serif text-lg tracking-[0.2em] uppercase">{SITE.name}</div>
             <p className="mt-1 text-xs text-muted-foreground">
-              {SITE.venue} · {SITE.streetAddress}, {SITE.locality}, Chile
+              Piercing profesional en {SITE.locality}, {SITE.countryName}
             </p>
             <a
               href={`tel:${SITE.phoneE164}`}

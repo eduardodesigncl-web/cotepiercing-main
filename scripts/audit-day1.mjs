@@ -178,6 +178,15 @@ if (servedSitemapResponse.status !== 200) fail("sitemap.xml no respondió 200.")
 
 const homeResponse = await request(`${baseUrl}/`);
 const homeHtml = await homeResponse.clone().text();
+if (!/La ubicación exacta se proporciona por DM/i.test(homeHtml)) {
+  fail("La portada no informa que la ubicación exacta se proporciona por DM.");
+}
+if (/"@type":"(?:PostalAddress|GeoCoordinates)"/.test(homeHtml)) {
+  fail("La portada publica dirección o coordenadas en sus datos estructurados.");
+}
+if (/<iframe\b[^>]+(?:maps|location)/i.test(homeHtml)) {
+  fail("La portada todavía incluye un mapa de ubicación público.");
+}
 const requiredHeaders = [
   "strict-transport-security",
   "content-security-policy",

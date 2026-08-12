@@ -16,7 +16,7 @@ const localBusinessSchema = {
   "@id": `${SITE_URL}/#business`,
   name: SITE.name,
   description:
-    "Estudio de body piercing profesional en Arica, Chile. Evaluación anatómica, asepsia clínica y joyería inicial incluida en cada servicio.",
+    "Servicio de body piercing profesional en Arica, Chile. Evaluación anatómica, asepsia clínica y joyería inicial incluida en cada servicio.",
   url: SITE_URL,
   priceRange: "$5.000 - $100.000 CLP",
   currenciesAccepted: "CLP",
@@ -24,18 +24,9 @@ const localBusinessSchema = {
   image: `${SITE_URL}/cotepiercing-piercing-profesional-arica-chile-og.png`,
   telephone: SITE.phoneE164,
   sameAs: [SITE.googleBusinessUrl, SITE.instagramUrl],
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: SITE.streetAddress,
-    addressLocality: SITE.locality,
-    addressRegion: SITE.region,
-    addressCountry: SITE.country,
-    postalCode: SITE.postalCode,
-  },
-  geo: {
-    "@type": "GeoCoordinates",
-    latitude: SITE.geo.latitude,
-    longitude: SITE.geo.longitude,
+  areaServed: {
+    "@type": "City",
+    name: SITE.locality,
   },
   openingHoursSpecification: [
     {

@@ -1,5 +1,5 @@
 import { categories } from "@/data/services";
-import { BUSINESS_ADDRESS_WITH_COUNTRY, SITE } from "@/lib/site";
+import { SITE } from "@/lib/site";
 import { waLink } from "@/lib/wa";
 
 type WebMcpTool = {
@@ -63,7 +63,7 @@ export function registerCotepiercingWebMcpTools(): AbortController | undefined {
     {
       name: "get_business_info",
       description:
-        "Returns Cotepiercing contact, location, hours and booking links for a user planning a piercing visit.",
+        "Returns Cotepiercing contact, service area, private location policy, hours and booking link for a user planning a piercing visit.",
       inputSchema: {
         type: "object",
         properties: {},
@@ -77,10 +77,10 @@ export function registerCotepiercingWebMcpTools(): AbortController | undefined {
         name: SITE.name,
         professional: SITE.professional,
         phone: SITE.phoneDisplay,
-        address: `${SITE.venue}, ${BUSINESS_ADDRESS_WITH_COUNTRY}`,
+        serviceArea: SITE.serviceArea,
+        locationNote: SITE.locationDisclosure,
         hours: SITE.openingHoursText,
         reservationUrl: waLink(),
-        mapsUrl: SITE.mapsShareUrl,
       }),
     },
     {
